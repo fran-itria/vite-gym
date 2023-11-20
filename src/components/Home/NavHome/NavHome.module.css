@@ -1,0 +1,25 @@
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.ul {
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 50px;
+    width: 100vh;
+}
+
+.li {
+    list-style: none;
+}
+
+.active {
+    color: red;
+}
+
+.pending {
+    color: black;
+}
