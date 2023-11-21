@@ -50,6 +50,7 @@ li {
 .inicio:hover {
     color: black;
     box-shadow: 2px 2px grey;
+    transition: 0.2s;
 }
 
 .calentamiento {
@@ -59,6 +60,7 @@ li {
 .calentamiento:hover {
     color: black;
     box-shadow: 2px 2px grey;
+    transition: 0.2s;
 }
 
 .rutina {
@@ -68,6 +70,7 @@ li {
 .rutina:hover {
     color: black;
     box-shadow: 2px 2px grey;
+    transition: 0.2s;
 }
 
 .suscripcion {
@@ -77,8 +80,10 @@ li {
 .suscripcion:hover {
     color: black;
     box-shadow: 2px 2px grey;
+    transition: 0.2s;
 }
 
 .active {
     box-shadow: 0px 3px 5px black;
+    transition: 0.5 s;
 }
