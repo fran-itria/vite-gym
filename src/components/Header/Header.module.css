@@ -36,16 +36,49 @@ li {
     width: 200px;
     padding-top: 0;
     padding-bottom: 0;
+    list-style: none;
+}
+
+/* li:hover {
+    box-shadow: 2px 2px grey;
+} */
+
+.inicio {
+    background-color: #fffebb;
+}
+
+.inicio:hover {
+    color: black;
+    box-shadow: 2px 2px grey;
 }
 
 .calentamiento {
     background-color: #BBFFFB;
 }
 
+.calentamiento:hover {
+    color: black;
+    box-shadow: 2px 2px grey;
+}
+
 .rutina {
     background-color: #AEFFAC;
 }
 
+.rutina:hover {
+    color: black;
+    box-shadow: 2px 2px grey;
+}
+
 .suscripcion {
     background-color: #FF8F8F;
+}
+
+.suscripcion:hover {
+    color: black;
+    box-shadow: 2px 2px grey;
+}
+
+.active {
+    box-shadow: 0px 3px 5px black;
 }

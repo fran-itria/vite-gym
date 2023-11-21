@@ -12,9 +12,26 @@ export default function Header() {
             </header>
             <nav>
                 <ul className={style.list}>
-                    <li className={style.calentamiento}><NavLink to={`/calentamiento/${id}`}> Calentamiento </NavLink></li>
-                    <li className={style.rutina}><NavLink to={`/rutina/${id}`}> Rutina </NavLink></li>
-                    <li className={style.suscripcion}><NavLink to='/suscripcion'> Suscripción </NavLink></li>
+                    <NavLink to={`/home`} className={({ isActive }) => isActive ? style.active : ''}>
+                        <li className={style.inicio}>
+                            Inicio
+                        </li>
+                    </NavLink>
+                    <NavLink to={`/calentamiento/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                        <li className={style.calentamiento}>
+                            Calentamiento
+                        </li>
+                    </NavLink>
+                    <NavLink to={`/rutina/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                        <li className={style.rutina}>
+                            Rutina
+                        </li>
+                    </NavLink>
+                    <NavLink to={`/suscripcion`} className={({ isActive }) => isActive ? style.active : ''}>
+                        <li className={style.suscripcion}>
+                            Suscripción
+                        </li>
+                    </NavLink>
                 </ul>
             </nav>
         </>

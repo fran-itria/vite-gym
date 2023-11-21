@@ -8,18 +8,25 @@
     background-color: white;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     border-radius: 50px;
     width: 100vh;
+    height: 30px;
 }
 
-.li {
-    list-style: none;
+.line {
+    width: 3px;
+    height: 30px;
+    background-color: black;
 }
 
 .active {
-    color: red;
+    color: #FF8F8F;
+    text-decoration: none;
+    font-size: 18px;
+    transition-duration: 0.2s;
 }
 
-.pending {
-    color: black;
+.pending:hover {
+    color: red;
 }
