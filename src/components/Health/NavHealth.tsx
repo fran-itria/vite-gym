@@ -1,12 +1,7 @@
 import style from "./Health.module.css";
-import { InformationEnum } from "./Health";
+import { InformationEnum, PropsNavHealth } from "../../types";
 
-type props = {
-  information: InformationEnum;
-  setInformation: React.Dispatch<React.SetStateAction<InformationEnum>>;
-};
-
-export default function NavHealth({ information, setInformation }: props) {
+export default function NavHealth({ information, setInformation }: PropsNavHealth) {
   return (
     <nav>
       <ul className={style.nav}>

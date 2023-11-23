@@ -2,11 +2,7 @@ import { useState } from "react";
 import { user } from "../../mock";
 import style from "./Health.module.css";
 import NavHealth from "./NavHealth";
-
-export enum InformationEnum {
-  meal,
-  exercises,
-}
+import { InformationEnum } from "../../types";
 
 export default function Health() {
   const [information, setInformation] = useState<InformationEnum>(
