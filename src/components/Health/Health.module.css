@@ -1,0 +1,29 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff8f8f;
+  border-radius: 50px;
+  height: 25px;
+  text-align: center;
+}
+.active:hover {
+  cursor: pointer;
+}
+.pending {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  height: 25px;
+  text-align: center;
+}
+.pending:hover {
+  cursor: pointer;
+}
