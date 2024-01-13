@@ -1,13 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
 
 function App() {
+  const path = useLocation();
   return (
     <>
-      <Header />
+      {path.pathname != "/" ? <Header /> : <></>}
       <Routes>
         <Route path="/" element={<FormLogin />} />
         <Route path="/home" element={<Home />} />
