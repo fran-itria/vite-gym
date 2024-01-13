@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import NavHome from "./NavHome/NavHome";
 import Health from "../Health/Health";
+import { miSalud } from "../../const";
 
 export default function Home() {
   const { pathname } = useLocation();
@@ -8,7 +9,7 @@ export default function Home() {
   return (
     <>
       <NavHome />
-      {route == "miSalud" ? <Health /> : <></>}
+      {route == miSalud ? <Health /> : <></>}
     </>
   );
 }
