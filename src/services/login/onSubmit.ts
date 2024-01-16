@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { login } from "./login";
 import { submitProps } from "../typeServices";
 
@@ -9,7 +10,7 @@ export const onSubmit = async ({ event, inputs, navigate }: submitProps) => {
       // se guardará la informacion del usuario en un estado global
       navigate("/home");
     }
-  } catch (error) {
-    window.alert("No se pudo iniciar sesión");
+  } catch (error: any) {
+    window.alert(error.response.data.Error);
   }
 };
