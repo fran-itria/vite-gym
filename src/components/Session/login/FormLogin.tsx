@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Inputs } from "../../../types";
-import onChange from "../../../services/login/onChange";
-import { useNavigate } from "react-router-dom";
+import { InputsLogin } from "../../../types";
+import { loginChangeInputs } from "../../../services/onChange";
+import { NavLink, useNavigate } from "react-router-dom";
 import { onSubmit } from "../../../services/login/onSubmit";
 
 export default function FormLogin() {
-  const [inputs, setInputs] = useState<Inputs>();
+  const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
 
   return (
@@ -16,7 +16,7 @@ export default function FormLogin() {
           <input
             name="user"
             type="text"
-            onChange={(event) => onChange({ event, setInputs })}
+            onChange={(event) => loginChangeInputs({ event, setInputs })}
             required={true}
           ></input>
         </label>
@@ -25,11 +25,12 @@ export default function FormLogin() {
           <input
             name="password"
             type="password"
-            onChange={(event) => onChange({ event, setInputs })}
+            onChange={(event) => loginChangeInputs({ event, setInputs })}
             required={true}
           ></input>
         </label>
         <button>Enviar</button>
+        <NavLink to={"/register"}>Registrarme</NavLink>
       </form>
     </>
   );
