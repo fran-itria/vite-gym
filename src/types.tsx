@@ -14,14 +14,14 @@ export type InputsLogin = {
 };
 
 export type InputsRegister = {
-  gymName: string,
-  name: string,
-  surname: string,
-  contacEmergency: number,
-  dni: number,
-  age: number,
-  email: string,
-  phone: number,
-  user: string;
-  password: string;
+  gymName?: string,
+  name?: string,
+  surname?: string,
+  contacEmergency?: number,
+  dni?: number,
+  age?: number,
+  email?: string,
+  phone?: number,
+  user?: string;
+  password?: string;
 };
