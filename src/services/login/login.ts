@@ -1,8 +1,8 @@
 import { baseUrl } from "../../const";
 import axios, { AxiosResponse } from "axios";
-import { Inputs } from "../../types";
+import { InputsLogin } from "../../types";
 
-export const login = (inputs: Inputs | undefined): Promise<AxiosResponse> => {
+export const login = (inputs: InputsLogin | undefined): Promise<AxiosResponse> => {
   const user = inputs?.user;
   const password = inputs?.password;
   return axios
