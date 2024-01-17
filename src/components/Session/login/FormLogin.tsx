@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { InputsLogin } from "../../../types";
-import { loginChangeInputs } from "../../../services/onChange";
+import { onChange } from "../../../services/onChange";
 import { NavLink, useNavigate } from "react-router-dom";
 import { onSubmit } from "../../../services/login/onSubmit";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
-
   return (
     <>
       <form onSubmit={(event) => onSubmit({ event, inputs, navigate })}>
@@ -16,7 +15,7 @@ export default function FormLogin() {
           <input
             name="user"
             type="text"
-            onChange={(event) => loginChangeInputs({ event, setInputs })}
+            onChange={(event) => onChange({ event, setInputs })}
             required={true}
           ></input>
         </label>
@@ -25,7 +24,7 @@ export default function FormLogin() {
           <input
             name="password"
             type="password"
-            onChange={(event) => loginChangeInputs({ event, setInputs })}
+            onChange={(event) => onChange({ event, setInputs })}
             required={true}
           ></input>
         </label>
