@@ -3,14 +3,17 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
+import FormRegister from "./components/Session/register/FormRegister";
 
 function App() {
   const path = useLocation();
   return (
     <>
-      {path.pathname != "/" ? <Header /> : <></>}
+      {path.pathname != "/" && path.pathname != "/register" && path.pathname != "/register/admin" ? <Header /> : <></>}
       <Routes>
         <Route path="/" element={<FormLogin />} />
+        <Route path="/register" element={<FormRegister />} />
+        <Route path="/register/admin" element={<FormRegister />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/resumen" element={<Home />} />
         <Route path="/home/miSalud" element={<Home />} />
