@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
   meal,
   exercises,
@@ -25,3 +26,11 @@ export type InputsRegister = {
   user?: string;
   password?: string;
 };
+
+export type Elements = {
+  labelName: string
+  type: string,
+  name: string,
+  setInputs: React.Dispatch<React.SetStateAction<InputsLogin | InputsRegister | undefined>>
+  gyms?: { id: string, name: string }[]
+}
