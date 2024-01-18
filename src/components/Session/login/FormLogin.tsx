@@ -2,7 +2,7 @@ import { useState } from "react";
 import { InputsLogin } from "../../../types";
 import { onChange } from "../../../services/onChange";
 import { NavLink, useNavigate } from "react-router-dom";
-import { onSubmit } from "../../../services/login/onSubmit";
+import onSubmit from "../../../services/onSubmit";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
