@@ -1,28 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { InputsRegister } from "../../../types";
-import axios from "axios";
-import { baseUrl, labels, namesElements, typesElement } from "../../../const";
-import { useLocation, useNavigate } from "react-router-dom";
+import { labels, namesElements, typesElement } from "../../../const";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import onSubmit from "../../../services/onSubmit";
 import FormElement from "../FormElement";
+import { getId } from "../../../services/getId";
 
 export default function FormRegister() {
-    const [gyms, setGyms] = useState<{ id: string, name: string }[]>()
     const [inputs, setInputs] = useState<InputsRegister>()
     const url = useLocation()
+    const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`${baseUrl}/gym`).then(response => setGyms(response.data))
+        const { id } = params
+        getId(id, navigate)
+        const gymName = params.gymName
+        if (gymName) {
+            setInputs(prevInputs => { return { ...prevInputs, gymName } })
+        }
     }, [])
 
+    useEffect(() => console.log(inputs), [inputs])
     return (
         <form onSubmit={(event) => onSubmit({ event, inputs, navigate, url })}>
             {url.pathname.includes("admin") ?
                 <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
                 :
-                <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs} gyms={gyms}></FormElement>
+                <></>
             }
             <FormElement labelName={labels.age} type={typesElement.number} name={namesElements.age} setInputs={setInputs}></FormElement>
             <FormElement labelName={labels.name} type={typesElement.text} name={namesElements.name} setInputs={setInputs}></FormElement>
