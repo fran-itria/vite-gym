@@ -7,12 +7,14 @@ import { NavLink } from "react-router-dom";
 import onSubmit from "../../../services/onSubmit";
 import FormElement from "../FormElement";
 import { getId } from "../../../services/getId";
+import { useUserActions } from "../../../hook/useUserActions";
 
 export default function FormRegister() {
     const [inputs, setInputs] = useState<InputsRegister>()
     const url = useLocation()
     const params = useParams()
     const navigate = useNavigate()
+    const { addUser } = useUserActions()
 
     useEffect(() => {
         const { id } = params
@@ -23,9 +25,8 @@ export default function FormRegister() {
         }
     }, [])
 
-    useEffect(() => console.log(inputs), [inputs])
     return (
-        <form onSubmit={(event) => onSubmit({ event, inputs, navigate, url })}>
+        <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url })}>
             {url.pathname.includes("admin") ?
                 <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
                 :
