@@ -4,16 +4,19 @@ import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
 import FormRegister from "./components/Session/register/FormRegister";
+import axios from "axios";
+import { baseUrl } from "./const";
 
 function App() {
   const path = useLocation();
+  axios.defaults.baseURL = baseUrl
   return (
     <>
-      {path.pathname != "/" && path.pathname != "/register" && path.pathname != "/register/admin" ? <Header /> : <></>}
+      {path.pathname != "/" && !path.pathname.includes("register") ? <Header /> : <></>}
       <Routes>
         <Route path="/" element={<FormLogin />} />
-        <Route path="/register" element={<FormRegister />} />
-        <Route path="/register/admin" element={<FormRegister />} />
+        <Route path="/register/:gymName/:id" element={<FormRegister />} />
+        <Route path="/register/admin/:id" element={<FormRegister />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/resumen" element={<Home />} />
         <Route path="/home/miSalud" element={<Home />} />
