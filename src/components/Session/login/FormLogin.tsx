@@ -3,13 +3,15 @@ import { InputsLogin } from "../../../types";
 import { onChange } from "../../../services/onChange";
 import { NavLink, useNavigate } from "react-router-dom";
 import onSubmit from "../../../services/onSubmit";
+import { useUserActions } from "../../../hook/useUserActions";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
+  const { addUser } = useUserActions()
   return (
     <>
-      <form onSubmit={(event) => onSubmit({ event, inputs, navigate })}>
+      <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser })}>
         <label>
           Usuario:
           <input
