@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { InputsRegister } from "../../../types";
 import { labels, namesElements, typesElement } from "../../../const";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import onSubmit from "../../../services/onSubmit";
 import FormElement from "../FormElement";
 import { getId } from "../../../services/getId";
@@ -42,7 +41,6 @@ export default function FormRegister() {
             <FormElement labelName={labels.user} type={typesElement.text} name={namesElements.user} setInputs={setInputs}></FormElement>
             <FormElement labelName={labels.password} type={typesElement.password} name={namesElements.password} setInputs={setInputs}></FormElement>
             <button>Registrarme</button>
-            <NavLink to={"/"}>Iniciar sesión</NavLink>
         </form>
     )
 }
