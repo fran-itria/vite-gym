@@ -32,5 +32,4 @@ export type Elements = {
   type: string,
   name: string,
   setInputs: React.Dispatch<React.SetStateAction<InputsLogin | InputsRegister | undefined>>
-  gyms?: { id: string, name: string }[]
 }
