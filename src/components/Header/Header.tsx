@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import style from './Header.module.css'
+import { useAppSelector } from "../../hook/store";
 
 export default function Header() {
-    const id = 'idDelUsuario'
     const { pathname } = useLocation()
+    const { id } = useAppSelector(state => state.user)
     return (
         <>
             <header className={style.header}>
