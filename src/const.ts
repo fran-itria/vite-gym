@@ -1,6 +1,10 @@
 export const baseUrl = "http://localhost:3001";
 
-export const miSalud = "miSalud";
+export const selects = {
+    resumen: "resumen",
+    miSalud: "miSalud",
+    shifts: "shifts"
+};
 
 export const typesElement = {
     text: "text",
