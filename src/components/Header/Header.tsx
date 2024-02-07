@@ -7,12 +7,12 @@ import axios from "axios";
 export default function Header() {
     const { pathname } = useLocation()
     const { id } = useAppSelector(state => state.user)
+    const { GymId, name, surname } = useAppSelector(state => state.user)
+    const [menu, setMenu] = useState<boolean>(false)
     const [gymName, setGymName] = useState<string>('')
-    const { GymId } = useAppSelector(state => state.user)
 
     useEffect(() => {
         axios.get(`/gym/getGymId/${GymId}`).then(response => {
-            console.log(response)
             setGymName(response.data)
         })
     }, [GymId])
@@ -21,7 +21,17 @@ export default function Header() {
             <header className={style.header}>
                 <h1 className={style.gymName}>{gymName}</h1>
                 {/* <img alt="Foto" className={style.perfil} /> */}
-                <div className={style.perfil}>P</div>
+                <div className={style.perfil}>
+                    <button onClick={() => setMenu(!menu)} className={style.photo}>{name && surname ? name[0] + surname[0] : 'P'}</button>
+                    {menu ?
+                        <div className={style.menu}>
+                            <p>Perfil</p>
+                            <p>Cerrar sesión</p>
+                        </div>
+                        :
+                        <></>
+                    }
+                </div>
             </header>
             <nav>
                 <ul className={style.list}>
