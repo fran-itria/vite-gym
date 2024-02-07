@@ -17,10 +17,7 @@ function App() {
         <Route path="/" element={<FormLogin />} />
         <Route path="/register/:gymName/:id" element={<FormRegister />} />
         <Route path="/register/admin/:id" element={<FormRegister />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/home/resumen" element={<Home />} />
-        <Route path="/home/miSalud" element={<Home />} />
-        <Route path="/home/turnos" element={<Home />} />
+        <Route path="/home/:select" element={<Home />} />
         {/* Rutas dinamicas para el calentamiento y rutina */}
         {/* Ruta para la suscripcion */}
       </Routes>
