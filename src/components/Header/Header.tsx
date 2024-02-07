@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import style from './Header.module.css'
 
 export default function Header() {
     const id = 'idDelUsuario'
+    const { pathname } = useLocation()
     return (
         <>
             <header className={style.header}>
@@ -12,7 +13,7 @@ export default function Header() {
             </header>
             <nav>
                 <ul className={style.list}>
-                    <NavLink to={`/home`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/home/resumen`} className={pathname.includes("home") ? style.active : ''}>
                         <li className={style.inicio}>
                             Inicio
                         </li>
