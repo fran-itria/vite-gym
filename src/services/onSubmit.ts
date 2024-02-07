@@ -9,7 +9,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url }
         if (!url) {
             const response = await login(inputs);
             if (response.status == 200) {
-                addUser(response.data)
+                addUser(response.data.user)
                 navigate("/home");
             }
         } else {
