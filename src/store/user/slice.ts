@@ -23,6 +23,7 @@ type shift = {
 }
 export interface User {
     id: string | null
+    GymId: string | null
     name: string | null,
     surname: string | null,
     age: number | null,
@@ -45,6 +46,7 @@ export interface User {
 
 const initialState: User = {
     id: null,
+    GymId: null,
     name: null,
     surname: null,
     age: null,
@@ -72,6 +74,7 @@ export const userSlice = createSlice({
         actualiceUser: (_state, action: PayloadAction<User>) => {
             return {
                 id: action.payload.id,
+                GymId: action.payload.GymId,
                 name: action.payload.name,
                 surname: action.payload.surname,
                 age: action.payload.age,
