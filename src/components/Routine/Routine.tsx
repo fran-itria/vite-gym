@@ -28,6 +28,30 @@ export default function Routine() {
                     return (
                         <details>
                             <summary>Día {i + 1}</summary>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ejercicios</th>
+                                        <th>Series</th>
+                                        <th>Repeticiones</th>
+                                        <th>Cargas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {day.Exercises.map(exercise => {
+                                        return (
+                                            <tr>
+                                                <td>{exercise.name}</td>
+                                                <td>{exercise.series}</td>
+                                                <td>{exercise.reps}</td>
+                                                <td>
+                                                    {exercise.Loads.map(load => <p>{load.loads}</p>)}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
                         </details >
                     )
                 })
