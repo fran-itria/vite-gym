@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { login } from "./login/login";
-import { register } from "./register/register";
-import { onSubmitProps } from "./typeServices";
+import { login } from "../login/login";
+import { register } from "../register/register";
+import { onSubmitProps } from "../typeServices";
 
 export default async function onSubmit({ event, inputs, navigate, addUser, url }: onSubmitProps) {
     event.preventDefault();

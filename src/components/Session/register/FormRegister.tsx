@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { InputsRegister } from "../../../types";
 import { labels, namesElements, typesElement } from "../../../const";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import onSubmit from "../../../services/onSubmit";
+import onSubmit from "../../../services/form/onSubmit";
 import FormElement from "../FormElement";
 import { getId } from "../../../services/getId";
 import { useUserActions } from "../../../hook/useUserActions";
