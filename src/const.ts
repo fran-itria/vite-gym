@@ -1,7 +1,7 @@
 export const baseUrl = "http://localhost:3001";
 
 export const selects = {
-    resumen: "resumen",
+    summary: "resumen",
     miSalud: "miSalud",
     shifts: "shifts"
 };
