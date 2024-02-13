@@ -1,15 +1,16 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from './Header.module.css'
 import { useAppSelector } from "../../hook/store";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { logout } from "../../services/logout/logout";
 
 export default function Header() {
     const { pathname } = useLocation()
-    const { id } = useAppSelector(state => state.user)
-    const { GymId, name, surname } = useAppSelector(state => state.user)
+    const { GymId, name, surname, id } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const [gymName, setGymName] = useState<string>('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`/gym/getGymId/${GymId}`).then(response => {
@@ -25,8 +26,8 @@ export default function Header() {
                     <button onClick={() => setMenu(!menu)} className={style.photo}>{name && surname ? name[0] + surname[0] : 'P'}</button>
                     {menu ?
                         <div className={style.menu}>
-                            <p>Perfil</p>
-                            <p>Cerrar sesión</p>
+                            <button>Perfil</button>
+                            <button onClick={() => logout(id, navigate)}>Cerrar sesión</button>
                         </div>
                         :
                         <></>
@@ -40,12 +41,12 @@ export default function Header() {
                             Inicio
                         </li>
                     </NavLink>
-                    <NavLink to={`/calentamiento/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/calentamiento`} className={({ isActive }) => isActive ? style.active : ''}>
                         <li className={style.calentamiento}>
                             Calentamiento
                         </li>
                     </NavLink>
-                    <NavLink to={`/rutina/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/rutina`} className={({ isActive }) => isActive ? style.active : ''}>
                         <li className={style.rutina}>
                             Rutina
                         </li>
