@@ -37,6 +37,8 @@ export interface User {
     pay: boolean | false,
     ban: boolean | false,
     login: boolean | true,
+    linkMp: string | null,
+    photo: string | null
     Routines: { id: string }[] | []
     WarmUps: { id: string }[] | [],
     Meals: meal[] | [],
@@ -60,6 +62,8 @@ const initialState: User = {
     pay: false,
     ban: false,
     login: true,
+    linkMp: null,
+    photo: null,
     Routines: [],
     WarmUps: [],
     ExtraTrainings: [],
@@ -88,6 +92,8 @@ export const userSlice = createSlice({
                 pay: action.payload.pay,
                 phone: action.payload.phone,
                 user: action.payload.user,
+                linkMp: action.payload.linkMp,
+                photo: action.payload.photo,
                 ExtraTrainings: action.payload.ExtraTrainings,
                 Meals: action.payload.Meals,
                 Routines: action.payload.Routines,
