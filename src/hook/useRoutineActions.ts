@@ -1,0 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Routine, actualRoutine } from "../store/routine/slice"
+import { useAppDispatch } from "./store"
+
+export const useRoutineActions = () => {
+    const dispatch = useAppDispatch()
+
+    const routineActual = (Days: Routine) => {
+        dispatch(actualRoutine(Days))
+    }
+
+    return { routineActual }
+} 
