@@ -40,3 +40,17 @@ export type modifiedLoadsProps = {
   routineId: string,
   routineActual: Function
 }
+
+export type addExerciseProps = {
+  e: React.FormEvent<HTMLFormElement>
+  exercise: number,
+  dayId: string | undefined,
+  inputs: {
+    exerciseName: string,
+    series: string,
+    reps: string
+  },
+  routineId: string
+  setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
+  routineActual: Function
+}
