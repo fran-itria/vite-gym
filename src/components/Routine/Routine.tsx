@@ -10,10 +10,10 @@ export default function Routine() {
     const { name, surname, Routines } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
+    const routineId = Routines[0].id
 
     useEffect(() => {
-        const routine = Routines[0]
-        axios.get(`/rutina/${routine?.id}`)
+        axios.get(`/rutina/${routineId}`)
             .then(response => {
                 routineActual(response.data)
             })
@@ -31,7 +31,7 @@ export default function Routine() {
                             <details key={day.id}>
                                 <summary>Día {i + 1}</summary>
                                 <Table day={day} weeks={routine.weeks} />
-                                <button onClick={() => addWeek(Routines[0].id, routine.weeks + 1, routineActual)}>+ Semana</button>
+                                <button onClick={() => addWeek(routineId, routine.weeks + 1, routineActual)}>+ Semana</button>
                             </details >
                         </>
                     )
