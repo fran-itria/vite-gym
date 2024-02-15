@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-// import { useEffect } from "react"
-// import axios from "axios"
 import Table from "./Table";
 import addWeek from "../../services/routine/addWeek";
 import createExerciseInputs from "../../services/routine/exercises/formCreate/craeteExerciseInputs";
@@ -36,21 +34,20 @@ export default function Routine() {
                                         style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
                                         onSubmit={(e) => addExerciseFunction({ e, dayId: day.id, exercise: day.Exercises.length + 1, inputs, routineId, setAddExercise, routineActual })}
                                     >
-                                        Id del día {day.id}
                                         <label>
                                             Nombre del ejercicio:
-                                            <input name="exerciseName" onChange={(e) => createExerciseInputs(e, setInputs)}></input>
+                                            <input name="exerciseName" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
                                         </label>
                                         <label>
                                             Series:
-                                            <input name="series" onChange={(e) => createExerciseInputs(e, setInputs)}></input>
+                                            <input name="series" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
                                         </label>
                                         <label>
                                             Repeticiones:
-                                            <input name="reps" onChange={(e) => createExerciseInputs(e, setInputs)}></input>
+                                            <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
                                         </label>
                                         <button>Crear</button>
-                                        <button onClick={() => setAddExercise(!addExercise)}>Cerrar</button>
+                                        <button onClick={() => setAddExercise(!addExercise)}>Cancelar</button>
                                     </form>
                                     :
                                     <></>
