@@ -33,3 +33,43 @@ export type Elements = {
   name: string,
   setInputs: React.Dispatch<React.SetStateAction<InputsLogin | InputsRegister | undefined>>
 }
+
+export type TableComponentProps = {
+  weeksLoads: number[],
+  day: {
+    id: string | undefined;
+    WarmUp?: string | null | undefined;
+    Exercises: [] | {
+      id: string | null;
+      exercise: number | null;
+      name: string | null;
+      series: number | null;
+      reps: string | null;
+      DayId: string | null;
+      Loads: [] | {
+        id: string | null,
+        loads: string | null
+      }[];
+    }[]
+  }
+}
+
+export type TableRowComponentProps = {
+  exercise: {
+    id: string,
+    name: string,
+    series: string,
+    reps: string,
+    Loads: {
+      id: string,
+      loads: string
+    }[]
+  },
+  weeksLoads: number[]
+}
+
+export type ModalAddLoadComponentProps = {
+  idExercise: string | null
+  setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
+
+}
