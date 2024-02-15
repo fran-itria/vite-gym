@@ -4,15 +4,15 @@ import { TableComponentProps } from '../../types';
 import TableHead from './TableHead';
 import TableRow from './TableRow';
 
-export default function Table({ weeksLoads, day }: TableComponentProps) {
+export default function Table({ day, weeks }: TableComponentProps) {
     return (
         <table>
-            <TableHead weeksLoads={weeksLoads} />
+            <TableHead weeks={weeks} />
             <tbody>
                 {day.Exercises.map((exercise: any) => {
                     return (
                         <>
-                            <TableRow exercise={exercise} weeksLoads={weeksLoads} />
+                            <TableRow exercise={exercise} />
                         </>
                     )
                 })
