@@ -1,40 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
-import { useAppSelector } from "../../hook/store"
-import axios from "axios"
-import { useRoutineActions } from "../../hook/useRoutineActions"
+// import { useEffect } from "react"
+// import axios from "axios"
 import Table from "./Table";
 import addWeek from "../../services/routine/addWeek";
 import createExerciseInputs from "../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import addExerciseFunction from "../../services/routine/exercises/addExercise";
 import FormOneDay from "./CraeteOneDay/FormOneDay";
+import TableConfirmDay from "./CraeteOneDay/TableConfirmDay";
+import useDayCreate from "../../hook/Components/Routine/useCreateDay";
+import useCreaetExercise from "../../hook/Components/Routine/useCreateExercise";
+import useInformation from "../../hook/Components/Routine/useInformation";
+import useGetRoutine from "../../hook/Components/Routine/useGetRoutine";
 
 export default function Routine() {
-    const { name, surname, Routines } = useAppSelector(state => state.user)
-    const routine = useAppSelector(state => state.routine)
-    const { routineActual } = useRoutineActions()
-    const routineId = Routines[0].id
-    const [addExercise, setAddExercise] = useState<boolean>(false)
-    const [inputs, setInputs] = useState<{ exerciseName: string, series: string, reps: string }>({
-        exerciseName: '',
-        reps: '',
-        series: ''
-    })
-    useEffect(() => {
-        axios.get(`/rutina/${routineId}`)
-            .then(response => {
-                routineActual(response.data)
-            })
-            .catch(error => console.log(error))
-    }, [])
-
-
-
-    const [addDay, setAddDay] = useState<boolean>(false)
-    const [totalExercise, setTotalExercise] = useState<string>('0')
-    const [pag, setPag] = useState<number>(0)
-    const [dayCreate, setDayCreate] = useState<{ exercise?: number | undefined; name?: string | undefined; series?: string | undefined; reps?: string | undefined; }[]>([])
+    const { name, routine, routineActual, routineId, surname } = useInformation()
+    const { addExercise, setAddExercise, inputs, setInputs } = useCreaetExercise()
+    const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
+    useGetRoutine()
 
     return (
         <>
@@ -80,7 +63,7 @@ export default function Routine() {
                 <p>No tienes rutina actualmente</p>
             }
             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-            {addDay ?
+            {addDay && pag == 0 ?
                 <div>
                     Día número {routine.Days?.length ? routine.Days?.length + 1 : <></>}
                     <label>
@@ -89,7 +72,6 @@ export default function Routine() {
                     </label>
                     <button onClick={() => {
                         setPag(prev => prev + 1)
-                        setAddDay(!addDay)
                     }
                     }>Siguiente</button>
                 </div>
@@ -97,7 +79,16 @@ export default function Routine() {
                 pag < Number(totalExercise) + 1 ?
                     <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
                     :
-                    <></>
+                    <TableConfirmDay
+                        key={routineId}
+                        dayCreate={dayCreate}
+                        routineActual={routineActual}
+                        routineId={routineId}
+                        setAddDay={setAddDay}
+                        setDayCreate={setDayCreate}
+                        setPag={setPag}
+                        setTotalExercise={setTotalExercise}
+                    />
             }
         </>
     )
