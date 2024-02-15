@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Routine } from "../store/routine/slice";
 import { InputsLogin, InputsRegister } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
@@ -63,4 +64,19 @@ export type onChangeInputsProps = {
     series: string;
     reps: string;
   }>>
+}
+
+export type createDayProps = {
+  routineId: string,
+  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[],
+  routineActual: (Days: Routine) => void
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setDayCreate: React.Dispatch<React.SetStateAction<{
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]>>
 }
