@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface Routine {
-    weeks: number | null
+    weeks: number
     Days: {
         id: string | undefined,
         WarmUp?: string | null,
@@ -22,7 +22,7 @@ export interface Routine {
 }
 
 const initialState: Routine = {
-    weeks: null,
+    weeks: 0,
     Days: undefined
 }
 
