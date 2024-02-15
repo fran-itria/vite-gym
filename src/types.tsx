@@ -36,6 +36,7 @@ export type Elements = {
 }
 
 export type TableComponentProps = {
+  weeks: number | null
   day: {
     id: string | undefined;
     WarmUp?: string | null | undefined;
