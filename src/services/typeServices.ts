@@ -80,3 +80,12 @@ export type createDayProps = {
     reps?: string | undefined;
   }[]>>
 }
+
+export type CreateExerciseInputsProps = {
+  e: React.ChangeEvent<HTMLInputElement>,
+  setInputs: React.Dispatch<React.SetStateAction<{
+    exerciseName: string;
+    series: string;
+    reps: string;
+  }>>
+}
