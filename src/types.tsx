@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { createDayProps } from "./services/typeServices";
+
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
   meal,
@@ -84,4 +87,14 @@ export type FormOneDayProps = {
     series?: string | undefined;
     reps?: string | undefined;
   }[]>>
+}
+
+export type TableConfirmDayProps = createDayProps & {
+  dayCreate: {
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]
+
 }
