@@ -1,5 +1,5 @@
 import axios from "axios";
-import { modifiedExerciseProps, modifiedLoadsProps } from "../typeServices";
+import { modifiedExerciseProps, modifiedLoadsProps } from "../../typeServices";
 
 export function modifiedExercise({ id, inputs }: modifiedExerciseProps) {
 
