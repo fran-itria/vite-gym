@@ -54,3 +54,13 @@ export type addExerciseProps = {
   setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
   routineActual: Function
 }
+
+export type onChangeInputsProps = {
+  event: React.ChangeEvent<HTMLInputElement>,
+  setInputsExecise: React.Dispatch<React.SetStateAction<{
+    exercise: number;
+    name: string;
+    series: string;
+    reps: string;
+  }>>
+}

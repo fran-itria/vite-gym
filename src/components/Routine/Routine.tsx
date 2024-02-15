@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useAppSelector } from "../../hook/store"
@@ -7,6 +8,7 @@ import Table from "./Table";
 import addWeek from "../../services/routine/addWeek";
 import createExerciseInputs from "../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import addExerciseFunction from "../../services/routine/exercises/addExercise";
+import FormOneDay from "./CraeteOneDay/FormOneDay";
 
 export default function Routine() {
     const { name, surname, Routines } = useAppSelector(state => state.user)
@@ -19,7 +21,6 @@ export default function Routine() {
         reps: '',
         series: ''
     })
-
     useEffect(() => {
         axios.get(`/rutina/${routineId}`)
             .then(response => {
@@ -28,8 +29,13 @@ export default function Routine() {
             .catch(error => console.log(error))
     }, [])
 
-    useEffect(() => console.log(routine), [routine])
-    useEffect(() => console.log(inputs), [inputs])
+
+
+    const [addDay, setAddDay] = useState<boolean>(false)
+    const [totalExercise, setTotalExercise] = useState<string>('0')
+    const [pag, setPag] = useState<number>(0)
+    const [dayCreate, setDayCreate] = useState<{ exercise?: number | undefined; name?: string | undefined; series?: string | undefined; reps?: string | undefined; }[]>([])
+
     return (
         <>
             <p>Rutina de {name} {surname}</p>
@@ -72,6 +78,26 @@ export default function Routine() {
                 })
                 :
                 <p>No tienes rutina actualmente</p>
+            }
+            <button onClick={() => setAddDay(!addDay)}>+ Día</button>
+            {addDay ?
+                <div>
+                    Día número {routine.Days?.length ? routine.Days?.length + 1 : <></>}
+                    <label>
+                        Cantidad de ejercicios:
+                        <input name="exercises" onChange={(e) => setTotalExercise(e.target.value)}></input>
+                    </label>
+                    <button onClick={() => {
+                        setPag(prev => prev + 1)
+                        setAddDay(!addDay)
+                    }
+                    }>Siguiente</button>
+                </div>
+                :
+                pag < Number(totalExercise) + 1 ?
+                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                    :
+                    <></>
             }
         </>
     )

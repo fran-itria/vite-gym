@@ -73,3 +73,15 @@ export type ModalAddLoadComponentProps = {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
 
 }
+
+
+export type FormOneDayProps = {
+  actualExercise: number,
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setDayCreate: React.Dispatch<React.SetStateAction<{
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]>>
+}
