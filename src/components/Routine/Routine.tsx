@@ -1,16 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAppSelector } from "../../hook/store"
 import axios from "axios"
 import { useRoutineActions } from "../../hook/useRoutineActions"
-import CreateIcon from '@mui/icons-material/Create';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../themeIcons/modifiedExerciseColors";
+import Table from "./Table";
 
 export default function Routine() {
     const { name, surname, Routines } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
+    const [weeksLoads, setWeeksLoads] = useState(new Array(8).fill(0))
+
     const { routineActual } = useRoutineActions()
 
     useEffect(() => {
@@ -21,9 +20,8 @@ export default function Routine() {
             })
             .catch(error => console.log(error))
     }, [])
-    useEffect(() => {
-        console.log(routine)
-    }, [routine])
+
+    useEffect(() => console.log(weeksLoads), [weeksLoads])
 
     return (
         <>
@@ -33,41 +31,14 @@ export default function Routine() {
                     return (
                         <details key={day.id}>
                             <summary>Día {i + 1}</summary>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Ejercicios</th>
-                                        <th>Series</th>
-                                        <th>Repeticiones</th>
-                                        <th>Cargas</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {day.Exercises.map(exercise => {
-                                        return (
-                                            <tr key={exercise.id}>
-                                                <td>{exercise.name}</td>
-                                                <td>{exercise.series}</td>
-                                                <td>{exercise.reps}</td>
-                                                <td>
-                                                    {exercise.Loads.map(load => <p>{load.loads}</p>)}
-                                                </td>
-                                                <td>
-                                                    <ThemeProvider theme={theme}>
-                                                        <CreateIcon sx={{ color: theme.palette.pencil.main }} />
-                                                        <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} />
-                                                    </ThemeProvider>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
+                            <Table weeksLoads={weeksLoads} day={day} />
                         </details >
                     )
                 })
                 :
-                <p>No tienes rutina actualmente</p>}
+                <p>No tienes rutina actualmente</p>
+            }
+            <button onClick={() => setWeeksLoads(new Array(weeksLoads.length + 1).fill(0))}>+Semana</button>
         </>
     )
 }

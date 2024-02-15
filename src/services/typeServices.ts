@@ -22,3 +22,21 @@ export type onSubmitProps = {
   addUser: Function,
   url?: Location<any>,
 }
+
+export type modifiedExerciseProps = {
+  id: string
+  inputs?: {
+    name: string,
+    series: number,
+    reps: number,
+    loads: string[]
+  }
+}
+
+export type modifiedLoadsProps = {
+  exerciseId?: string | null
+  id?: string | null
+  load: string
+  routineId: string,
+  routineActual: Function
+}
