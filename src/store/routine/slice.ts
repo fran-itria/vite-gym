@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface Routine {
+    weeks: number | null
     Days: {
         id: string | undefined,
         WarmUp?: string | null,
@@ -21,6 +22,7 @@ export interface Routine {
 }
 
 const initialState: Routine = {
+    weeks: null,
     Days: undefined
 }
 
@@ -30,6 +32,7 @@ export const userSlice = createSlice({
     reducers: {
         actualRoutine: (_state, action: PayloadAction<Routine>) => {
             return {
+                weeks: action.payload.weeks,
                 Days: action.payload.Days
             }
         }
