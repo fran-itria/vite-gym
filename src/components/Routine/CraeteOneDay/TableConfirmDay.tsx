@@ -1,7 +1,18 @@
+import useDayCreate from "../../../hook/Components/Routine/useCreateDay";
+import useInformation from "../../../hook/Components/Routine/useInformation";
 import createDay from "../../../services/creteDayRoutine/craeteDay";
-import { TableConfirmDayProps } from "../../../types";
 
-export default function TableConfirmDay({ dayCreate, routineActual, routineId, setAddDay, setDayCreate, setPag, setTotalExercise }: TableConfirmDayProps) {
+export default function TableConfirmDay({ dayCreate }: {
+    dayCreate: {
+        exercise?: number | undefined;
+        name?: string | undefined;
+        series?: string | undefined;
+        reps?: string | undefined;
+    }[]
+}) {
+    const { setAddDay, setDayCreate, setPag, setTotalExercise } = useDayCreate()
+    const { routineId, routineActual } = useInformation()
+
     return (
         <>
             <table>
