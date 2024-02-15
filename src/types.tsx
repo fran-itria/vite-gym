@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
   meal,
@@ -35,7 +36,6 @@ export type Elements = {
 }
 
 export type TableComponentProps = {
-  weeksLoads: number[],
   day: {
     id: string | undefined;
     WarmUp?: string | null | undefined;
@@ -64,8 +64,7 @@ export type TableRowComponentProps = {
       id: string,
       loads: string
     }[]
-  },
-  weeksLoads: number[]
+  }
 }
 
 export type ModalAddLoadComponentProps = {
