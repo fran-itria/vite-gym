@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useAppSelector } from "../../hook/store"
 import { useRoutineActions } from "../../hook/useRoutineActions"
-import { modifiedLoads } from "../../services/exercises/modifiedExercise"
+import { modifiedLoads } from "../../services/routine/exercises/modifiedExercise"
 import { ModalAddLoadComponentProps } from "../../types"
 
 export default function ModalAddLoad({ idExercise, setOpenLoad }: ModalAddLoadComponentProps) {
@@ -20,7 +20,7 @@ export default function ModalAddLoad({ idExercise, setOpenLoad }: ModalAddLoadCo
                 exerciseId: idExercise,
                 load: inputLoad,
                 routineId,
-                routineActual
+                routineActual,
             })}>
                 Agregar
             </button>
