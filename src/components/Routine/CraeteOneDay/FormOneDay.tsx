@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormOneDayProps } from "../../../types";
 import onChangeInputs from "../../../services/creteDayRoutine/form/onChangeInputs";
 
@@ -29,7 +29,6 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag }: For
         setPag(prev => prev + 1)
     }
 
-    useEffect(() => console.log(actualExercise), [actualExercise])
     return (
         <div>
             Ejercicio Número {actualExercise}
