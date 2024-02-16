@@ -1,22 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-import Table from "./Table";
-import { addWeek, deleteWeek } from "../../services/routine/modifiedWeeks";
 import FormOneDay from "./CraeteOneDay/FormOneDay";
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay";
 import useDayCreate from "../../hook/Components/Routine/useCreateDay";
-import useCreaetExercise from "../../hook/Components/Routine/useCreateExercise";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import useGetRoutine from "../../hook/Components/Routine/useGetRoutine";
-import DeleteIcon from '@mui/icons-material/Delete';
-import { ThemeProvider } from "@mui/material";
-import theme from "../../themeIcons/modifiedExerciseColors";
-import deleteDay from "../../services/routine/deleteDay";
-import CreateExercise from "./CraeteExercise/CreateExercise";
+import Detail from "./Detail";
 
 export default function Routine() {
-    const { name, routine, routineActual, routineId, surname } = useInformation()
-    const { addExercise, setAddExercise } = useCreaetExercise()
+    const { name, routine, routineId, surname } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     useGetRoutine()
 
@@ -26,25 +18,7 @@ export default function Routine() {
             {routine.Days?.length && routine.Days?.length > 0 ?
                 routine.Days.map((day, i) => {
                     return (
-                        <>
-                            <details key={day.id}>
-                                <summary>
-                                    Día {i + 1}
-                                </summary>
-                                <Table day={day} weeks={routine.weeks} />
-                                <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
-                                <button onClick={() => addWeek(routineId, routine.weeks + 1, routineActual)}>+ Semana</button>
-                                <button onClick={() => deleteWeek(routineId, routine.weeks - 1, routineActual)}>- Semana</button>
-                                {addExercise ?
-                                    <CreateExercise day={day} setAddExercise={setAddExercise} />
-                                    :
-                                    <></>
-                                }
-                            </details >
-                            <ThemeProvider theme={theme}>
-                                <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteDay(day.id, routineId, routineActual)} />
-                            </ThemeProvider>
-                        </>
+                        <Detail day={day} i={i} />
                     )
                 })
                 :
