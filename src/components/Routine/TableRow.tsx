@@ -11,7 +11,7 @@ import { useAppSelector } from "../../hook/store";
 import deleteExercise from "../../services/routine/exercises/deleteExercise";
 import { useRoutineActions } from "../../hook/useRoutineActions";
 
-export default function TableRow({ exercise }: TableRowComponentProps) {
+export default function TableRow({ exercise, weeks }: TableRowComponentProps) {
     const [open, setOpen] = useState<boolean>(false)
     const [openLoad, setOpenLoad] = useState<boolean>(false)
     const [idExercise, setIdExercise] = useState<string | null>('')
@@ -44,12 +44,16 @@ export default function TableRow({ exercise }: TableRowComponentProps) {
                     )
                 })
             }
-            <td>
-                <AddCircleIcon color="success" onClick={() => {
-                    setOpenLoad(!openLoad)
-                    setIdExercise(exercise.id)
-                }} />
-            </td>
+            {weeks && weeks > exercise.Loads.length ?
+                <td>
+                    <AddCircleIcon color="success" onClick={() => {
+                        setOpenLoad(!openLoad)
+                        setIdExercise(exercise.id)
+                    }} />
+                </td>
+                :
+                <></>
+            }
             {openLoad ?
                 <ModalAddLoad idExercise={idExercise} setOpenLoad={setOpenLoad} />
                 :
