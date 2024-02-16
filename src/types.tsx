@@ -76,7 +76,7 @@ export type ModalAddLoadComponentProps = {
 }
 
 
-export type FormOneDayProps = {
+export type FormOneDayComponentProps = {
   actualExercise: number,
   setPag: React.Dispatch<React.SetStateAction<number>>
   setDayCreate: React.Dispatch<React.SetStateAction<{
@@ -87,7 +87,7 @@ export type FormOneDayProps = {
   }[]>>
 }
 
-export type TableConfirmDayProps = {
+export type TableConfirmDayComponentProps = {
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
@@ -103,4 +103,24 @@ export type TableConfirmDayProps = {
     series?: string | undefined;
     reps?: string | undefined;
   }[]
+}
+
+export type CreateExerciseComponentProps = {
+  setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
+  day: {
+    id: string | undefined;
+    WarmUp?: string | null | undefined;
+    Exercises: [] | {
+      id: string | null;
+      exercise: number | null;
+      name: string | null;
+      series: number | null;
+      reps: string | null;
+      DayId: string | null;
+      Loads: {
+        id: string | null,
+        loads: string | null
+      }[]
+    }[];
+  }
 }
