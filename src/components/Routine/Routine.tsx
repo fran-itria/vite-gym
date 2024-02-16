@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Table from "./Table";
-import addWeek from "../../services/routine/addWeek";
+import { addWeek, deleteWeek } from "../../services/routine/modifiedWeeks";
 import createExerciseInputs from "../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import addExerciseFunction from "../../services/routine/exercises/addExercise";
 import FormOneDay from "./CraeteOneDay/FormOneDay";
@@ -10,6 +10,10 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay";
 import useCreaetExercise from "../../hook/Components/Routine/useCreateExercise";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import useGetRoutine from "../../hook/Components/Routine/useGetRoutine";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { ThemeProvider } from "@mui/material";
+import theme from "../../themeIcons/modifiedExerciseColors";
+import deleteDay from "../../services/routine/deleteDay";
 
 export default function Routine() {
     const { name, routine, routineActual, routineId, surname } = useInformation()
@@ -20,15 +24,18 @@ export default function Routine() {
     return (
         <>
             <p>Rutina de {name} {surname}</p>
-            {routine.Days ?
+            {routine.Days?.length && routine.Days?.length > 0 ?
                 routine.Days.map((day, i) => {
                     return (
                         <>
                             <details key={day.id}>
-                                <summary>Día {i + 1}</summary>
+                                <summary>
+                                    Día {i + 1}
+                                </summary>
                                 <Table day={day} weeks={routine.weeks} />
                                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                                 <button onClick={() => addWeek(routineId, routine.weeks + 1, routineActual)}>+ Semana</button>
+                                <button onClick={() => deleteWeek(routineId, routine.weeks - 1, routineActual)}>- Semana</button>
                                 {addExercise ?
                                     <form
                                         style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
@@ -53,6 +60,9 @@ export default function Routine() {
                                     <></>
                                 }
                             </details >
+                            <ThemeProvider theme={theme}>
+                                <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteDay(day.id, routineId, routineActual)} />
+                            </ThemeProvider>
                         </>
                     )
                 })
@@ -60,32 +70,34 @@ export default function Routine() {
                 <p>No tienes rutina actualmente</p>
             }
             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-            {addDay && pag == 0 ?
+            {addDay ?
                 <div>
-                    Día número {routine.Days?.length ? routine.Days?.length + 1 : <></>}
+                    Día número {routine.Days?.length ? routine.Days?.length + 1 : 1}
                     <label>
                         Cantidad de ejercicios:
                         <input name="exercises" onChange={(e) => setTotalExercise(e.target.value)}></input>
                     </label>
                     <button onClick={() => {
                         setPag(prev => prev + 1)
+                        setAddDay(!addDay)
                     }
                     }>Siguiente</button>
                 </div>
                 :
-                pag < Number(totalExercise) + 1 ?
-                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                pag != 0 ?
+                    pag < Number(totalExercise) + 1 ?
+                        <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                        :
+                        <TableConfirmDay
+                            key={routineId}
+                            dayCreate={dayCreate}
+                            setAddDay={setAddDay}
+                            setDayCreate={setDayCreate}
+                            setPag={setPag}
+                            setTotalExercise={setTotalExercise}
+                        />
                     :
-                    <TableConfirmDay
-                        key={routineId}
-                        dayCreate={dayCreate}
-                        routineActual={routineActual}
-                        routineId={routineId}
-                        setAddDay={setAddDay}
-                        setDayCreate={setDayCreate}
-                        setPag={setPag}
-                        setTotalExercise={setTotalExercise}
-                    />
+                    <></>
             }
         </>
     )
