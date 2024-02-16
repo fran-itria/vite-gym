@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react"
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from "@mui/material/styles";
@@ -7,19 +6,15 @@ import theme from "../../themeIcons/modifiedExerciseColors";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableRowComponentProps } from "../../types";
 import ModalAddLoad from "./ModalAddLoad";
-import { useAppSelector } from "../../hook/store";
 import deleteExercise from "../../services/routine/exercises/deleteExercise";
 import { useRoutineActions } from "../../hook/useRoutineActions";
+import useTabelRow from "../../hook/Components/useTableRow";
+import useInformation from "../../hook/Components/Routine/useInformation";
 
 export default function TableRow({ exercise, weeks }: TableRowComponentProps) {
-    const [open, setOpen] = useState<boolean>(false)
-    const [openLoad, setOpenLoad] = useState<boolean>(false)
-    const [idExercise, setIdExercise] = useState<string | null>('')
-    const [confirmDelete, setConfirmDelete] = useState<boolean>(false)
-    const { Routines } = useAppSelector(state => state.user)
-    const routineId = Routines[0].id
+    const { confirmDelete, idExercise, open, openLoad, setConfirmDelete, setIdExercise, setOpen, setOpenLoad } = useTabelRow()
+    const { routineId } = useInformation()
     const { routineActual } = useRoutineActions()
-
 
     return (
         <tr key={exercise.id}>
