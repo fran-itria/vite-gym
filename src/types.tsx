@@ -110,3 +110,23 @@ export type TableCellComponentProps = Exercise & {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type DetailComponenProps = {
+  day: {
+    id: string;
+    WarmUp?: string | undefined;
+    Exercises: [] | {
+      id?: string | undefined;
+      exercise?: number | undefined;
+      name?: string | undefined;
+      series?: number | undefined;
+      reps?: string | undefined;
+      DayId?: string | undefined;
+      Loads: [] | {
+        id?: string;
+        loads?: string;
+      }[];
+    }[];
+  }
+  i: number
+}
