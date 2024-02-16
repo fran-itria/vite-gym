@@ -6,6 +6,7 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import useGetRoutine from "../../hook/Components/Routine/useGetRoutine";
 import Detail from "./Detail";
+import FormTotalExercise from "./FormTotalExercise";
 
 export default function Routine() {
     const { name, routine, routineId, surname } = useInformation()
@@ -26,18 +27,7 @@ export default function Routine() {
             }
             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
             {addDay ?
-                <div>
-                    Día número {routine.Days?.length ? routine.Days?.length + 1 : 1}
-                    <label>
-                        Cantidad de ejercicios:
-                        <input name="exercises" onChange={(e) => setTotalExercise(e.target.value)}></input>
-                    </label>
-                    <button onClick={() => {
-                        setPag(prev => prev + 1)
-                        setAddDay(!addDay)
-                    }
-                    }>Siguiente</button>
-                </div>
+                <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} />
                 :
                 pag != 0 ?
                     pag < Number(totalExercise) + 1 ?
