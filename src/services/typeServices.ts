@@ -68,7 +68,7 @@ export type onChangeInputsProps = {
 }
 
 export type createDayProps = {
-  routineId: string,
+  routineId: string | undefined,
   dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[],
   routineActual: (Days: Routine) => void
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
