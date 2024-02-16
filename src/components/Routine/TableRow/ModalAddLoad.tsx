@@ -4,7 +4,7 @@ import { useRoutineActions } from "../../../hook/useRoutineActions"
 import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise"
 import { ModalAddLoadComponentProps } from "../../../types"
 
-export default function ModalAddLoad({ idExercise, setOpenLoad }: ModalAddLoadComponentProps) {
+export default function ModalAddLoad({ id, setOpenLoad }: ModalAddLoadComponentProps) {
     const [inputLoad, setInputLoad] = useState<string>('')
     const { routineActual } = useRoutineActions()
     const { Routines } = useAppSelector(state => state.user)
@@ -17,7 +17,7 @@ export default function ModalAddLoad({ idExercise, setOpenLoad }: ModalAddLoadCo
                 <input onChange={(e) => setInputLoad(e.target.value)}></input>
             </label>
             <button onClick={() => modifiedLoads({
-                exerciseId: idExercise,
+                exerciseId: id,
                 load: inputLoad,
                 routineId,
                 routineActual,
