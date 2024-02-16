@@ -11,27 +11,27 @@ import { useRoutineActions } from "../../hook/useRoutineActions";
 import useTabelRow from "../../hook/Components/useTableRow";
 import useInformation from "../../hook/Components/Routine/useInformation";
 
-export default function TableRow({ exercise, weeks }: TableRowComponentProps) {
+export default function TableRow({ weeks, id, name, series, reps, Loads }: TableRowComponentProps) {
     const { confirmDelete, idExercise, open, openLoad, setConfirmDelete, setIdExercise, setOpen, setOpenLoad } = useTabelRow()
     const { routineId } = useInformation()
     const { routineActual } = useRoutineActions()
 
     return (
-        <tr key={exercise.id}>
+        <tr>
             <td>
                 <ThemeProvider theme={theme}>
                     <CreateIcon onClick={() => setOpen(!open)} sx={{ color: theme.palette.pencil.main }} />
                     <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => {
-                        setIdExercise(exercise.id)
+                        setIdExercise(id)
                         setConfirmDelete(!confirmDelete)
                     }} />
                 </ThemeProvider>
             </td>
-            <td>{exercise.name}</td>
-            <td>{exercise.series}</td>
-            <td>{exercise.reps}</td>
+            <td>{name}</td>
+            <td>{series}</td>
+            <td>{reps}</td>
             {
-                exercise.Loads.map(load => {
+                Loads?.map(load => {
                     return (
                         <td>
                             {load.loads}
@@ -39,11 +39,11 @@ export default function TableRow({ exercise, weeks }: TableRowComponentProps) {
                     )
                 })
             }
-            {weeks && weeks > exercise.Loads.length ?
+            {weeks && weeks > Loads?.length ?
                 <td>
                     <AddCircleIcon color="success" onClick={() => {
                         setOpenLoad(!openLoad)
-                        setIdExercise(exercise.id)
+                        setIdExercise(id)
                     }} />
                 </td>
                 :
@@ -57,7 +57,7 @@ export default function TableRow({ exercise, weeks }: TableRowComponentProps) {
             {confirmDelete ?
                 <div style={{ display: 'flex', flexDirection: 'column', background: 'white', border: '5px, solid, black', position: 'absolute', top: '50%', right: '50%' }}>
                     <p style={{ color: 'black' }}>{idExercise}</p>
-                    <p> Desea eliminar el ejercicio {exercise.name} </p>
+                    <p> Desea eliminar el ejercicio {name} </p>
                     <button style={{ background: 'red', color: 'white' }} onClick={() => deleteExercise(idExercise, routineId, routineActual, setConfirmDelete)}>
                         Borrar
                     </button>
