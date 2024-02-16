@@ -12,7 +12,7 @@ export default function Table({ day, weeks }: TableComponentProps) {
                 {day.Exercises.map((exercise: any) => {
                     return (
                         <>
-                            <TableRow exercise={exercise} />
+                            <TableRow exercise={exercise} weeks={weeks} />
                         </>
                     )
                 })

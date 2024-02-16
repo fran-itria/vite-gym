@@ -66,6 +66,7 @@ export type TableRowComponentProps = {
       loads: string
     }[]
   }
+  weeks: number | null
 }
 
 export type ModalAddLoadComponentProps = {
