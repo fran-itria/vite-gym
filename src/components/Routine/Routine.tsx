@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
 import FormOneDay from "./CraeteOneDay/FormOneDay";
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay";
 import useDayCreate from "../../hook/Components/Routine/useCreateDay";
