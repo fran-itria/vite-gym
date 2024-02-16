@@ -130,3 +130,9 @@ export type DetailComponenProps = {
   }
   i: number
 }
+
+export type FormTotalExerciseComponentProps = {
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+}
