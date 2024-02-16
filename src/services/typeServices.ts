@@ -40,6 +40,7 @@ export type modifiedLoadsProps = {
   load: string
   routineId: string,
   routineActual: Function
+  setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type addExerciseProps = {

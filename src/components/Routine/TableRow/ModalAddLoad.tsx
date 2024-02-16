@@ -21,6 +21,7 @@ export default function ModalAddLoad({ idExercise, setOpenLoad }: ModalAddLoadCo
                 load: inputLoad,
                 routineId,
                 routineActual,
+                setOpenLoad
             })}>
                 Agregar
             </button>
