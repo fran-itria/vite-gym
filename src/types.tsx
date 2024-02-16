@@ -64,7 +64,6 @@ export type TableRowComponentProps = Exercise & {
 export type ModalAddLoadComponentProps = {
   idExercise: string | undefined
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
-
 }
 
 
@@ -104,4 +103,10 @@ export type CreateExerciseComponentProps = {
     WarmUp?: string | null | undefined;
     Exercises: [] | Exercise[]
   }
+}
+
+export type TableCellComponentProps = Exercise & {
+  weeks: number | null
+  setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setIdExercise: React.Dispatch<React.SetStateAction<string | undefined>>
 }
