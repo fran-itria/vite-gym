@@ -4,9 +4,10 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
+import deletRoutine from "../../services/routine/deleteRoutine";
 
 export default function Routine() {
-    const { name, routine, surname, routineId } = useInformation()
+    const { name, routine, surname, routineId, routineActual } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
 
     return (
@@ -20,6 +21,7 @@ export default function Routine() {
                         )
                     })}
                     <button onClick={() => setAddDay(!addDay)}>+ Día</button>
+                    <button onClick={() => deletRoutine(routineId, routineActual)}>Borrar rutina</button>
                 </>
                 :
                 <>
