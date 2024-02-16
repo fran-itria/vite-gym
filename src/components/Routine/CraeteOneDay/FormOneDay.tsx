@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { FormOneDayProps } from "../../../types";
+import { FormOneDayComponentProps } from "../../../types";
 import onChangeInputs from "../../../services/creteDayRoutine/form/onChangeInputs";
 
-export default function FormOneDay({ actualExercise, setDayCreate, setPag }: FormOneDayProps) {
+export default function FormOneDay({ actualExercise, setDayCreate, setPag }: FormOneDayComponentProps) {
     const [inputsExecise, setInputsExecise] = useState<{
         exercise: number,
         name: string,

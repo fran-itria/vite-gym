@@ -1,8 +1,8 @@
 import useInformation from "../../../hook/Components/Routine/useInformation";
 import createDay from "../../../services/creteDayRoutine/craeteDay";
-import { TableConfirmDayProps } from "../../../types";
+import { TableConfirmDayComponentProps } from "../../../types";
 
-export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise }: TableConfirmDayProps) {
+export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise }: TableConfirmDayComponentProps) {
     const { routineId, routineActual } = useInformation()
 
     return (
