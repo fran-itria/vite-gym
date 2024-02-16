@@ -35,42 +35,34 @@ export type Elements = {
   setInputs: React.Dispatch<React.SetStateAction<InputsLogin | InputsRegister | undefined>>
 }
 
+export type Exercise = {
+  id?: string;
+  exercise?: number;
+  name?: string;
+  series?: number;
+  reps?: string;
+  DayId?: string;
+  Loads: [] | {
+    id?: string;
+    loads?: string;
+  }[]
+}
+
 export type TableComponentProps = {
   weeks: number | null
   day: {
     id: string | undefined;
     WarmUp?: string | null | undefined;
-    Exercises: [] | {
-      id: string | null;
-      exercise: number | null;
-      name: string | null;
-      series: number | null;
-      reps: string | null;
-      DayId: string | null;
-      Loads: [] | {
-        id: string | null,
-        loads: string | null
-      }[];
-    }[]
+    Exercises: [] | Exercise[]
   }
 }
 
-export type TableRowComponentProps = {
-  exercise: {
-    id: string,
-    name: string,
-    series: string,
-    reps: string,
-    Loads: {
-      id: string,
-      loads: string
-    }[]
-  }
+export type TableRowComponentProps = Exercise & {
   weeks: number | null
 }
 
 export type ModalAddLoadComponentProps = {
-  idExercise: string | null
+  idExercise: string | undefined
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
 
 }
@@ -110,17 +102,6 @@ export type CreateExerciseComponentProps = {
   day: {
     id: string | undefined;
     WarmUp?: string | null | undefined;
-    Exercises: [] | {
-      id: string | null;
-      exercise: number | null;
-      name: string | null;
-      series: number | null;
-      reps: string | null;
-      DayId: string | null;
-      Loads: {
-        id: string | null,
-        loads: string | null
-      }[]
-    }[];
+    Exercises: [] | Exercise[]
   }
 }

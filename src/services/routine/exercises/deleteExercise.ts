@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import axios from "axios";
 
-export default async function deleteExercise(idExercise: string | null, routineId: string, routineActual: Function, setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
+export default async function deleteExercise(idExercise: string | undefined, routineId: string, routineActual: Function, setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
 ) {
     try {
         console.log(idExercise)

@@ -3,19 +3,19 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export interface Routine {
     weeks: number
     Days: {
-        id: string | undefined,
-        WarmUp?: string | null,
+        id: string
+        WarmUp?: string
         Exercises: {
-            id: string | null,
-            exercise: number | null
-            name: string | null
-            series: number | null
-            reps: string | null
-            DayId: string | null
+            id?: string
+            exercise?: number
+            name?: string
+            series?: number
+            reps?: string
+            DayId?: string
             Loads: {
-                id: string | null
-                loads: string | null
-                ExerciseId: string | null
+                id?: string
+                loads?: string
+                ExerciseId?: string
             }[] | []
         }[] | []
     }[] | undefined
