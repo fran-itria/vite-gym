@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Exercise, TableComponentProps } from '../../types';
 import TableHead from './TableHead';
-import TableRow from './TableRow';
+import TableRow from './TableRow/TableRow';
 
 export default function Table({ day, weeks }: TableComponentProps) {
     return (
