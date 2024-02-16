@@ -85,3 +85,21 @@ export type FormOneDayProps = {
     reps?: string | undefined;
   }[]>>
 }
+
+export type TableConfirmDayProps = {
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setDayCreate: React.Dispatch<React.SetStateAction<{
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]>>
+  dayCreate: {
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]
+}
