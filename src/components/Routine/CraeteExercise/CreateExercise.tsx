@@ -5,7 +5,7 @@ import createExerciseInputs from "../../../services/routine/exercises/formCreate
 import { CreateExerciseComponentProps } from "../../../types";
 
 export default function CreateExercise({ setAddExercise, day }: CreateExerciseComponentProps) {
-    const { inputs, setInputs, addExercise } = useCreaetExercise()
+    const { inputs, setInputs } = useCreaetExercise()
     const { routineActual, routineId } = useInformation()
     return (
         <form
@@ -24,8 +24,8 @@ export default function CreateExercise({ setAddExercise, day }: CreateExerciseCo
                 Repeticiones:
                 <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
             </label>
-            <button>Crear</button>
-            <button onClick={() => setAddExercise(!addExercise)}>Cancelar</button>
+            <button >Crear</button>
+            <button onClick={() => setAddExercise(prev => !prev)}>Cancelar</button>
         </form>
     )
 }
