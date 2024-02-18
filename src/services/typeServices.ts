@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
+import { RoutinesUser } from "../store/user/slice";
 // import { RoutinesUser } from "../store/user/slice";
 import { InputsLogin, InputsRegister } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
@@ -131,4 +132,17 @@ export type createRoutineProps = {
     }[]
   }[]
   // actualiceRoutinesUser: (routine: RoutinesUser) => void
+}
+
+export type deleteRoutineProps = {
+  id: string | undefined,
+  routineActual: (Days: Routine) => void
+  updateRoutinesUser: (routine: RoutinesUser) => void
+  userId: string | null
+}
+
+export type confirmRoutineProps = createRoutineProps & {
+  routineActual: (Days: Routine) => void
+  updateRoutinesUser: (routine: RoutinesUser) => void
+  setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
 }
