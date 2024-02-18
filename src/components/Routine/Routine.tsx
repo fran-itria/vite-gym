@@ -17,14 +17,18 @@ export default function Routine() {
 
     return (
         <>
-            <select onChange={(e) => updateIdGlobal(e.target.value)}>
-                {Routines.map((routine, i: number) => (
-                    <option value={routine.id}>
-                        Rutina {i + 1}
-                    </option>
-                )
-                )}
-            </select>
+            <div>
+                <p>Seleccionar rutina:</p>
+                <select onChange={(e) => updateIdGlobal(e.target.value)}>
+                    <option value={routineId.id}></option>
+                    {Routines.map((routine, i: number) => (
+                        <option value={routine.id}>
+                            {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
+                        </option>
+                    )
+                    )}
+                </select>
+            </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
                 <>
                     {routine.Days.map((day, i) => {
