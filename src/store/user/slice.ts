@@ -46,6 +46,10 @@ export interface User {
     Shifts: shift[] | [],
 }
 
+export interface RoutinesUser {
+    Routines: { id: string }[] | []
+}
+
 const initialState: User = {
     id: null,
     GymId: null,
@@ -100,10 +104,16 @@ export const userSlice = createSlice({
                 Shifts: action.payload.Shifts,
                 WarmUps: action.payload.Meals,
             }
+        },
+        actualiceRoutineUser: (state, action: PayloadAction<RoutinesUser>) => {
+            return {
+                ...state,
+                Routines: action.payload.Routines
+            }
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { actualiceUser } = userSlice.actions
+export const { actualiceUser, actualiceRoutineUser } = userSlice.actions
