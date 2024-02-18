@@ -13,7 +13,7 @@ export default function Routine() {
     const { id, name, routine, surname, routineId, routineActual } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
-    const { actualiceRoutinesUser } = useUserActions()
+    const { updateRoutinesUser } = useUserActions()
 
     return (
         <>
@@ -26,7 +26,7 @@ export default function Routine() {
                         )
                     })}
                     <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                    <button onClick={() => deletRoutine({ id: routineId, routineActual, userId: id, actualiceRoutinesUser })}>Borrar rutina</button>
+                    <button onClick={() => deletRoutine({ id: routineId, routineActual, userId: id, updateRoutinesUser })}>Borrar rutina</button>
                 </>
                 :
                 <>

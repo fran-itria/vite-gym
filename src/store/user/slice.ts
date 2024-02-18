@@ -79,7 +79,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        actualiceUser: (_state, action: PayloadAction<User>) => {
+        updateUser: (_state, action: PayloadAction<User>) => {
             return {
                 id: action.payload.id,
                 GymId: action.payload.GymId,
@@ -105,7 +105,7 @@ export const userSlice = createSlice({
                 WarmUps: action.payload.Meals,
             }
         },
-        actualiceRoutineUser: (state, action: PayloadAction<RoutinesUser>) => {
+        updateRoutineUser: (state, action: PayloadAction<RoutinesUser>) => {
             return {
                 ...state,
                 Routines: action.payload.Routines
@@ -116,4 +116,4 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { actualiceUser, actualiceRoutineUser } = userSlice.actions
+export const { updateUser, updateRoutineUser } = userSlice.actions

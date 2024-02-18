@@ -14,7 +14,7 @@ export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: 
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
     const [routine, setRoutine] = useState<[] | { exercises: { exercise?: number; name?: string; series?: string; reps?: string }[] }[]>([])
     const { id } = useAppSelector(state => state.user)
-    const { actualiceRoutinesUser } = useUserActions()
+    const { updateRoutinesUser } = useUserActions()
 
     useEffect(() => console.log(pagDays, totalDays), [pagDays, totalDays])
     return (
@@ -78,7 +78,7 @@ export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: 
                                     })}
                                 </tbody>
                             </table>
-                            <button onClick={() => confirmRoutine({ setOpenCreateRouitine, actualiceRoutinesUser, days: routine, routineActual, userId: id })}>
+                            <button onClick={() => confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId: id })}>
                                 Crar Rutina
                             </button>
                         </>
