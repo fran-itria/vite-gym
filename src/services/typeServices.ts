@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
+// import { RoutinesUser } from "../store/user/slice";
 import { InputsLogin, InputsRegister } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
@@ -52,7 +53,7 @@ export type addExerciseProps = {
     series: string,
     reps: string
   },
-  routineId: string
+  routineId: string | undefined
   setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
   routineActual: Function
 }
@@ -89,4 +90,45 @@ export type CreateExerciseInputsProps = {
     series: string;
     reps: string;
   }>>
+}
+
+export type addDayRoutineProps = {
+  setRoutine: React.Dispatch<React.SetStateAction<[] | {
+    exercises: {
+      exercise?: number | undefined;
+      name?: string | undefined;
+      series?: string | undefined;
+      reps?: string | undefined;
+    }[];
+  }[]>>
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  setDayCreate: React.Dispatch<React.SetStateAction<{
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]>>
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+  dayCreate: {
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]
+  setPagDays: React.Dispatch<React.SetStateAction<number>>
+}
+
+export type createRoutineProps = {
+  // routineActual: (Days: Routine) => void
+  userId: string | null
+  days: {
+    exercises: {
+      exercise?: number | undefined;
+      name?: string | undefined;
+      series?: string | undefined;
+      reps?: string | undefined;
+    }[]
+  }[]
+  // actualiceRoutinesUser: (routine: RoutinesUser) => void
 }

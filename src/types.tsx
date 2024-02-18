@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Routine } from "./store/routine/slice";
+
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
   meal,
@@ -146,4 +149,5 @@ export type FormTotalExerciseComponentProps = {
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
+  routine?: Routine
 }
