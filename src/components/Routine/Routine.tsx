@@ -7,11 +7,13 @@ import FormTotalExercise from "./FormTotalExercise";
 import deletRoutine from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import CreateRoutine from "./CreateRoutine";
+import { useUserActions } from "../../hook/useUserActions";
 
 export default function Routine() {
-    const { name, routine, surname, routineId, routineActual } = useInformation()
+    const { id, name, routine, surname, routineId, routineActual } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
+    const { actualiceRoutinesUser } = useUserActions()
 
     return (
         <>
@@ -24,7 +26,7 @@ export default function Routine() {
                         )
                     })}
                     <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                    <button onClick={() => deletRoutine(routineId, routineActual)}>Borrar rutina</button>
+                    <button onClick={() => deletRoutine({ id: routineId, routineActual, userId: id, actualiceRoutinesUser })}>Borrar rutina</button>
                 </>
                 :
                 <>

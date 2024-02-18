@@ -5,7 +5,7 @@ import { useRoutineActions } from "../../useRoutineActions"
 import axios from "axios"
 
 const useInformation = () => {
-    const { name, surname, Routines } = useAppSelector(state => state.user)
+    const { name, surname, Routines, id } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
     const [routineId, setRoutineId] = useState<string | undefined>(undefined)
@@ -20,7 +20,7 @@ const useInformation = () => {
         }
     }, [routineId])
 
-    return { name, surname, routine, routineActual, routineId }
+    return { name, surname, routine, routineActual, routineId, id }
 }
 
 export default useInformation
