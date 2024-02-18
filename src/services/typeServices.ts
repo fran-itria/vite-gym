@@ -40,7 +40,7 @@ export type modifiedLoadsProps = {
   exerciseId?: string | null
   id?: string | null
   load: string
-  routineId: string,
+  routineId?: string,
   routineActual: Function
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
 }
