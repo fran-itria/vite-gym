@@ -1,4 +1,4 @@
-import { User, actualiceUser } from "../store/user/slice"
+import { RoutinesUser, User, actualiceRoutineUser, actualiceUser } from "../store/user/slice"
 import { useAppDispatch } from "./store"
 
 export const useUserActions = () => {
@@ -8,5 +8,9 @@ export const useUserActions = () => {
         dispatch(actualiceUser(inputs))
     }
 
-    return { addUser }
+    const actualiceRoutinesUser = (routine: RoutinesUser) => {
+        dispatch(actualiceRoutineUser(routine))
+    }
+
+    return { addUser, actualiceRoutinesUser }
 }
