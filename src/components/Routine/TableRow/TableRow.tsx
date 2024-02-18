@@ -4,10 +4,13 @@ import ModalAddLoad from "./ModalAddLoad";
 import useTabelRow from "../../../hook/Components/useTableRow";
 import TableCell from './TableCell';
 import ConfirmDelete from "./ConfirmDelete";
+import { useEffect } from "react";
+import ModifiedExercise from "./ModifiedExercise";
 
 export default function TableRow({ weeks, id, name, series, reps, Loads }: TableRowComponentProps) {
-    const { confirmDelete, setConfirmDelete, openLoad, setOpenLoad } = useTabelRow()
+    const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad } = useTabelRow()
 
+    useEffect(() => console.log(open), [open])
     return (
         <tr>
             <TableCell
@@ -20,7 +23,13 @@ export default function TableRow({ weeks, id, name, series, reps, Loads }: Table
                 name={name}
                 setOpenLoad={setOpenLoad}
                 setConfirmDelete={setConfirmDelete}
+                setOpen={setOpen}
             />
+            {open ?
+                <ModifiedExercise id={id} name={name} series={series} reps={reps} setOpen={setOpen} />
+                :
+                <></>
+            }
             {openLoad ?
                 <ModalAddLoad key={id} id={id} setOpenLoad={setOpenLoad} />
                 :

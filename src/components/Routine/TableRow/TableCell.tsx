@@ -4,10 +4,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../themeIcons/modifiedExerciseColors";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableCellComponentProps } from '../../../types';
-import useTabelRow from '../../../hook/Components/useTableRow';
 
-export default function TableCell({ Loads, name, series, reps, weeks, setOpenLoad, setConfirmDelete }: TableCellComponentProps) {
-    const { setOpen } = useTabelRow()
+export default function TableCell({ Loads, name, series, reps, weeks, setOpenLoad, setConfirmDelete, setOpen }: TableCellComponentProps) {
     return (
         <>
             <td>
