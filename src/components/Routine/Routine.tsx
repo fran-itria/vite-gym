@@ -33,7 +33,7 @@ export default function Routine() {
                 </>
             }
             {addDay ?
-                <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} />
+                <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />
                 :
                 pag != 0 ?
                     pag < Number(totalExercise) + 1 ?
@@ -51,7 +51,7 @@ export default function Routine() {
                     <></>
             }
             {opneCreateRoutine ?
-                <CreateRoutine routineActual={routineActual} />
+                <CreateRoutine routineActual={routineActual} setOpenCreateRouitine={setOpenCreateRouitine} />
                 :
                 <></>
             }
