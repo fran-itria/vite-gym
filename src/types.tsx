@@ -94,6 +94,16 @@ export type TableConfirmDayComponentProps = {
     series?: string | undefined;
     reps?: string | undefined;
   }[]
+  pagDays?: number
+  setRoutine?: React.Dispatch<React.SetStateAction<[] | {
+    exercises: {
+      exercise?: number;
+      name?: string;
+      series?: string;
+      reps?: string;
+    }[];
+  }[]>>
+  setPagDays?: React.Dispatch<React.SetStateAction<number>>
 }
 
 export type CreateExerciseComponentProps = {
@@ -135,4 +145,5 @@ export type FormTotalExerciseComponentProps = {
   setPag: React.Dispatch<React.SetStateAction<number>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  pagDays?: number
 }
