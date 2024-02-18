@@ -6,7 +6,7 @@ import axios from "axios"
 import useRoutineIdActions from "../../useRoutineIdActions"
 
 const useInformation = () => {
-    const { name, surname, Routines, id } = useAppSelector(state => state.user)
+    const { Routines, id } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
     const routineId = useAppSelector(state => state.routineIdGlobal)
@@ -22,7 +22,7 @@ const useInformation = () => {
         }
     }, [routineId.id])
 
-    return { name, surname, routine, Routines, routineActual, routineId, id, updateIdGlobal }
+    return { routine, Routines, routineActual, routineId, id, updateIdGlobal }
 }
 
 export default useInformation
