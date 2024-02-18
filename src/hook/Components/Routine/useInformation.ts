@@ -9,13 +9,9 @@ const useInformation = () => {
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
     let routineId
-    if (Routines.length > 0) {
-        routineId = Routines[Routines.length - 1].id
-    }
-
     useEffect(() => {
         if (Routines.length > 0) {
-            const routineId = Routines[0].id
+            routineId = Routines[Routines.length - 1].id
             axios.get(`/rutina/${routineId}`)
                 .then(response => {
                     routineActual(response.data)
