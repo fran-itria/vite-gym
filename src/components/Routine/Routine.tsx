@@ -5,10 +5,13 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
 import deletRoutine from "../../services/routine/deleteRoutine";
+import { useState } from "react";
+import CreateRoutine from "./CreateRoutine";
 
 export default function Routine() {
     const { name, routine, surname, routineId, routineActual } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
+    const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
 
     return (
         <>
@@ -26,6 +29,7 @@ export default function Routine() {
                 :
                 <>
                     <p>No tienes rutina actualmente</p>
+                    <button onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}>Crear rutina</button>
                 </>
             }
             {addDay ?
@@ -45,6 +49,11 @@ export default function Routine() {
                         />
                     :
                     <></>
+            }
+            {opneCreateRoutine ?
+                <CreateRoutine routineActual={routineActual} />
+                :
+                <></>
             }
         </>
     )
