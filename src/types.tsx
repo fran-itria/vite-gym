@@ -122,6 +122,7 @@ export type TableCellComponentProps = Exercise & {
   weeks: number | null
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type DetailComponenProps = {
@@ -150,4 +151,12 @@ export type FormTotalExerciseComponentProps = {
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
   routine?: Routine
+}
+
+export type ModifiedExerciseProps = {
+  series?: number
+  name?: string
+  reps?: string
+  id?: string
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
