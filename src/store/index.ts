@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducerUser from "./user/slice"
+import useReducerUser from "./user/slice"
 import useReducerRoutine from './routine/slice'
+import useRoutienIdGlobal from './routineIdGlobal/slice'
 
 export const store = configureStore({
     reducer: {
-        user: userReducerUser,
-        routine: useReducerRoutine
+        user: useReducerUser,
+        routine: useReducerRoutine,
+        routineIdGlobal: useRoutienIdGlobal
     }
 })
 
