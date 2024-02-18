@@ -38,6 +38,7 @@ export default function Routine() {
                     })}
                     <button onClick={() => setAddDay(!addDay)}>+ Día</button>
                     <button onClick={() => deletRoutine({ id: routineId.id, routineActual, userId: id, updateRoutinesUser })}>Borrar rutina</button>
+                    <button onClick={() => setOpenCreateRouitine(prev => !prev)}> + Rutina </button>
                 </>
                 :
                 <>
