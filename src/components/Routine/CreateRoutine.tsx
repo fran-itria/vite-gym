@@ -12,7 +12,7 @@ export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: 
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
-    const [routine, setRoutine] = useState<[] | { exercises: { exercise?: number; name?: string; series?: string; reps?: string }[] }[]>([])
+    const [routine, setRoutine] = useState<[] | { day: number, exercises: { exercise?: number; name?: string; series?: string; reps?: string }[] }[]>([])
     const { id } = useAppSelector(state => state.user)
     const { updateRoutinesUser } = useUserActions()
 
