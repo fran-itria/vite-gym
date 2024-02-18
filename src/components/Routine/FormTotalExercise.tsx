@@ -1,9 +1,10 @@
+
 import { FormTotalExerciseComponentProps } from "../../types"
 
-export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay, pagDays }: FormTotalExerciseComponentProps) {
+export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay, pagDays, routine }: FormTotalExerciseComponentProps) {
     return (
         <div>
-            Día número {pagDays}
+            Día número {pagDays ? pagDays : routine?.Days?.length ? routine?.Days?.length + 1 : <></>}
             <label>
                 Cantidad de ejercicios:
                 <input name="exercises" onChange={(e) => setTotalExercise(e.target.value)}></input>
