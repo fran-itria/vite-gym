@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import useDayCreate from "../../hook/Components/Routine/useCreateDay"
 import FormOneDay from "./CraeteOneDay/FormOneDay"
 import FormTotalExercise from "./FormTotalExercise"
@@ -16,7 +16,6 @@ export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: 
     const { id } = useAppSelector(state => state.user)
     const { updateRoutinesUser } = useUserActions()
 
-    useEffect(() => console.log(pagDays, totalDays), [pagDays, totalDays])
     return (
         <div style={{ background: 'white', height: '200px', position: 'absolute', top: '50%', right: '50%' }}>
             {
