@@ -1,26 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useAppSelector } from "../../store"
 import { useRoutineActions } from "../../useRoutineActions"
 import axios from "axios"
+import useRoutineIdActions from "../../useRoutineIdActions"
 
 const useInformation = () => {
     const { name, surname, Routines, id } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
-    const [routineId, setRoutineId] = useState<string | undefined>(undefined)
+    const routineId = useAppSelector(state => state.routineIdGlobal)
+    const { updateIdGlobal } = useRoutineIdActions()
     useEffect(() => {
         if (Routines.length > 0) {
-            setRoutineId(Routines[Routines.length - 1].id)
-            axios.get(`/rutina/${routineId}`)
+            if (routineId == undefined) updateIdGlobal(Routines[Routines.length - 1].id)
+            axios.get(`/rutina/${routineId.id}`)
                 .then(response => {
                     routineActual(response.data)
                 })
                 .catch(error => console.log(error))
         }
-    }, [routineId])
+    }, [routineId.id])
 
-    return { name, surname, routine, routineActual, routineId, id }
+    return { name, surname, routine, Routines, routineActual, routineId, id, updateIdGlobal }
 }
 
 export default useInformation
