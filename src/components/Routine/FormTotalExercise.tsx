@@ -1,11 +1,9 @@
-import useInformation from "../../hook/Components/Routine/useInformation"
 import { FormTotalExerciseComponentProps } from "../../types"
 
-export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay }: FormTotalExerciseComponentProps) {
-    const { routine } = useInformation()
+export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay, pagDays }: FormTotalExerciseComponentProps) {
     return (
         <div>
-            Día número {routine.Days?.length ? routine.Days?.length + 1 : 1}
+            Día número {pagDays}
             <label>
                 Cantidad de ejercicios:
                 <input name="exercises" onChange={(e) => setTotalExercise(e.target.value)}></input>
