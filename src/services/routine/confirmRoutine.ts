@@ -6,7 +6,7 @@ import { confirmRoutineProps } from "../typeServices"
 export default async function confirmRoutine({ updateRoutinesUser, days, routineActual, userId, setOpenCreateRouitine }: confirmRoutineProps) {
     try {
         const response = await createRoutine({ days, userId })
-        const rutina = await axios.get(`/rutina/${response?.routine.id}`)
+        const rutina = await axios.get(`/rutina/${response?.user.Routines[0].id}`)
         window.alert('Rutina creada exitosamente')
         routineActual(rutina.data)
         updateRoutinesUser(response?.user)
