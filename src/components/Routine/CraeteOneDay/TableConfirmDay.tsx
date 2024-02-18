@@ -1,8 +1,9 @@
 import useInformation from "../../../hook/Components/Routine/useInformation";
 import createDay from "../../../services/creteDayRoutine/craeteDay";
+import addDayRoutine from "../../../services/routine/addDayRoutine";
 import { TableConfirmDayComponentProps } from "../../../types";
 
-export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise }: TableConfirmDayComponentProps) {
+export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise, pagDays, setRoutine, setPagDays }: TableConfirmDayComponentProps) {
     const { routineId, routineActual } = useInformation()
 
     return (
@@ -25,9 +26,20 @@ export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, se
                     })}
                 </tbody>
             </table>
-            <button onClick={() => {
-                createDay({ routineId, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise })
-            }}>Confirmar</button>
+            {!pagDays ?
+                <button onClick={() => {
+                    createDay({ routineId, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise })
+                }}>Confirmar</button>
+                :
+                <button onClick={() => {
+                    setRoutine && setPagDays ?
+                        addDayRoutine({ dayCreate, setAddDay, setDayCreate, setPag, setPagDays, setRoutine, setTotalExercise })
+                        :
+                        <></>
+                }}>
+                    Agregar día
+                </button >
+            }
         </>
     )
 }
