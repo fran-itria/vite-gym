@@ -99,6 +99,7 @@ export type TableConfirmDayComponentProps = {
   }[]
   pagDays?: number
   setRoutine?: React.Dispatch<React.SetStateAction<[] | {
+    day: number;
     exercises: {
       exercise?: number;
       name?: string;

@@ -70,6 +70,7 @@ export type onChangeInputsProps = {
 }
 
 export type createDayProps = {
+  routine: Routine
   routineId: string | undefined,
   dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[],
   routineActual: (Days: Routine) => void
@@ -94,7 +95,9 @@ export type CreateExerciseInputsProps = {
 }
 
 export type addDayRoutineProps = {
+  pagDays: number
   setRoutine: React.Dispatch<React.SetStateAction<[] | {
+    day: number;
     exercises: {
       exercise?: number | undefined;
       name?: string | undefined;
@@ -124,6 +127,7 @@ export type createRoutineProps = {
   // routineActual: (Days: Routine) => void
   userId: string | null
   days: {
+    day: number
     exercises: {
       exercise?: number | undefined;
       name?: string | undefined;
