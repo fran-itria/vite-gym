@@ -18,7 +18,7 @@ export default function ModifiedExercise({ id, name, reps, series, setOpen }: Mo
         try {
             const response = await axios.put('/ejercicio', { id, name: inputs.name, series: inputs.series, reps: inputs.reps })
             console.log(response.data)
-            const routine = await axios.get(`/rutina/${routineId}`)
+            const routine = await axios.get(`/rutina/${routineId.id}`)
             console.log(routine)
             if (routine.status == 200) {
                 setOpen(open => !open)
