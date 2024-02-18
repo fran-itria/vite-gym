@@ -28,7 +28,7 @@ export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, se
             </table>
             {!pagDays ?
                 <button onClick={() => {
-                    createDay({ routineId, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise })
+                    createDay({ routineId: routineId.id, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise })
                 }}>Confirmar</button>
                 :
                 <button onClick={() => {

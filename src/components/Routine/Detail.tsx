@@ -22,7 +22,7 @@ export default function Detail({ day, i }: DetailComponenProps) {
                 </summary>
                 <Table day={day} weeks={routine.weeks} />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
-                <button onClick={() => addWeek(routineId, routine.weeks + 1, routineActual)}>+ Semana</button>
+                <button onClick={() => addWeek(routineId.id, routine.weeks + 1, routineActual)}>+ Semana</button>
                 {addExercise ?
                     <CreateExercise day={day} setAddExercise={setAddExercise} />
                     :
@@ -30,7 +30,7 @@ export default function Detail({ day, i }: DetailComponenProps) {
                 }
             </details >
             <ThemeProvider theme={theme}>
-                <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteDay(day.id, routineId, routineActual)} />
+                <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteDay(day.id, routineId.id, routineActual)} />
             </ThemeProvider>
         </>
     )

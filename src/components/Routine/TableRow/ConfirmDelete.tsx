@@ -12,7 +12,7 @@ export default function ConfirmDelete({ name, id, setConfirmDelete }: {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', background: 'white', border: '5px, solid, black', position: 'absolute', top: '50%', right: '50%' }}>
             <p> Desea eliminar el ejercicio {name} </p>
-            <button style={{ background: 'red', color: 'white' }} onClick={() => deleteExercise(id, routineId, routineActual, setConfirmDelete)}>
+            <button style={{ background: 'red', color: 'white' }} onClick={() => deleteExercise(id, routineId.id, routineActual, setConfirmDelete)}>
                 Borrar
             </button>
             <button style={{ background: 'green', color: 'white' }} onClick={() => setConfirmDelete(confirmDelete => !confirmDelete)}>

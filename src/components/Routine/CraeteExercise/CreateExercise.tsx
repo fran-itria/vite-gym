@@ -10,7 +10,7 @@ export default function CreateExercise({ setAddExercise, day }: CreateExerciseCo
     return (
         <form
             style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
-            onSubmit={(e) => addExerciseFunction({ e, dayId: day.id, exercise: day.Exercises.length + 1, inputs, routineId, setAddExercise, routineActual })}
+            onSubmit={(e) => addExerciseFunction({ e, dayId: day.id, exercise: day.Exercises.length + 1, inputs, routineId: routineId.id, setAddExercise, routineActual })}
         >
             <label>
                 Nombre del ejercicio:
