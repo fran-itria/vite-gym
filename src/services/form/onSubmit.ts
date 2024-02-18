@@ -10,7 +10,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url }
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
-                navigate("/home/resume");
+                navigate("/home/resumen");
             }
         } else {
             const response = await register({ inputs, url });
