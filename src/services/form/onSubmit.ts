@@ -3,10 +3,11 @@ import { login } from "../login/login";
 import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setPending }: onSubmitProps) {
     event.preventDefault();
     try {
         if (!url) {
+            setPending(true)
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)

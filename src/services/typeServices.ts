@@ -24,6 +24,7 @@ export type onSubmitProps = {
   navigate: NavigateFunction;
   addUser: Function,
   url?: Location<any>,
+  setPending: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type modifiedExerciseProps = {
