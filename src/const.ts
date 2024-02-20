@@ -40,3 +40,10 @@ export const labels = {
     password: "Contraseña",
     phone: "Telefono"
 }
+
+export const loaders = {
+    init: 'Iniciado sesión',
+    out: 'Cerrando sesión',
+    routine: 'Cargando rutina',
+    resume: 'Cargando resumen de usuario'
+}
