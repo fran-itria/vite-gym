@@ -15,8 +15,10 @@ const useInformation = () => {
     const { pending, setPending } = useLoaders()
     useEffect(() => {
         if (Routines.length > 0) {
-            setPending(true)
-            if (routineId.id == undefined) updateIdGlobal(Routines[Routines.length - 1].id)
+            if (routineId.id == undefined) {
+                setPending(true)
+                updateIdGlobal(Routines[Routines.length - 1].id)
+            }
             axios.get(`/rutina/${routineId.id}`)
                 .then(response => {
                     setPending(false)
