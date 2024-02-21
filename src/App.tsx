@@ -13,13 +13,18 @@ function App() {
   axios.defaults.baseURL = baseUrl
   return (
     <>
-      {path.pathname != "/" && !path.pathname.includes("register") ? <Header /> : <></>}
+      {
+        path.pathname != "/" &&
+          !path.pathname.includes("register") &&
+          !path.pathname.includes("null") ?
+          <Header /> : <></>
+      }
       <Routes>
         <Route path="/" element={<FormLogin />} />
         <Route path="/register/:gymName/:id" element={<FormRegister />} />
         <Route path="/register/admin/:id" element={<FormRegister />} />
-        <Route path="/home/:select" element={<Home />} />
-        <Route path="/rutina" element={<Routine />} />
+        <Route path="/home/:userId/:select" element={<Home />} />
+        <Route path="/rutina/:userId" element={<Routine />} />
         {/* Rutas dinamicas para el calentamiento y rutina */}
         {/* Ruta para la suscripcion */}
       </Routes>

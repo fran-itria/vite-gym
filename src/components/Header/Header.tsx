@@ -36,22 +36,22 @@ export default function Header() {
             </header>
             <nav>
                 <ul className={style.list}>
-                    <NavLink to={`/home/resumen`} className={pathname.includes("home") ? style.active : ''}>
+                    <NavLink to={`/home/${id}/resumen`} className={pathname.includes("home") ? style.active : ''}>
                         <li className={style.inicio}>
                             Inicio
                         </li>
                     </NavLink>
-                    <NavLink to={`/calentamiento`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/calentamiento/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
                         <li className={style.calentamiento}>
                             Calentamiento
                         </li>
                     </NavLink>
-                    <NavLink to={`/rutina`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/rutina/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
                         <li className={style.rutina}>
                             Rutina
                         </li>
                     </NavLink>
-                    <NavLink to={`/suscripcion`} className={({ isActive }) => isActive ? style.active : ''}>
+                    <NavLink to={`/suscripcion/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
                         <li className={style.suscripcion}>
                             Suscripción
                         </li>

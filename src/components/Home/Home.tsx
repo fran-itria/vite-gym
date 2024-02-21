@@ -4,13 +4,21 @@ import Health from "../Health/Health";
 import Resume from "../Resume/Resume";
 import Shifts from "../Shifts/Shifts";
 import { selects } from "../../const";
+import NotFound from "../NotFound";
 
 export default function Home() {
-  const { select } = useParams()
+  const { userId, select } = useParams()
+
   return (
     <>
-      <NavHome />
-      {select == selects.summary ? <Resume /> : select == selects.miSalud ? <Health /> : < Shifts />}
+      {userId != 'null' ?
+        <>
+          <NavHome />
+          {select == selects.summary ? <Resume /> : select == selects.miSalud ? <Health /> : < Shifts />}
+        </>
+        :
+        <NotFound />
+      }
     </>
   );
 }
