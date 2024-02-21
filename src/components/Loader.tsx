@@ -1,11 +1,14 @@
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import style from './Loader.module.css'
 
 export default function Loader({ text }: { text: string }) {
 
     return (
-        <div style={{ position: 'absolute', border: 'solid, blue, 5px' }}>
-            <p>{text}</p>
-            <MoreHorizIcon color='info' />
+        <div className={style.container}>
+            <div className={style.loader}>
+                <p className={style.text}>{text}</p>
+                <div className={style.demo}>
+                </div>
+            </div>
         </div>
     )
 }
