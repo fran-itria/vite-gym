@@ -12,7 +12,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
-                navigate("/home/resumen");
+                navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
             setPending(true)
@@ -20,7 +20,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
                 addUser(user.data)
-                navigate("/home/resumen");
+                navigate(`/home/${user.data.id}/resumen`);
             }
         }
     } catch (error: any) {
