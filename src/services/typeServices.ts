@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
-import { RoutinesUser } from "../store/user/slice";
-// import { RoutinesUser } from "../store/user/slice";
+import { RoutinesUser, WarmUpsUser } from "../store/user/slice";
+import { WarmUp } from "../store/warmUp/slice";
 import { InputsLogin, InputsRegister, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
@@ -55,9 +55,11 @@ export type addExerciseProps = {
     series: string,
     reps: string
   },
-  routineId: string | undefined
   setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
-  routineActual: Function
+  routineId?: string
+  routineActual?: ((Days: Routine) => void) | undefined
+  warmUpId?: string
+  warmUpActual?: ((Days: WarmUp) => void) | undefined
 }
 
 export type onChangeInputsProps = {
@@ -70,11 +72,27 @@ export type onChangeInputsProps = {
   }>>
 }
 
-export type createDayProps = {
+export type createDayRoutineProps = {
   routine: Routine
   routineId: string | undefined,
   dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[],
   routineActual: (Days: Routine) => void
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+  setPag: React.Dispatch<React.SetStateAction<number>>
+  setDayCreate: React.Dispatch<React.SetStateAction<{
+    exercise?: number | undefined;
+    name?: string | undefined;
+    series?: string | undefined;
+    reps?: string | undefined;
+  }[]>>
+}
+
+export type createDayWarmUpProps = {
+  warmUp: WarmUp
+  warmUpId: string
+  warmUpActual: ((Days: WarmUp) => void)
+  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[]
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
@@ -125,7 +143,6 @@ export type addDayRoutineProps = {
 }
 
 export type createRoutineProps = {
-  // routineActual: (Days: Routine) => void
   userId: string | null
   days: {
     day: number
@@ -136,13 +153,19 @@ export type createRoutineProps = {
       reps?: string | undefined;
     }[]
   }[]
-  // actualiceRoutinesUser: (routine: RoutinesUser) => void
 }
 
 export type deleteRoutineProps = {
   id: string | undefined,
   routineActual: (Days: Routine) => void
   updateRoutinesUser: (routine: RoutinesUser) => void
+  userId: string | null
+}
+
+export type deleteWarmUpProps = {
+  id: string | undefined,
+  warmUpActual: (Days: WarmUp) => void
+  updateWarmUpUser: (warmUps: WarmUpsUser) => void
   userId: string | null
 }
 
@@ -153,4 +176,14 @@ export type confirmRoutineProps = createRoutineProps & {
   gymName?: string | null
   createWarm?: boolean
   setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
+  warmUpActual?: (Days: WarmUp) => void
+  updateWarmUpUser?: (warmUps: WarmUpsUser) => void
+}
+
+export type deleteDayProps = {
+  id?: string,
+  routineId?: string,
+  routineActual?: (Days: Routine) => void
+  warmUpId?: string
+  warmUpActual?: (Days: WarmUp) => void
 }
