@@ -15,16 +15,16 @@ export default function CreateExercise({ setAddExercise, day, routineActual, rou
                         dayId: day.id,
                         exercise: day.Exercises.length + 1,
                         inputs,
-                        routineId: routineId.id,
+                        routineId,
                         setAddExercise,
                         routineActual
                     })
-                } else addExerciseFunction({
+                } else if (warmUpId && warmUpActual) addExerciseFunction({
                     e,
                     dayId: day.id,
                     exercise: day.Exercises.length + 1,
                     inputs,
-                    warmUpId: warmUpId?.id,
+                    warmUpId,
                     warmUpActual,
                     setAddExercise
                 })
