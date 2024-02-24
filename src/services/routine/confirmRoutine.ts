@@ -5,8 +5,10 @@ import { confirmRoutineProps } from "../typeServices"
 
 export default async function confirmRoutine({
     updateRoutinesUser,
+    updateWarmUpUser,
     days,
     routineActual,
+    warmUpActual,
     userId,
     setOpenCreateRouitine,
     setUsers,
@@ -14,9 +16,7 @@ export default async function confirmRoutine({
     createWarm
 }: confirmRoutineProps) {
     try {
-        console.log(createWarm)
-        console.log(typeof (createWarm))
-        if (createWarm != undefined) {
+        if (!createWarm) {
             const response = await createRoutine({ days, userId })
             window.alert('Rutina creada exitosamente')
             if (routineActual && updateRoutinesUser) {
@@ -34,12 +34,12 @@ export default async function confirmRoutine({
                 days
             })
             window.alert('Calentamiento creado exitosamente')
-            // USAR ESTADO GLOBAL PARA EL CALENTAMIENTO
-            // if (routineActual && updateRoutinesUser) {
-            //     const rutina = await axios.get(`/rutina/${response?.user.Routines[0].id}`)
-            //     routineActual(rutina.data)
-            //     updateRoutinesUser(response?.user)
-            // }
+            if (warmUpActual && updateWarmUpUser) {
+                const rutina = await axios.get(`/calentamiento/${response?.data.id}`)
+                const user = await axios.get(`/user/getOneUser/${userId}`)
+                warmUpActual(rutina.data)
+                updateWarmUpUser(user.data)
+            }
             if (response.status == 200 && setUsers && gymName) {
                 const users = await axios.get(`/user/forGym/${gymName}`)
                 if (users.status == 200) setUsers(users.data)
