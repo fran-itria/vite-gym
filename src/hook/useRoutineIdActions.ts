@@ -9,7 +9,7 @@ export default function useRoutineIdActions() {
         dispatch(updateId(id))
     }
 
-    const updateWarmUpIdGlobal = (id: string) => {
+    const updateWarmUpIdGlobal = (id: string | undefined) => {
         dispatch(updateWarmUpId(id))
     }
     return { updateIdGlobal, updateWarmUpIdGlobal }
