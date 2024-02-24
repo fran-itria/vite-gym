@@ -1,16 +1,34 @@
 import useCreaetExercise from "../../../hook/Components/Routine/useCreateExercise";
-import useInformation from "../../../hook/Components/Routine/useInformation";
 import addExerciseFunction from "../../../services/routine/exercises/addExercise";
 import createExerciseInputs from "../../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import { CreateExerciseComponentProps } from "../../../types";
 
-export default function CreateExercise({ setAddExercise, day }: CreateExerciseComponentProps) {
+export default function CreateExercise({ setAddExercise, day, routineActual, routineId, warmUpActual, warmUpId }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
-    const { routineActual, routineId } = useInformation()
     return (
         <form
             style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
-            onSubmit={(e) => addExerciseFunction({ e, dayId: day.id, exercise: day.Exercises.length + 1, inputs, routineId: routineId.id, setAddExercise, routineActual })}
+            onSubmit={(e) => {
+                if (routineActual && routineId) {
+                    addExerciseFunction({
+                        e,
+                        dayId: day.id,
+                        exercise: day.Exercises.length + 1,
+                        inputs,
+                        routineId: routineId.id,
+                        setAddExercise,
+                        routineActual
+                    })
+                } else addExerciseFunction({
+                    e,
+                    dayId: day.id,
+                    exercise: day.Exercises.length + 1,
+                    inputs,
+                    warmUpId: warmUpId?.id,
+                    warmUpActual,
+                    setAddExercise
+                })
+            }}
         >
             <label>
                 Nombre del ejercicio:
