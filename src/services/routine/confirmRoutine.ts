@@ -13,7 +13,8 @@ export default async function confirmRoutine({
     setOpenCreateRouitine,
     setUsers,
     gymName,
-    createWarm
+    createWarm,
+    updateWarmUpIdGlobal
 }: confirmRoutineProps) {
     try {
         if (!createWarm) {
@@ -34,9 +35,10 @@ export default async function confirmRoutine({
                 days
             })
             window.alert('Calentamiento creado exitosamente')
-            if (warmUpActual && updateWarmUpUser) {
+            if (warmUpActual && updateWarmUpUser && updateWarmUpIdGlobal) {
                 const rutina = await axios.get(`/calentamiento/${response?.data.id}`)
                 const user = await axios.get(`/user/getOneUser/${userId}`)
+                updateWarmUpIdGlobal(undefined)
                 warmUpActual(rutina.data)
                 updateWarmUpUser(user.data)
             }
