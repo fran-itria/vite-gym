@@ -70,6 +70,9 @@ export default function Routine() {
                             setDayCreate={setDayCreate}
                             setPag={setPag}
                             setTotalExercise={setTotalExercise}
+                            routine={routine}
+                            routineActual={routineActual}
+                            routineId={routineId.id}
                         />
                     :
                     <></>
