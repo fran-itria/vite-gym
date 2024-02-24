@@ -178,6 +178,7 @@ export type confirmRoutineProps = createRoutineProps & {
   setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
   warmUpActual?: (Days: WarmUp) => void
   updateWarmUpUser?: (warmUps: WarmUpsUser) => void
+  updateWarmUpIdGlobal?: (id: string | undefined) => void
 }
 
 export type deleteDayProps = {
@@ -186,4 +187,13 @@ export type deleteDayProps = {
   routineActual?: (Days: Routine) => void
   warmUpId?: string
   warmUpActual?: (Days: WarmUp) => void
+}
+
+export type deleteExerciseProps = {
+  idExercise: string,
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  warmUpId?: string
+  warmUpActual?: ((Days: WarmUp) => void)
+  setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
 }

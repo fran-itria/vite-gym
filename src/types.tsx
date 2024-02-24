@@ -54,16 +54,25 @@ export type Exercise = {
 }
 
 export type TableComponentProps = {
-  weeks: number | null
+  weeks?: number | null
   day: {
-    id: string | undefined;
-    WarmUp?: string | null | undefined;
+    id?: string;
+    WarmUp?: string | null;
     Exercises: [] | Exercise[]
   }
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  warmUpActual?: ((Days: WarmUp) => void)
+  warmUpId?: string
 }
 
 export type TableRowComponentProps = Exercise & {
-  weeks: number | null
+  weeks?: number | null
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  warmUpActual?: ((Days: WarmUp) => void)
+  warmUpId?: string
+
 }
 
 export type ModalAddLoadComponentProps = {
@@ -125,23 +134,26 @@ export type CreateExerciseComponentProps = {
     WarmUp?: string | null | undefined;
     Exercises: [] | Exercise[]
   }
-  warmUpId?: {
-    id?: string | undefined;
-  }
+  warmUpId?: string
   warmUpActual?: (Days: WarmUp) => void
-  routineId?: {
-    id?: string | undefined;
-  }
+  routineId?: string
   routineActual?: (Days: Routine) => void
 }
 
 export type TableCellComponentProps = Exercise & {
-  weeks: number | null
+  weeks?: number | null
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+export type RoutineOrWarmUp = {
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  warmUpId?: string
+  warmUpActual?: (Days: WarmUp) => void
+  weeks?: number
+}
 export type DetailComponenProps = {
   day: {
     id: string;
@@ -153,17 +165,14 @@ export type DetailComponenProps = {
       series?: number | undefined;
       reps?: string | undefined;
       DayId?: string | undefined;
-      Loads: [] | {
+      Loads?: [] | {
         id?: string;
         loads?: string;
       }[];
     }[];
   }
   i: number
-  routineId: {
-    id?: string | undefined;
-  }
-  routineActual: (Days: Routine) => void
+  routineOrWarmUp: RoutineOrWarmUp
 }
 
 export type FormTotalExerciseComponentProps = {
@@ -240,4 +249,15 @@ export type CreateRoutineComponentProps = {
   userId: string | null
   gymName?: string | null
   createWarm?: boolean
+  updateWarmUpIdGlobal?: (id: string | undefined) => void
+}
+
+export type ConfirmDeleteComponentProps = {
+  name: string | undefined,
+  id: string | undefined,
+  setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  warmUpActual?: ((Days: WarmUp) => void)
+  warmUpId?: string
 }
