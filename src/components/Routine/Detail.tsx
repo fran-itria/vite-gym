@@ -10,8 +10,8 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i }: DetailComponenProps) {
-    const { routine, routineId, routineActual } = useInformation()
+export default function Detail({ day, i, routineId, routineActual }: DetailComponenProps) {
+    const { routine } = useInformation()
     const { addExercise, setAddExercise } = useCreaetExercise()
 
     return (
@@ -24,13 +24,20 @@ export default function Detail({ day, i }: DetailComponenProps) {
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                 <button onClick={() => addWeek(routineId.id, routine.weeks + 1, routineActual)}>+ Semana</button>
                 {addExercise ?
-                    <CreateExercise day={day} setAddExercise={setAddExercise} />
+                    <CreateExercise
+                        day={day}
+                        setAddExercise={setAddExercise}
+                        routineId={routineId}
+                        routineActual={routineActual}
+                    />
                     :
                     <></>
                 }
             </details >
             <ThemeProvider theme={theme}>
-                <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteDay(day.id, routineId.id, routineActual)} />
+                <DeleteIcon
+                    sx={{ color: theme.palette.tashIcon.light }}
+                    onClick={() => deleteDay({ id: day.id, routineId: routineId.id, routineActual })} />
             </ThemeProvider>
         </>
     )
