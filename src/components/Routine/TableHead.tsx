@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export default function TableHead({ weeks }: { weeks: number | null }) {
+export default function TableHead({ weeks }: { weeks?: number | null }) {
     const totalWeeks = new Array(weeks).fill(0)
     return (
         <thead>
@@ -9,7 +9,7 @@ export default function TableHead({ weeks }: { weeks: number | null }) {
                 <th>Ejercicio</th>
                 <th>Series</th>
                 <th>Repeticiones</th>
-                {totalWeeks.map((_week, i: number) => <th>Semana {i + 1}</th>)}
+                {weeks ? totalWeeks.map((_week, i: number) => <th>Semana {i + 1}</th>) : <></>}
             </tr>
         </thead>
     )
