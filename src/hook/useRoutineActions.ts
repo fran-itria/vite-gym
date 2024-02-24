@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine, actualRoutine } from "../store/routine/slice"
+import { WarmUp, actualWarmUp } from "../store/warmUp/slice"
 import { useAppDispatch } from "./store"
 
 export const useRoutineActions = () => {
@@ -9,5 +10,8 @@ export const useRoutineActions = () => {
         dispatch(actualRoutine(Days))
     }
 
-    return { routineActual }
+    const warmUpActual = (Days: WarmUp) => {
+        dispatch(actualWarmUp(Days))
+    }
+    return { routineActual, warmUpActual }
 } 
