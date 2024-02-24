@@ -1,7 +1,7 @@
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../../themeIcons/modifiedExerciseColors";
+import theme from "../../../themeIcons/customTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableCellComponentProps } from '../../../types';
 

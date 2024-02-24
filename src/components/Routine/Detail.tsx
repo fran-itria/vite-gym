@@ -1,7 +1,7 @@
 import useInformation from "../../hook/Components/Routine/useInformation"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from "@mui/material";
-import theme from "../../themeIcons/modifiedExerciseColors";
+import theme from "../../themeIcons/customTheme";
 import deleteDay from "../../services/routine/deleteDay";
 import CreateExercise from "./CraeteExercise/CreateExercise";
 import useCreaetExercise from "../../hook/Components/Routine/useCreateExercise";
