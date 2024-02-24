@@ -4,10 +4,11 @@ import { useAppSelector } from "../../hook/store";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { logout } from "../../services/logout/logout";
+import HomeAdmin from "../Admin/Home/HomeAdmin";
 
 export default function Header() {
     const { pathname } = useLocation()
-    const { GymId, name, surname, id } = useAppSelector(state => state.user)
+    const { GymId, name, surname, id, admin } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const [gymName, setGymName] = useState<string>('')
     const navigate = useNavigate()
@@ -34,30 +35,34 @@ export default function Header() {
                     }
                 </div>
             </header>
-            <nav>
-                <ul className={style.list}>
-                    <NavLink to={`/home/${id}/resumen`} className={pathname.includes("home") ? style.active : ''}>
-                        <li className={style.inicio}>
-                            Inicio
-                        </li>
-                    </NavLink>
-                    <NavLink to={`/calentamiento/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
-                        <li className={style.calentamiento}>
-                            Calentamiento
-                        </li>
-                    </NavLink>
-                    <NavLink to={`/rutina/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
-                        <li className={style.rutina}>
-                            Rutina
-                        </li>
-                    </NavLink>
-                    <NavLink to={`/suscripcion/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
-                        <li className={style.suscripcion}>
-                            Suscripción
-                        </li>
-                    </NavLink>
-                </ul>
-            </nav>
+            {!admin ?
+                <nav>
+                    <ul className={style.list}>
+                        <NavLink to={`/home/${id}/resumen`} className={pathname.includes("home") ? style.active : ''}>
+                            <li className={style.inicio}>
+                                Inicio
+                            </li>
+                        </NavLink>
+                        <NavLink to={`/calentamiento/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                            <li className={style.calentamiento}>
+                                Calentamiento
+                            </li>
+                        </NavLink>
+                        <NavLink to={`/rutina/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                            <li className={style.rutina}>
+                                Rutina
+                            </li>
+                        </NavLink>
+                        <NavLink to={`/suscripcion/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                            <li className={style.suscripcion}>
+                                Suscripción
+                            </li>
+                        </NavLink>
+                    </ul>
+                </nav>
+                :
+                <HomeAdmin />
+            }
         </>
     )
 }
