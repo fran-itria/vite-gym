@@ -42,6 +42,7 @@ export default function Users() {
                                 <StyledTableCell align="center"> Teléfono </StyledTableCell>
                                 <StyledTableCell align="center"> Contacto emergencia </StyledTableCell>
                                 <StyledTableCell align="center"> Admin </StyledTableCell>
+                                <StyledTableCell align="center"> Calentamientos </StyledTableCell>
                                 <StyledTableCell align="center"> Rutinas </StyledTableCell>
                                 <StyledTableCell align="center"> Suscripción </StyledTableCell>
                                 <StyledTableCell align="center"> Ban </StyledTableCell>
@@ -64,6 +65,7 @@ export default function Users() {
                                         <StyledTableCell align="center">{user.phone}</StyledTableCell>
                                         <StyledTableCell align="center">{user.contactEmergency}</StyledTableCell>
                                         <StyledTableCell align="center">{user.admin ? '✅' : '❌'}</StyledTableCell>
+                                        <StyledTableCell align="center">{user.WarmUps.length}</StyledTableCell>
                                         <StyledTableCell align="center">{user.Routines.length}</StyledTableCell>
                                         <StyledTableCell align="center">{user.pay ? '✅' : '❌'}</StyledTableCell>
                                         <StyledTableCell align="center">{user.ban ? '✅' : '❌'}</StyledTableCell>
