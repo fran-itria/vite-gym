@@ -1,10 +1,23 @@
-import useInformation from "../../../hook/Components/Routine/useInformation";
-import createDay from "../../../services/creteDayRoutine/craeteDay";
+import { createDayRoutine, createDayWarmUp } from "../../../services/creteDayRoutine/craeteDay";
 import addDayRoutine from "../../../services/routine/addDayRoutine";
 import { TableConfirmDayComponentProps } from "../../../types";
 
-export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise, pagDays, setRoutine, setPagDays }: TableConfirmDayComponentProps) {
-    const { routineId, routineActual, routine } = useInformation()
+export default function TableConfirmDay({
+    dayCreate,
+    setAddDay,
+    setDayCreate,
+    setPag,
+    setTotalExercise,
+    pagDays,
+    setRoutine,
+    setPagDays,
+    routine,
+    routineActual,
+    routineId,
+    warmUp,
+    warmUpActual,
+    warmUpId
+}: TableConfirmDayComponentProps) {
     return (
         <>
             <table>
@@ -27,7 +40,11 @@ export default function TableConfirmDay({ dayCreate, setAddDay, setDayCreate, se
             </table>
             {!pagDays ?
                 <button onClick={() => {
-                    createDay({ routineId: routineId.id, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise, routine })
+                    if (routine && routineActual && routineId) {
+                        createDayRoutine({ routineId: routineId, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise, routine })
+                    } else if (warmUp && warmUpActual && warmUpId) {
+                        createDayWarmUp({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise, warmUp, warmUpId, warmUpActual })
+                    }
                 }}>Confirmar</button>
                 :
                 <button onClick={() => {
