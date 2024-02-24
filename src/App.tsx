@@ -8,6 +8,7 @@ import axios from "axios";
 import { baseUrl } from "./const";
 import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
+import WarmUp from "./components/WarmUp/WarmUp";
 
 function App() {
   const path = useLocation();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/home/:userId/:select" element={<Home />} />
         <Route path="/rutina/:userId" element={<Routine />} />
         <Route path='/usuarios/:id' element={<Users />} />
+        <Route path="/calentamiento/:id" element={<WarmUp />} />
         {/* Rutas dinamicas para el calentamiento y rutina */}
         {/* Ruta para la suscripcion */}
       </Routes>
