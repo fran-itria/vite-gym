@@ -9,14 +9,20 @@ export default function HomeAdmin() {
                 <NavLink to={`/usuarios/${id}`}>
                     Uuarios
                 </NavLink>
-                <NavLink to={`/home/${id}/turnos`} >
-                    Turnos
-                </NavLink>
-                <NavLink to={`/rutina/${id}`}>
-                    Rutina
+                <NavLink to={`/registro/${id}`}>
+                    Registro
                 </NavLink>
                 <NavLink to={`/sucrpición/${id}`}>
                     Suscripción
+                </NavLink>
+                <NavLink to={`/home/${id}/turnos`} >
+                    Turnos
+                </NavLink>
+                <NavLink to={`/calentamiento/${id}`} >
+                    Calentamiento
+                </NavLink>
+                <NavLink to={`/rutina/${id}`}>
+                    Rutina
                 </NavLink>
             </nav>
         </div>
