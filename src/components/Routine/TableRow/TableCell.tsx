@@ -20,16 +20,18 @@ export default function TableCell({ Loads, name, series, reps, weeks, setOpenLoa
             <td>{series}</td>
             <td>{reps}</td>
             {
-                Loads?.map(load => {
+                Loads ? Loads?.map(load => {
                     return (
                         <td>
                             {load.loads}
                         </td>
                     )
                 })
+                    :
+                    <></>
             }
             {
-                weeks && weeks > Loads?.length ?
+                weeks && Loads && weeks > Loads?.length ?
                     <td>
                         <AddCircleIcon color="success" onClick={() => {
                             setOpenLoad(openLoad => !openLoad)
