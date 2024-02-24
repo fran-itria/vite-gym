@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { UsersComponent } from "../../../types"
 import Table from '@mui/material/Table';
