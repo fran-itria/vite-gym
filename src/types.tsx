@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Routine } from "./store/routine/slice";
+import { RoutinesUser, WarmUpsUser } from "./store/user/slice";
+import { WarmUp } from "./store/warmUp/slice";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
@@ -45,7 +47,7 @@ export type Exercise = {
   series?: number;
   reps?: string;
   DayId?: string;
-  Loads: [] | {
+  Loads?: [] | {
     id?: string;
     loads?: string;
   }[]
@@ -108,6 +110,12 @@ export type TableConfirmDayComponentProps = {
     }[];
   }[]>>
   setPagDays?: React.Dispatch<React.SetStateAction<number>>
+  routineId?: string
+  routineActual?: (Days: Routine) => void
+  routine?: Routine
+  warmUpId?: string
+  warmUpActual?: (Days: WarmUp) => void
+  warmUp?: WarmUp
 }
 
 export type CreateExerciseComponentProps = {
@@ -117,6 +125,14 @@ export type CreateExerciseComponentProps = {
     WarmUp?: string | null | undefined;
     Exercises: [] | Exercise[]
   }
+  warmUpId?: {
+    id?: string | undefined;
+  }
+  warmUpActual?: (Days: WarmUp) => void
+  routineId?: {
+    id?: string | undefined;
+  }
+  routineActual?: (Days: Routine) => void
 }
 
 export type TableCellComponentProps = Exercise & {
@@ -144,6 +160,10 @@ export type DetailComponenProps = {
     }[];
   }
   i: number
+  routineId: {
+    id?: string | undefined;
+  }
+  routineActual: (Days: Routine) => void
 }
 
 export type FormTotalExerciseComponentProps = {
@@ -151,7 +171,7 @@ export type FormTotalExerciseComponentProps = {
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
-  routine?: Routine
+  routine?: Routine | WarmUp
 }
 
 export type ModifiedExerciseProps = {
@@ -209,3 +229,15 @@ export type UsersComponent = [] | {
     userId: string
   }[]
 }[]
+
+export type CreateRoutineComponentProps = {
+  routineActual?: (Days: Routine) => void
+  warmUpActual?: (Days: WarmUp) => void
+  updateRoutinesUser?: (routine: RoutinesUser) => void
+  updateWarmUpUser?: (warmUps: WarmUpsUser) => void
+  setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
+  setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
+  userId: string | null
+  gymName?: string | null
+  createWarm?: boolean
+}
