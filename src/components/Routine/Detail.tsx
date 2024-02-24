@@ -1,4 +1,3 @@
-import useInformation from "../../hook/Components/Routine/useInformation"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from "@mui/material";
 import theme from "../../themeIcons/customTheme";
@@ -10,25 +9,36 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineId, routineActual }: DetailComponenProps) {
-    const { routine } = useInformation()
+export default function Detail({ day, i, routineOrWarmUp }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
-
+    const { weeks, routineActual, routineId, warmUpActual, warmUpId } = routineOrWarmUp
     return (
         <>
             <details key={day.id}>
                 <summary>
                     Día {i + 1}
                 </summary>
-                <Table day={day} weeks={routine.weeks} />
+                <Table
+                    day={day}
+                    weeks={weeks ? weeks : undefined}
+                    routineActual={routineActual}
+                    routineId={routineId}
+                    warmUpActual={warmUpActual}
+                    warmUpId={warmUpId}
+                />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
-                <button onClick={() => addWeek(routineId.id, routine.weeks + 1, routineActual)}>+ Semana</button>
+                {weeks && routineActual ?
+                    <button onClick={() => addWeek(routineId, weeks + 1, routineActual)}>+ Semana</button>
+                    :
+                    <></>}
                 {addExercise ?
                     <CreateExercise
                         day={day}
                         setAddExercise={setAddExercise}
-                        routineId={routineId}
-                        routineActual={routineActual}
+                        routineId={routineId ? routineId : undefined}
+                        routineActual={routineActual ? routineActual : undefined}
+                        warmUpId={warmUpId ? warmUpId : undefined}
+                        warmUpActual={warmUpActual ? warmUpActual : undefined}
                     />
                     :
                     <></>
@@ -37,7 +47,11 @@ export default function Detail({ day, i, routineId, routineActual }: DetailCompo
             <ThemeProvider theme={theme}>
                 <DeleteIcon
                     sx={{ color: theme.palette.tashIcon.light }}
-                    onClick={() => deleteDay({ id: day.id, routineId: routineId.id, routineActual })} />
+                    onClick={() => {
+                        if (routineId && routineActual) {
+                            deleteDay({ id: day.id, routineId, routineActual })
+                        } else deleteDay({ id: day.id, warmUpId, warmUpActual })
+                    }} />
             </ThemeProvider>
         </>
     )
