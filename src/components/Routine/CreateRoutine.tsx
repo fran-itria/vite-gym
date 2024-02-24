@@ -8,13 +8,14 @@ import confirmRoutine from "../../services/routine/confirmRoutine"
 import { RoutinesUser } from "../../store/user/slice"
 import { UsersComponent } from "../../types"
 
-export default function CreateRoutine({ routineActual, updateRoutinesUser, setUsers, setOpenCreateRouitine, userId, gymName }: {
+export default function CreateRoutine({ routineActual, updateRoutinesUser, setUsers, setOpenCreateRouitine, userId, gymName, createWarm }: {
     routineActual?: (Days: Routine) => void
     updateRoutinesUser?: (routine: RoutinesUser) => void
     setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
     setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
     userId: string | null
     gymName?: string | null
+    createWarm?: boolean
 }) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -83,10 +84,10 @@ export default function CreateRoutine({ routineActual, updateRoutinesUser, setUs
                                 </tbody>
                             </table>
                             <button onClick={() => {
-                                if (updateRoutinesUser && routineActual) {
+                                if (!setUsers && !gymName) {
                                     confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId })
                                 } else {
-                                    confirmRoutine({ setOpenCreateRouitine, setUsers, userId, days: routine, gymName })
+                                    confirmRoutine({ routineActual, updateRoutinesUser, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
                                 }
                             }}>
                                 Crar Rutina

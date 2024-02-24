@@ -151,5 +151,6 @@ export type confirmRoutineProps = createRoutineProps & {
   updateRoutinesUser?: (routine: RoutinesUser) => void
   setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
   gymName?: string | null
+  createWarm?: boolean
   setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
 }
