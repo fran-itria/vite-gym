@@ -6,16 +6,27 @@ import TableCell from './TableCell';
 import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
 
-export default function TableRow({ weeks, id, name, series, reps, Loads }: TableRowComponentProps) {
+export default function TableRow({
+    weeks,
+    id,
+    name,
+    series,
+    reps,
+    Loads,
+    routineId,
+    routineActual,
+    warmUpId,
+    warmUpActual
+}: TableRowComponentProps) {
     const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad } = useTabelRow()
 
     return (
         <tr>
             <TableCell
                 key={id}
-                weeks={weeks}
+                weeks={weeks ? weeks : undefined}
                 id={id}
-                Loads={Loads}
+                Loads={Loads ? Loads : undefined}
                 series={series}
                 reps={reps}
                 name={name}
@@ -34,7 +45,16 @@ export default function TableRow({ weeks, id, name, series, reps, Loads }: Table
                 <></>
             }
             {confirmDelete ?
-                <ConfirmDelete key={id} name={name} id={id} setConfirmDelete={setConfirmDelete} />
+                <ConfirmDelete
+                    key={id}
+                    name={name}
+                    id={id}
+                    setConfirmDelete={setConfirmDelete}
+                    routineActual={routineActual}
+                    routineId={routineId}
+                    warmUpActual={warmUpActual}
+                    warmUpId={warmUpId}
+                />
                 :
                 <></>
             }
