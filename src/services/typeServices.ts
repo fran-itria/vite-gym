@@ -3,7 +3,7 @@
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser } from "../store/user/slice";
 // import { RoutinesUser } from "../store/user/slice";
-import { InputsLogin, InputsRegister } from "../types";
+import { InputsLogin, InputsRegister, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
 export type onChangeProps = {
@@ -147,7 +147,9 @@ export type deleteRoutineProps = {
 }
 
 export type confirmRoutineProps = createRoutineProps & {
-  routineActual: (Days: Routine) => void
-  updateRoutinesUser: (routine: RoutinesUser) => void
+  routineActual?: (Days: Routine) => void
+  updateRoutinesUser?: (routine: RoutinesUser) => void
+  setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
+  gymName?: string | null
   setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
 }

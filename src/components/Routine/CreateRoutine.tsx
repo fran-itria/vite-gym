@@ -3,18 +3,23 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay"
 import FormOneDay from "./CraeteOneDay/FormOneDay"
 import FormTotalExercise from "./FormTotalExercise"
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay"
-import { useAppSelector } from "../../hook/store"
 import { Routine } from "../../store/routine/slice"
-import { useUserActions } from "../../hook/useUserActions"
 import confirmRoutine from "../../services/routine/confirmRoutine"
+import { RoutinesUser } from "../../store/user/slice"
+import { UsersComponent } from "../../types"
 
-export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: { routineActual: (Days: Routine) => void, setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function CreateRoutine({ routineActual, updateRoutinesUser, setUsers, setOpenCreateRouitine, userId, gymName }: {
+    routineActual?: (Days: Routine) => void
+    updateRoutinesUser?: (routine: RoutinesUser) => void
+    setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
+    setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
+    userId: string | null
+    gymName?: string | null
+}) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
     const [routine, setRoutine] = useState<[] | { day: number, exercises: { exercise?: number; name?: string; series?: string; reps?: string }[] }[]>([])
-    const { id } = useAppSelector(state => state.user)
-    const { updateRoutinesUser } = useUserActions()
 
     return (
         <div style={{ background: 'white', height: '200px', position: 'absolute', top: '50%', right: '50%' }}>
@@ -77,7 +82,13 @@ export default function CreateRoutine({ routineActual, setOpenCreateRouitine }: 
                                     })}
                                 </tbody>
                             </table>
-                            <button onClick={() => confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId: id })}>
+                            <button onClick={() => {
+                                if (updateRoutinesUser && routineActual) {
+                                    confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId })
+                                } else {
+                                    confirmRoutine({ setOpenCreateRouitine, setUsers, userId, days: routine, gymName })
+                                }
+                            }}>
                                 Crar Rutina
                             </button>
                         </>
