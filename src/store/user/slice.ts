@@ -24,6 +24,7 @@ type shift = {
 export interface User {
     id: string | null
     GymId: string | null
+    Gym: { name: string } | null
     name: string | null,
     surname: string | null,
     age: number | null,
@@ -53,6 +54,7 @@ export interface RoutinesUser {
 const initialState: User = {
     id: null,
     GymId: null,
+    Gym: null,
     name: null,
     surname: null,
     age: null,
@@ -83,6 +85,7 @@ export const userSlice = createSlice({
             return {
                 id: action.payload.id,
                 GymId: action.payload.GymId,
+                Gym: action.payload.Gym,
                 name: action.payload.name,
                 surname: action.payload.surname,
                 age: action.payload.age,
