@@ -4,7 +4,7 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
-import deletRoutine from "../../services/routine/deleteRoutine";
+import { deletRoutine } from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import CreateRoutine from "./CreateRoutine";
 import { useUserActions } from "../../hook/useUserActions";
@@ -41,7 +41,7 @@ export default function Routine() {
                         <>
                             {routine.Days.map((day, i) => {
                                 return (
-                                    <Detail day={day} i={i} />
+                                    <Detail day={day} i={i} routineId={routineId} routineActual={routineActual} />
                                 )
                             })}
                             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
