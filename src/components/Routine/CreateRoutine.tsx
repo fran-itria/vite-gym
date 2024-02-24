@@ -3,20 +3,20 @@ import useDayCreate from "../../hook/Components/Routine/useCreateDay"
 import FormOneDay from "./CraeteOneDay/FormOneDay"
 import FormTotalExercise from "./FormTotalExercise"
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay"
-import { Routine } from "../../store/routine/slice"
 import confirmRoutine from "../../services/routine/confirmRoutine"
-import { RoutinesUser } from "../../store/user/slice"
-import { UsersComponent } from "../../types"
+import { CreateRoutineComponentProps } from "../../types"
 
-export default function CreateRoutine({ routineActual, updateRoutinesUser, setUsers, setOpenCreateRouitine, userId, gymName, createWarm }: {
-    routineActual?: (Days: Routine) => void
-    updateRoutinesUser?: (routine: RoutinesUser) => void
-    setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
-    setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
-    userId: string | null
-    gymName?: string | null
-    createWarm?: boolean
-}) {
+export default function CreateRoutine({
+    routineActual,
+    updateRoutinesUser,
+    setUsers,
+    setOpenCreateRouitine,
+    userId,
+    gymName,
+    createWarm,
+    warmUpActual,
+    updateWarmUpUser
+}: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
@@ -87,7 +87,7 @@ export default function CreateRoutine({ routineActual, updateRoutinesUser, setUs
                                 if (!setUsers && !gymName) {
                                     confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId })
                                 } else {
-                                    confirmRoutine({ routineActual, updateRoutinesUser, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
+                                    confirmRoutine({ warmUpActual, updateWarmUpUser, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
                                 }
                             }}>
                                 {!createWarm ? 'Crar rutina' : 'Crear calentamiento'}
