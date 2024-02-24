@@ -26,7 +26,7 @@ const initialState: Routine = {
     Days: undefined
 }
 
-export const userSlice = createSlice({
+export const routineSlice = createSlice({
     name: "routine",
     initialState,
     reducers: {
@@ -39,6 +39,6 @@ export const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer
+export default routineSlice.reducer
 
-export const { actualRoutine } = userSlice.actions
+export const { actualRoutine } = routineSlice.actions
