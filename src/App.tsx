@@ -7,6 +7,7 @@ import FormRegister from "./components/Session/register/FormRegister";
 import axios from "axios";
 import { baseUrl } from "./const";
 import Routine from "./components/Routine/Routine";
+import Users from "./components/Admin/Users/Users";
 
 function App() {
   const path = useLocation();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register/admin/:id" element={<FormRegister />} />
         <Route path="/home/:userId/:select" element={<Home />} />
         <Route path="/rutina/:userId" element={<Routine />} />
+        <Route path='/usuarios/:id' element={<Users />} />
         {/* Rutas dinamicas para el calentamiento y rutina */}
         {/* Ruta para la suscripcion */}
       </Routes>
