@@ -90,7 +90,7 @@ export default function CreateRoutine({ routineActual, updateRoutinesUser, setUs
                                     confirmRoutine({ routineActual, updateRoutinesUser, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
                                 }
                             }}>
-                                Crar Rutina
+                                {!createWarm ? 'Crar rutina' : 'Crear calentamiento'}
                             </button>
                         </>
                         :
