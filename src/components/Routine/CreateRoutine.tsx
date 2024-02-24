@@ -15,7 +15,8 @@ export default function CreateRoutine({
     gymName,
     createWarm,
     warmUpActual,
-    updateWarmUpUser
+    updateWarmUpUser,
+    updateWarmUpIdGlobal
 }: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -87,7 +88,7 @@ export default function CreateRoutine({
                                 if (!setUsers && !gymName) {
                                     confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId })
                                 } else {
-                                    confirmRoutine({ warmUpActual, updateWarmUpUser, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
+                                    confirmRoutine({ warmUpActual, updateWarmUpUser, updateWarmUpIdGlobal, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
                                 }
                             }}>
                                 {!createWarm ? 'Crar rutina' : 'Crear calentamiento'}
