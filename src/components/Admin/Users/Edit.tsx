@@ -31,7 +31,7 @@ export default function Edit({ userId, gymName, setUsers }: {
                     Ban:
                     <Switch />
                 </label>
-                <button onClick={() => setCreateRoutine(prev => !prev)}>Crear calentamiento</button>
+                <button onClick={() => setCreateWarm(prev => !prev)}>Crear calentamiento</button>
                 <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
             </menu>
             {createRoutine ?
