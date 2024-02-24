@@ -10,6 +10,7 @@ export default function Resume() {
             <p> <b>Dni: </b> {user.dni}</p>
             <p> <b>Numero de telefono: </b> {user.phone}</p>
             <p> <b>Contacto de emergencia: </b> {user.contactEmergency}</p>
+            <p> <b>Calentamientos: </b> {user.WarmUps.length}</p>
             <p> <b>Rutinas: </b> {user.Routines.length}</p>
             <p> <b>Suscripción: </b> {user.pay ? '✅' : '❌'}</p>
         </div>
