@@ -108,7 +108,7 @@ export const userSlice = createSlice({
                 Meals: action.payload.Meals,
                 Routines: action.payload.Routines,
                 Shifts: action.payload.Shifts,
-                WarmUps: action.payload.Meals,
+                WarmUps: action.payload.WarmUps,
             }
         },
         updateRoutineUser: (state, action: PayloadAction<RoutinesUser>) => {
