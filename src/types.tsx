@@ -161,3 +161,51 @@ export type ModifiedExerciseProps = {
   id?: string
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type UsersComponent = [] | {
+  id: string,
+  name: string,
+  surname: string,
+  dni: number,
+  age: number,
+  email: string,
+  user: string,
+  phone: string,
+  contactEmergency: string,
+  admin: boolean,
+  pay: boolean,
+  ban: boolean,
+  password: string,
+  login: boolean,
+  linkMp?: string,
+  photo?: string,
+  GymId: string,
+  Gym: {
+    name: string
+  },
+  Routines: [] | { id: string }[],
+  WarmUps: [] | { id: string }[],
+  Meals: [] | {
+    id: string,
+    date: string,
+    hour: string,
+    moment: string,
+    food: string,
+    UserId: string
+  }[],
+  ExtraTrainings: [] | {
+    id: string
+    date: string
+    hour: string
+    exercise: string
+    duration: string | null
+    distance: string | null
+    UserId: string
+  }[],
+  Shifts: [] | {
+    id: string
+    date: string
+    hour: string
+    userId: string
+  }[]
+}[]
