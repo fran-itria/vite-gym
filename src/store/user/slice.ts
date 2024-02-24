@@ -50,6 +50,9 @@ export interface User {
 export interface RoutinesUser {
     Routines: { id: string }[] | []
 }
+export interface WarmUpsUser {
+    WarmUps: { id: string }[] | []
+}
 
 const initialState: User = {
     id: null,
@@ -113,10 +116,17 @@ export const userSlice = createSlice({
                 ...state,
                 Routines: action.payload.Routines
             }
+        },
+
+        updateWarmUpsUser: (state, action: PayloadAction<WarmUpsUser>) => {
+            return {
+                ...state,
+                WarmUps: action.payload.WarmUps
+            }
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { updateUser, updateRoutineUser } = userSlice.actions
+export const { updateUser, updateRoutineUser, updateWarmUpsUser } = userSlice.actions
