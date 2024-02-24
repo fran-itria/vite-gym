@@ -41,7 +41,7 @@ export default function Routine() {
                         <>
                             {routine.Days.map((day, i) => {
                                 return (
-                                    <Detail day={day} i={i} routineId={routineId} routineActual={routineActual} />
+                                    <Detail day={day} i={i} routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }} />
                                 )
                             })}
                             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
