@@ -5,7 +5,7 @@ import { updateWarmUpId } from "../store/warmUpId/slice"
 export default function useRoutineIdActions() {
     const dispatch = useDispatch()
 
-    const updateIdGlobal = (id: string) => {
+    const updateIdGlobal = (id: string | undefined) => {
         dispatch(updateId(id))
     }
 
