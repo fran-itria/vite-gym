@@ -1,35 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
-import { UsersComponent } from "../../../types"
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import axios from "axios";
-import { useAppSelector } from "../../../hook/store";
 import CreateIcon from '@mui/icons-material/Create';
 import { ThemeProvider } from "styled-components";
 import theme, { StyledTableCell, StyledTableRow } from "../../../themeIcons/customTheme";
 import Loader from "../../Loader";
 import Edit from "./Edit";
+import useUsers from "../../../hook/Components/Users/useUsers";
 
 export default function Users() {
-    const [users, setUsers] = useState<UsersComponent>([])
-    const { Gym } = useAppSelector(state => state.user)
-    const [edit, setEdit] = useState<boolean>(false)
-    const [userId, setUserId] = useState<string>('')
-    useEffect(() => {
-        console.log(Gym)
-        axios.get(`/user/forGym/${Gym?.name}`).then(
-            response => {
-                if (response.status == 200) {
-                    setUsers(response.data)
-                }
-            }
-        )
-    }, [])
+    const {Gym,admin,ban,edit,setAdmin,setBan,setEdit,setSubscription,setUserId,setUsers,subscription,userId,users} = useUsers()
     return (
         users.length > 0 ?
             <>
@@ -57,6 +42,9 @@ export default function Users() {
                                             <ThemeProvider theme={theme}>
                                                 <CreateIcon onClick={() => {
                                                     setUserId(user.id)
+                                                    setAdmin(user.admin)
+                                                    setBan(user.ban)
+                                                    setSubscription(user.pay)
                                                     setEdit(prev => !prev)
                                                 }} sx={{ color: theme.palette.pencil.main }} />
                                             </ThemeProvider>
@@ -77,8 +65,17 @@ export default function Users() {
                     </Table>
                 </TableContainer>
                 {edit ?
-                    <Edit userId={userId} setUsers={setUsers} gymName={Gym?.name} /> :
-                    <></>}
+                    <Edit 
+                        userId={userId} 
+                        setUsers={setUsers} 
+                        gymName={Gym?.name} 
+                        admin={admin} 
+                        ban={ban} 
+                        subscription={subscription} 
+                        setEdit={setEdit} />
+                    :
+                    <></>
+                }
             </>
             :
             <Loader text="Cargando usuarios" />
