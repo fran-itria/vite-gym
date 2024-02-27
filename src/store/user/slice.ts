@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-type meal = {
+export type meal = {
     id: string,
     date: string,
     hour: string,
@@ -123,10 +123,17 @@ export const userSlice = createSlice({
                 ...state,
                 WarmUps: action.payload.WarmUps
             }
+        },
+
+        updateMeals: (state, action: PayloadAction<meal[]>) => {
+            return {
+                ...state,
+                Meals: action.payload.Meals
+            }
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { updateUser, updateRoutineUser, updateWarmUpsUser } = userSlice.actions
+export const { updateUser, updateRoutineUser, updateWarmUpsUser, updateMeals} = userSlice.actions
