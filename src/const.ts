@@ -48,5 +48,6 @@ export const loaders = {
     resume: 'Cargando resumen de usuario',
     cahnges: 'Guardando cambios',
     createRoutine: 'Creando Rutina',
-    createWarm: 'Creando calentamiento'
+    createWarm: 'Creando calentamiento',
+    links: 'Cargando links de registro'
 }
