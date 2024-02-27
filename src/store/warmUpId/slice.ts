@@ -6,7 +6,7 @@ const initialState: { id?: string } = {
 }
 
 export const warmUpId = createSlice({
-    name: 'routineIdGlobal',
+    name: 'warmUpId',
     initialState,
     reducers: {
         updateWarmUpId: (_state, action) => {
