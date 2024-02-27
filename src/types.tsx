@@ -261,3 +261,16 @@ export type ConfirmDeleteComponentProps = {
   warmUpActual?: ((Days: WarmUp) => void)
   warmUpId?: string
 }
+
+export type InputsCreateFood = {
+  date?: string
+  hour?: string
+  moment?: string
+  food?: string
+}
+
+export type MealProps = {id: string, date: string, hour: string, moment: string, food: string}
+export type DetailsComponentProps = {
+  meal: MealProps
+  setDeleteMeal: React.Dispatch<React.SetStateAction<boolean>>
+}
