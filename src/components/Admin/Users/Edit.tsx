@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CreateRoutine from '../../Routine/CreateRoutine';
 import { UsersComponent } from '../../../types';
 import { useUserActions } from '../../../hook/useUserActions';
-import { useRoutineActions } from '../../../hook/useRoutineActions';
+import useRoutineIdActions from '../../../hook/useRoutineIdActions';
 
 export default function Edit({ userId, gymName, setUsers }: {
     gymName?: string
@@ -12,8 +12,8 @@ export default function Edit({ userId, gymName, setUsers }: {
 }) {
     const [createRoutine, setCreateRoutine] = useState<boolean>(false)
     const [createWarm, setCreateWarm] = useState<boolean>(false)
-    const { updateRoutinesUser } = useUserActions()
-    const { routineActual } = useRoutineActions()
+    const { updateRoutinesUser, updateWarmUpUser} = useUserActions()
+    const { updateIdGlobal, updateWarmUpIdGlobal} = useRoutineIdActions()
 
     return (
         <>
@@ -36,8 +36,8 @@ export default function Edit({ userId, gymName, setUsers }: {
             </menu>
             {createRoutine ?
                 <CreateRoutine
-                    routineActual={routineActual}
                     updateRoutinesUser={updateRoutinesUser}
+                    updateIdGlobal={updateIdGlobal}
                     userId={userId}
                     setOpenCreateRouitine={setCreateRoutine}
                     gymName={gymName}
@@ -47,6 +47,8 @@ export default function Edit({ userId, gymName, setUsers }: {
             }
             {createWarm ?
                 <CreateRoutine
+                    updateWarmUpUser={updateWarmUpUser}
+                    updateWarmUpIdGlobal={updateWarmUpIdGlobal}
                     userId={userId}
                     setOpenCreateRouitine={setCreateWarm}
                     gymName={gymName}

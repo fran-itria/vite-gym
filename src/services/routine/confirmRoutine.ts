@@ -1,50 +1,44 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios"
-import createRoutine from "./craeteRoutine"
+// import createRoutine from "./craeteRoutine";
 import { confirmRoutineProps } from "../typeServices"
 
 export default async function confirmRoutine({
     updateRoutinesUser,
+    updateIdGlobal,
     updateWarmUpUser,
-    days,
-    routineActual,
-    warmUpActual,
-    userId,
+    updateWarmUpIdGlobal,
     setOpenCreateRouitine,
     setUsers,
+    days,
+    userId,
     gymName,
     createWarm,
-    updateWarmUpIdGlobal
 }: confirmRoutineProps) {
     try {
         if (!createWarm) {
-            const response = await createRoutine({ days, userId })
+            await axios.post("/rutina/createRutina", { userId, days })
+            const user = await axios.get(`/user/getOneUser/${userId}`)
             window.alert('Rutina creada exitosamente')
-            if (routineActual && updateRoutinesUser) {
-                const rutina = await axios.get(`/rutina/${response?.user.Routines[0].id}`)
-                routineActual(rutina.data)
-                updateRoutinesUser(response?.user)
-            }
-            if (setUsers && gymName) {
-                const users = await axios.get(`/user/forGym/${gymName}`)
-                if (users.status == 200) setUsers(users.data)
+            if(updateIdGlobal && updateRoutinesUser) {
+              updateIdGlobal(undefined)
+              updateRoutinesUser(user.data)
+              if(setUsers){
+                  const users = await axios.get(`/user/forGym/${gymName}`)
+                  setUsers(users.data)
+              }
             }
         } else {
-            const response = await axios.post('/calentamiento/createCalentamiento', {
-                userId,
-                days
-            })
+            await axios.post('/calentamiento/createCalentamiento', { userId, days })
+            const user = await axios.get(`/user/getOneUser/${userId}`)
             window.alert('Calentamiento creado exitosamente')
-            if (warmUpActual && updateWarmUpUser && updateWarmUpIdGlobal) {
-                const rutina = await axios.get(`/calentamiento/${response?.data.id}`)
-                const user = await axios.get(`/user/getOneUser/${userId}`)
-                updateWarmUpIdGlobal(undefined)
-                warmUpActual(rutina.data)
-                updateWarmUpUser(user.data)
-            }
-            if (response.status == 200 && setUsers && gymName) {
+            if(updateWarmUpUser && updateWarmUpIdGlobal) {
+              updateWarmUpIdGlobal(undefined)
+              updateWarmUpUser(user.data)
+              if (setUsers) {
                 const users = await axios.get(`/user/forGym/${gymName}`)
-                if (users.status == 200) setUsers(users.data)
+                setUsers(users.data)
+              }
             }
         }
         setOpenCreateRouitine(prevState => !prevState)

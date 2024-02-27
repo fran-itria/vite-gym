@@ -85,13 +85,11 @@ export default function WarmUp() {
             {
                 createWarm ?
                     <CreateRoutine
-                        userId={id}
                         setOpenCreateRouitine={setCreateWarm}
-                        warmUpActual={warmUpActual}
+                        userId={id}
                         updateWarmUpUser={updateWarmUpUser}
-                        createWarm={createWarm}
-                        gymName={Gym?.name}
                         updateWarmUpIdGlobal={updateWarmUpIdGlobal}
+                        createWarm={createWarm}
                     />
                     :
                     <></>

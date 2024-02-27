@@ -78,7 +78,12 @@ export default function Routine() {
                     <></>
             }
             {opneCreateRoutine ?
-                <CreateRoutine routineActual={routineActual} setOpenCreateRouitine={setOpenCreateRouitine} userId={id} updateRoutinesUser={updateRoutinesUser} />
+                <CreateRoutine
+                    setOpenCreateRouitine={setOpenCreateRouitine} 
+                    userId={id} 
+                    updateRoutinesUser={updateRoutinesUser} 
+                    updateIdGlobal={updateIdGlobal} 
+                />
                 :
                 <></>
             }

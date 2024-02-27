@@ -7,7 +7,6 @@ import confirmRoutine from "../../services/routine/confirmRoutine"
 import { CreateRoutineComponentProps } from "../../types"
 
 export default function CreateRoutine({
-    routineActual,
     updateRoutinesUser,
     setUsers,
     setOpenCreateRouitine,
@@ -16,7 +15,8 @@ export default function CreateRoutine({
     createWarm,
     warmUpActual,
     updateWarmUpUser,
-    updateWarmUpIdGlobal
+    updateWarmUpIdGlobal,
+    updateIdGlobal
 }: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -86,12 +86,34 @@ export default function CreateRoutine({
                             </table>
                             <button onClick={() => {
                                 if (!setUsers && !gymName) {
-                                    confirmRoutine({ setOpenCreateRouitine, updateRoutinesUser, days: routine, routineActual, userId })
+                                    confirmRoutine({ 
+                                      updateRoutinesUser,
+                                      updateIdGlobal,
+                                      warmUpActual, 
+                                      updateWarmUpUser, 
+                                      updateWarmUpIdGlobal, 
+                                      setOpenCreateRouitine,
+                                      userId, 
+                                      days: routine,
+                                      createWarm 
+                                    })
                                 } else {
-                                    confirmRoutine({ warmUpActual, updateWarmUpUser, updateWarmUpIdGlobal, setOpenCreateRouitine, setUsers, userId, days: routine, gymName, createWarm })
+                                    confirmRoutine({ 
+                                      updateRoutinesUser,
+                                      updateIdGlobal,
+                                      warmUpActual, 
+                                      updateWarmUpUser, 
+                                      updateWarmUpIdGlobal, 
+                                      setOpenCreateRouitine, 
+                                      userId, 
+                                      days: routine, 
+                                      createWarm, 
+                                      setUsers, 
+                                      gymName 
+                                    })
                                 }
                             }}>
-                                {!createWarm ? 'Crar rutina' : 'Crear calentamiento'}
+                                {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
                             </button>
                         </>
                         :
