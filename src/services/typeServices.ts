@@ -196,3 +196,13 @@ export type deleteExerciseProps = {
   warmUpActual?: ((Days: WarmUp) => void)
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type submitChangesProps = {
+  e: React.FormEvent<HTMLFormElement>
+  inputs?: { admin?:boolean, pay?:boolean, ban?:boolean }
+  userId: string
+  gymName?: string
+  setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
+  setPending: React.Dispatch<React.SetStateAction<boolean>>
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>
+}
