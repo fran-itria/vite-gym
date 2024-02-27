@@ -45,5 +45,8 @@ export const loaders = {
     init: 'Iniciado sesión',
     out: 'Cerrando sesión',
     routine: 'Cargando rutina',
-    resume: 'Cargando resumen de usuario'
+    resume: 'Cargando resumen de usuario',
+    cahnges: 'Guardando cambios',
+    createRoutine: 'Creando Rutina',
+    createWarm: 'Creando calentamiento'
 }
