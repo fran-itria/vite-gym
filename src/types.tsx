@@ -240,8 +240,6 @@ export type UsersComponent = [] | {
 }[]
 
 export type CreateRoutineComponentProps = {
-  routineActual?: (Days: Routine) => void
-  warmUpActual?: (Days: WarmUp) => void
   updateRoutinesUser?: (routine: RoutinesUser) => void
   updateWarmUpUser?: (warmUps: WarmUpsUser) => void
   setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
@@ -250,6 +248,7 @@ export type CreateRoutineComponentProps = {
   gymName?: string | null
   createWarm?: boolean
   updateWarmUpIdGlobal?: (id: string | undefined) => void
+  updateIdGlobal?: (id: string | undefined) => void
 }
 
 export type ConfirmDeleteComponentProps = {
