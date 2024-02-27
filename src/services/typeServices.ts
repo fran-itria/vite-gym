@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
-import { RoutinesUser, WarmUpsUser } from "../store/user/slice";
+import { RoutinesUser, WarmUpsUser, meal } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
 import { InputsLogin, InputsRegister, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
@@ -206,4 +206,18 @@ export type submitChangesProps = {
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
   setPending: React.Dispatch<React.SetStateAction<boolean>>
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type createFoodProps = {
+  e: React.FormEvent<HTMLFormElement>
+  inputs?: {
+      date?: string;
+      hour?: string;
+      moment?: string;
+      food?: string;
+  }
+  id: string
+  updateMealsUser: (meals: meal[]) => void
+  setAdd: React.Dispatch<React.SetStateAction<boolean>>
+  setCreate: React.Dispatch<React.SetStateAction<boolean>>
 }

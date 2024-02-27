@@ -46,8 +46,18 @@ export const loaders = {
     out: 'Cerrando sesión',
     routine: 'Cargando rutina',
     resume: 'Cargando resumen de usuario',
-    cahnges: 'Guardando cambios',
+    changes: 'Guardando cambios',
     createRoutine: 'Creando Rutina',
     createWarm: 'Creando calentamiento',
-    links: 'Cargando links de registro'
+    links: 'Cargando links de registro',
+    createMeal: 'Creando comida',
+    deleteMeal: 'Eliminando comida'
+}
+
+export const momentsFood = ['Desayuno','Media mañana','Almuerzo', 'Merienda', 'Cena']
+export const namesCreateFood = {
+    date: 'date',
+    hour: 'hour',
+    moment: 'moment',
+    food: 'food'
 }
