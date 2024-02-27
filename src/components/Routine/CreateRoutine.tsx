@@ -15,7 +15,8 @@ export default function CreateRoutine({
     createWarm,
     updateWarmUpUser,
     updateWarmUpIdGlobal,
-    updateIdGlobal
+    updateIdGlobal,
+    id
 }: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -106,7 +107,8 @@ export default function CreateRoutine({
                                       days: routine, 
                                       createWarm, 
                                       setUsers, 
-                                      gymName 
+                                      gymName,
+                                      id
                                     })
                                 }
                             }}>

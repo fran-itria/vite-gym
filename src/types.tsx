@@ -249,6 +249,7 @@ export type CreateRoutineComponentProps = {
   createWarm?: boolean
   updateWarmUpIdGlobal?: (id: string | undefined) => void
   updateIdGlobal?: (id: string | undefined) => void
+  id?: string
 }
 
 export type ConfirmDeleteComponentProps = {

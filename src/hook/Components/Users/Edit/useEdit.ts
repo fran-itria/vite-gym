@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useUserActions } from "../../../useUserActions"
 import useRoutineIdActions from "../../../useRoutineIdActions"
+import { useAppSelector } from "../../../store"
 
 export default function useEdit() {
     const [createRoutine, setCreateRoutine] = useState<boolean>(false)
@@ -9,6 +10,7 @@ export default function useEdit() {
     const { updateIdGlobal, updateWarmUpIdGlobal} = useRoutineIdActions()
     const [inputs, setInputs] = useState<{admin?:boolean, pay?:boolean, ban?:boolean}>()
     const [pending, setPending] = useState<boolean>(false)
+    const { id } = useAppSelector(state => state.user)
 
     return {
         createRoutine,
@@ -22,6 +24,7 @@ export default function useEdit() {
         inputs,
         setInputs,
         pending,
-        setPending
+        setPending,
+        id
     }
 }

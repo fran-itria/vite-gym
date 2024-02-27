@@ -27,7 +27,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
-        updateWarmUpIdGlobal
+        updateWarmUpIdGlobal,
+        id
     } = useEdit()
     const change = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name
@@ -62,7 +63,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     userId={userId}
                     setOpenCreateRouitine={setCreateRoutine}
                     gymName={gymName}
-                    setUsers={setUsers} />
+                    setUsers={setUsers} 
+                    id={id} />
                 :
                 <></>
             }
@@ -74,7 +76,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     setOpenCreateRouitine={setCreateWarm}
                     gymName={gymName}
                     setUsers={setUsers}
-                    createWarm={createWarm} />
+                    createWarm={createWarm}
+                    id={id} />
                 :
                 <></>
             }

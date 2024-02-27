@@ -178,6 +178,7 @@ export type confirmRoutineProps = createRoutineProps & {
   updateWarmUpUser?: (warmUps: WarmUpsUser) => void
   updateWarmUpIdGlobal?: (id: string | undefined) => void
   updateIdGlobal?: (id: string | undefined) => void
+  id?: string
 }
 
 export type deleteDayProps = {
