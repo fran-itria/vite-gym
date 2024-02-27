@@ -13,7 +13,6 @@ export default function CreateRoutine({
     userId,
     gymName,
     createWarm,
-    warmUpActual,
     updateWarmUpUser,
     updateWarmUpIdGlobal,
     updateIdGlobal
@@ -89,7 +88,6 @@ export default function CreateRoutine({
                                     confirmRoutine({ 
                                       updateRoutinesUser,
                                       updateIdGlobal,
-                                      warmUpActual, 
                                       updateWarmUpUser, 
                                       updateWarmUpIdGlobal, 
                                       setOpenCreateRouitine,
@@ -101,7 +99,6 @@ export default function CreateRoutine({
                                     confirmRoutine({ 
                                       updateRoutinesUser,
                                       updateIdGlobal,
-                                      warmUpActual, 
                                       updateWarmUpUser, 
                                       updateWarmUpIdGlobal, 
                                       setOpenCreateRouitine, 
