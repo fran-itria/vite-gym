@@ -1,36 +1,57 @@
 import Switch from '@mui/material/Switch';
-import { useState } from 'react';
 import CreateRoutine from '../../Routine/CreateRoutine';
 import { UsersComponent } from '../../../types';
-import { useUserActions } from '../../../hook/useUserActions';
-import useRoutineIdActions from '../../../hook/useRoutineIdActions';
+import submitChanges from '../../../services/editForm/submitChanges';
+import Loader from '../../Loader';
+import { loaders } from '../../../const';
+import useEdit from '../../../hook/Components/Users/Edit/useEdit';
 
-export default function Edit({ userId, gymName, setUsers }: {
+export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit}: {
     gymName?: string
     userId: string
     setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
+    admin: boolean
+    ban: boolean
+    subscription: boolean
+    setEdit: React.Dispatch<React.SetStateAction<boolean>>
 }) {
-    const [createRoutine, setCreateRoutine] = useState<boolean>(false)
-    const [createWarm, setCreateWarm] = useState<boolean>(false)
-    const { updateRoutinesUser, updateWarmUpUser} = useUserActions()
-    const { updateIdGlobal, updateWarmUpIdGlobal} = useRoutineIdActions()
-
+    const {
+        createRoutine,
+        setCreateRoutine,
+        createWarm,
+        setCreateWarm,
+        inputs,
+        setInputs,
+        pending,
+        setPending,
+        updateRoutinesUser,
+        updateWarmUpUser,
+        updateIdGlobal,
+        updateWarmUpIdGlobal
+    } = useEdit()
+    const change = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const name = e.target.name
+        const value = e.target.checked
+        setInputs(prev => {return {...prev, [name]: value}})
+    }
     return (
         <>
-            {userId}
             <menu>
-                <label>
-                    Admin:
-                    <Switch />
-                </label>
-                <label>
-                    Suscripción:
-                    <Switch />
-                </label>
-                <label>
-                    Ban:
-                    <Switch />
-                </label>
+                <form onSubmit={(e) => submitChanges({e, inputs, userId, gymName, setUsers, setPending, setEdit})}>
+                    <label>
+                        Admin:
+                        <Switch name='admin' onChange={(e) => change(e)} defaultChecked={admin ? true : false}/>
+                    </label>
+                    <label>
+                        Suscripción:
+                        <Switch name='pay' onChange={(e) => change(e)} defaultChecked={subscription ? true : false}/>
+                    </label>
+                    <label>
+                        Ban:
+                        <Switch name='ban' onChange={(e) => change(e)} defaultChecked={ban ? true : false}/>
+                    </label>
+                    <button>Guardar cambios</button>
+                </form>
                 <button onClick={() => setCreateWarm(prev => !prev)}>Crear calentamiento</button>
                 <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
             </menu>
@@ -54,6 +75,11 @@ export default function Edit({ userId, gymName, setUsers }: {
                     gymName={gymName}
                     setUsers={setUsers}
                     createWarm={createWarm} />
+                :
+                <></>
+            }
+            {pending ? 
+                <Loader text={loaders.cahnges}/>
                 :
                 <></>
             }
