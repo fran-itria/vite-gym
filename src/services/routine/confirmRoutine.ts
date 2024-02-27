@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios"
-// import createRoutine from "./craeteRoutine";
 import { confirmRoutineProps } from "../typeServices"
 
 export default async function confirmRoutine({
@@ -18,17 +17,17 @@ export default async function confirmRoutine({
 }: confirmRoutineProps) {
     try {
         if (!createWarm) {
-            await axios.post("/rutina/createRutina", { userId, days })
+            const routine = await axios.post("/rutina/createRutina", { userId, days })
             window.alert('Rutina creada exitosamente')
             if(updateRoutinesUser && updateIdGlobal) {
                 if(!setUsers) {
                     const user = await axios.get(`/user/getOneUser/${userId}`)
-                    updateIdGlobal(undefined)
+                    updateIdGlobal(routine.data.id)
                     updateRoutinesUser(user.data)
                 }else {
                     if(id == userId) {
                         const user = await axios.get(`/user/getOneUser/${userId}`)
-                        updateIdGlobal(undefined)
+                        updateIdGlobal(routine.data.id)
                         updateRoutinesUser(user.data)
                     }
                     const users = await axios.get(`/user/forGym/${gymName}`)
@@ -36,17 +35,17 @@ export default async function confirmRoutine({
                 }
             }
         } else {
-            await axios.post('/calentamiento/createCalentamiento', { userId, days })
+            const warmUp = await axios.post('/calentamiento/createCalentamiento', { userId, days })
             window.alert('Calentamiento creado exitosamente')
             if(updateWarmUpUser && updateWarmUpIdGlobal) {
                 if(!setUsers) {
                     const user = await axios.get(`/user/getOneUser/${userId}`)
-                    updateWarmUpIdGlobal(undefined)
+                    updateWarmUpIdGlobal(warmUp.data.id)
                     updateWarmUpUser(user.data)
                 }else {
                     if(id == userId) {
                         const user = await axios.get(`/user/getOneUser/${userId}`)
-                        updateWarmUpIdGlobal(undefined)
+                        updateWarmUpIdGlobal(warmUp.data.id)
                         updateWarmUpUser(user.data)
                     }
                     const users = await axios.get(`/user/forGym/${gymName}`)

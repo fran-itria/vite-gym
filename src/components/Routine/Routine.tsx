@@ -5,7 +5,7 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
 import { deletRoutine } from "../../services/routine/deleteRoutine";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateRoutine from "./CreateRoutine";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
@@ -45,7 +45,7 @@ export default function Routine() {
                                 )
                             })}
                             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                            <button onClick={() => deletRoutine({ id: routineId.id, routineActual, userId: id, updateRoutinesUser })}>Borrar rutina</button>
+                            <button onClick={() => deletRoutine({ id: routineId.id, userId: id, updateRoutinesUser, updateIdGlobal})}>Borrar rutina</button>
                             <button onClick={() => setOpenCreateRouitine(prev => !prev)}> + Rutina </button>
                         </>
                         :

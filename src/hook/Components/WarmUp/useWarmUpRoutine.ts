@@ -7,7 +7,7 @@ import useRoutineIdActions from "../../useRoutineIdActions"
 import useLoaders from "../useLoaders"
 
 const useWarmUpRoutine = () => {
-    const { WarmUps, id, Gym } = useAppSelector(state => state.user)
+    const { WarmUps, id } = useAppSelector(state => state.user)
     const warmUp = useAppSelector(state => state.warmup)
     const { warmUpActual } = useRoutineActions()
     const warmUpId = useAppSelector(state => state.warmUpId)
@@ -25,10 +25,10 @@ const useWarmUpRoutine = () => {
                     warmUpActual(response.data)
                 })
                 .catch(error => console.log(error))
-        }
+        } else warmUpActual({Days: undefined})
     }, [warmUpId.id])
 
-    return { warmUp, WarmUps, warmUpActual, warmUpId, id, updateWarmUpIdGlobal, pending, setPending, Gym }
+    return { warmUp, WarmUps, warmUpActual, warmUpId, id, updateWarmUpIdGlobal, pending, setPending }
 }
 
 export default useWarmUpRoutine

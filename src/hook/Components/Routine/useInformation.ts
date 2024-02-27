@@ -25,7 +25,7 @@ const useInformation = () => {
                     routineActual(response.data)
                 })
                 .catch(error => console.log(error))
-        }
+        } else routineActual({weeks: 0, Days: undefined})
     }, [routineId.id])
 
     return { routine, Routines, routineActual, routineId, id, updateIdGlobal, pending, setPending }

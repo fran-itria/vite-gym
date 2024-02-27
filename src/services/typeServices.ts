@@ -156,17 +156,17 @@ export type createRoutineProps = {
 }
 
 export type deleteRoutineProps = {
-  id: string | undefined,
-  routineActual: (Days: Routine) => void
+  id: string | undefined
   updateRoutinesUser: (routine: RoutinesUser) => void
   userId: string | null
+  updateIdGlobal: (id: string | undefined) => void
 }
 
 export type deleteWarmUpProps = {
-  id: string | undefined,
-  warmUpActual: (Days: WarmUp) => void
+  id: string | undefined
   updateWarmUpUser: (warmUps: WarmUpsUser) => void
   userId: string | null
+  updateWarmUpIdGlobal: (id: string | undefined) => void
 }
 
 export type confirmRoutineProps = createRoutineProps & {

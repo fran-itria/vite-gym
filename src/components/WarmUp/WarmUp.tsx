@@ -13,7 +13,7 @@ import Chronometer from "../Chronometer";
 import Detail from "../Routine/Detail";
 
 export default function WarmUp() {
-    const { WarmUps, id, pending, setPending, updateWarmUpIdGlobal, warmUpActual, warmUpId, warmUp, Gym } = useWarmUpRoutine()
+    const { WarmUps, id, pending, setPending, updateWarmUpIdGlobal, warmUpActual, warmUpId, warmUp } = useWarmUpRoutine()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
@@ -48,7 +48,7 @@ export default function WarmUp() {
                                 )
                             })}
                             <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                            <button onClick={() => deleteWarmup({ id: warmUpId.id, warmUpActual, userId: id, updateWarmUpUser })}>Borrar calentamiento</button>
+                            <button onClick={() => deleteWarmup({ id: warmUpId.id, userId: id, updateWarmUpUser, updateWarmUpIdGlobal})}>Borrar calentamiento</button>
                             <button onClick={() => setCreateWarm(prev => !prev)}> + Calentamiento </button>
                             <Chronometer />
                         </>
