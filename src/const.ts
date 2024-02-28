@@ -51,7 +51,10 @@ export const loaders = {
     createWarm: 'Creando calentamiento',
     links: 'Cargando links de registro',
     createMeal: 'Creando comida',
-    deleteMeal: 'Eliminando comida'
+    deleteMeal: 'Eliminando comida',
+    createTraining: 'Creando entrenamiento',
+    deleteTraining: 'Eliminando entrenamiento',
+    saveTraining: 'Guardando cambios'
 }
 
 export const momentsFood = ['Desayuno','Media mañana','Almuerzo', 'Merienda', 'Cena']
@@ -60,4 +63,12 @@ export const namesCreateFood = {
     hour: 'hour',
     moment: 'moment',
     food: 'food'
+}
+
+export const namesCreateTraining = {
+    date: 'date',
+    hour: 'hour',
+    exercise: 'exercise',
+    duration: 'duration',
+    distance: 'distance'
 }
