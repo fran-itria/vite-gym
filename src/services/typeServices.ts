@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
-import { RoutinesUser, WarmUpsUser, meal } from "../store/user/slice";
+import { RoutinesUser, WarmUpsUser, extraTraining, meal } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
-import { InputsLogin, InputsRegister, UsersComponent } from "../types";
+import { InputsCreateTraining, InputsLogin, InputsRegister, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
 export type onChangeProps = {
@@ -220,4 +220,28 @@ export type createFoodProps = {
   updateMealsUser: (meals: meal[]) => void
   setAdd: React.Dispatch<React.SetStateAction<boolean>>
   setCreate: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type changeInputsProps = {
+  setInputs: React.Dispatch<React.SetStateAction<InputsCreateTraining | undefined>>
+  event: React.ChangeEvent<HTMLInputElement>
+}
+
+export type submitTrainingProps = {
+  event: React.FormEvent<HTMLFormElement>
+  inputs?: InputsCreateTraining
+  updateTrainingsUser: (trainings: extraTraining[]) => void
+  id: string
+  setTraining?: React.Dispatch<React.SetStateAction<boolean>>
+  setPending?: React.Dispatch<React.SetStateAction<boolean>>
+  trainId?: string
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
+  setSave?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type deleteTrainingProps = {
+  setDelete: React.Dispatch<React.SetStateAction<boolean>>
+  id: string
+  updateTrainingsUser: (trainings: extraTraining[]) => void
+  userId: string
 }
