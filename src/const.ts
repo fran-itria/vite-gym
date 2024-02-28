@@ -46,7 +46,6 @@ export const loaders = {
     out: 'Cerrando sesión',
     routine: 'Cargando rutina',
     resume: 'Cargando resumen de usuario',
-    changes: 'Guardando cambios',
     createRoutine: 'Creando Rutina',
     createWarm: 'Creando calentamiento',
     links: 'Cargando links de registro',
@@ -54,7 +53,7 @@ export const loaders = {
     deleteMeal: 'Eliminando comida',
     createTraining: 'Creando entrenamiento',
     deleteTraining: 'Eliminando entrenamiento',
-    saveTraining: 'Guardando cambios'
+    save: 'Guardando cambios'
 }
 
 export const momentsFood = ['Desayuno','Media mañana','Almuerzo', 'Merienda', 'Cena']
