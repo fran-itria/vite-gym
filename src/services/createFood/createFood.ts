@@ -8,18 +8,16 @@ export default async function createFood({e, id, inputs, setAdd, updateMealsUser
         if(setCreate && setAdd){
             setCreate(true)
             await axios.post('/comidas', {...inputs, userId: id})
-            const user = await axios.get(`/user/getOneUser/${id}`)
-            updateMealsUser(user.data)
             setCreate(false)
             setAdd(false)
         } else if(mealId && setEdit && setSave){
             setSave(true)
             await axios.put('/comidas', {...inputs, id: mealId})
-            const user = await axios.get(`/user/getOneUser/${id}`)
-            updateMealsUser(user.data)
             setEdit(false)
             setSave(false)
         }
+        const user = await axios.get(`/user/getOneUser/${id}`)
+        updateMealsUser(user.data)
     } catch (error: any) {
         console.log(error)
         window.alert(error.response.data.Error)
