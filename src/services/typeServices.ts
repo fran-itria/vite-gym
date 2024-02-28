@@ -3,7 +3,7 @@
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser, WarmUpsUser, extraTraining, meal } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
-import { InputsCreateTraining, InputsLogin, InputsRegister, UsersComponent } from "../types";
+import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
 export type onChangeProps = {
@@ -28,12 +28,13 @@ export type onSubmitProps = {
 }
 
 export type modifiedExerciseProps = {
-  id: string
-  inputs?: {
-    name: string,
-    series: number,
-    reps: number,
-    loads: string[]
+  id?: string
+  routineOrWarmUp: RoutineOrWarmUp
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  inputs: {
+    name?: string | undefined;
+    series?: number | undefined;
+    reps?: string | undefined;
   }
 }
 

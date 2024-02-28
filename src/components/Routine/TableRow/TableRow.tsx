@@ -7,19 +7,16 @@ import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
 
 export default function TableRow({
-    weeks,
     id,
     name,
     series,
     reps,
     Loads,
-    routineId,
-    routineActual,
-    warmUpId,
-    warmUpActual
+    routineOrWarmUp
 }: TableRowComponentProps) {
     const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad } = useTabelRow()
-
+    const {routineActual, routineId, warmUpActual, warmUpId, weeks} = routineOrWarmUp
+    
     return (
         <tr>
             <TableCell
@@ -35,7 +32,14 @@ export default function TableRow({
                 setOpen={setOpen}
             />
             {open ?
-                <ModifiedExercise id={id} name={name} series={series} reps={reps} setOpen={setOpen} />
+                <ModifiedExercise 
+                    id={id} 
+                    name={name} 
+                    series={series} 
+                    reps={reps} 
+                    setOpen={setOpen} 
+                    routineOrWarmUp={{routineActual, routineId, warmUpActual, warmUpId}}
+                />
                 :
                 <></>
             }

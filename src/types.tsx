@@ -54,25 +54,16 @@ export type Exercise = {
 }
 
 export type TableComponentProps = {
-  weeks?: number | null
   day: {
     id?: string;
     WarmUp?: string | null;
     Exercises: [] | Exercise[]
   }
-  routineId?: string
-  routineActual?: (Days: Routine) => void
-  warmUpActual?: ((Days: WarmUp) => void)
-  warmUpId?: string
+  routineOrWarmUp: RoutineOrWarmUp
 }
 
 export type TableRowComponentProps = Exercise & {
-  weeks?: number | null
-  routineId?: string
-  routineActual?: (Days: Routine) => void
-  warmUpActual?: ((Days: WarmUp) => void)
-  warmUpId?: string
-
+  routineOrWarmUp: RoutineOrWarmUp
 }
 
 export type ModalAddLoadComponentProps = {
@@ -189,6 +180,7 @@ export type ModifiedExerciseProps = {
   reps?: string
   id?: string
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  routineOrWarmUp: RoutineOrWarmUp
 }
 
 export type UsersComponent = [] | {

@@ -20,11 +20,7 @@ export default function Detail({ day, i, routineOrWarmUp }: DetailComponenProps)
                 </summary>
                 <Table
                     day={day}
-                    weeks={weeks ? weeks : undefined}
-                    routineActual={routineActual}
-                    routineId={routineId}
-                    warmUpActual={warmUpActual}
-                    warmUpId={warmUpId}
+                    routineOrWarmUp={{routineActual, routineId, warmUpActual, warmUpId, weeks}}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                 {weeks && routineActual ?
