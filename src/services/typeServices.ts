@@ -218,8 +218,11 @@ export type createFoodProps = {
   }
   id: string
   updateMealsUser: (meals: meal[]) => void
-  setAdd: React.Dispatch<React.SetStateAction<boolean>>
-  setCreate: React.Dispatch<React.SetStateAction<boolean>>
+  setAdd?: React.Dispatch<React.SetStateAction<boolean>>
+  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
+  mealId?: string
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
+  setSave?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type changeInputsProps = {

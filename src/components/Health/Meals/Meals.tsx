@@ -5,13 +5,17 @@ import { useState } from 'react';
 import FormCreate from './FormCreate';
 import Loader from '../../Loader';
 import { loaders } from '../../../const';
-import { MealProps } from '../../../types';
+import { InputsCreateFood, MealProps } from '../../../types';
 
 export default function Meals(){
     const { Meals } = useAppSelector(state => state.user)
     const [add, setAdd] = useState<boolean>(false)
     const [create, setCreate] = useState<boolean>(false)
     const [deleteMeal, setDeleteMeal] = useState<boolean>(false)
+    const [edit, setEdit] = useState<boolean>(false)
+    const [values, setValues] = useState<InputsCreateFood>()
+    const [mealId, setMealId] = useState<string>()
+    const [save, setSave] = useState<boolean>(false)
 
     return (
         <>
@@ -19,7 +23,13 @@ export default function Meals(){
                     <>
                         {Meals.map((meal: MealProps) => {
                             return (
-                                <Details meal={meal} setDeleteMeal={setDeleteMeal} key={meal.id}/>
+                                <Details 
+                                    meal={meal} 
+                                    setDeleteMeal={setDeleteMeal} 
+                                    setMealId={setMealId}
+                                    setValues={setValues}
+                                    setEdit={setEdit} 
+                                    key={meal.id}/>
                                 )
                             } 
                             )}
@@ -31,8 +41,18 @@ export default function Meals(){
                       <AddCircleIcon color="success" onClick={() => setAdd(!add)}/>
                     </>
                 }
-            {add ? <FormCreate setAdd={setAdd} setCreate={setCreate}/> : <></> }
-            {create ? <Loader text={loaders.createMeal}/> : deleteMeal ? <Loader text={loaders.deleteMeal}/> : <></>}
+            {add ? 
+                <FormCreate setAdd={setAdd} setCreate={setCreate}/> 
+                : edit ? <FormCreate mealId={mealId} values={values} setEdit={setEdit} setSave={setSave}/> 
+                    : <></> 
+            }
+            {create ? 
+                <Loader text={loaders.createMeal}/> 
+                : deleteMeal ? 
+                    <Loader text={loaders.deleteMeal}/> 
+                    : save ? <Loader text={loaders.save}/> 
+                        : <></>
+            }
         </>
     )
 }

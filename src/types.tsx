@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Routine } from "./store/routine/slice";
-import { RoutinesUser, WarmUpsUser } from "./store/user/slice";
+import { RoutinesUser, WarmUpsUser, meal } from "./store/user/slice";
 import { WarmUp } from "./store/warmUp/slice";
 
 /* eslint-disable @typescript-eslint/ban-types */
@@ -270,9 +270,13 @@ export type InputsCreateFood = {
 }
 
 export type MealProps = {id: string, date: string, hour: string, moment: string, food: string}
+
 export type DetailsComponentProps = {
   meal: MealProps
   setDeleteMeal: React.Dispatch<React.SetStateAction<boolean>>
+  setValues: React.Dispatch<React.SetStateAction<InputsCreateFood | undefined>>
+  setMealId: React.Dispatch<React.SetStateAction<string | undefined>>
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type Extra = {
@@ -310,5 +314,21 @@ export type DetailsExtraProps = {
 
 export type FormEditProps = {
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
+  id: string
+}
+
+export type FormCreateProps = {
+  setAdd?: React.Dispatch<React.SetStateAction<boolean>>, 
+  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
+  values?: InputsCreateFood
+  mealId?: string
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
+  setSave?: React.Dispatch<React.SetStateAction<boolean>> 
+}
+
+export type deleteMealProps = {
+  mealId: string
+  setDeleteMeal: React.Dispatch<React.SetStateAction<boolean>>
+  updateMealsUser: (meals: meal[]) => void
   id: string
 }
