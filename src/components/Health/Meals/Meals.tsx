@@ -1,5 +1,4 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import style from "../Health.module.css";
 import { useAppSelector } from '../../../hook/store';
 import Details from './Details';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export default function Meals(){
 
     return (
         <>
-            <ul className={style.days}>
                 {Meals.length > 0 ? 
                     <>
                         {Meals.map((meal: MealProps) => {
@@ -33,7 +31,6 @@ export default function Meals(){
                       <AddCircleIcon color="success" onClick={() => setAdd(!add)}/>
                     </>
                 }
-            </ul>
             {add ? <FormCreate setAdd={setAdd} setCreate={setCreate}/> : <></> }
             {create ? <Loader text={loaders.createMeal}/> : deleteMeal ? <Loader text={loaders.deleteMeal}/> : <></>}
         </>
