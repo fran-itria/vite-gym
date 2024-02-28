@@ -51,7 +51,7 @@ export default function Training(){
                 <Loader text={loaders.createTraining}/> 
                 : deleteTraining ? 
                     <Loader text={loaders.deleteTraining}/> 
-                    : save ? <Loader text={loaders.saveTraining}/> 
+                    : save ? <Loader text={loaders.save}/> 
                         : <></>
             }
         </>
