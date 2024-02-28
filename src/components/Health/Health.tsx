@@ -2,6 +2,7 @@ import NavHealth from "./NavHealth";
 import { InformationEnum } from "../../types";
 import { useState } from "react";
 import Meals from "./Meals/Meals";
+import Training from "../Training/Training";
 
 export default function Health() {
   const [information, setInformation] = useState<InformationEnum>(InformationEnum.meal)
@@ -12,7 +13,7 @@ export default function Health() {
       {information == InformationEnum.meal ? (
         <Meals />      
       ) : (
-        <></>
+        <Training />
       )}
     </>
   );
