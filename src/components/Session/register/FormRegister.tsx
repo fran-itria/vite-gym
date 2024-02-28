@@ -16,7 +16,7 @@ export default function FormRegister() {
     const params = useParams()
     const navigate = useNavigate()
     const { addUser } = useUserActions()
-    const { pending, setPending } = useLoaders()
+    const { create, setCreate } = useLoaders()
 
     useEffect(() => {
         const { id } = params
@@ -28,8 +28,8 @@ export default function FormRegister() {
     }, [])
 
     return (
-        !pending ?
-            <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setPending })}>
+        !create ?
+            <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setCreate })}>
                 {url.pathname.includes("admin") ?
                     <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
                     :

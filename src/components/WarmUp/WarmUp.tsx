@@ -13,20 +13,20 @@ import Chronometer from "../Chronometer";
 import Detail from "../Routine/Detail";
 
 export default function WarmUp() {
-    const { WarmUps, id, pending, setPending, updateWarmUpIdGlobal, warmUpActual, warmUpId, warmUp } = useWarmUpRoutine()
+    const { WarmUps, id, create, setCreate, updateWarmUpIdGlobal, warmUpActual, warmUpId, warmUp } = useWarmUpRoutine()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
 
     return (
         <>
-            {pending ? <Loader text={loaders.routine} />
+            {create ? <Loader text={loaders.routine} />
                 :
                 <>
                     <div>
                         <p>Seleccionar Calentamiento:</p>
                         <select onChange={(e) => {
-                            setPending(prevPending => !prevPending)
+                            setCreate(prevPending => !prevPending)
                             updateWarmUpIdGlobal(e.target.value)
                         }}>
                             <option value={warmUpId.id}></option>

@@ -22,8 +22,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setCreateWarm,
         inputs,
         setInputs,
-        pending,
-        setPending,
+        create,
+        setCreate,
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
@@ -38,7 +38,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     return (
         <>
             <menu>
-                <form onSubmit={(e) => submitChanges({e, inputs, userId, gymName, setUsers, setPending, setEdit})}>
+                <form onSubmit={(e) => submitChanges({e, inputs, userId, gymName, setUsers, setCreate, setEdit})}>
                     <label>
                         Admin:
                         <Switch name='admin' onChange={(e) => change(e)} defaultChecked={admin ? true : false}/>
@@ -81,8 +81,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 :
                 <></>
             }
-            {pending ? 
-                <Loader text={loaders.cahnges}/>
+            {create ? 
+                <Loader text={loaders.save}/>
                 :
                 <></>
             }

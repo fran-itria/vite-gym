@@ -5,15 +5,16 @@ import Loader from "../Loader"
 import { loaders } from "../../const"
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import style from './Register.module.css'
+import useLoaders from "../../hook/Components/useLoaders"
 
 export default function Register(){
     const [link, setLink] = useState<string>()
     const [allIds, setAllIds] = useState<{id: string, gym: string}[]>()
     const { Gym } = useAppSelector(state => state.user)
-    const [pending, setPending] = useState<boolean>(false)
+    const {create, setCreate} = useLoaders()
     const baseUrl = `http://127.0.0.1:5173/register/${Gym.name}/`
 
-    const create = async() => {
+    const createLink = async() => {
         const id = await axios.post('/idRegistro', {gym: Gym.name})
         console.log(id.data)
         setLink(baseUrl+id.data.id)
@@ -26,14 +27,14 @@ export default function Register(){
     }
 
     useEffect(() => {
-        setPending(true)
+        setCreate(true)
         const all = async() => {
             try {
                 const response = await axios.get('/idRegistro')
-                setPending(false)
+                setCreate(false)
                 setAllIds(response.data)
             } catch (error) {
-                setPending(false)
+                setCreate(false)
                 console.log(error)
             }
         }
@@ -42,7 +43,7 @@ export default function Register(){
 
     return(
         <>
-            <button onClick={() => create()}>Crear link de registro</button>
+            <button onClick={() => createLink()}>Crear link de registro</button>
             <p>Nuevo link creado: {link ? link : <></>}</p>
             {
                 allIds && allIds?.length > 0 ?
@@ -62,10 +63,11 @@ export default function Register(){
                 :
                 <p>No hay links creados</p>
             }
-            {pending ? 
+            {create ? 
                 <Loader text={loaders.links}/>
                 :
-                <></>}
+                <></>
+            }
         </>
     )
 }

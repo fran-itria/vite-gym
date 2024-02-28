@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 export default function useLoaders() {
+    const [create, setCreate] = useState<boolean>(false)
+    const [remove, setRemove] = useState<boolean>(false)
+    const [save, setSave] = useState<boolean>(false)
 
-    const [pending, setPending] = useState<boolean>(false)
-
-    return { pending, setPending }
+    return { create, setCreate, remove, setRemove, save, setSave}
 }

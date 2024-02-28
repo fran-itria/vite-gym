@@ -6,13 +6,13 @@ import { useUserActions } from "../../hook/useUserActions";
 import { useAppSelector } from "../../hook/store";
 import { namesCreateTraining } from "../../const";
 
-export default function FormCreateTraining({setTraining, setPending, setEdit, trainId, defaultValues, setSave}: FormCreateTrainingComponent){
+export default function FormCreateTraining({setTraining, setCreate, setEdit, trainId, defaultValues, setSave}: FormCreateTrainingComponent){
     const [inputs, setInputs] = useState<InputsCreateTraining>()
     const { updateTrainingsUser } = useUserActions()
     const { id } = useAppSelector(state => state.user)
 
     return (
-        <form onSubmit={(event) => submitTraining({event, inputs, id, updateTrainingsUser, setTraining, setPending, setEdit, trainId, setSave})}>
+        <form onSubmit={(event) => submitTraining({event, inputs, id, updateTrainingsUser, setTraining, setCreate, setEdit, trainId, setSave})}>
             <label>
                 Fecha: 
                 <input 

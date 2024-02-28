@@ -24,7 +24,7 @@ export type onSubmitProps = {
   navigate: NavigateFunction;
   addUser: Function,
   url?: Location<any>,
-  setPending: React.Dispatch<React.SetStateAction<boolean>>
+  setCreate: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type modifiedExerciseProps = {
@@ -204,7 +204,7 @@ export type submitChangesProps = {
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
-  setPending: React.Dispatch<React.SetStateAction<boolean>>
+  setCreate: React.Dispatch<React.SetStateAction<boolean>>
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -236,14 +236,14 @@ export type submitTrainingProps = {
   updateTrainingsUser: (trainings: extraTraining[]) => void
   id: string
   setTraining?: React.Dispatch<React.SetStateAction<boolean>>
-  setPending?: React.Dispatch<React.SetStateAction<boolean>>
+  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   trainId?: string
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
   setSave?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type deleteTrainingProps = {
-  setDelete: React.Dispatch<React.SetStateAction<boolean>>
+  setRemove: React.Dispatch<React.SetStateAction<boolean>>
   id: string
   updateTrainingsUser: (trainings: extraTraining[]) => void
   userId: string

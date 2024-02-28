@@ -2,15 +2,15 @@
 import axios from "axios"
 import { submitChangesProps } from "../typeServices"
 
-export default async function submitChanges({e, setPending, gymName, inputs, setUsers, userId, setEdit}: submitChangesProps){
+export default async function submitChanges({e, setCreate, gymName, inputs, setUsers, userId, setEdit}: submitChangesProps){
     e.preventDefault()
     try {
         await axios.put('/user', { ...inputs, id: userId})
-        setPending(true)
+        setCreate(true)
         const users = await axios.get(`/user/forGym/${gymName}`)
         if(users.status == 200) {
             setUsers(users.data)
-            setPending(false)
+            setCreate(false)
             setEdit(false)
         }
     } catch (error: any) {

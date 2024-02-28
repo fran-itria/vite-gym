@@ -6,6 +6,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FormCreateTraining from "./FormCreateTraining";
 import Loader from "../Loader";
 import { loaders } from "../../const";
+import useLoaders from "../../hook/Components/useLoaders";
 
 
 
@@ -13,11 +14,9 @@ export default function Training(){
     const { ExtraTrainings } = useAppSelector(state => state.user)
     const [training, setTraining] = useState<boolean>(false)
     const [edit, setEdit] = useState<boolean>(false)
-    const [pending, setPending] = useState<boolean>(false)
-    const [deleteTraining, setDelete] = useState<boolean>(false)
     const [trainId, setTrainId] = useState<string>()
     const [defaultValues, setDefaultValues] = useState<InputsCreateTraining>()
-    const [save, setSave] = useState<boolean>(false)
+    const {create, setCreate, save, setSave, remove, setRemove} = useLoaders()
     
     return (
         <>
@@ -26,7 +25,7 @@ export default function Training(){
                 {ExtraTrainings.map((extra: Extra) => {
                     return <DetailsExtra 
                                 extra={extra} 
-                                setDelete={setDelete} 
+                                setRemove={setRemove} 
                                 setEdit={setEdit} 
                                 setTrainId={setTrainId} 
                                 setDefaultValues={setDefaultValues}
@@ -42,14 +41,14 @@ export default function Training(){
             </>
             }
             {training ? 
-                <FormCreateTraining setTraining={setTraining} setPending={setPending}/> 
+                <FormCreateTraining setTraining={setTraining} setCreate={setCreate}/> 
                 : edit ? 
                     <FormCreateTraining trainId={trainId} defaultValues={defaultValues} setEdit={setEdit} setSave={setSave}/>
                     :
                     <></>}
-            {pending ? 
+            {create ? 
                 <Loader text={loaders.createTraining}/> 
-                : deleteTraining ? 
+                : remove ? 
                     <Loader text={loaders.deleteTraining}/> 
                     : save ? <Loader text={loaders.save}/> 
                         : <></>

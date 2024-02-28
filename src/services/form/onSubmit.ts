@@ -4,18 +4,18 @@ import { login } from "../login/login";
 import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setPending }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setCreate }: onSubmitProps) {
     event.preventDefault();
     try {
         if (!url) {
-            setPending(true)
+            setCreate(true)
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
-            setPending(true)
+            setCreate(true)
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)

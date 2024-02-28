@@ -6,16 +6,15 @@ import FormCreate from './FormCreate';
 import Loader from '../../Loader';
 import { loaders } from '../../../const';
 import { InputsCreateFood, MealProps } from '../../../types';
+import useLoaders from '../../../hook/Components/useLoaders';
 
 export default function Meals(){
     const { Meals } = useAppSelector(state => state.user)
     const [add, setAdd] = useState<boolean>(false)
-    const [create, setCreate] = useState<boolean>(false)
-    const [deleteMeal, setDeleteMeal] = useState<boolean>(false)
     const [edit, setEdit] = useState<boolean>(false)
     const [values, setValues] = useState<InputsCreateFood>()
     const [mealId, setMealId] = useState<string>()
-    const [save, setSave] = useState<boolean>(false)
+    const {create, setCreate, remove, setRemove, save, setSave} = useLoaders()
 
     return (
         <>
@@ -25,7 +24,7 @@ export default function Meals(){
                             return (
                                 <Details 
                                     meal={meal} 
-                                    setDeleteMeal={setDeleteMeal} 
+                                    setRemove={setRemove} 
                                     setMealId={setMealId}
                                     setValues={setValues}
                                     setEdit={setEdit} 
@@ -48,7 +47,7 @@ export default function Meals(){
             }
             {create ? 
                 <Loader text={loaders.createMeal}/> 
-                : deleteMeal ? 
+                : remove ? 
                     <Loader text={loaders.deleteMeal}/> 
                     : save ? <Loader text={loaders.save}/> 
                         : <></>

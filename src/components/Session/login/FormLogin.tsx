@@ -12,14 +12,14 @@ export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
   const { addUser } = useUserActions()
-  const { pending, setPending } = useLoaders()
+  const { create, setCreate } = useLoaders()
   return (
     <>
-      {pending ?
+      {create ?
         <Loader text={loaders.init} />
         :
         <form onSubmit={(event) => {
-          onSubmit({ event, inputs, navigate, addUser, setPending })
+          onSubmit({ event, inputs, navigate, addUser, setCreate })
         }}>
           <label>
             Usuario:

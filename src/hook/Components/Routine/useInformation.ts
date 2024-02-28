@@ -12,23 +12,23 @@ const useInformation = () => {
     const { routineActual } = useRoutineActions()
     const routineId = useAppSelector(state => state.routineIdGlobal)
     const { updateIdGlobal } = useRoutineIdActions()
-    const { pending, setPending } = useLoaders()
+    const { create, setCreate } = useLoaders()
     useEffect(() => {
         if (Routines.length > 0) {
             if (routineId.id == undefined) {
-                setPending(true)
+                setCreate(true)
                 updateIdGlobal(Routines[Routines.length - 1].id)
             }
             axios.get(`/rutina/${routineId.id}`)
                 .then(response => {
-                    setPending(false)
+                    setCreate(false)
                     routineActual(response.data)
                 })
                 .catch(error => console.log(error))
         } else routineActual({weeks: 0, Days: undefined})
     }, [routineId.id])
 
-    return { routine, Routines, routineActual, routineId, id, updateIdGlobal, pending, setPending }
+    return { routine, Routines, routineActual, routineId, id, updateIdGlobal, create, setCreate }
 }
 
 export default useInformation

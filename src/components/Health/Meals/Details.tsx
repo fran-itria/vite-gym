@@ -8,7 +8,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import deleteFood from '../../../services/createFood/deleteFood';
 
 
-export default function Details({ meal, setDeleteMeal, setValues, setMealId, setEdit}: DetailsComponentProps){
+export default function Details({ meal, setRemove, setValues, setMealId, setEdit}: DetailsComponentProps){
   const { id } = useAppSelector(state => state.user)
   const { updateMealsUser } = useUserActions()
 
@@ -32,7 +32,7 @@ export default function Details({ meal, setDeleteMeal, setValues, setMealId, set
               setMealId(meal.id)
               setValues({date: meal.date, food: meal.food, hour: meal.hour, moment: meal.moment})
             }}/>
-            <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteFood({mealId: meal.id, setDeleteMeal, updateMealsUser, id})}/>
+            <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} onClick={() => deleteFood({mealId: meal.id, setRemove, updateMealsUser, id})}/>
           </ThemeProvider>
       </details>
   )
