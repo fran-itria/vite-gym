@@ -12,6 +12,7 @@ import theme, { StyledTableCell, StyledTableRow } from "../../../themeIcons/cust
 import Loader from "../../Loader";
 import Edit from "./Edit";
 import useUsers from "../../../hook/Components/Users/useUsers";
+import { loaders } from '../../../const';
 
 export default function Users() {
     const {Gym,admin,ban,edit,setAdmin,setBan,setEdit,setSubscription,setUserId,setUsers,subscription,userId,users} = useUsers()
@@ -78,6 +79,6 @@ export default function Users() {
                 }
             </>
             :
-            <Loader text="Cargando usuarios" />
+            <Loader text={loaders.users} />
     )
 }

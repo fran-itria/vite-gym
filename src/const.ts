@@ -53,7 +53,8 @@ export const loaders = {
     deleteMeal: 'Eliminando comida',
     createTraining: 'Creando entrenamiento',
     deleteTraining: 'Eliminando entrenamiento',
-    save: 'Guardando cambios'
+    save: 'Guardando cambios',
+    users: 'Cargando usuarios'
 }
 
 export const momentsFood = ['Desayuno','Media mañana','Almuerzo', 'Merienda', 'Cena']
