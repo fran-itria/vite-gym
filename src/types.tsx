@@ -274,3 +274,41 @@ export type DetailsComponentProps = {
   meal: MealProps
   setDeleteMeal: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type Extra = {
+  id: string
+  date: Date,
+  hour: string,
+  exercise: string,
+  duration: string | null,
+  distance: number | null,
+}
+
+export type InputsCreateTraining = {
+  date?: Date,
+  hour?: string,
+  exercise?: string,
+  duration?: string | null, 
+  distance?: number | null
+}
+export type FormCreateTrainingComponent = {
+  setTraining?: React.Dispatch<React.SetStateAction<boolean>>
+  setPending?: React.Dispatch<React.SetStateAction<boolean>>
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
+  trainId?: string
+  defaultValues?: InputsCreateTraining
+  setSave?: React.Dispatch<React.SetStateAction<boolean>> 
+}
+
+export type DetailsExtraProps = {
+  extra: Extra
+  setDelete: React.Dispatch<React.SetStateAction<boolean>>
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>
+  setTrainId: React.Dispatch<React.SetStateAction<string | undefined>>
+  setDefaultValues: React.Dispatch<React.SetStateAction<InputsCreateTraining | undefined>>
+}
+
+export type FormEditProps = {
+  setEdit: React.Dispatch<React.SetStateAction<boolean>>
+  id: string
+}
