@@ -18,7 +18,6 @@ export default async function submitTraining({event, inputs, id, updateTrainings
             setSave(true)
             await axios.put('/extra', {...inputs, trainingId: trainId})
             const user = await axios.get(`/user/getOneUser/${id}`)
-            console.log(user.data)
             updateTrainingsUser(user.data)
             setEdit(false)
             setSave(false)
