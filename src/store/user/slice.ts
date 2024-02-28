@@ -8,7 +8,7 @@ export type meal = {
     food: string,
 }
 
-type extraTraining = {
+export type extraTraining = {
     date: string,
     hour: string,
     exercise: string,
@@ -130,10 +130,17 @@ export const userSlice = createSlice({
                 ...state,
                 Meals: action.payload.Meals
             }
+        },
+
+        updateExtraTraining: (state, action: PayloadAction<extraTraining[]>) => {
+            return {
+                ...state,
+                ExtraTrainings: action.payload.ExtraTrainings
+            }
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { updateUser, updateRoutineUser, updateWarmUpsUser, updateMeals} = userSlice.actions
+export const { updateUser, updateRoutineUser, updateWarmUpsUser, updateMeals, updateExtraTraining} = userSlice.actions
