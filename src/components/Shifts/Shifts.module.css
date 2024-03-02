@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 387px;
+    overflow-y: auto;
+}
+
+.row { 
+    display: flex;
+}

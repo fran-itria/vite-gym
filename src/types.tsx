@@ -324,3 +324,16 @@ export type deleteMealProps = {
   updateMealsUser: (meals: meal[]) => void
   id: string
 }
+
+export type MonthProps = {
+  month: number
+  setMonth: React.Dispatch<React.SetStateAction<number>>
+  setActualYear: React.Dispatch<React.SetStateAction<number>>
+}
+
+export type DaysProps = {
+  month: number
+  day: number
+  setDay: React.Dispatch<React.SetStateAction<number>>
+  actualYear: number
+}

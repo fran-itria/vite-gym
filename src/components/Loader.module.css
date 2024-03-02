@@ -1,9 +1,12 @@
 .container {
     width: 100vw;
-    height: calc(100vh - (42px + 10px + 24px + 32px));
+    /* height: calc(100vh - (42px + 10px + 24px + 32px)); */
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    position: absolute;
+    top: 50%;
+    /* right: 50%; */
 }
 
 .loader {
