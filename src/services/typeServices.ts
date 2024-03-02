@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
-import { RoutinesUser, WarmUpsUser, extraTraining, meal } from "../store/user/slice";
+import { RoutinesUser, WarmUpsUser, extraTraining, meal, shift } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
 import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
@@ -248,4 +248,22 @@ export type deleteTrainingProps = {
   id: string
   updateTrainingsUser: (trainings: extraTraining[]) => void
   userId: string
+}
+
+export type confirmShift = {
+  setCreate: React.Dispatch<React.SetStateAction<boolean>>
+  GymId: string | null
+  id: string | null
+  selectDay: {
+    day: string;
+    hour: string;
+  }
+  updateShiftsUser: (shifts: shift[]) => void
+}
+
+export type deleteShiftProps = {
+  updateShiftsUser: (shifts: shift[]) => void
+  userId: string | null
+  shiftId: string
+  setRemove: React.Dispatch<React.SetStateAction<boolean>>
 }
