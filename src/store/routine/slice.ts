@@ -11,6 +11,7 @@ export interface Routine {
             name?: string
             series?: number
             reps?: string
+            link?: string
             DayId?: string
             Loads: {
                 id?: string

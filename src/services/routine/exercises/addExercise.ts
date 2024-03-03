@@ -4,17 +4,20 @@ import { addExerciseProps } from "../../typeServices";
 export default async function addExerciseFunction({ e, dayId, exercise, inputs, routineId, setAddExercise, routineActual, warmUpId, warmUpActual }: addExerciseProps) {
     e.preventDefault()
     try {
-        const { exerciseName, reps, series } = inputs
+        console.log(inputs)
+        const { exerciseName, reps, series, link } = inputs
         const response = await axios.post("/ejercicio/createOneEjercicio", {
             dayId,
             exercise,
             exerciseName,
             reps,
-            series
+            series,
+            link
         })
         if (routineId && routineActual) {
             const routine = await axios.get(`/rutina/${routineId}`)
             if (response.status == 200) window.alert('Ejercicio creado exitosamente')
+            console.log(routine.data)
             setAddExercise(prev => !prev)
             routineActual(routine.data)
         } else if (warmUpId && warmUpActual) {

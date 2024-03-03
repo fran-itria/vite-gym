@@ -52,10 +52,11 @@ export type addExerciseProps = {
   exercise: number,
   dayId: string | undefined,
   inputs: {
-    exerciseName: string,
-    series: string,
-    reps: string
-  },
+    exerciseName: string;
+    series: string;
+    reps: string;
+    link?: string | undefined;
+  }
   setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
   routineId?: string
   routineActual?: ((Days: Routine) => void) | undefined
@@ -70,13 +71,14 @@ export type onChangeInputsProps = {
     name: string;
     series: string;
     reps: string;
+    link?: string | undefined;
   }>>
 }
 
 export type createDayRoutineProps = {
   routine: Routine
   routineId: string | undefined,
-  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[],
+  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string }[],
   routineActual: (Days: Routine) => void
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
@@ -86,6 +88,7 @@ export type createDayRoutineProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined
   }[]>>
 }
 
@@ -93,7 +96,7 @@ export type createDayWarmUpProps = {
   warmUp: WarmUp
   warmUpId: string
   warmUpActual: ((Days: WarmUp) => void)
-  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string }[]
+  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string}[]
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
@@ -102,6 +105,7 @@ export type createDayWarmUpProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined
   }[]>>
 }
 
@@ -111,6 +115,7 @@ export type CreateExerciseInputsProps = {
     exerciseName: string;
     series: string;
     reps: string;
+    link?: string | undefined;
   }>>
 }
 
@@ -131,6 +136,7 @@ export type addDayRoutineProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined
   }[]>>
   setPag: React.Dispatch<React.SetStateAction<number>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
@@ -139,6 +145,7 @@ export type addDayRoutineProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined
   }[]
   setPagDays: React.Dispatch<React.SetStateAction<number>>
 }
@@ -152,6 +159,7 @@ export type createRoutineProps = {
       name?: string | undefined;
       series?: string | undefined;
       reps?: string | undefined;
+      link?: string | undefined
     }[]
   }[]
 }

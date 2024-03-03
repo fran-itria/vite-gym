@@ -21,7 +21,7 @@ export default function CreateRoutine({
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
-    const [routine, setRoutine] = useState<[] | { day: number, exercises: { exercise?: number; name?: string; series?: string; reps?: string }[] }[]>([])
+    const [routine, setRoutine] = useState<[] | { day: number, exercises: { exercise?: number; name?: string; series?: string; reps?: string; link?: string }[] }[]>([])
 
     return (
         <div style={{ background: 'white', height: '200px', position: 'absolute', top: '50%', right: '50%' }}>
@@ -67,6 +67,7 @@ export default function CreateRoutine({
                                     <th>Ejercicios</th>
                                     <th>Series</th>
                                     <th>Repeticiones</th>
+                                    <th>Link de video</th>
                                 </thead>
                                 <tbody>
                                     {routine.map(day => {
@@ -77,6 +78,7 @@ export default function CreateRoutine({
                                                         <td>{exercise.name}</td>
                                                         <td>{exercise.series}</td>
                                                         <td>{exercise.reps}</td>
+                                                        <td>{exercise.link ? exercise.link : <></>}</td>
                                                     </tr>
                                                 </>
                                             )

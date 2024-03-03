@@ -4,8 +4,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../themeIcons/customTheme";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableCellComponentProps } from '../../../types';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export default function TableCell({ Loads, name, series, reps, weeks, setOpenLoad, setConfirmDelete, setOpen }: TableCellComponentProps) {
+export default function TableCell({ Loads, name, series, reps, link, weeks, setOpenLoad, setConfirmDelete, setOpen }: TableCellComponentProps) {
+
     return (
         <>
             <td>
@@ -15,6 +17,15 @@ export default function TableCell({ Loads, name, series, reps, weeks, setOpenLoa
                         setConfirmDelete(confirmDelete => !confirmDelete)
                     }} />
                 </ThemeProvider>
+            </td>
+            <td>   
+               {link ? 
+                    <a target='_blank' href={link}> 
+                        <VisibilityIcon />
+                    </a>
+                    : 
+                    <></>
+                }
             </td>
             <td>{name}</td>
             <td>{series}</td>

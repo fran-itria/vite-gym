@@ -21,6 +21,7 @@ const useInformation = () => {
             }
             axios.get(`/rutina/${routineId.id}`)
                 .then(response => {
+                    console.log(response.data)
                     setCreate(false)
                     routineActual(response.data)
                 })

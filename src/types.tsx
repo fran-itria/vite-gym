@@ -46,6 +46,7 @@ export type Exercise = {
   name?: string;
   series?: number;
   reps?: string;
+  link?: string;
   DayId?: string;
   Loads?: [] | {
     id?: string;
@@ -80,6 +81,7 @@ export type FormOneDayComponentProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined;
   }[]>>
 }
 
@@ -92,12 +94,14 @@ export type TableConfirmDayComponentProps = {
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined;
   }[]>>
   dayCreate: {
     exercise?: number | undefined;
     name?: string | undefined;
     series?: string | undefined;
     reps?: string | undefined;
+    link?: string | undefined;
   }[]
   pagDays?: number
   setRoutine?: React.Dispatch<React.SetStateAction<[] | {
@@ -107,6 +111,7 @@ export type TableConfirmDayComponentProps = {
       name?: string;
       series?: string;
       reps?: string;
+      link?: string
     }[];
   }[]>>
   setPagDays?: React.Dispatch<React.SetStateAction<number>>
@@ -149,18 +154,7 @@ export type DetailComponenProps = {
   day: {
     id: string;
     WarmUp?: string | undefined;
-    Exercises: [] | {
-      id?: string | undefined;
-      exercise?: number | undefined;
-      name?: string | undefined;
-      series?: number | undefined;
-      reps?: string | undefined;
-      DayId?: string | undefined;
-      Loads?: [] | {
-        id?: string;
-        loads?: string;
-      }[];
-    }[];
+    Exercises: [] | Exercise[];
   }
   i: number
   routineOrWarmUp: RoutineOrWarmUp

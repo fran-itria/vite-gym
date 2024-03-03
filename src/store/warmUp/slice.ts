@@ -10,6 +10,7 @@ export interface WarmUp {
             name?: string
             series?: number
             reps?: string
+            link?: string
             DayId?: string
         }[] | []
     }[] | undefined

@@ -9,11 +9,13 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag }: For
         name: string,
         series: string,
         reps: string
+        link?: string
     }>({
         exercise: actualExercise,
         name: '',
         series: '',
-        reps: ''
+        reps: '',
+        link: ''
     })
 
     const next = () => {
@@ -24,7 +26,8 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag }: For
             exercise: actualExercise + 1,
             name: "",
             series: "",
-            reps: ""
+            reps: "",
+            link: ""
         })
         setPag(prev => prev + 1)
     }
@@ -32,14 +35,21 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag }: For
     return (
         <div>
             Ejercicio Número {actualExercise}
-            <label>Nombre del ejercicio:
+            <label>
+                Nombre del ejercicio:
                 <input name="name" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.name}></input>
             </label>
-            <label>Series:
+            <label>
+                Series:
                 <input name="series" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.series}></input>
             </label>
-            <label>Repeticiones:
+            <label>
+                Repeticiones:
                 <input name="reps" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.reps}></input>
+            </label>
+            <label>
+                Link de video del ejercicio:
+                <input type='url' name="link" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.link}></input>
             </label>
             <button onClick={() => next()}> Siguiente </button>
         </div>

@@ -5,6 +5,7 @@ import { CreateExerciseComponentProps } from "../../../types";
 
 export default function CreateExercise({ setAddExercise, day, routineActual, routineId, warmUpActual, warmUpId }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
+
     return (
         <form
             style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
@@ -41,6 +42,10 @@ export default function CreateExercise({ setAddExercise, day, routineActual, rou
             <label>
                 Repeticiones:
                 <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
+            </label>
+            <label>
+                Link de video del ejercicio:
+                <input type="url" name='link' onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
             </label>
             <button >Crear</button>
             <button onClick={() => setAddExercise(prev => !prev)}>Cancelar</button>

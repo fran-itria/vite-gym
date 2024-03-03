@@ -25,6 +25,7 @@ export default function TableConfirmDay({
                     <th>Ejercicios</th>
                     <th>Series</th>
                     <th>Repeticones</th>
+                    <th>Link del video</th>
                 </thead>
                 <tbody>
                     {dayCreate.map(exercise => {
@@ -33,6 +34,7 @@ export default function TableConfirmDay({
                                 <td>{exercise.name}</td>
                                 <td>{exercise.series}</td>
                                 <td>{exercise.reps}</td>
+                                <td>{exercise.link ? exercise.link : <></>}</td>
                             </tr>
                         )
                     })}

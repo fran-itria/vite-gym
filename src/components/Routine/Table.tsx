@@ -21,6 +21,7 @@ export default function Table({ day, routineOrWarmUp}: TableComponentProps) {
                                 name={exercise.name}
                                 series={exercise.series}
                                 reps={exercise.reps}
+                                link={exercise.link}
                                 Loads={exercise.Loads ? exercise.Loads : undefined}
                                 routineOrWarmUp={routineOrWarmUp}
                             />

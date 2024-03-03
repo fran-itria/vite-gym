@@ -5,7 +5,7 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
 import { deletRoutine } from "../../services/routine/deleteRoutine";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateRoutine from "./CreateRoutine";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
@@ -17,6 +17,7 @@ export default function Routine() {
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
 
+    useEffect(() => console.log(routine), [routine])
     return (
         <>
             {create ? <Loader text={loaders.routine} />

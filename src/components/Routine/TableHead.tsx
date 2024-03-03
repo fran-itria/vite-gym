@@ -6,6 +6,7 @@ export default function TableHead({ weeks }: { weeks?: number | null }) {
         <thead>
             <tr>
                 <th></th>
+                <th>Video</th>
                 <th>Ejercicio</th>
                 <th>Series</th>
                 <th>Repeticiones</th>

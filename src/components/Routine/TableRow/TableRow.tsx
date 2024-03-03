@@ -11,6 +11,7 @@ export default function TableRow({
     name,
     series,
     reps,
+    link, 
     Loads,
     routineOrWarmUp
 }: TableRowComponentProps) {
@@ -26,6 +27,7 @@ export default function TableRow({
                 Loads={Loads ? Loads : undefined}
                 series={series}
                 reps={reps}
+                link={link}
                 name={name}
                 setOpenLoad={setOpenLoad}
                 setConfirmDelete={setConfirmDelete}
