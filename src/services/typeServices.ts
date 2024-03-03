@@ -275,3 +275,9 @@ export type deleteShiftProps = {
   shiftId: string
   setRemove: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export type subscriptionProps = {
+  link: string
+  id: string
+  e: React.FormEvent<HTMLFormElement>
+}

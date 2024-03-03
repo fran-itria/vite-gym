@@ -21,6 +21,13 @@ export type shift = {
     day: string,
     hour: string
 }
+
+export type payments = {
+    id: string,
+    date: string,
+    hour: string,
+    amount: number,
+}
 export interface User {
     id: string | null
     GymId: string | null
@@ -38,13 +45,13 @@ export interface User {
     pay: boolean | false,
     ban: boolean | false,
     login: boolean | true,
-    linkMp: string | null,
     photo: string | null
     Routines: { id: string }[] | []
     WarmUps: { id: string }[] | [],
     Meals: meal[] | [],
     ExtraTrainings: extraTraining[] | [],
     Shifts: shift[] | [],
+    Payments: payments[] | []
 }
 
 export interface RoutinesUser {
@@ -71,13 +78,13 @@ const initialState: User = {
     pay: false,
     ban: false,
     login: true,
-    linkMp: null,
     photo: null,
     Routines: [],
     WarmUps: [],
     ExtraTrainings: [],
     Meals: [],
-    Shifts: []
+    Shifts: [],
+    Payments: []
 }
 
 export const userSlice = createSlice({
@@ -102,13 +109,13 @@ export const userSlice = createSlice({
                 pay: action.payload.pay,
                 phone: action.payload.phone,
                 user: action.payload.user,
-                linkMp: action.payload.linkMp,
                 photo: action.payload.photo,
                 ExtraTrainings: action.payload.ExtraTrainings,
                 Meals: action.payload.Meals,
                 Routines: action.payload.Routines,
                 Shifts: action.payload.Shifts,
                 WarmUps: action.payload.WarmUps,
+                Payments: action.payload.Payments
             }
         },
         updateRoutineUser: (state, action: PayloadAction<RoutinesUser>) => {
@@ -144,10 +151,25 @@ export const userSlice = createSlice({
                 ...state,
                 Shifts: action.payload.Shifts
             }
+        },
+
+        updatePayments: (state, action: PayloadAction<payments[]>) => {
+            return {
+                ...state,
+                Payments: action.payload.Payments
+            }
         }
     }
 })
 
 export default userSlice.reducer
 
-export const { updateUser, updateRoutineUser, updateWarmUpsUser, updateMeals, updateExtraTraining, updateShifts} = userSlice.actions
+export const { 
+    updateUser, 
+    updateRoutineUser, 
+    updateWarmUpsUser, 
+    updateMeals, 
+    updateExtraTraining, 
+    updateShifts,
+    updatePayments
+} = userSlice.actions

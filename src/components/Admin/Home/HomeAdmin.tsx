@@ -12,7 +12,7 @@ export default function HomeAdmin() {
                 <NavLink to={`/registro/${id}`}>
                     Registro
                 </NavLink>
-                <NavLink to={`/sucrpición/${id}`}>
+                <NavLink to={`/suscripcion/${id}`}>
                     Suscripción
                 </NavLink>
                 <NavLink to={`/home/${id}/turnos`} >

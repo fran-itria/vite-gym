@@ -1,4 +1,19 @@
-import { RoutinesUser, User, WarmUpsUser, extraTraining, meal, shift, updateExtraTraining, updateMeals, updateRoutineUser, updateShifts, updateUser, updateWarmUpsUser } from "../store/user/slice"
+import { 
+    RoutinesUser,
+    User, 
+    WarmUpsUser, 
+    extraTraining, 
+    meal, 
+    payments, 
+    shift, 
+    updateExtraTraining, 
+    updateMeals, 
+    updatePayments, 
+    updateRoutineUser, 
+    updateShifts, 
+    updateUser, 
+    updateWarmUpsUser 
+} from "../store/user/slice"
 import { useAppDispatch } from "./store"
 
 export const useUserActions = () => {
@@ -28,5 +43,17 @@ export const useUserActions = () => {
         dispatch(updateShifts(shifts))
     }
     
-    return { addUser, updateRoutinesUser, updateWarmUpUser, updateMealsUser, updateTrainingsUser, updateShiftsUser}
+    const updatePaymentsUser = (payments: payments[]) => {
+        dispatch(updatePayments(payments))
+    }
+
+    return { 
+        addUser, 
+        updateRoutinesUser, 
+        updateWarmUpUser, 
+        updateMealsUser, 
+        updateTrainingsUser, 
+        updateShiftsUser,
+        updatePaymentsUser
+    }
 }

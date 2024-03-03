@@ -46,7 +46,7 @@ export default function Header() {
                                 Rutina
                             </li>
                         </NavLink>
-                        <NavLink to={`/suscripcion/${id}`} className={({ isActive }) => isActive ? style.active : ''}>
+                        <NavLink to={`/suscripcion`} className={({ isActive }) => isActive ? style.active : ''}>
                             <li className={style.suscripcion}>
                                 Suscripción
                             </li>

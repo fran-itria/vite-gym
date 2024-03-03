@@ -10,6 +10,7 @@ import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
 import Register from "./components/Register/Register";
+import Subscription from "./hook/Components/Suscripcion/Subscription";
 
 function App() {
   const path = useLocation();
@@ -31,8 +32,8 @@ function App() {
         <Route path='/usuarios/:id' element={<Users />} />
         <Route path="/calentamiento/:id" element={<WarmUp />} />
         <Route path="/registro/:id" element={<Register />} />
-        {/* Rutas dinamicas para el calentamiento y rutina */}
-        {/* Ruta para la suscripcion */}
+        <Route path="/suscripcion/:id" element={<Subscription />} />
+        <Route path="/suscripcion" element={<Subscription />} />
       </Routes>
     </>
   );
