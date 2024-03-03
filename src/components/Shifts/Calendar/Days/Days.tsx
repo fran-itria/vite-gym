@@ -24,7 +24,6 @@ export default function Days({ month, day, setDay, actualYear }: DaysProps) {
                         <p className={style.dayMonthText}>
                             {(i + 1).toString().length < 2 && "0"}{i + 1}
                         </p>
-
                     </div>
                 )
             }) : <></>}

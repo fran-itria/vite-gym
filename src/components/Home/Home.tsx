@@ -20,7 +20,7 @@ export default function Home() {
             {select == selects.summary ? <Resume /> : select == selects.miSalud ? <Health /> : < Shifts />}
           </>
           :
-          <></>
+          <Shifts />
         :
         <NotFound />
       }
