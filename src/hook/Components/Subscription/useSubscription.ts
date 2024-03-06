@@ -7,6 +7,7 @@ import { useUserActions } from "../../useUserActions"
 import { storage } from "../../../const"
 import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
+import useLoaders from "../useLoaders"
 
 export default function useSubscription() {
     const { admin, GymId, id, Payments } = useAppSelector(state => state.user)
@@ -14,12 +15,15 @@ export default function useSubscription() {
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
+    const { loading, setLoading, create, setCreate, remove, setRemove } = useLoaders()
 
     useEffect(() => {
+        setLoading(true)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 setLinkMp(response.data.linkMp)
                 setAmount(response.data.amount)
+                setLoading(false)
             })
     }, [GymId])
 
@@ -34,7 +38,9 @@ export default function useSubscription() {
                     const init = await login({ user, password })
                     addUser(init.data.user)
                 } else if (approved && amount) {
+                    setCreate(true)
                     await createPayment({ amount, GymId, id, updatePaymentsUser })
+                    setCreate(false)
                 }
             } catch (error) {
                 console.log(error)
@@ -42,5 +48,5 @@ export default function useSubscription() {
         })()
     }, [amount])
 
-    return { admin, Payments, linkMp, amount, updatePaymentsUser, id }
+    return { admin, Payments, linkMp, amount, updatePaymentsUser, id, create, loading, remove, setRemove }
 }

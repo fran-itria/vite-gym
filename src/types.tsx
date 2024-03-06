@@ -338,4 +338,5 @@ export type TableSubscriptionProps = {
   Payments: [] | payments[]
   updatePaymentsUser: (payments: payments[]) => void
   id: string | null
+  setRemove: React.Dispatch<React.SetStateAction<boolean>>
 }

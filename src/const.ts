@@ -56,7 +56,10 @@ export const loaders = {
     save: 'Guardando cambios',
     users: 'Cargando usuarios',
     createShift: 'Creando turno',
-    deleteShift: 'Eliminando turno'
+    deleteShift: 'Eliminando turno',
+    payments: 'Cargando pagos',
+    createPayment: 'Crando pago',
+    removePayment: 'Eliminando pago'
 }
 
 export const momentsFood = ['Desayuno', 'Media mañana', 'Almuerzo', 'Merienda', 'Cena']

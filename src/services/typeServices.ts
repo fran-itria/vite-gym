@@ -289,6 +289,7 @@ export type deleteSubscriptionProps = {
   updatePaymentsUser: (payments: payments[]) => void
   userId: string | null
   id: string
+  setRemove: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type createPaymentProps = {
