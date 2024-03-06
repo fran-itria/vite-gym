@@ -8,18 +8,20 @@ import { StyledTableCell, StyledTableRow } from "../../../themeIcons/customTheme
 
 
 
-export default function TablePayments({payments}: {payments: {
-    id: string
-    date: string;
-    hour: string;
-    amount: string;
-    User: {
-        name: string;
-        surname: string;
-    };
-}[]}){
+export default function TablePayments({ payments }: {
+    payments: {
+        id: string
+        date: string;
+        hour: string;
+        amount: string;
+        User: {
+            name: string;
+            surname: string;
+        };
+    }[]
+}) {
     return (
-        <TableContainer component={Paper} sx={{maxWidth: '50%'}}>
+        <TableContainer component={Paper} sx={{ maxWidth: '50%' }}>
             <Table size="small" aria-label="customized table">
                 <TableHead>
                     <TableRow>
