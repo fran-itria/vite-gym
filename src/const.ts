@@ -59,7 +59,7 @@ export const loaders = {
     deleteShift: 'Eliminando turno'
 }
 
-export const momentsFood = ['Desayuno','Media mañana','Almuerzo', 'Merienda', 'Cena']
+export const momentsFood = ['Desayuno', 'Media mañana', 'Almuerzo', 'Merienda', 'Cena']
 export const namesCreateFood = {
     date: 'date',
     hour: 'hour',
@@ -74,3 +74,5 @@ export const namesCreateTraining = {
     duration: 'duration',
     distance: 'distance'
 }
+
+export const storage = window.localStorage

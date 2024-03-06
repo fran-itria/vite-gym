@@ -3,6 +3,7 @@ import axios from "axios";
 import { login } from "../login/login";
 import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
+import { storage } from "../../const";
 
 export default async function onSubmit({ event, inputs, navigate, addUser, url, setCreate }: onSubmitProps) {
     event.preventDefault();
@@ -12,6 +13,9 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
+                storage.setItem('user', response.data.user.user)
+                storage.setItem('email', response.data.user.email)
+                storage.setItem('password', response.data.user.password)
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
