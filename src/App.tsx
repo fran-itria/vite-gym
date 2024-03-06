@@ -10,7 +10,7 @@ import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
 import Register from "./components/Register/Register";
-import Subscription from "./hook/Components/Suscripcion/Subscription";
+import Subscription from "./components/Suscripcion/Subscription";
 
 function App() {
   const path = useLocation();
