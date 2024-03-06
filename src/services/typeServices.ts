@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
-import { RoutinesUser, WarmUpsUser, extraTraining, meal, shift } from "../store/user/slice";
+import { RoutinesUser, WarmUpsUser, extraTraining, meal, payments, shift } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
 import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
@@ -96,7 +96,7 @@ export type createDayWarmUpProps = {
   warmUp: WarmUp
   warmUpId: string
   warmUpActual: ((Days: WarmUp) => void)
-  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string}[]
+  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string }[]
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
@@ -209,7 +209,7 @@ export type deleteExerciseProps = {
 
 export type submitChangesProps = {
   e: React.FormEvent<HTMLFormElement>
-  inputs?: { admin?:boolean, pay?:boolean, ban?:boolean }
+  inputs?: { admin?: boolean, pay?: boolean, ban?: boolean }
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
@@ -220,10 +220,10 @@ export type submitChangesProps = {
 export type createFoodProps = {
   e: React.FormEvent<HTMLFormElement>
   inputs?: {
-      date?: string;
-      hour?: string;
-      moment?: string;
-      food?: string;
+    date?: string;
+    hour?: string;
+    moment?: string;
+    food?: string;
   }
   id: string
   updateMealsUser: (meals: meal[]) => void
@@ -280,4 +280,20 @@ export type subscriptionProps = {
   link: string
   id: string
   e: React.FormEvent<HTMLFormElement>
+  setLinkMp: React.Dispatch<React.SetStateAction<string | undefined>>
+  setAmount: React.Dispatch<React.SetStateAction<number | undefined>>
+  amount?: number
+}
+
+export type deleteSubscriptionProps = {
+  updatePaymentsUser: (payments: payments[]) => void
+  userId: string | null
+  id: string
+}
+
+export type createPaymentProps = {
+  updatePaymentsUser: (payments: payments[]) => void
+  id: string | null
+  GymId: string | null
+  amount: string | undefined
 }

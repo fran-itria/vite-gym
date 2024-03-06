@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Routine } from "./store/routine/slice";
-import { RoutinesUser, WarmUpsUser, meal } from "./store/user/slice";
+import { RoutinesUser, WarmUpsUser, meal, payments } from "./store/user/slice";
 import { WarmUp } from "./store/warmUp/slice";
 
 /* eslint-disable @typescript-eslint/ban-types */
@@ -16,8 +16,8 @@ export type PropsNavHealth = {
 };
 
 export type InputsLogin = {
-  user?: string;
-  password?: string;
+  user?: string | null;
+  password?: string | null;
 };
 
 export type InputsRegister = {
@@ -332,4 +332,10 @@ export type DaysProps = {
   day: number
   setDay: React.Dispatch<React.SetStateAction<number>>
   actualYear: number
+}
+
+export type TableSubscriptionProps = {
+  Payments: [] | payments[]
+  updatePaymentsUser: (payments: payments[]) => void
+  id: string | null
 }
