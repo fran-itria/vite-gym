@@ -5,19 +5,24 @@ import useTabelRow from "../../../hook/Components/useTableRow";
 import TableCell from './TableCell';
 import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
+import { useState } from "react";
+import { updateLoad } from "../../../services/routine/exercises/updateLoad";
 
 export default function TableRow({
     id,
     name,
     series,
     reps,
-    link, 
+    link,
     Loads,
     routineOrWarmUp
 }: TableRowComponentProps) {
     const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad } = useTabelRow()
-    const {routineActual, routineId, warmUpActual, warmUpId, weeks} = routineOrWarmUp
-    
+    const { routineActual, routineId, warmUpActual, warmUpId, weeks } = routineOrWarmUp
+    const [load, setLoad] = useState<boolean>(false)
+    const [idLoad, setIdLoad] = useState<string>('')
+    const [newLoads, setNewLoads] = useState<string>('')
+
     return (
         <tr>
             <TableCell
@@ -32,15 +37,17 @@ export default function TableRow({
                 setOpenLoad={setOpenLoad}
                 setConfirmDelete={setConfirmDelete}
                 setOpen={setOpen}
+                setLoad={setLoad}
+                setIdLoad={setIdLoad}
             />
             {open ?
-                <ModifiedExercise 
-                    id={id} 
-                    name={name} 
-                    series={series} 
-                    reps={reps} 
-                    setOpen={setOpen} 
-                    routineOrWarmUp={{routineActual, routineId, warmUpActual, warmUpId}}
+                <ModifiedExercise
+                    id={id}
+                    name={name}
+                    series={series}
+                    reps={reps}
+                    setOpen={setOpen}
+                    routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId }}
                 />
                 :
                 <></>
@@ -61,6 +68,18 @@ export default function TableRow({
                     warmUpActual={warmUpActual}
                     warmUpId={warmUpId}
                 />
+                :
+                <></>
+            }
+            {load ?
+                <form>
+                    <label>
+                        Carga:
+                        <input type='text' onChange={(e) => setNewLoads(e.target.value)}></input>
+                    </label>
+                    <button onClick={() => updateLoad(idLoad, newLoads, routineActual, routineId)}>Guardar</button>
+                    <button onClick={() => setLoad(!load)}>Cancelar</button>
+                </form>
                 :
                 <></>
             }

@@ -141,6 +141,8 @@ export type TableCellComponentProps = Exercise & {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setIdLoad: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type RoutineOrWarmUp = {
@@ -255,7 +257,7 @@ export type InputsCreateFood = {
   food?: string
 }
 
-export type MealProps = {id: string, date: string, hour: string, moment: string, food: string}
+export type MealProps = { id: string, date: string, hour: string, moment: string, food: string }
 
 export type DetailsComponentProps = {
   meal: MealProps
@@ -278,7 +280,7 @@ export type InputsCreateTraining = {
   date?: Date,
   hour?: string,
   exercise?: string,
-  duration?: string | null, 
+  duration?: string | null,
   distance?: number | null
 }
 export type FormCreateTrainingComponent = {
@@ -287,7 +289,7 @@ export type FormCreateTrainingComponent = {
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
   trainId?: string
   defaultValues?: InputsCreateTraining
-  setSave?: React.Dispatch<React.SetStateAction<boolean>> 
+  setSave?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type DetailsExtraProps = {
@@ -304,12 +306,12 @@ export type FormEditProps = {
 }
 
 export type FormCreateProps = {
-  setAdd?: React.Dispatch<React.SetStateAction<boolean>>, 
+  setAdd?: React.Dispatch<React.SetStateAction<boolean>>,
   setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   values?: InputsCreateFood
   mealId?: string
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
-  setSave?: React.Dispatch<React.SetStateAction<boolean>> 
+  setSave?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type deleteMealProps = {

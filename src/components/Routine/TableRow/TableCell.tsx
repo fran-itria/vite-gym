@@ -6,7 +6,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableCellComponentProps } from '../../../types';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export default function TableCell({ Loads, name, series, reps, link, weeks, setOpenLoad, setConfirmDelete, setOpen }: TableCellComponentProps) {
+export default function TableCell({ Loads, name, series, reps, link, weeks, setOpenLoad, setConfirmDelete, setOpen, setLoad, setIdLoad }: TableCellComponentProps) {
 
     return (
         <>
@@ -18,12 +18,12 @@ export default function TableCell({ Loads, name, series, reps, link, weeks, setO
                     }} />
                 </ThemeProvider>
             </td>
-            <td>   
-               {link ? 
-                    <a target='_blank' href={link}> 
+            <td>
+                {link ?
+                    <a target='_blank' href={link}>
                         <VisibilityIcon />
                     </a>
-                    : 
+                    :
                     <></>
                 }
             </td>
@@ -34,7 +34,12 @@ export default function TableCell({ Loads, name, series, reps, link, weeks, setO
                 Loads ? Loads?.map(load => {
                     return (
                         <td>
-                            {load.loads}
+                            <button onClick={() => {
+                                setLoad(true)
+                                setIdLoad(load.id ? load.id : '')
+                            }}>
+                                {load.loads}
+                            </button>
                         </td>
                     )
                 })
