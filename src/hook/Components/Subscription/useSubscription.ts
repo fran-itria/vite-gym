@@ -15,15 +15,13 @@ export default function useSubscription() {
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
-    const { loading, setLoading, create, setCreate, remove, setRemove } = useLoaders()
+    const { loading, create, setCreate, remove, setRemove } = useLoaders()
 
     useEffect(() => {
-        setLoading(true)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 setLinkMp(response.data.linkMp)
                 setAmount(response.data.amount)
-                setLoading(false)
             })
     }, [GymId])
 

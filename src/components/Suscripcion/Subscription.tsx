@@ -6,7 +6,7 @@ import Loader from "../Loader";
 import { loaders } from "../../const";
 
 export default function Subscription() {
-    const { Payments, admin, amount, id, linkMp, updatePaymentsUser, create, loading, remove, setRemove } = useSubscription()
+    const { Payments, admin, amount, id, linkMp, updatePaymentsUser, create, remove, setRemove } = useSubscription()
 
     return (
         admin ?
@@ -26,14 +26,11 @@ export default function Subscription() {
                     :
                     <></>
                 }
-                {loading ?
-                    <Loader text={loaders.payments} />
+                {create ? <Loader text={loaders.createPayment} />
                     :
-                    create ? <Loader text={loaders.createPayment} />
+                    remove ? <Loader text={loaders.removePayment} />
                         :
-                        remove ? <Loader text={loaders.removePayment} />
-                            :
-                            <></>
+                        <></>
                 }
             </>
     )
