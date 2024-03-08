@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios"
-import { Routine } from "../../../store/routine/slice"
+import { updateLoadProps } from "../../typeServices"
 
-export const updateLoad = async (id: string, newLoads: string, routineActual?: ((Days: Routine) => void), routineId?: string) => {
+export const updateLoad = async ({ id, newLoads, routineActual, routineId, setLoad, setLoading }: updateLoadProps) => {
     try {
-        if (routineActual && routineId) {
-            const load = await axios.put('/cargas', { id, newLoads })
-            console.log(load)
+        if (routineActual) {
+            setLoading(true)
+            await axios.put('/cargas', { id, newLoads })
             const routine = await axios.get(`/rutina/${routineId}`)
             routineActual(routine.data)
+            setLoad(false)
+            setLoading(false)
         }
-    } catch (error) {
+    } catch (error: any) {
         console.log(error)
+        window.alert(error.response.Error)
     }
 }

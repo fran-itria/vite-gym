@@ -298,3 +298,12 @@ export type createPaymentProps = {
   GymId: string | null
   amount: string | undefined
 }
+
+export type updateLoadProps = {
+  id: string
+  newLoads: string
+  routineActual?: ((Days: Routine) => void)
+  routineId?: string
+  setLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
