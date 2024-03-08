@@ -35,7 +35,7 @@ export default function TableCell({ Loads, name, series, reps, link, weeks, setO
                     return (
                         <td>
                             <button onClick={() => {
-                                setLoad(true)
+                                setLoad(load => !load)
                                 setIdLoad(load.id ? load.id : '')
                             }}>
                                 {load.loads}
