@@ -156,7 +156,14 @@ export const userSlice = createSlice({
         updatePayments: (state, action: PayloadAction<payments[]>) => {
             return {
                 ...state,
-                Payments: action.payload.Payments
+                Payments: action.payload
+            }
+        },
+
+        updateStateSubscription: (state, action: PayloadAction<boolean>) => {
+            return {
+                ...state,
+                pay: action.payload
             }
         }
     }
@@ -164,12 +171,13 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer
 
-export const { 
-    updateUser, 
-    updateRoutineUser, 
-    updateWarmUpsUser, 
-    updateMeals, 
-    updateExtraTraining, 
+export const {
+    updateUser,
+    updateRoutineUser,
+    updateWarmUpsUser,
+    updateMeals,
+    updateExtraTraining,
     updateShifts,
-    updatePayments
+    updatePayments,
+    updateStateSubscription
 } = userSlice.actions

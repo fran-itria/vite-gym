@@ -11,7 +11,7 @@ import useLoaders from "../useLoaders"
 
 export default function useSubscription() {
     const { admin, GymId, id, Payments } = useAppSelector(state => state.user)
-    const { updatePaymentsUser, addUser } = useUserActions()
+    const { updatePaymentsUser, addUser, updatePayUser } = useUserActions()
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
@@ -38,6 +38,9 @@ export default function useSubscription() {
                 } else if (approved && amount) {
                     setCreate(true)
                     await createPayment({ amount, GymId, id, updatePaymentsUser })
+                    const user = await axios.put('/user', { id, pay: true })
+                    console.log(user)
+                    updatePayUser(user.data.pay)
                     setCreate(false)
                 }
             } catch (error) {

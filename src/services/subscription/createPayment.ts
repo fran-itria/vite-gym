@@ -8,5 +8,5 @@ export default async function createPayment({ GymId, id, updatePaymentsUser, amo
     const hour = `${moment().hour()}:${moment().minute()}`
     await axios.post('/payments', { UserId: id, GymId, date, hour, amount })
     const user = await axios.get(`/user/getOneUser/${id}`)
-    updatePaymentsUser(user.data)
+    updatePaymentsUser(user.data.Payments)
 }
