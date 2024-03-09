@@ -135,21 +135,21 @@ export const userSlice = createSlice({
         updateMeals: (state, action: PayloadAction<meal[]>) => {
             return {
                 ...state,
-                Meals: action.payload.Meals
+                Meals: action.payload
             }
         },
 
         updateExtraTraining: (state, action: PayloadAction<extraTraining[]>) => {
             return {
                 ...state,
-                ExtraTrainings: action.payload.ExtraTrainings
+                ExtraTrainings: action.payload
             }
         },
 
         updateShifts: (state, action: PayloadAction<shift[]>) => {
             return {
                 ...state,
-                Shifts: action.payload.Shifts
+                Shifts: action.payload
             }
         },
 

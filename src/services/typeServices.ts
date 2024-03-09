@@ -225,7 +225,7 @@ export type createFoodProps = {
     moment?: string;
     food?: string;
   }
-  id: string
+  id: string | null
   updateMealsUser: (meals: meal[]) => void
   setAdd?: React.Dispatch<React.SetStateAction<boolean>>
   setCreate?: React.Dispatch<React.SetStateAction<boolean>>
@@ -243,7 +243,7 @@ export type submitTrainingProps = {
   event: React.FormEvent<HTMLFormElement>
   inputs?: InputsCreateTraining
   updateTrainingsUser: (trainings: extraTraining[]) => void
-  id: string
+  id: string | null
   setTraining?: React.Dispatch<React.SetStateAction<boolean>>
   setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   trainId?: string
@@ -255,7 +255,7 @@ export type deleteTrainingProps = {
   setRemove: React.Dispatch<React.SetStateAction<boolean>>
   id: string
   updateTrainingsUser: (trainings: extraTraining[]) => void
-  userId: string
+  userId: string | null
 }
 
 export type confirmShift = {

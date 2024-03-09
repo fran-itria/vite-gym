@@ -2,22 +2,22 @@
 import axios from "axios";
 import { createFoodProps } from "../typeServices";
 
-export default async function createFood({e, id, inputs, setAdd, updateMealsUser, setCreate, mealId, setEdit, setSave}: createFoodProps){
+export default async function createFood({ e, id, inputs, setAdd, updateMealsUser, setCreate, mealId, setEdit, setSave }: createFoodProps) {
     e.preventDefault()
     try {
-        if(setCreate && setAdd){
+        if (setCreate && setAdd) {
             setCreate(true)
-            await axios.post('/comidas', {...inputs, userId: id})
+            await axios.post('/comidas', { ...inputs, userId: id })
             setCreate(false)
             setAdd(false)
-        } else if(mealId && setEdit && setSave){
+        } else if (mealId && setEdit && setSave) {
             setSave(true)
-            await axios.put('/comidas', {...inputs, id: mealId})
+            await axios.put('/comidas', { ...inputs, id: mealId })
             setEdit(false)
             setSave(false)
         }
         const user = await axios.get(`/user/getOneUser/${id}`)
-        updateMealsUser(user.data)
+        updateMealsUser(user.data.Meals)
     } catch (error: any) {
         console.log(error)
         window.alert(error.response.data.Error)
