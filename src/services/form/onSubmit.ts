@@ -5,11 +5,11 @@ import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 import { storage } from "../../const";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setCreate }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoading }: onSubmitProps) {
     event.preventDefault();
     try {
         if (!url) {
-            setCreate(true)
+            setLoading(true)
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
@@ -19,7 +19,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
-            setCreate(true)
+            setLoading(true)
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
@@ -28,6 +28,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             }
         }
     } catch (error: any) {
+        setLoading(false)
         window.alert(error.response.data.Error);
     }
 }

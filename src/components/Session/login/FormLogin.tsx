@@ -13,7 +13,7 @@ export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
   const { addUser } = useUserActions()
-  const { create, setCreate } = useLoaders()
+  const { loading, setLoading } = useLoaders()
   useEffect(() => {
     if (storage.getItem('user') && storage.getItem('password')) {
       const user = storage.getItem('user')
@@ -27,11 +27,11 @@ export default function FormLogin() {
 
   return (
     <>
-      {create ?
+      {loading ?
         <Loader text={loaders.init} />
         :
         <form onSubmit={(event) => {
-          onSubmit({ event, inputs, navigate, addUser, setCreate })
+          onSubmit({ event, inputs, navigate, addUser, setLoading })
         }}>
           <label>
             Usuario:
