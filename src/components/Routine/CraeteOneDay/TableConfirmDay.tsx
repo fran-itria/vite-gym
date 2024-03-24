@@ -16,7 +16,8 @@ export default function TableConfirmDay({
     routineId,
     warmUp,
     warmUpActual,
-    warmUpId
+    warmUpId,
+    setLoader
 }: TableConfirmDayComponentProps) {
     return (
         <>
@@ -43,9 +44,29 @@ export default function TableConfirmDay({
             {!pagDays ?
                 <button onClick={() => {
                     if (routine && routineActual && routineId) {
-                        createDayRoutine({ routineId: routineId, dayCreate, routineActual, setAddDay, setDayCreate, setPag, setTotalExercise, routine })
+                        createDayRoutine({
+                            routineId: routineId,
+                            dayCreate,
+                            routineActual,
+                            setAddDay,
+                            setDayCreate,
+                            setPag,
+                            setTotalExercise,
+                            routine,
+                            setLoader
+                        })
                     } else if (warmUp && warmUpActual && warmUpId) {
-                        createDayWarmUp({ dayCreate, setAddDay, setDayCreate, setPag, setTotalExercise, warmUp, warmUpId, warmUpActual })
+                        createDayWarmUp({
+                            dayCreate,
+                            setAddDay,
+                            setDayCreate,
+                            setPag,
+                            setTotalExercise,
+                            warmUp,
+                            warmUpId,
+                            warmUpActual,
+                            setLoader
+                        })
                     }
                 }}>Confirmar</button>
                 :

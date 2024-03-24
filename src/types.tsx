@@ -54,6 +54,11 @@ export type Exercise = {
   }[]
 }
 
+export type SetLoader = (value: React.SetStateAction<{
+  state: boolean;
+  reason?: string | undefined;
+}>) => void
+
 export type TableComponentProps = {
   day: {
     id?: string;
@@ -61,15 +66,18 @@ export type TableComponentProps = {
     Exercises: [] | Exercise[]
   }
   routineOrWarmUp: RoutineOrWarmUp
+  setLoader: SetLoader
 }
 
 export type TableRowComponentProps = Exercise & {
   routineOrWarmUp: RoutineOrWarmUp
+  setLoader: SetLoader
 }
 
 export type ModalAddLoadComponentProps = {
   id: string | undefined
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 
@@ -121,6 +129,7 @@ export type TableConfirmDayComponentProps = {
   warmUpId?: string
   warmUpActual?: (Days: WarmUp) => void
   warmUp?: WarmUp
+  setLoader: SetLoader
 }
 
 export type CreateExerciseComponentProps = {
@@ -160,6 +169,7 @@ export type DetailComponenProps = {
   }
   i: number
   routineOrWarmUp: RoutineOrWarmUp
+  setLoader: SetLoader
 }
 
 export type FormTotalExerciseComponentProps = {
@@ -177,6 +187,7 @@ export type ModifiedExerciseProps = {
   id?: string
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   routineOrWarmUp: RoutineOrWarmUp
+  setLoader: SetLoader
 }
 
 export type UsersComponent = [] | {
@@ -238,6 +249,7 @@ export type CreateRoutineComponentProps = {
   updateWarmUpIdGlobal?: (id: string | undefined) => void
   updateIdGlobal?: (id: string | undefined) => void
   id?: string
+  setLoader: SetLoader
 }
 
 export type ConfirmDeleteComponentProps = {
@@ -261,7 +273,7 @@ export type MealProps = { id: string, date: string, hour: string, moment: string
 
 export type DetailsComponentProps = {
   meal: MealProps
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   setValues: React.Dispatch<React.SetStateAction<InputsCreateFood | undefined>>
   setMealId: React.Dispatch<React.SetStateAction<string | undefined>>
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
@@ -285,16 +297,15 @@ export type InputsCreateTraining = {
 }
 export type FormCreateTrainingComponent = {
   setTraining?: React.Dispatch<React.SetStateAction<boolean>>
-  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
   trainId?: string
   defaultValues?: InputsCreateTraining
-  setSave?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type DetailsExtraProps = {
   extra: Extra
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
   setTrainId: React.Dispatch<React.SetStateAction<string | undefined>>
   setDefaultValues: React.Dispatch<React.SetStateAction<InputsCreateTraining | undefined>>
@@ -307,18 +318,17 @@ export type FormEditProps = {
 
 export type FormCreateProps = {
   setAdd?: React.Dispatch<React.SetStateAction<boolean>>,
-  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   values?: InputsCreateFood
   mealId?: string
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
-  setSave?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type deleteMealProps = {
   mealId: string
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   updateMealsUser: (meals: meal[]) => void
-  id: string
+  id: string | null
 }
 
 export type MonthProps = {
@@ -338,5 +348,5 @@ export type TableSubscriptionProps = {
   Payments: [] | payments[]
   updatePaymentsUser: (payments: payments[]) => void
   id: string | null
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }

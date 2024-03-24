@@ -5,56 +5,72 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import Detail from "./Detail";
 import FormTotalExercise from "./FormTotalExercise";
 import { deletRoutine } from "../../services/routine/deleteRoutine";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreateRoutine from "./CreateRoutine";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
-import { loaders } from "../../const";
+import { basicLoaders, specificLoaders } from "../../const";
 
 export default function Routine() {
-    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, create, setCreate } = useInformation()
+    const {
+        id,
+        routine,
+        routineId,
+        routineActual,
+        Routines,
+        updateIdGlobal,
+        loader,
+        setLoader
+    } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
 
-    useEffect(() => console.log(routine), [routine])
     return (
         <>
-            {create ? <Loader text={loaders.routine} />
+            <div>
+                <p>Seleccionar rutina:</p>
+                <select onChange={(e) => {
+                    updateIdGlobal(e.target.value)
+                    setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.routine}` })
+                }}>
+                    <option value={routineId.id}></option>
+                    {Routines.map((routine, i: number) => (
+                        <option value={routine.id}>
+                            {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
+                        </option>
+                    )
+                    )}
+                </select>
+            </div>
+            {routine.Days?.length && routine.Days?.length > 0 ?
+                <>
+                    {routine.Days.map((day, i) => {
+                        return (
+                            <Detail
+                                day={day}
+                                i={i}
+                                routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
+                                setLoader={setLoader}
+                            />
+                        )
+                    })}
+                    <button onClick={() => setAddDay(!addDay)}>+ Día</button>
+                    <button onClick={() => deletRoutine({
+                        id: routineId.id,
+                        userId: id,
+                        updateRoutinesUser,
+                        updateIdGlobal,
+                        setLoader
+                    })}>
+                        Borrar rutina
+                    </button>
+                    <button onClick={() => setOpenCreateRouitine(prev => !prev)}> + Rutina </button>
+                </>
                 :
                 <>
-                    <div>
-                        <p>Seleccionar rutina:</p>
-                        <select onChange={(e) => {
-                            setCreate(prevPending => !prevPending)
-                            updateIdGlobal(e.target.value)
-                        }}>
-                            <option value={routineId.id}></option>
-                            {Routines.map((routine, i: number) => (
-                                <option value={routine.id}>
-                                    {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
-                                </option>
-                            )
-                            )}
-                        </select>
-                    </div>
-                    {routine.Days?.length && routine.Days?.length > 0 ?
-                        <>
-                            {routine.Days.map((day, i) => {
-                                return (
-                                    <Detail day={day} i={i} routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }} />
-                                )
-                            })}
-                            <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                            <button onClick={() => deletRoutine({ id: routineId.id, userId: id, updateRoutinesUser, updateIdGlobal})}>Borrar rutina</button>
-                            <button onClick={() => setOpenCreateRouitine(prev => !prev)}> + Rutina </button>
-                        </>
-                        :
-                        <>
-                            <p>No tienes rutina actualmente</p>
-                            <button onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}>Crear rutina</button>
-                        </>
-                    }
+                    <p>No tienes rutina actualmente</p>
+                    <button onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}>Crear rutina</button>
                 </>
             }
             {addDay ?
@@ -74,20 +90,23 @@ export default function Routine() {
                             routine={routine}
                             routineActual={routineActual}
                             routineId={routineId.id}
+                            setLoader={setLoader}
                         />
                     :
                     <></>
             }
             {opneCreateRoutine ?
                 <CreateRoutine
-                    setOpenCreateRouitine={setOpenCreateRouitine} 
-                    userId={id} 
-                    updateRoutinesUser={updateRoutinesUser} 
-                    updateIdGlobal={updateIdGlobal} 
+                    setOpenCreateRouitine={setOpenCreateRouitine}
+                    userId={id}
+                    updateRoutinesUser={updateRoutinesUser}
+                    updateIdGlobal={updateIdGlobal}
+                    setLoader={setLoader}
                 />
                 :
                 <></>
             }
+            {loader.state && loader.reason ? <Loader text={loader.reason} /> : <></>}
         </>
     )
 }

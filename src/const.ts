@@ -41,26 +41,26 @@ export const labels = {
     phone: "Telefono"
 }
 
-export const loaders = {
+export const basicLoaders = {
     init: 'Iniciado sesión',
     out: 'Cerrando sesión',
-    routine: 'Cargando rutina',
-    resume: 'Cargando resumen de usuario',
-    createRoutine: 'Creando Rutina',
-    createWarm: 'Creando calentamiento',
-    links: 'Cargando links de registro',
-    createMeal: 'Creando comida',
-    deleteMeal: 'Eliminando comida',
-    createTraining: 'Creando entrenamiento',
-    deleteTraining: 'Eliminando entrenamiento',
-    save: 'Guardando cambios',
-    users: 'Cargando usuarios',
-    createShift: 'Creando turno',
-    deleteShift: 'Eliminando turno',
-    payments: 'Cargando pagos',
-    createPayment: 'Crando pago',
-    removePayment: 'Eliminando pago',
-    update: 'Guardando cambios'
+    loading: 'Cargando',
+    create: 'Creando',
+    remove: 'Eliminando',
+    save: 'Guardando'
+}
+export const specificLoaders = {
+    routine: 'rutina',
+    warm: 'calentamiento',
+    day: 'día',
+    pay: 'pago',
+    shift: 'turno',
+    exercise: 'ejercicio',
+    meal: 'comida',
+    users: 'usuarios',
+    register: 'registros',
+    load: 'carga',
+    cahnges: 'cambios'
 }
 
 export const momentsFood = ['Desayuno', 'Media mañana', 'Almuerzo', 'Merienda', 'Cena']

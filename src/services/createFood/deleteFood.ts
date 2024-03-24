@@ -1,14 +1,15 @@
 import axios from "axios"
 import { deleteMealProps } from "../../types"
+import { basicLoaders, specificLoaders } from "../../const"
 
 
-export default async function deleteFood({ mealId, setRemove, updateMealsUser, id }: deleteMealProps) {
+export default async function deleteFood({ mealId, setLoader, updateMealsUser, id }: deleteMealProps) {
   try {
-    setRemove(true)
+    setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.meal}` })
     await axios.delete(`/comidas/delete/${mealId}`)
     const user = await axios.get(`/user/getOneUser/${id}`)
     updateMealsUser(user.data.Meals)
-    setRemove(false)
+    setLoader({ state: false })
   } catch (error) {
     console.log(error)
   }

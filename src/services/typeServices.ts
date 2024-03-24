@@ -3,7 +3,7 @@
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser, WarmUpsUser, extraTraining, meal, payments, shift } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
-import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, UsersComponent } from "../types";
+import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, SetLoader, UsersComponent } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
 export type onChangeProps = {
@@ -24,7 +24,7 @@ export type onSubmitProps = {
   navigate: NavigateFunction;
   addUser: Function,
   url?: Location<any>,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type modifiedExerciseProps = {
@@ -36,6 +36,10 @@ export type modifiedExerciseProps = {
     series?: number | undefined;
     reps?: string | undefined;
   }
+  setLoader: (value: React.SetStateAction<{
+    state: boolean;
+    reason?: string | undefined;
+  }>) => void
 }
 
 export type modifiedLoadsProps = {
@@ -45,6 +49,10 @@ export type modifiedLoadsProps = {
   routineId?: string,
   routineActual: Function
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: (value: React.SetStateAction<{
+    state: boolean;
+    reason?: string | undefined;
+  }>) => void
 }
 
 export type addExerciseProps = {
@@ -90,6 +98,7 @@ export type createDayRoutineProps = {
     reps?: string | undefined;
     link?: string | undefined
   }[]>>
+  setLoader: SetLoader
 }
 
 export type createDayWarmUpProps = {
@@ -107,6 +116,7 @@ export type createDayWarmUpProps = {
     reps?: string | undefined;
     link?: string | undefined
   }[]>>
+  setLoader: SetLoader
 }
 
 export type CreateExerciseInputsProps = {
@@ -169,6 +179,7 @@ export type deleteRoutineProps = {
   updateRoutinesUser: (routine: RoutinesUser) => void
   userId: string | null
   updateIdGlobal: (id: string | undefined) => void
+  setLoader: SetLoader
 }
 
 export type deleteWarmUpProps = {
@@ -176,6 +187,7 @@ export type deleteWarmUpProps = {
   updateWarmUpUser: (warmUps: WarmUpsUser) => void
   userId: string | null
   updateWarmUpIdGlobal: (id: string | undefined) => void
+  setLoader: SetLoader
 }
 
 export type confirmRoutineProps = createRoutineProps & {
@@ -188,6 +200,7 @@ export type confirmRoutineProps = createRoutineProps & {
   updateWarmUpIdGlobal?: (id: string | undefined) => void
   updateIdGlobal?: (id: string | undefined) => void
   id?: string
+  setLoader: SetLoader
 }
 
 export type deleteDayProps = {
@@ -213,7 +226,7 @@ export type submitChangesProps = {
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
-  setCreate: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -228,10 +241,9 @@ export type createFoodProps = {
   id: string | null
   updateMealsUser: (meals: meal[]) => void
   setAdd?: React.Dispatch<React.SetStateAction<boolean>>
-  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   mealId?: string
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
-  setSave?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type changeInputsProps = {
@@ -245,21 +257,20 @@ export type submitTrainingProps = {
   updateTrainingsUser: (trainings: extraTraining[]) => void
   id: string | null
   setTraining?: React.Dispatch<React.SetStateAction<boolean>>
-  setCreate?: React.Dispatch<React.SetStateAction<boolean>>
   trainId?: string
   setEdit?: React.Dispatch<React.SetStateAction<boolean>>
-  setSave?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type deleteTrainingProps = {
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   id: string
   updateTrainingsUser: (trainings: extraTraining[]) => void
   userId: string | null
 }
 
 export type confirmShift = {
-  setCreate: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
   GymId: string | null
   id: string | null
   selectDay: {
@@ -273,7 +284,7 @@ export type deleteShiftProps = {
   updateShiftsUser: (shifts: shift[]) => void
   userId: string | null
   shiftId: string
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type subscriptionProps = {
@@ -289,7 +300,7 @@ export type deleteSubscriptionProps = {
   updatePaymentsUser: (payments: payments[]) => void
   userId: string | null
   id: string
-  setRemove: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type createPaymentProps = {
@@ -305,5 +316,8 @@ export type updateLoadProps = {
   routineActual?: ((Days: Routine) => void)
   routineId?: string
   setLoad: React.Dispatch<React.SetStateAction<boolean>>
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: (value: React.SetStateAction<{
+    state: boolean;
+    reason?: string | undefined;
+  }>) => void
 }

@@ -6,9 +6,6 @@ import TableCell from './TableCell';
 import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
 import { updateLoad } from "../../../services/routine/exercises/updateLoad";
-import useLoaders from "../../../hook/Components/useLoaders";
-import Loader from "../../Loader";
-import { loaders } from "../../../const";
 
 export default function TableRow({
     id,
@@ -17,7 +14,8 @@ export default function TableRow({
     reps,
     link,
     Loads,
-    routineOrWarmUp
+    routineOrWarmUp,
+    setLoader
 }: TableRowComponentProps) {
     const {
         open,
@@ -34,7 +32,6 @@ export default function TableRow({
         setNewLoads
     } = useTabelRow()
     const { routineActual, routineId, warmUpActual, warmUpId, weeks } = routineOrWarmUp
-    const { loading, setLoading } = useLoaders()
 
     return (
         <>
@@ -62,12 +59,13 @@ export default function TableRow({
                         reps={reps}
                         setOpen={setOpen}
                         routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId }}
+                        setLoader={setLoader}
                     />
                     :
                     <></>
                 }
                 {openLoad ?
-                    <ModalAddLoad key={id} id={id} setOpenLoad={setOpenLoad} />
+                    <ModalAddLoad key={id} id={id} setOpenLoad={setOpenLoad} setLoader={setLoader} />
                     :
                     <></>
                 }
@@ -91,14 +89,13 @@ export default function TableRow({
                             Carga:
                             <input type='text' onChange={(e) => setNewLoads(e.target.value)}></input>
                         </label>
-                        <button onClick={() => updateLoad({ id: idLoad, newLoads, routineActual, routineId, setLoad, setLoading })}>Guardar</button>
+                        <button onClick={() => updateLoad({ id: idLoad, newLoads, routineActual, routineId, setLoad, setLoader })}>Guardar</button>
                         <button onClick={() => setLoad(!load)}>Cancelar</button>
                     </div>
                     :
                     <></>
                 }
             </tr >
-            {loading ? <Loader text={loaders.update} /> : <></>}
         </>
     )
 }

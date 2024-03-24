@@ -9,7 +9,7 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineOrWarmUp }: DetailComponenProps) {
+export default function Detail({ day, i, routineOrWarmUp, setLoader }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
     const { weeks, routineActual, routineId, warmUpActual, warmUpId } = routineOrWarmUp
     return (
@@ -20,7 +20,8 @@ export default function Detail({ day, i, routineOrWarmUp }: DetailComponenProps)
                 </summary>
                 <Table
                     day={day}
-                    routineOrWarmUp={{routineActual, routineId, warmUpActual, warmUpId, weeks}}
+                    routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId, weeks }}
+                    setLoader={setLoader}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                 {weeks && routineActual ?

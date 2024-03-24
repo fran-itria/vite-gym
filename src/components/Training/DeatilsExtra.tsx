@@ -8,7 +8,7 @@ import { useUserActions } from "../../hook/useUserActions";
 import CreateIcon from '@mui/icons-material/Create';
 
 
-export default function DetailsExtra({ extra, setRemove, setEdit, setTrainId, setDefaultValues }: DetailsExtraProps) {
+export default function DetailsExtra({ extra, setLoader, setEdit, setTrainId, setDefaultValues }: DetailsExtraProps) {
     const { id } = useAppSelector(state => state.user)
     const { updateTrainingsUser } = useUserActions()
     return (
@@ -34,7 +34,7 @@ export default function DetailsExtra({ extra, setRemove, setEdit, setTrainId, se
                 }} />
                 <DeleteIcon
                     sx={{ color: theme.palette.tashIcon.main }}
-                    onClick={() => deleteTraining({ id: extra.id, setRemove, updateTrainingsUser, userId: id })}
+                    onClick={() => deleteTraining({ id: extra.id, setLoader, updateTrainingsUser, userId: id })}
                 />
             </ThemeProvider>
         </details>

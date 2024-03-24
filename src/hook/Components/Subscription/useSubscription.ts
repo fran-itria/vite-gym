@@ -4,7 +4,7 @@ import axios from "axios"
 import { useLocation } from "react-router-dom"
 import { useAppSelector } from "../../store"
 import { useUserActions } from "../../useUserActions"
-import { storage } from "../../../const"
+import { basicLoaders, specificLoaders, storage } from "../../../const"
 import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
 import useLoaders from "../useLoaders"
@@ -15,13 +15,15 @@ export default function useSubscription() {
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
-    const { loading, create, setCreate, remove, setRemove } = useLoaders()
+    const { loader, setLoader } = useLoaders()
 
     useEffect(() => {
+        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.pay}` })
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 setLinkMp(response.data.linkMp)
                 setAmount(response.data.amount)
+                setLoader({ state: false })
             })
     }, [GymId])
 
@@ -36,12 +38,11 @@ export default function useSubscription() {
                     const init = await login({ user, password })
                     addUser(init.data.user)
                 } else if (approved && amount) {
-                    setCreate(true)
+                    setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.pay}` })
                     await createPayment({ amount, GymId, id, updatePaymentsUser })
                     const user = await axios.put('/user', { id, pay: true })
-                    console.log(user)
                     updatePayUser(user.data.pay)
-                    setCreate(false)
+                    setLoader({ state: false })
                 }
             } catch (error) {
                 console.log(error)
@@ -49,5 +50,5 @@ export default function useSubscription() {
         })()
     }, [amount])
 
-    return { admin, Payments, linkMp, amount, updatePaymentsUser, id, create, loading, remove, setRemove }
+    return { admin, Payments, linkMp, amount, updatePaymentsUser, id, loader, setLoader }
 }

@@ -3,10 +3,9 @@ import SubscriptionAdmin from "../Admin/Subscription/SubscriptionAdmin"
 import useSubscription from "../../hook/Components/Subscription/useSubscription";
 import TableSubscription from "./TableSubscription";
 import Loader from "../Loader";
-import { loaders } from "../../const";
 
 export default function Subscription() {
-    const { Payments, admin, amount, id, linkMp, updatePaymentsUser, create, remove, setRemove } = useSubscription()
+    const { Payments, admin, amount, id, linkMp, updatePaymentsUser, loader, setLoader } = useSubscription()
 
     return (
         admin ?
@@ -21,17 +20,12 @@ export default function Subscription() {
                 </button>
                 {Payments && Payments.length > 0 ?
                     <>
-                        <TableSubscription Payments={Payments} id={id} updatePaymentsUser={updatePaymentsUser} setRemove={setRemove} />
+                        <TableSubscription Payments={Payments} id={id} updatePaymentsUser={updatePaymentsUser} setLoader={setLoader} />
                     </>
                     :
                     <></>
                 }
-                {create ? <Loader text={loaders.createPayment} />
-                    :
-                    remove ? <Loader text={loaders.removePayment} />
-                        :
-                        <></>
-                }
+                {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
             </>
     )
 }

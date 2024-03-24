@@ -1,10 +1,7 @@
 import { useState } from "react";
 
 export default function useLoaders() {
-    const [create, setCreate] = useState<boolean>(false)
-    const [remove, setRemove] = useState<boolean>(false)
-    const [save, setSave] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(false)
+    const [loader, setLoader] = useState<{ state: boolean, reason?: string }>({ state: false })
 
-    return { create, setCreate, remove, setRemove, save, setSave, loading, setLoading }
+    return { loader, setLoader }
 }

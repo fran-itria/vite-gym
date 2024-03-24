@@ -16,7 +16,8 @@ export default function CreateRoutine({
     updateWarmUpUser,
     updateWarmUpIdGlobal,
     updateIdGlobal,
-    id
+    id,
+    setLoader
 }: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -56,6 +57,7 @@ export default function CreateRoutine({
                                     pagDays={pagDays}
                                     setRoutine={setRoutine}
                                     setPagDays={setPagDays}
+                                    setLoader={setLoader}
                                 />
                         }
                     </div>
@@ -88,29 +90,31 @@ export default function CreateRoutine({
                             </table>
                             <button onClick={() => {
                                 if (!setUsers && !gymName) {
-                                    confirmRoutine({ 
-                                      updateRoutinesUser,
-                                      updateIdGlobal,
-                                      updateWarmUpUser, 
-                                      updateWarmUpIdGlobal, 
-                                      setOpenCreateRouitine,
-                                      userId, 
-                                      days: routine,
-                                      createWarm 
+                                    confirmRoutine({
+                                        updateRoutinesUser,
+                                        updateIdGlobal,
+                                        updateWarmUpUser,
+                                        updateWarmUpIdGlobal,
+                                        setOpenCreateRouitine,
+                                        userId,
+                                        days: routine,
+                                        createWarm,
+                                        setLoader
                                     })
                                 } else {
-                                    confirmRoutine({ 
-                                      updateRoutinesUser,
-                                      updateIdGlobal,
-                                      updateWarmUpUser, 
-                                      updateWarmUpIdGlobal, 
-                                      setOpenCreateRouitine, 
-                                      userId, 
-                                      days: routine, 
-                                      createWarm, 
-                                      setUsers, 
-                                      gymName,
-                                      id
+                                    confirmRoutine({
+                                        updateRoutinesUser,
+                                        updateIdGlobal,
+                                        updateWarmUpUser,
+                                        updateWarmUpIdGlobal,
+                                        setOpenCreateRouitine,
+                                        userId,
+                                        days: routine,
+                                        createWarm,
+                                        setUsers,
+                                        gymName,
+                                        id,
+                                        setLoader
                                     })
                                 }
                             }}>

@@ -5,7 +5,6 @@ import DetailsExtra from "./DeatilsExtra"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FormCreateTraining from "./FormCreateTraining";
 import Loader from "../Loader";
-import { loaders } from "../../const";
 import useLoaders from "../../hook/Components/useLoaders";
 
 
@@ -16,7 +15,7 @@ export default function Training() {
     const [edit, setEdit] = useState<boolean>(false)
     const [trainId, setTrainId] = useState<string>()
     const [defaultValues, setDefaultValues] = useState<InputsCreateTraining>()
-    const { create, setCreate, save, setSave, remove, setRemove } = useLoaders()
+    const { loader, setLoader } = useLoaders()
 
     return (
         <>
@@ -25,7 +24,7 @@ export default function Training() {
                     {ExtraTrainings.map((extra: Extra) => {
                         return <DetailsExtra
                             extra={extra}
-                            setRemove={setRemove}
+                            setLoader={setLoader}
                             setEdit={setEdit}
                             setTrainId={setTrainId}
                             setDefaultValues={setDefaultValues}
@@ -41,18 +40,12 @@ export default function Training() {
                 </>
             }
             {training ?
-                <FormCreateTraining setTraining={setTraining} setCreate={setCreate} />
+                <FormCreateTraining setTraining={setTraining} setLoader={setLoader} />
                 : edit ?
-                    <FormCreateTraining trainId={trainId} defaultValues={defaultValues} setEdit={setEdit} setSave={setSave} />
+                    <FormCreateTraining trainId={trainId} defaultValues={defaultValues} setEdit={setEdit} setLoader={setLoader} />
                     :
                     <></>}
-            {create ?
-                <Loader text={loaders.createTraining} />
-                : remove ?
-                    <Loader text={loaders.deleteTraining} />
-                    : save ? <Loader text={loaders.save} />
-                        : <></>
-            }
+            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
         </>
     )
 }

@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { createFoodProps } from "../typeServices";
+import { basicLoaders, specificLoaders } from "../../const";
 
-export default async function createFood({ e, id, inputs, setAdd, updateMealsUser, setCreate, mealId, setEdit, setSave }: createFoodProps) {
+export default async function createFood({ e, id, inputs, setAdd, updateMealsUser, mealId, setEdit, setLoader }: createFoodProps) {
     e.preventDefault()
     try {
-        if (setCreate && setAdd) {
-            setCreate(true)
-            await axios.post('/comidas', { ...inputs, userId: id })
-            setCreate(false)
+        if (setAdd) {
             setAdd(false)
-        } else if (mealId && setEdit && setSave) {
-            setSave(true)
+            setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.meal}` })
+            await axios.post('/comidas', { ...inputs, userId: id })
+            setLoader({ state: false })
+        } else if (mealId && setEdit) {
+            setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.meal}` })
             await axios.put('/comidas', { ...inputs, id: mealId })
             setEdit(false)
-            setSave(false)
+            setLoader({ state: false })
         }
         const user = await axios.get(`/user/getOneUser/${id}`)
         updateMealsUser(user.data.Meals)

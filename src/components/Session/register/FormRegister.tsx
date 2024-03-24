@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { InputsRegister } from "../../../types";
-import { labels, loaders, namesElements, typesElement } from "../../../const";
+import { labels, namesElements, typesElement } from "../../../const";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import onSubmit from "../../../services/form/onSubmit";
 import FormElement from "../FormElement";
@@ -16,7 +16,7 @@ export default function FormRegister() {
     const params = useParams()
     const navigate = useNavigate()
     const { addUser } = useUserActions()
-    const { create, setCreate } = useLoaders()
+    const { loader, setLoader } = useLoaders()
 
     useEffect(() => {
         const { id } = params
@@ -28,8 +28,8 @@ export default function FormRegister() {
     }, [])
 
     return (
-        !create ?
-            <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setCreate })}>
+        !loader ?
+            <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setLoader })}>
                 {url.pathname.includes("admin") ?
                     <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
                     :
@@ -47,6 +47,6 @@ export default function FormRegister() {
                 <button>Registrarme</button>
             </form>
             :
-            <Loader text={loaders.init} />
+            <Loader text={loader.reason ? loader.reason : ''} />
     )
 }

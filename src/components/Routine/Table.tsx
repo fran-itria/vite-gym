@@ -4,10 +4,10 @@ import { Exercise, TableComponentProps } from '../../types';
 import TableHead from './TableHead';
 import TableRow from './TableRow/TableRow';
 
-export default function Table({ day, routineOrWarmUp}: TableComponentProps) {
+export default function Table({ day, routineOrWarmUp, setLoader }: TableComponentProps) {
 
     const { weeks } = routineOrWarmUp
-    
+
     return (
         <table>
             <>
@@ -24,6 +24,7 @@ export default function Table({ day, routineOrWarmUp}: TableComponentProps) {
                                 link={exercise.link}
                                 Loads={exercise.Loads ? exercise.Loads : undefined}
                                 routineOrWarmUp={routineOrWarmUp}
+                                setLoader={setLoader}
                             />
                         )
                     })

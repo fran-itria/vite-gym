@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ThemeProvider } from "styled-components"
 import deleteSubscription from "../../services/subscription/deleteSubscription"
 
-export default function TableSubscription({ Payments, id, updatePaymentsUser, setRemove }: TableSubscriptionProps) {
+export default function TableSubscription({ Payments, id, updatePaymentsUser, setLoader }: TableSubscriptionProps) {
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -28,7 +28,7 @@ export default function TableSubscription({ Payments, id, updatePaymentsUser, se
                                     <ThemeProvider theme={theme}>
                                         <DeleteIcon
                                             sx={{ color: theme.palette.tashIcon.main }}
-                                            onClick={() => deleteSubscription({ id: payment.id, updatePaymentsUser, userId: id, setRemove })}>
+                                            onClick={() => deleteSubscription({ id: payment.id, updatePaymentsUser, userId: id, setLoader })}>
                                         </DeleteIcon>
                                     </ThemeProvider>
                                 </StyledTableCell>

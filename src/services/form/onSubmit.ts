@@ -3,13 +3,13 @@ import axios from "axios";
 import { login } from "../login/login";
 import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
-import { storage } from "../../const";
+import { basicLoaders, storage } from "../../const";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoading }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader }: onSubmitProps) {
     event.preventDefault();
     try {
+        setLoader({ state: true, reason: `${basicLoaders.init}` })
         if (!url) {
-            setLoading(true)
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
@@ -19,7 +19,6 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
-            setLoading(true)
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
@@ -28,7 +27,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             }
         }
     } catch (error: any) {
-        setLoading(false)
+        setLoader({ state: false })
         window.alert(error.response.data.Error);
     }
 }

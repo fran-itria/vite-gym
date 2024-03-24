@@ -1,12 +1,10 @@
 import Switch from '@mui/material/Switch';
 import CreateRoutine from '../../Routine/CreateRoutine';
-import { UsersComponent } from '../../../types';
+import { SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
-import Loader from '../../Loader';
-import { loaders } from '../../../const';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
 
-export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit}: {
+export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader }: {
     gymName?: string
     userId: string
     setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
@@ -14,6 +12,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     ban: boolean
     subscription: boolean
     setEdit: React.Dispatch<React.SetStateAction<boolean>>
+    setLoader: SetLoader
 }) {
     const {
         createRoutine,
@@ -22,8 +21,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setCreateWarm,
         inputs,
         setInputs,
-        create,
-        setCreate,
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
@@ -33,23 +30,23 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     const change = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name
         const value = e.target.checked
-        setInputs(prev => {return {...prev, [name]: value}})
+        setInputs(prev => { return { ...prev, [name]: value } })
     }
     return (
         <>
             <menu>
-                <form onSubmit={(e) => submitChanges({e, inputs, userId, gymName, setUsers, setCreate, setEdit})}>
+                <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit })}>
                     <label>
                         Admin:
-                        <Switch name='admin' onChange={(e) => change(e)} defaultChecked={admin ? true : false}/>
+                        <Switch name='admin' onChange={(e) => change(e)} defaultChecked={admin ? true : false} />
                     </label>
                     <label>
                         Suscripción:
-                        <Switch name='pay' onChange={(e) => change(e)} defaultChecked={subscription ? true : false}/>
+                        <Switch name='pay' onChange={(e) => change(e)} defaultChecked={subscription ? true : false} />
                     </label>
                     <label>
                         Ban:
-                        <Switch name='ban' onChange={(e) => change(e)} defaultChecked={ban ? true : false}/>
+                        <Switch name='ban' onChange={(e) => change(e)} defaultChecked={ban ? true : false} />
                     </label>
                     <button>Guardar cambios</button>
                 </form>
@@ -63,8 +60,10 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     userId={userId}
                     setOpenCreateRouitine={setCreateRoutine}
                     gymName={gymName}
-                    setUsers={setUsers} 
-                    id={id} />
+                    setUsers={setUsers}
+                    id={id ? id : undefined}
+                    setLoader={setLoader}
+                />
                 :
                 <></>
             }
@@ -77,12 +76,9 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     gymName={gymName}
                     setUsers={setUsers}
                     createWarm={createWarm}
-                    id={id} />
-                :
-                <></>
-            }
-            {create ? 
-                <Loader text={loaders.save}/>
+                    id={id ? id : undefined}
+                    setLoader={setLoader}
+                />
                 :
                 <></>
             }

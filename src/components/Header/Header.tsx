@@ -4,12 +4,15 @@ import { useAppSelector } from "../../hook/store";
 import { useState } from "react";
 import { logout } from "../../services/logout/logout";
 import HomeAdmin from "../Admin/Home/HomeAdmin";
+import useLoaders from "../../hook/Components/useLoaders";
+import Loader from "../Loader";
 
 export default function Header() {
     const { pathname } = useLocation()
-    const { name, surname, id, admin, Gym} = useAppSelector(state => state.user)
+    const { name, surname, id, admin, Gym } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
+    const { loader, setLoader } = useLoaders()
 
     return (
         <>
@@ -21,7 +24,7 @@ export default function Header() {
                     {menu ?
                         <div className={style.menu}>
                             <button>Perfil</button>
-                            <button onClick={() => logout(id, navigate)}>Cerrar sesión</button>
+                            <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
                         </div>
                         :
                         <></>
@@ -56,6 +59,7 @@ export default function Header() {
                 :
                 <HomeAdmin />
             }
+            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
         </>
     )
 }

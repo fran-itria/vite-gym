@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios"
 import { submitChangesProps } from "../typeServices"
+import { basicLoaders, specificLoaders } from "../../const"
 
-export default async function submitChanges({e, setCreate, gymName, inputs, setUsers, userId, setEdit}: submitChangesProps){
+export default async function submitChanges({ e, setLoader, gymName, inputs, setUsers, userId, setEdit }: submitChangesProps) {
     e.preventDefault()
     try {
-        await axios.put('/user', { ...inputs, id: userId})
-        setCreate(true)
+        setEdit(false)
+        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.cahnges}` })
+        await axios.put('/user', { ...inputs, id: userId })
         const users = await axios.get(`/user/forGym/${gymName}`)
-        if(users.status == 200) {
-            setUsers(users.data)
-            setCreate(false)
-            setEdit(false)
-        }
+        setLoader({ state: false })
+        setUsers(users.data)
     } catch (error: any) {
         console.log(error)
         window.alert(error.response.data.Error)
