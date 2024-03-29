@@ -36,6 +36,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader }: DetailCom
                         routineActual={routineActual ? routineActual : undefined}
                         warmUpId={warmUpId ? warmUpId : undefined}
                         warmUpActual={warmUpActual ? warmUpActual : undefined}
+                        setLoader={setLoader}
                     />
                     :
                     <></>

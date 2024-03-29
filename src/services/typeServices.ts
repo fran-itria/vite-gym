@@ -70,6 +70,7 @@ export type addExerciseProps = {
   routineActual?: ((Days: Routine) => void) | undefined
   warmUpId?: string
   warmUpActual?: ((Days: WarmUp) => void) | undefined
+  setLoader: SetLoader
 }
 
 export type onChangeInputsProps = {
@@ -218,6 +219,7 @@ export type deleteExerciseProps = {
   warmUpId?: string
   warmUpActual?: ((Days: WarmUp) => void)
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
+  setLoader: SetLoader
 }
 
 export type submitChangesProps = {

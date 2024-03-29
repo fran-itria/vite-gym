@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import axios from "axios";
 import { deleteExerciseProps } from "../../typeServices";
+import { basicLoaders, specificLoaders } from "../../../const";
 
 export default async function deleteExercise({
     idExercise,
@@ -8,21 +9,21 @@ export default async function deleteExercise({
     routineActual,
     routineId,
     warmUpActual,
-    warmUpId
+    warmUpId,
+    setLoader
 }: deleteExerciseProps) {
     try {
-        const response = await axios.delete(`/ejercicio/delete/${idExercise}`)
+        setConfirmDelete(confirmDelete => !confirmDelete)
+        setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.exercise}` })
+        await axios.delete(`/ejercicio/delete/${idExercise}`)
         if (routineId && routineActual) {
             const routine = await axios.get(`/rutina/${routineId}`)
-            if (response.status == 200) window.alert(response.data.Message)
-            setConfirmDelete(confirmDelete => !confirmDelete)
             routineActual(routine.data)
         } else if (warmUpId && warmUpActual) {
             const routine = await axios.get(`/calentamiento/${warmUpId}`)
-            if (response.status == 200) window.alert(response.data.Message)
-            setConfirmDelete(confirmDelete => !confirmDelete)
             warmUpActual(routine.data)
         }
+        setLoader({ state: false })
     } catch (error) {
         console.log(error)
         window.alert(error)

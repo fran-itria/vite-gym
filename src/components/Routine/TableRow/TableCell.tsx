@@ -6,7 +6,19 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { TableCellComponentProps } from '../../../types';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-export default function TableCell({ Loads, name, series, reps, link, weeks, setOpenLoad, setConfirmDelete, setOpen, setLoad, setIdLoad }: TableCellComponentProps) {
+export default function TableCell({
+    Loads,
+    name,
+    series,
+    reps,
+    link,
+    weeks,
+    setOpenLoad,
+    setConfirmDelete,
+    setOpen,
+    setLoad,
+    setIdLoad
+}: TableCellComponentProps) {
 
     return (
         <>

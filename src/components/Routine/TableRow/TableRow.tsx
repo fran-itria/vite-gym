@@ -79,6 +79,7 @@ export default function TableRow({
                         routineId={routineId}
                         warmUpActual={warmUpActual}
                         warmUpId={warmUpId}
+                        setLoader={setLoader}
                     />
                     :
                     <></>

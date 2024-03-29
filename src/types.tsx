@@ -143,6 +143,7 @@ export type CreateExerciseComponentProps = {
   warmUpActual?: (Days: WarmUp) => void
   routineId?: string
   routineActual?: (Days: Routine) => void
+  setLoader: SetLoader;
 }
 
 export type TableCellComponentProps = Exercise & {
@@ -260,6 +261,7 @@ export type ConfirmDeleteComponentProps = {
   routineActual?: (Days: Routine) => void
   warmUpActual?: ((Days: WarmUp) => void)
   warmUpId?: string
+  setLoader: SetLoader
 }
 
 export type InputsCreateFood = {

@@ -3,7 +3,7 @@ import addExerciseFunction from "../../../services/routine/exercises/addExercise
 import createExerciseInputs from "../../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import { CreateExerciseComponentProps } from "../../../types";
 
-export default function CreateExercise({ setAddExercise, day, routineActual, routineId, warmUpActual, warmUpId }: CreateExerciseComponentProps) {
+export default function CreateExercise({ setAddExercise, day, routineActual, routineId, warmUpActual, warmUpId, setLoader }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
 
     return (
@@ -18,7 +18,8 @@ export default function CreateExercise({ setAddExercise, day, routineActual, rou
                         inputs,
                         routineId,
                         setAddExercise,
-                        routineActual
+                        routineActual,
+                        setLoader
                     })
                 } else if (warmUpId && warmUpActual) addExerciseFunction({
                     e,
@@ -27,21 +28,22 @@ export default function CreateExercise({ setAddExercise, day, routineActual, rou
                     inputs,
                     warmUpId,
                     warmUpActual,
-                    setAddExercise
+                    setAddExercise,
+                    setLoader
                 })
             }}
         >
             <label>
                 Nombre del ejercicio:
-                <input name="exerciseName" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
+                <input name="exerciseName" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
             </label>
             <label>
                 Series:
-                <input name="series" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
+                <input name="series" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
             </label>
             <label>
                 Repeticiones:
-                <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
+                <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
             </label>
             <label>
                 Link de video del ejercicio:

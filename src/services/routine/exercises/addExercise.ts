@@ -1,12 +1,25 @@
 import axios from "axios";
 import { addExerciseProps } from "../../typeServices";
+import { basicLoaders, specificLoaders } from "../../../const";
 
-export default async function addExerciseFunction({ e, dayId, exercise, inputs, routineId, setAddExercise, routineActual, warmUpId, warmUpActual }: addExerciseProps) {
+export default async function addExerciseFunction({
+    e,
+    dayId,
+    exercise,
+    inputs,
+    routineId,
+    setAddExercise,
+    routineActual,
+    warmUpId,
+    warmUpActual,
+    setLoader
+}: addExerciseProps) {
     e.preventDefault()
     try {
-        console.log(inputs)
+        setAddExercise(prev => !prev)
+        setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.exercise}` })
         const { exerciseName, reps, series, link } = inputs
-        const response = await axios.post("/ejercicio/createOneEjercicio", {
+        await axios.post("/ejercicio/createOneEjercicio", {
             dayId,
             exercise,
             exerciseName,
@@ -16,16 +29,12 @@ export default async function addExerciseFunction({ e, dayId, exercise, inputs, 
         })
         if (routineId && routineActual) {
             const routine = await axios.get(`/rutina/${routineId}`)
-            if (response.status == 200) window.alert('Ejercicio creado exitosamente')
-            console.log(routine.data)
-            setAddExercise(prev => !prev)
             routineActual(routine.data)
         } else if (warmUpId && warmUpActual) {
             const routine = await axios.get(`/calentamiento/${warmUpId}`)
-            if (response.status == 200) window.alert('Ejercicio creado exitosamente')
-            setAddExercise(prev => !prev)
             warmUpActual(routine.data)
         }
+        setLoader({ state: false })
     } catch (error) {
         console.log(error)
         window.alert(error)
