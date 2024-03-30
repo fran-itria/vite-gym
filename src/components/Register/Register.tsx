@@ -13,7 +13,7 @@ export default function Register() {
     const [allIds, setAllIds] = useState<{ id: string, gym: string }[]>()
     const { Gym } = useAppSelector(state => state.user)
     const { loader, setLoader } = useLoaders()
-    const baseUrl = `http://127.0.0.1:5173/register/${Gym?.name}/`
+    const baseUrl = `http://localhost:5173/register/${Gym?.name}/`
 
     const createLink = async () => {
         const id = await axios.post('/idRegistro', { gym: Gym?.name })
