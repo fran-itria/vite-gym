@@ -20,7 +20,6 @@ export default async function createFood({ e, id, inputs, setAdd, updateMealsUse
         const user = await axios.get(`/user/getOneUser/${id}`)
         updateMealsUser(user.data.Meals)
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 } 

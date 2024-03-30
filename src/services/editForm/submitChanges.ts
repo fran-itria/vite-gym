@@ -13,7 +13,6 @@ export default async function submitChanges({ e, setLoader, gymName, inputs, set
         setLoader({ state: false })
         setUsers(users.data)
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 }

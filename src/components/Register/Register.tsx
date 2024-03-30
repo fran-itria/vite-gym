@@ -17,29 +17,24 @@ export default function Register() {
 
     const createLink = async () => {
         const id = await axios.post('/idRegistro', { gym: Gym?.name })
-        console.log(id.data)
         setLink(baseUrl + id.data.id)
     }
 
     const copy = (text: string) => {
         navigator.clipboard.writeText(text)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
     }
 
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.register}` })
-        const all = async () => {
+        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.register}` });
+        (async () => {
             try {
                 const response = await axios.get('/idRegistro')
                 setLoader({ state: false })
                 setAllIds(response.data)
             } catch (error) {
                 setLoader({ state: false })
-                console.log(error)
             }
-        }
-        all()
+        })()
     }, [])
 
     return (

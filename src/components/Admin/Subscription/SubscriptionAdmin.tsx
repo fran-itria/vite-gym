@@ -28,7 +28,7 @@ export default function SubscriptionAdmin() {
                 setPayments(response.data.Payments)
                 setLoader({ state: false })
             })
-            .catch(error => console.log(error))
+            .catch(error => window.alert(error.data.Error))
     }, [])
 
     return (

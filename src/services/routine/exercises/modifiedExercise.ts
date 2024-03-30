@@ -31,7 +31,6 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
         }
         setLoader({ state: false })
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 }
@@ -41,8 +40,6 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
         setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.load}` })
         if (id && setLoad) {
             setLoad(false)
-            console.log(id)
-            console.log('Cambiando carga')
             await axios.put('/cargas', {
                 id,
                 newLoads: load
@@ -50,7 +47,6 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
         }
         else if (setOpenLoad) {
             setOpenLoad(false)
-            console.log('Creando carga')
             await axios.post('/cargas', {
                 exerciseId,
                 weight: load,
@@ -63,8 +59,7 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
                     routineActual(response.data)
                 })
         setLoader({ state: false })
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }

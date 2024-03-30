@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { addExerciseProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
@@ -35,8 +36,7 @@ export default async function addExerciseFunction({
             warmUpActual(routine.data)
         }
         setLoader({ state: false })
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 } 

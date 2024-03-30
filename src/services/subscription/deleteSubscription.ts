@@ -12,7 +12,6 @@ export default async function deleteSubscription({ id, updatePaymentsUser, userI
         updatePaymentsUser(user.data.Payments)
         setLoader({ state: false })
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 }

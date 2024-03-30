@@ -12,7 +12,6 @@ export default async function deleteTraining({ id, setLoader, updateTrainingsUse
         updateTrainingsUser(user.data.ExtraTrainings)
         setLoader({ state: false })
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios"
 import { NavigateFunction } from "react-router-dom"
 import { basicLoaders, storage } from "../../const"
@@ -14,8 +15,7 @@ export const logout = async (id: string | null, navigate: NavigateFunction, setL
             navigate('/')
         }
         return logoutUser
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }

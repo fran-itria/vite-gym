@@ -17,13 +17,12 @@ export default function ShiftsAdmin() {
         setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.shift}s` })
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
-                console.log(response.data)
                 const shifts: { id: string, day: string, hour: string }[] = response.data.Shifts
                 const today = shifts.filter(shift => shift.day == date)
                 setShifts(today)
                 setLoader({ state: false })
             })
-            .catch(error => console.log(error))
+            .catch(error => window.alert(error.data.Error))
     }, [])
 
     return (

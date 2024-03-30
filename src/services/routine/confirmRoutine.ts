@@ -58,7 +58,6 @@ export default async function confirmRoutine({
         }
         setLoader({ state: false })
     } catch (error: any) {
-        console.log(error)
         window.alert(error.response.data.Error)
     }
 }

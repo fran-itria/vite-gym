@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import axios from "axios"
 import { deleteDayProps } from "../typeServices"
@@ -13,8 +14,7 @@ export default async function deleteDay({ id, routineId, routineActual, warmUpId
             const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
             warmUpActual(warmUp.data)
         }
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }

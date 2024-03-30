@@ -25,7 +25,7 @@ const useWarmUpRoutine = () => {
                     warmUpActual(response.data)
                     setLoader({ state: false })
                 })
-                .catch(error => console.log(error))
+                .catch(error => window.alert(error.data.Error))
         } else warmUpActual({ Days: undefined })
     }, [warmUpId.id])
 

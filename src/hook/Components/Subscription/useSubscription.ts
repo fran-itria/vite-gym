@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -44,8 +45,8 @@ export default function useSubscription() {
                     updatePayUser(user.data.pay)
                     setLoader({ state: false })
                 }
-            } catch (error) {
-                console.log(error)
+            } catch (error: any) {
+                window.alert(error.data.Error)
             }
         })()
     }, [amount])

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import axios from "axios";
 import { deleteExerciseProps } from "../../typeServices";
@@ -24,8 +25,7 @@ export default async function deleteExercise({
             warmUpActual(routine.data)
         }
         setLoader({ state: false })
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }

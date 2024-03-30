@@ -27,7 +27,7 @@ const useInformation = () => {
                     routineActual(response.data)
                     setLoader({ state: false })
                 })
-                .catch(error => console.log(error))
+                .catch(error => window.alert(error.data.Error))
         } else {
             routineActual({ weeks: 0, Days: undefined })
         }

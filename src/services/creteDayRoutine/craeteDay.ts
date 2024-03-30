@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { createDayRoutineProps, createDayWarmUpProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
@@ -23,15 +24,13 @@ export async function createDayRoutine({
                 exercises: dayCreate
             }
         })
-        // if (response.status == 200) window.alert('Día creado exitosamente')
         setDayCreate([])
         setPag(0)
         setTotalExercise('0')
         routineActual(response.data)
         setLoader({ state: false })
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }
 
@@ -56,15 +55,12 @@ export async function createDayWarmUp({
                 exercises: dayCreate
             }
         })
-        // if (response.status == 200) window.alert('Día de calentamiento creado exitosamente')
-        console.log(response.data)
         setDayCreate([])
         setPag(0)
         setTotalExercise('0')
         warmUpActual(response.data)
         setLoader({ state: false })
-    } catch (error) {
-        console.log(error)
-        window.alert(error)
+    } catch (error: any) {
+        window.alert(error.response.data.Error)
     }
 }
