@@ -28,7 +28,7 @@ export default function FormRegister() {
     }, [])
 
     return (
-        !loader ?
+        !loader.state ?
             <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setLoader })}>
                 {url.pathname.includes("admin") ?
                     <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
