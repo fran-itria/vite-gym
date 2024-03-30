@@ -36,28 +36,33 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
     }
 }
 
-export async function modifiedLoads({ exerciseId, id, load, routineId, routineActual, setOpenLoad, setLoader }: modifiedLoadsProps) {
+export async function modifiedLoads({ exerciseId, id, load, routineActual, routineId, setOpenLoad, setLoad, setLoader, weekLoad }: modifiedLoadsProps) {
     try {
-        if (id) {
-            const response = await axios.put('/cargas', {
+        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.load}` })
+        if (id && setLoad) {
+            setLoad(false)
+            console.log(id)
+            console.log('Cambiando carga')
+            await axios.put('/cargas', {
                 id,
                 newLoads: load
             })
-            if (response.status == 200) window.alert('Carga modificada correctamente')
         }
-        else {
+        else if (setOpenLoad) {
             setOpenLoad(false)
-            setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.load}` })
+            console.log('Creando carga')
             await axios.post('/cargas', {
                 exerciseId,
-                weight: load
+                weight: load,
+                week: weekLoad
             })
+        }
+        if (routineActual)
             axios.get(`/rutina/${routineId}`)
                 .then(response => {
                     routineActual(response.data)
                 })
-            setLoader({ state: false })
-        }
+        setLoader({ state: false })
     } catch (error) {
         console.log(error)
         window.alert(error)

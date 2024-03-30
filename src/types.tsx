@@ -78,6 +78,7 @@ export type ModalAddLoadComponentProps = {
   id: string | undefined
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: SetLoader
+  weekLoad: number
 }
 
 
@@ -153,6 +154,7 @@ export type TableCellComponentProps = Exercise & {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   setLoad: React.Dispatch<React.SetStateAction<boolean>>
   setIdLoad: React.Dispatch<React.SetStateAction<string>>
+  setWeekLoad: React.Dispatch<React.SetStateAction<number>>
 }
 
 export type RoutineOrWarmUp = {

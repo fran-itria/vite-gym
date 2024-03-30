@@ -17,7 +17,8 @@ export default function TableCell({
     setConfirmDelete,
     setOpen,
     setLoad,
-    setIdLoad
+    setIdLoad,
+    setWeekLoad
 }: TableCellComponentProps) {
 
     return (
@@ -63,6 +64,7 @@ export default function TableCell({
                     <td>
                         <AddCircleIcon color="success" onClick={() => {
                             setOpenLoad(openLoad => !openLoad)
+                            setWeekLoad(Loads.length + 1)
                         }} />
                     </td>
                     :
@@ -71,3 +73,5 @@ export default function TableCell({
         </>
     )
 }
+
+// USAR lOADS.LENGHT COMO WEEK CUANDO CREO LA CARGA

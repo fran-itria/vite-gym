@@ -4,7 +4,7 @@ import { modifiedLoads } from "../../../services/routine/exercises/modifiedExerc
 import { ModalAddLoadComponentProps } from "../../../types"
 import useInformation from "../../../hook/Components/Routine/useInformation"
 
-export default function ModalAddLoad({ id, setOpenLoad, setLoader }: ModalAddLoadComponentProps) {
+export default function ModalAddLoad({ id, setOpenLoad, setLoader, weekLoad }: ModalAddLoadComponentProps) {
     const [inputLoad, setInputLoad] = useState<string>('')
     const { routineActual } = useRoutineActions()
     const { routineId } = useInformation()
@@ -21,7 +21,8 @@ export default function ModalAddLoad({ id, setOpenLoad, setLoader }: ModalAddLoa
                 routineId: routineId.id,
                 routineActual,
                 setOpenLoad,
-                setLoader
+                setLoader,
+                weekLoad
             })}>
                 Agregar
             </button>

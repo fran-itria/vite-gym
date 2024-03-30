@@ -47,12 +47,14 @@ export type modifiedLoadsProps = {
   id?: string | null
   load: string
   routineId?: string,
-  routineActual: Function
-  setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
+  routineActual?: ((Days: Routine) => void)
+  setOpenLoad?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoad?: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: (value: React.SetStateAction<{
     state: boolean;
     reason?: string | undefined;
   }>) => void
+  weekLoad?: number
 }
 
 export type addExerciseProps = {
@@ -310,16 +312,4 @@ export type createPaymentProps = {
   id: string | null
   GymId: string | null
   amount: string | undefined
-}
-
-export type updateLoadProps = {
-  id: string
-  newLoads: string
-  routineActual?: ((Days: Routine) => void)
-  routineId?: string
-  setLoad: React.Dispatch<React.SetStateAction<boolean>>
-  setLoader: (value: React.SetStateAction<{
-    state: boolean;
-    reason?: string | undefined;
-  }>) => void
 }
