@@ -12,16 +12,7 @@ import Loader from "../Loader";
 import { basicLoaders, specificLoaders } from "../../const";
 
 export default function Routine() {
-    const {
-        id,
-        routine,
-        routineId,
-        routineActual,
-        Routines,
-        updateIdGlobal,
-        loader,
-        setLoader
-    } = useInformation()
+    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
