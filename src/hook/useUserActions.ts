@@ -9,6 +9,7 @@ import {
     updateExtraTraining,
     updateMeals,
     updatePayments,
+    updatePhoto,
     updateRoutineUser,
     updateShifts,
     updateStateSubscription,
@@ -52,6 +53,10 @@ export const useUserActions = () => {
         dispatch(updateStateSubscription(pay))
     }
 
+    const updatePhotoUser = (photo: string) => {
+        dispatch(updatePhoto(photo))
+    }
+
     return {
         addUser,
         updateRoutinesUser,
@@ -60,6 +65,7 @@ export const useUserActions = () => {
         updateTrainingsUser,
         updateShiftsUser,
         updatePaymentsUser,
-        updatePayUser
+        updatePayUser,
+        updatePhotoUser
     }
 }

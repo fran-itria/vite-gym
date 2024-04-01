@@ -1,30 +1,41 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from './Header.module.css'
 import { useAppSelector } from "../../hook/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { logout } from "../../services/logout/logout";
 import HomeAdmin from "../Admin/Home/HomeAdmin";
 import useLoaders from "../../hook/Components/useLoaders";
 import Loader from "../Loader";
+import uploadImage from "../../services/firebase/uploadImage";
+import { useUserActions } from "../../hook/useUserActions";
 
 export default function Header() {
     const { pathname } = useLocation()
-    const { name, surname, id, admin, Gym } = useAppSelector(state => state.user)
+    const { name, surname, id, admin, Gym, photo } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
     const { loader, setLoader } = useLoaders()
+    const [image, setImage] = useState(false)
+    const [file, setFile] = useState<any>()
+    const { updatePhotoUser } = useUserActions()
 
+    useEffect(() => console.log(photo), [photo])
     return (
         <>
             <header className={style.header}>
                 <h1 className={style.gymName}>{Gym?.name}</h1>
-                {/* <img alt="Foto" className={style.perfil} /> */}
                 <div className={style.perfil}>
-                    <button onClick={() => setMenu(!menu)} className={style.photo}>{name && surname ? name[0] + surname[0] : 'P'}</button>
+                    {photo ?
+                        <img alt="Foto de perfil" className={style.photoImg} src={photo ? photo : ''} onClick={() => setMenu(prev => !prev)} />
+                        :
+                        <button className={style.photoText} onClick={() => setMenu(prev => !prev)}> {name && surname ? name[0] + surname[0] : 'P'} </button>
+                    }
                     {menu ?
                         <div className={style.menu}>
                             <button>Perfil</button>
                             <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
+                            <button onClick={() => setImage(prev => !prev)}>Subir imagen</button>
                         </div>
                         :
                         <></>
@@ -60,6 +71,14 @@ export default function Header() {
                 <HomeAdmin />
             }
             {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {image ?
+                <div style={{ position: 'absolute', top: '50%', right: '50%' }}>
+                    <input type="file" onChange={(e) => { setFile(e.target.files ? e.target.files[0] : undefined) }}></input>
+                    <button onClick={() => uploadImage(`${name} ${surname}`, file, id, updatePhotoUser)}>Subir</button>
+                </div>
+                :
+                <></>
+            }
         </>
     )
 }

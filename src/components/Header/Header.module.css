@@ -83,7 +83,7 @@ li {
     align-items: center;
 }
 
-.photo {
+.photoText {
     width: 40px;
     height: 40px;
     background-color: black;
@@ -95,8 +95,23 @@ li {
     align-items: center;
 }
 
+.photoImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 25px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photoImg:hover {
+    cursor: pointer;
+    border: #FF8F8F solid 2px;
+}
+
 .menu {
-    border: solid red 2px;
+    border: solid #FF8F8F 2px;
     width: 60px;
     padding: 5px;
     position: absolute;

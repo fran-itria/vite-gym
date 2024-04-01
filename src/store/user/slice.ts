@@ -165,7 +165,15 @@ export const userSlice = createSlice({
                 ...state,
                 pay: action.payload
             }
+        },
+
+        updatePhoto: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                photo: action.payload
+            }
         }
+
     }
 })
 
@@ -179,5 +187,6 @@ export const {
     updateExtraTraining,
     updateShifts,
     updatePayments,
-    updateStateSubscription
+    updateStateSubscription,
+    updatePhoto
 } = userSlice.actions
