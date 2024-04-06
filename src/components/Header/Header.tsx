@@ -9,6 +9,7 @@ import useLoaders from "../../hook/Components/useLoaders";
 import Loader from "../Loader";
 import uploadImage from "../../services/firebase/uploadImage";
 import { useUserActions } from "../../hook/useUserActions";
+import deleteImage from "../../services/deleteImage";
 
 export default function Header() {
     const { pathname } = useLocation()
@@ -25,8 +26,8 @@ export default function Header() {
             <header className={style.header}>
                 <h1 className={style.gymName}>{Gym?.name}</h1>
                 <div className={style.perfil}>
-                    {photo ?
-                        <img alt="Foto de perfil" className={style.photoImg} src={photo ? photo : ''} onClick={() => setMenu(prev => !prev)} />
+                    {photo && photo.length > 0 ?
+                        <img alt="Foto de perfil" className={style.photoImg} src={photo} onClick={() => setMenu(prev => !prev)} />
                         :
                         <button className={style.photoText} onClick={() => setMenu(prev => !prev)}> {name && surname ? name[0] + surname[0] : 'P'} </button>
                     }
@@ -35,6 +36,7 @@ export default function Header() {
                             <button>Perfil</button>
                             <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
                             <button onClick={() => setImage(prev => !prev)}>Subir imagen</button>
+                            <button onClick={() => deleteImage(setLoader, updatePhotoUser, id, setMenu)}>Borrar foto</button>
                         </div>
                         :
                         <></>

@@ -93,6 +93,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
 }
 
 .photoImg {
@@ -108,6 +109,11 @@ li {
 .photoImg:hover {
     cursor: pointer;
     border: #FF8F8F solid 2px;
+}
+
+.photoText:hover {
+    cursor: pointer;
+    border: #FF8F8F solid 4px;
 }
 
 .menu {
