@@ -2,7 +2,7 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from './Header.module.css'
 import { useAppSelector } from "../../hook/store";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { logout } from "../../services/logout/logout";
 import HomeAdmin from "../Admin/Home/HomeAdmin";
 import useLoaders from "../../hook/Components/useLoaders";
@@ -20,7 +20,6 @@ export default function Header() {
     const [file, setFile] = useState<any>()
     const { updatePhotoUser } = useUserActions()
 
-    useEffect(() => console.log(photo), [photo])
     return (
         <>
             <header className={style.header}>
@@ -74,8 +73,8 @@ export default function Header() {
             {image ?
                 <div style={{ position: 'absolute', top: '50%', right: '50%' }}>
                     <input type="file" onChange={(e) => { setFile(e.target.files ? e.target.files[0] : undefined) }}></input>
-                    <button onClick={() => uploadImage(`${name} ${surname}`, file, id, updatePhotoUser)}>Subir</button>
-                </div>
+                    <button onClick={() => uploadImage({ nameFile: `${name} ${surname}`, file, id, updatePhotoUser, setLoader, setImage, setMenu })}>Subir</button>
+                </div >
                 :
                 <></>
             }

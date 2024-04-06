@@ -47,7 +47,8 @@ export const basicLoaders = {
     loading: 'Cargando',
     create: 'Creando',
     remove: 'Eliminando',
-    save: 'Guardando'
+    save: 'Guardando',
+    up: 'Subiendo'
 }
 export const specificLoaders = {
     routine: 'rutina',
@@ -60,7 +61,8 @@ export const specificLoaders = {
     users: 'usuarios',
     register: 'registros',
     load: 'carga',
-    cahnges: 'cambios'
+    cahnges: 'cambios',
+    image: 'foto'
 }
 
 export const momentsFood = ['Desayuno', 'Media mañana', 'Almuerzo', 'Merienda', 'Cena']

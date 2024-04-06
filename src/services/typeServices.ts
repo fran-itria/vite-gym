@@ -313,3 +313,16 @@ export type createPaymentProps = {
   GymId: string | null
   amount: string | undefined
 }
+
+export type uploadImageProps = {
+  nameFile: string
+  file: File
+  id: string | null
+  updatePhotoUser: (photo: string) => void
+  setLoader: React.Dispatch<React.SetStateAction<{
+    state: boolean;
+    reason?: string | undefined;
+  }>>
+  setImage: (value: React.SetStateAction<boolean>) => void
+  setMenu: (value: React.SetStateAction<boolean>) => void
+}
