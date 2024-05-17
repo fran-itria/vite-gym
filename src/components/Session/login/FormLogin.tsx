@@ -8,6 +8,7 @@ import { useUserActions } from "../../../hook/useUserActions";
 import Loader from "../../Loader";
 import useLoaders from "../../../hook/Components/useLoaders";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
+import useRoutineIdActions from "../../../hook/useRoutineIdActions";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -15,11 +16,12 @@ export default function FormLogin() {
   const { addUser } = useUserActions()
   const { loader, setLoader } = useLoaders()
   useLoginSession()
+  const { updateIdGlobal, updateWarmUpIdGlobal } = useRoutineIdActions()
 
   return (
     <>
       <form onSubmit={(event) => {
-        onSubmit({ event, inputs, navigate, addUser, setLoader })
+        onSubmit({ event, inputs, navigate, addUser, setLoader, updateIdGlobal, updateWarmUpIdGlobal })
       }}>
         <label>
           Usuario:

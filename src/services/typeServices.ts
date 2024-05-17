@@ -25,6 +25,8 @@ export type onSubmitProps = {
   addUser: Function,
   url?: Location<any>,
   setLoader: SetLoader
+  updateIdGlobal: (id: string | undefined) => void
+  updateWarmUpIdGlobal: (id: string | undefined) => void
 }
 
 export type modifiedExerciseProps = {

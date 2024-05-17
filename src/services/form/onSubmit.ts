@@ -5,7 +5,7 @@ import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 import { basicLoaders, storage } from "../../const";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal, updateWarmUpIdGlobal }: onSubmitProps) {
     event.preventDefault();
     try {
         setLoader({ state: true, reason: `${basicLoaders.init}` })
@@ -13,6 +13,8 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             const response = await login(inputs);
             if (response.status == 200) {
                 addUser(response.data.user)
+                updateIdGlobal(undefined)
+                updateWarmUpIdGlobal(undefined)
                 storage.setItem('user', response.data.user.user)
                 storage.setItem('email', response.data.user.email)
                 storage.setItem('password', response.data.user.password)
