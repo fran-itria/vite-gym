@@ -8,6 +8,7 @@ import { basicLoaders, specificLoaders } from "../../../const"
 
 export default function useUsers() {
     const [users, setUsers] = useState<UsersComponent>([])
+    const [copy, setCopy] = useState<UsersComponent>([])
     const { Gym } = useAppSelector(state => state.user)
     const [edit, setEdit] = useState<boolean>(false)
     const [userId, setUserId] = useState<string>('')
@@ -23,6 +24,7 @@ export default function useUsers() {
                 response => {
                     if (response.status == 200) {
                         setUsers(response.data)
+                        setCopy(response.data)
                         setLoader({ state: false })
                     }
                 }
@@ -44,6 +46,7 @@ export default function useUsers() {
         ban,
         setBan,
         loader,
-        setLoader
+        setLoader,
+        copy
     }
 }
