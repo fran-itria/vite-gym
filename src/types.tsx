@@ -59,6 +59,9 @@ export type SetLoader = (value: React.SetStateAction<{
   reason?: string | undefined;
 }>) => void
 
+export type setRoutineAdmin = React.Dispatch<React.SetStateAction<Routine | WarmUp | undefined>>
+// export type setWarmUpAdmin = React.Dispatch<React.SetStateAction<WarmUp | undefined>>
+
 export type TableComponentProps = {
   day: {
     id?: string;
@@ -67,11 +70,15 @@ export type TableComponentProps = {
   }
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
+  setRoutineAdmin?: setRoutineAdmin
+  // setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type TableRowComponentProps = Exercise & {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
+  setRoutineAdmin?: setRoutineAdmin
+  // setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type ModalAddLoadComponentProps = {
@@ -164,6 +171,7 @@ export type RoutineOrWarmUp = {
   warmUpActual?: (Days: WarmUp) => void
   weeks?: number
 }
+
 export type DetailComponenProps = {
   day: {
     id: string;
@@ -173,6 +181,8 @@ export type DetailComponenProps = {
   i: number
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
+  setRoutineAdmin?: setRoutineAdmin
+  // setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type FormTotalExerciseComponentProps = {
@@ -191,6 +201,8 @@ export type ModifiedExerciseProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
+  setRoutineAdmin?: setRoutineAdmin
+  // setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type UsersComponent = [] | {

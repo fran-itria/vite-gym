@@ -3,7 +3,7 @@
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser, WarmUpsUser, extraTraining, meal, payments, shift } from "../store/user/slice";
 import { WarmUp } from "../store/warmUp/slice";
-import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, SetLoader, UsersComponent } from "../types";
+import { InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, SetLoader, UsersComponent, setRoutineAdmin } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
 export type onChangeProps = {
@@ -42,6 +42,8 @@ export type modifiedExerciseProps = {
     state: boolean;
     reason?: string | undefined;
   }>) => void
+  setRoutineAdmin?: setRoutineAdmin
+  // setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type modifiedLoadsProps = {

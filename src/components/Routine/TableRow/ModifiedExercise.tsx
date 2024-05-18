@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ModifiedExerciseProps } from "../../../types";
 import { InputsModified, changeInputs, modifiedExercise } from "../../../services/routine/exercises/modifiedExercise";
 
-export default function ModifiedExercise({ id, name, reps, series, setOpen, routineOrWarmUp, setLoader }: ModifiedExerciseProps) {
+export default function ModifiedExercise({ id, name, reps, series, setOpen, routineOrWarmUp, setLoader, setRoutineAdmin }: ModifiedExerciseProps) {
 
     const [inputs, setInputs] = useState<InputsModified>({ name, series, reps })
     return (
@@ -20,7 +20,7 @@ export default function ModifiedExercise({ id, name, reps, series, setOpen, rout
                 Repeticiones:
                 <input name='reps' defaultValue={reps} onChange={(e) => changeInputs(e, setInputs)}></input>
             </label>
-            <button onClick={() => modifiedExercise({ id, inputs, routineOrWarmUp, setOpen, setLoader })}> Modificar </button>
+            <button onClick={() => modifiedExercise({ id, inputs, routineOrWarmUp, setOpen, setLoader, setRoutineAdmin })}> Modificar </button>
         </div>
     )
 }
