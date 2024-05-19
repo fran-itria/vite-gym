@@ -4,7 +4,7 @@ import { Exercise, TableComponentProps } from '../../types';
 import TableHead from './TableHead';
 import TableRow from './TableRow/TableRow';
 
-export default function Table({ day, routineOrWarmUp, setLoader, setRoutineAdmin }: TableComponentProps) {
+export default function Table({ day, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin }: TableComponentProps) {
 
     const { weeks } = routineOrWarmUp
 
@@ -26,7 +26,7 @@ export default function Table({ day, routineOrWarmUp, setLoader, setRoutineAdmin
                                 routineOrWarmUp={routineOrWarmUp}
                                 setLoader={setLoader}
                                 setRoutineAdmin={setRoutineAdmin}
-                            // setWarmUpAdmin={setWarmUpAdmin}
+                                setWarmUpAdmin={setWarmUpAdmin}
                             />
                         )
                     })

@@ -3,13 +3,36 @@ import addExerciseFunction from "../../../services/routine/exercises/addExercise
 import createExerciseInputs from "../../../services/routine/exercises/formCreate/craeteExerciseInputs";
 import { CreateExerciseComponentProps } from "../../../types";
 
-export default function CreateExercise({ setAddExercise, day, routineActual, routineId, warmUpActual, warmUpId, setLoader }: CreateExerciseComponentProps) {
+export default function CreateExercise({
+    setAddExercise,
+    day,
+    routineActual,
+    routineId,
+    warmUpActual,
+    warmUpId,
+    setLoader,
+    setRoutineAdmin,
+    setWarmUpAdmin
+}: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
 
     return (
         <form
             style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
             onSubmit={(e) => {
+                if (setRoutineAdmin || setWarmUpAdmin) {
+                    addExerciseFunction({
+                        e,
+                        dayId: day.id,
+                        exercise: day.Exercises.length + 1,
+                        inputs,
+                        routineId,
+                        setAddExercise,
+                        setWarmUpAdmin,
+                        setRoutineAdmin,
+                        setLoader
+                    })
+                }
                 if (routineActual && routineId) {
                     addExerciseFunction({
                         e,

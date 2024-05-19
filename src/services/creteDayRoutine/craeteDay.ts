@@ -12,7 +12,8 @@ export async function createDayRoutine({
     setPag,
     setTotalExercise,
     routine,
-    setLoader
+    setLoader,
+    setRoutineAdmin,
 }: createDayRoutineProps) {
     try {
         setAddDay(false)
@@ -27,7 +28,8 @@ export async function createDayRoutine({
         setDayCreate([])
         setPag(0)
         setTotalExercise('0')
-        routineActual(response.data)
+        if (setRoutineAdmin) setRoutineAdmin(response.data)
+        else if (routineActual) routineActual(response.data)
         setLoader({ state: false })
     } catch (error: any) {
         window.alert(error.response.data.Error)
@@ -43,7 +45,8 @@ export async function createDayWarmUp({
     setPag,
     setTotalExercise,
     warmUp,
-    setLoader
+    setLoader,
+    setWarmUpAdmin
 }: createDayWarmUpProps) {
     try {
         setAddDay(false)
@@ -58,7 +61,8 @@ export async function createDayWarmUp({
         setDayCreate([])
         setPag(0)
         setTotalExercise('0')
-        warmUpActual(response.data)
+        if (setWarmUpAdmin) setWarmUpAdmin(response.data)
+        else if (warmUpActual) warmUpActual(response.data)
         setLoader({ state: false })
     } catch (error: any) {
         window.alert(error.response.data.Error)

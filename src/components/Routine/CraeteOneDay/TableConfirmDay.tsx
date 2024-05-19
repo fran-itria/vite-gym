@@ -17,7 +17,9 @@ export default function TableConfirmDay({
     warmUp,
     warmUpActual,
     warmUpId,
-    setLoader
+    setLoader,
+    setRoutineAdmin,
+    setWarmUpAdmin
 }: TableConfirmDayComponentProps) {
     return (
         <>
@@ -43,9 +45,9 @@ export default function TableConfirmDay({
             </table>
             {!pagDays ?
                 <button onClick={() => {
-                    if (routine && routineActual && routineId) {
+                    if (routine && routineId && (setRoutineAdmin || routineActual)) {
                         createDayRoutine({
-                            routineId: routineId,
+                            routineId,
                             dayCreate,
                             routineActual,
                             setAddDay,
@@ -53,9 +55,38 @@ export default function TableConfirmDay({
                             setPag,
                             setTotalExercise,
                             routine,
-                            setLoader
+                            setLoader,
+                            setRoutineAdmin
                         })
-                    } else if (warmUp && warmUpActual && warmUpId) {
+                    }
+                    // else if (routine && routineActual && routineId) {
+                    //     createDayRoutine({
+                    //         routineId: routineId,
+                    //         dayCreate,
+                    //         routineActual,
+                    //         setAddDay,
+                    //         setDayCreate,
+                    //         setPag,
+                    //         setTotalExercise,
+                    //         routine,
+                    //         setLoader
+                    //     })
+                    // } 
+                    else if (warmUp && setWarmUpAdmin) {
+                        createDayWarmUp({
+                            dayCreate,
+                            setAddDay,
+                            setDayCreate,
+                            setPag,
+                            setTotalExercise,
+                            warmUp,
+                            warmUpId: routineId,
+                            setLoader,
+                            warmUpActual,
+                            setWarmUpAdmin
+                        })
+                    }
+                    else if (warmUp && warmUpActual && warmUpId) {
                         createDayWarmUp({
                             dayCreate,
                             setAddDay,

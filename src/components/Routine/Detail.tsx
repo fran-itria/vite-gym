@@ -9,7 +9,7 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin }: DetailComponenProps) {
+export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
     const { weeks, routineActual, routineId, warmUpActual, warmUpId } = routineOrWarmUp
     return (
@@ -23,7 +23,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                     routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId, weeks }}
                     setLoader={setLoader}
                     setRoutineAdmin={setRoutineAdmin}
-                // setWarmUpAdmin={setWarmUpAdmin}
+                    setWarmUpAdmin={setWarmUpAdmin}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                 {weeks && routineActual ?
@@ -39,6 +39,8 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                         warmUpId={warmUpId ? warmUpId : undefined}
                         warmUpActual={warmUpActual ? warmUpActual : undefined}
                         setLoader={setLoader}
+                        setRoutineAdmin={setRoutineAdmin}
+                        setWarmUpAdmin={setWarmUpAdmin}
                     />
                     :
                     <></>
@@ -48,6 +50,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                 <DeleteIcon
                     sx={{ color: theme.palette.tashIcon.light }}
                     onClick={() => {
+                        if (setRoutineAdmin || setWarmUpAdmin) deleteDay({ id: day.id, routineId, setRoutineAdmin, setWarmUpAdmin })
                         if (routineId && routineActual) {
                             deleteDay({ id: day.id, routineId, routineActual })
                         } else deleteDay({ id: day.id, warmUpId, warmUpActual })

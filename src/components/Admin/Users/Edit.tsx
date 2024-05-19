@@ -3,11 +3,15 @@ import CreateRoutine from '../../Routine/CreateRoutine';
 import { SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Routine } from '../../../store/routine/slice';
 import Detail from '../../Routine/Detail';
 import { WarmUp } from '../../../store/warmUp/slice';
+import useDayCreate from '../../../hook/Components/Routine/useCreateDay';
+import FormTotalExercise from '../../Routine/FormTotalExercise';
+import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
+import TableConfirmDay from '../../Routine/CraeteOneDay/TableConfirmDay';
 
 export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader }: {
     gymName?: string
@@ -32,16 +36,16 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         updateWarmUpIdGlobal,
         id
     } = useEdit()
-    const [modalRoutines, setModalRoutines] = useState<boolean>(false)
-    const [modalWarmUps, setModalWarmUps] = useState<boolean>(false)
+    const [modal, setModal] = useState<string | undefined>('')
     const [saw, setSaw] = useState<boolean>(false)
-    // const [sawRoutine, setSawRoutine] = useState<boolean>(false)
-    // const [sawWarmUp, setSawWarmUp] = useState<boolean>(false)
     const [routinesUser, setRoutinesUser] = useState<{ id: string }[]>()
-    // const [warmUpsUser, setWarmUpsUser] = useState<{ id: string }[]>()
-    const [routineAdmin, setRoutineAdmin] = useState<Routine | WarmUp>()
-    // const [warmUpAdmin, setWarmUpAdmin] = useState<WarmUp>()
-    const [routineId, setRoutineId] = useState<string>()
+    const [routineAdmin, setRoutineAdmin] = useState<Routine>()
+    const [warmUpAdmin, setWarmUpAdmin] = useState<WarmUp>()
+    const [selectId, setId] = useState<string>()
+    const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
+    const warmUp = 'Calentamiento'
+    const routine = 'Rutina'
+    useEffect(() => console.log(modal, saw), [modal, saw])
 
     const getRoutinesUser = async (id: string) => {
         axios.get(`/user/getOneUser/${id}`)
@@ -58,9 +62,9 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setLoader({ state: true, reason: 'Cargando calentamiento' })
         axios.get(`/calentamiento/${id}`)
             .then(response => {
-                setRoutineAdmin(response.data)
+                setWarmUpAdmin(response.data)
                 setLoader({ state: false })
-                setRoutineId(id)
+                setId(id)
             })
             .catch(error => window.alert(error.data.Error))
     }
@@ -70,7 +74,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             .then(response => {
                 setRoutineAdmin(response.data)
                 setLoader({ state: false })
-                setRoutineId(id)
+                setId(id)
             })
             .catch(error => window.alert(error.data.Error))
     }
@@ -113,18 +117,21 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     <button>Guardar cambios</button>
                 </form>
                 <button onClick={() => {
-                    setLoader({ state: true, reason: 'Cargando lista de calentamientos' })
                     getWarmUpsUser(userId)
-                    setModalWarmUps(prev => !prev)
-                    setLoader({ state: false })
+                    // setModalWarmUps(prev => !prev)
+                    setModal((prev) => {
+                        if (prev != '') return ''
+                        else return warmUp
+                    })
                 }}>
                     Calentamientos
                 </button>
                 <button onClick={() => {
-                    setLoader({ state: true, reason: 'Cargando lista de rutinas' })
                     getRoutinesUser(userId)
-                    setModalRoutines(prev => !prev)
-                    setLoader({ state: false })
+                    setModal((prev) => {
+                        if (prev != '') return ''
+                        else return routine
+                    })
                 }}>
                     Rutinas
                 </button>
@@ -132,76 +139,107 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
                 <button onClick={() => setEdit(false)}>❌</button>
             </menu>
-            {modalWarmUps ?
-                <ol>
-                    {routinesUser?.map((warmUp, index) =>
-                        <div>
-                            <li>Calentamiento {index + 1}</li>
-                            <button onClick={() => sawWarmUpFunction(warmUp.id)}>
-                                ver
-                            </button>
-                        </div>
-                    )}
-                </ol>
-                :
-                <></>
-            }
-            {modalRoutines ?
-                <ol>
-                    {routinesUser?.map((routine, index) =>
-                        <div>
-                            <li>Rutina {index + 1}</li>
-                            <button onClick={() => sawRoutineFunction(routine.id)}>
-                                ver
-                            </button>
-                        </div>
-                    )}
-                </ol>
+            {modal != '' ?
+                routinesUser?.length && routinesUser?.length > 0 ?
+                    modal == warmUp ?
+                        <ol>
+                            {routinesUser?.map((warmUp, index) =>
+                                <div>
+                                    <li>Calentamiento {index + 1}</li>
+                                    <button onClick={() => sawWarmUpFunction(warmUp.id)}>
+                                        ver
+                                    </button>
+                                </div>
+                            )}
+                        </ol>
+                        :
+                        <ol>
+                            {routinesUser?.map((routine, index) =>
+                                <div>
+                                    <li>Rutina {index + 1}</li>
+                                    <button onClick={() => sawRoutineFunction(routine.id)}>
+                                        ver
+                                    </button>
+                                </div>
+                            )}
+                        </ol>
+                    :
+                    <></>
                 :
                 <></>
             }
             {saw ?
-                routineAdmin?.Days && routineAdmin.Days.length > 0 ?
-                    <>
-                        {routineAdmin.Days.map((day, i) => {
-                            return (
-                                <Detail
-                                    day={day}
-                                    i={i}
-                                    routineOrWarmUp={{ routineId }}
-                                    setLoader={setLoader}
-                                    setRoutineAdmin={setRoutineAdmin}
-                                />
-                            )
-                        })}
-                        <button onClick={() => setSaw(false)}>❌</button>
-                    </>
+                modal == warmUp ?
+                    (
+                        warmUpAdmin?.Days && warmUpAdmin.Days.length > 0 ?
+                            <>
+                                {warmUpAdmin.Days.map((day, i) => {
+                                    return (
+                                        <Detail
+                                            day={day}
+                                            i={i}
+                                            routineOrWarmUp={{ routineId: selectId }}
+                                            setLoader={setLoader}
+                                            setWarmUpAdmin={setWarmUpAdmin}
+                                        />
+                                    )
+                                })}
+                                <button onClick={() => setAddDay(!addDay)}>+ Día</button>
+                                <button onClick={() => setSaw(false)}>❌</button>
+                            </>
+                            :
+                            <>No tiene calentamientos creados</>
+                    )
                     :
-                    <></>
-                :
-                <></>
+                    modal == routine ?
+                        (
+                            routineAdmin?.Days && routineAdmin.Days.length > 0 ?
+                                <>
+                                    {routineAdmin.Days.map((day, i) => {
+                                        return (
+                                            <Detail
+                                                day={day}
+                                                i={i}
+                                                routineOrWarmUp={{ weeks: routineAdmin.weeks, routineId: selectId }}
+                                                setLoader={setLoader}
+                                                setRoutineAdmin={setRoutineAdmin}
+                                            />
+                                        )
+                                    })}
+                                    <button onClick={() => setAddDay(!addDay)}>+ Día</button>
+                                    <button onClick={() => setSaw(false)}>❌</button>
+                                </>
+                                :
+                                <>No tiene rutinas creadas</>
+                        )
+                        :
+                        <></>
+                : <></>
             }
-            {/* {saw ?
-                routineAdmin?.Days && routineAdmin.Days.length > 0 ?
-                    <>
-                        {routineAdmin.Days.map((day, i) => {
-                            return (
-                                <Detail
-                                    day={day}
-                                    i={i}
-                                    routineOrWarmUp={{ weeks: routineAdmin.weeks, routineId }}
-                                    setLoader={setLoader}
-                                    setRoutineAdmin={setRoutineAdmin}
-                                />
-                            )
-                        })}
-                        <button onClick={() => setSaw(false)}>❌</button>
-                    </>
+            {addDay ?
+                <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routineAdmin} />
+                :
+                pag != 0 ?
+                    pag < Number(totalExercise) + 1 ?
+                        <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                        :
+                        <TableConfirmDay
+                            key={selectId}
+                            dayCreate={dayCreate}
+                            setAddDay={setAddDay}
+                            setDayCreate={setDayCreate}
+                            setPag={setPag}
+                            setTotalExercise={setTotalExercise}
+                            routine={routineAdmin}
+                            routineId={selectId}
+                            warmUpId={selectId}
+                            setLoader={setLoader}
+                            setRoutineAdmin={setRoutineAdmin}
+                            setWarmUpAdmin={setWarmUpAdmin}
+                        />
                     :
                     <></>
-                :
-                <></>
-            } */}
+            }
             {createRoutine ?
                 <CreateRoutine
                     updateRoutinesUser={updateRoutinesUser}

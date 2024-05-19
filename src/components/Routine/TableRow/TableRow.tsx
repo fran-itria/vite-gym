@@ -8,7 +8,7 @@ import ModifiedExercise from "./ModifiedExercise";
 import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise";
 import { useState } from "react";
 
-export default function TableRow({ id, name, series, reps, link, Loads, routineOrWarmUp, setLoader, setRoutineAdmin }: TableRowComponentProps) {
+export default function TableRow({ id, name, series, reps, link, Loads, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin }: TableRowComponentProps) {
     const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad, idLoad, setIdLoad, load, setLoad, newLoads, setNewLoads } = useTabelRow()
     const { routineActual, routineId, warmUpActual, warmUpId, weeks } = routineOrWarmUp
     const [weekLoad, setWeekLoad] = useState<number>(0)
@@ -31,6 +31,7 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                     setLoad={setLoad}
                     setIdLoad={setIdLoad}
                     setWeekLoad={setWeekLoad}
+                    setRoutineAdmin={setRoutineAdmin}
                 />
                 {open ?
                     <ModifiedExercise
@@ -42,7 +43,7 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                         routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId }}
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
-                    // setWarmUpAdmin={setWarmUpAdmin}
+                        setWarmUpAdmin={setWarmUpAdmin}
                     />
                     :
                     <></>
@@ -63,6 +64,8 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                         warmUpActual={warmUpActual}
                         warmUpId={warmUpId}
                         setLoader={setLoader}
+                        setRoutineAdmin={setRoutineAdmin}
+                        setWarmUpAdmin={setWarmUpAdmin}
                     />
                     :
                     <></>

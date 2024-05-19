@@ -18,7 +18,8 @@ export default function TableCell({
     setOpen,
     setLoad,
     setIdLoad,
-    setWeekLoad
+    setWeekLoad,
+    setRoutineAdmin
 }: TableCellComponentProps) {
 
     return (
@@ -61,17 +62,20 @@ export default function TableCell({
             }
             {
                 weeks && Loads && weeks > Loads?.length ?
-                    <td>
-                        <AddCircleIcon color="success" onClick={() => {
-                            setOpenLoad(openLoad => !openLoad)
-                            setWeekLoad(Loads.length + 1)
-                        }} />
-                    </td>
+                    !setRoutineAdmin ?
+                        <td>
+                            <AddCircleIcon color="success" onClick={() => {
+                                setOpenLoad(openLoad => !openLoad)
+                                setWeekLoad(Loads.length + 1)
+                            }} />
+                        </td>
+                        :
+                        <td>
+                            <AddCircleIcon color='success' style={{ opacity: 0.5 }} />
+                        </td>
                     :
                     <></>
             }
         </>
     )
 }
-
-// USAR lOADS.LENGHT COMO WEEK CUANDO CREO LA CARGA
