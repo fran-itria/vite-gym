@@ -12,7 +12,7 @@ export default async function deleteDay({ id, routineId, routineActual, warmUpId
             setRoutineAdmin(routine.data)
         }
         if (setWarmUpAdmin) {
-            const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
+            const warmUp = await axios.get(`/calentamiento/${routineId}`)
             setWarmUpAdmin(warmUp.data)
         }
         if (routineId && routineActual) {

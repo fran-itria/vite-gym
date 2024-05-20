@@ -24,7 +24,7 @@ export default async function deleteExercise({
             setRoutineAdmin(routine.data)
         }
         if (setWarmUpAdmin) {
-            const routine = await axios.get(`/calentamiento/${warmUpId}`)
+            const routine = await axios.get(`/calentamiento/${routineId}`)
             setWarmUpAdmin(routine.data)
         }
         if (routineId && routineActual) {

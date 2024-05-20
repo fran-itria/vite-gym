@@ -35,8 +35,8 @@ export default async function addExerciseFunction({
             setRoutineAdmin(routine.data)
         }
         if (setWarmUpAdmin) {
-            const routine = await axios.get(`/rutina/${routineId}`)
-            setWarmUpAdmin(routine.data)
+            const warmUp = await axios.get(`/calentamiento/${routineId}`)
+            setWarmUpAdmin(warmUp.data)
         }
         if (routineId && routineActual) {
             const routine = await axios.get(`/rutina/${routineId}`)
