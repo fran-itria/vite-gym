@@ -2,6 +2,7 @@
 import axios from "axios";
 import { addExerciseProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
+import { CaseResolve } from "../../../types";
 
 export default async function addExerciseFunction({
     e,
@@ -11,11 +12,10 @@ export default async function addExerciseFunction({
     routineId,
     setAddExercise,
     routineActual,
-    warmUpId,
-    warmUpActual,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin
+    setWarmUpAdmin,
+    caseResolve
 }: addExerciseProps) {
     e.preventDefault()
     try {
@@ -39,11 +39,14 @@ export default async function addExerciseFunction({
             setWarmUpAdmin(warmUp.data)
         }
         if (routineId && routineActual) {
-            const routine = await axios.get(`/rutina/${routineId}`)
-            routineActual(routine.data)
-        } else if (warmUpId && warmUpActual) {
-            const routine = await axios.get(`/calentamiento/${warmUpId}`)
-            warmUpActual(routine.data)
+            if (caseResolve == CaseResolve.rutina) {
+                const routine = await axios.get(`/rutina/${routineId}`)
+                routineActual(routine.data)
+            }
+            else {
+                const routine = await axios.get(`/calentamiento/${routineId}`)
+                routineActual(routine.data)
+            }
         }
         setLoader({ state: false })
     } catch (error: any) {

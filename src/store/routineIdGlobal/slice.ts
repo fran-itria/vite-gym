@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 
-const initialState: { id?: string } = {
-    id: undefined
+const initialState: { id: string } = {
+    id: ''
 }
 
 export const routineIdSlice = createSlice({

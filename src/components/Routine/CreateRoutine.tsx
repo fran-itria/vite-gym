@@ -14,7 +14,6 @@ export default function CreateRoutine({
     gymName,
     createWarm,
     updateWarmUpUser,
-    updateWarmUpIdGlobal,
     updateIdGlobal,
     id,
     setLoader
@@ -89,34 +88,19 @@ export default function CreateRoutine({
                                 </tbody>
                             </table>
                             <button onClick={() => {
-                                if (!setUsers && !gymName) {
-                                    confirmRoutine({
-                                        updateRoutinesUser,
-                                        updateIdGlobal,
-                                        updateWarmUpUser,
-                                        updateWarmUpIdGlobal,
-                                        setOpenCreateRouitine,
-                                        userId,
-                                        days: routine,
-                                        createWarm,
-                                        setLoader
-                                    })
-                                } else {
-                                    confirmRoutine({
-                                        updateRoutinesUser,
-                                        updateIdGlobal,
-                                        updateWarmUpUser,
-                                        updateWarmUpIdGlobal,
-                                        setOpenCreateRouitine,
-                                        userId,
-                                        days: routine,
-                                        createWarm,
-                                        setUsers,
-                                        gymName,
-                                        id,
-                                        setLoader
-                                    })
-                                }
+                                confirmRoutine({
+                                    updateRoutinesUser,
+                                    updateIdGlobal,
+                                    updateWarmUpUser,
+                                    setOpenCreateRouitine,
+                                    userId,
+                                    days: routine,
+                                    createWarm,
+                                    setUsers,
+                                    gymName,
+                                    id,
+                                    setLoader
+                                })
                             }}>
                                 {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
                             </button>

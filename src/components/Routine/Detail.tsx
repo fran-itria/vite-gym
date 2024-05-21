@@ -9,9 +9,9 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin }: DetailComponenProps) {
+export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin, caseResolve }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
-    const { weeks, routineActual, routineId, warmUpActual, warmUpId } = routineOrWarmUp
+    const { weeks, routineActual, routineId } = routineOrWarmUp
     return (
         <>
             <details key={day.id}>
@@ -20,10 +20,11 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                 </summary>
                 <Table
                     day={day}
-                    routineOrWarmUp={{ routineActual, routineId, warmUpActual, warmUpId, weeks }}
+                    routineOrWarmUp={{ routineActual, routineId, weeks }}
                     setLoader={setLoader}
                     setRoutineAdmin={setRoutineAdmin}
                     setWarmUpAdmin={setWarmUpAdmin}
+                    caseResolve={caseResolve}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
                 {weeks && routineActual ?
@@ -36,11 +37,10 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                         setAddExercise={setAddExercise}
                         routineId={routineId ? routineId : undefined}
                         routineActual={routineActual ? routineActual : undefined}
-                        warmUpId={warmUpId ? warmUpId : undefined}
-                        warmUpActual={warmUpActual ? warmUpActual : undefined}
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
                         setWarmUpAdmin={setWarmUpAdmin}
+                        caseResolve={caseResolve}
                     />
                     :
                     <></>
@@ -50,10 +50,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                 <DeleteIcon
                     sx={{ color: theme.palette.tashIcon.light }}
                     onClick={() => {
-                        if (setRoutineAdmin || setWarmUpAdmin) deleteDay({ id: day.id, routineId, setRoutineAdmin, setWarmUpAdmin })
-                        if (routineId && routineActual) {
-                            deleteDay({ id: day.id, routineId, routineActual })
-                        } else deleteDay({ id: day.id, warmUpId, warmUpActual })
+                        deleteDay({ caseResolve, id: day.id, routineActual, routineId, setRoutineAdmin, setWarmUpAdmin })
                     }} />
             </ThemeProvider>
         </>

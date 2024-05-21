@@ -15,13 +15,13 @@ export async function deletRoutine({ id, userId, updateRoutinesUser, updateIdGlo
     }
 }
 
-export async function deleteWarmup({ id, userId, updateWarmUpUser, updateWarmUpIdGlobal, setLoader }: deleteWarmUpProps) {
+export async function deleteWarmup({ id, userId, updateWarmUpUser, updateIdGlobal, setLoader }: deleteWarmUpProps) {
     try {
         setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.warm}` })
         await axios.delete(`/calentamiento/delete/${id}`)
         const user = await axios.get(`/user/getOneUser/${userId}`)
         updateWarmUpUser(user.data)
-        updateWarmUpIdGlobal(undefined)
+        updateIdGlobal(undefined)
         setLoader({ state: false })
     } catch (error) {
         window.alert(error)

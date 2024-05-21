@@ -3,17 +3,17 @@
 import axios from "axios";
 import { deleteExerciseProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
+import { CaseResolve } from "../../../types";
 
 export default async function deleteExercise({
     idExercise,
     setConfirmDelete,
     routineActual,
     routineId,
-    warmUpActual,
-    warmUpId,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin
+    setWarmUpAdmin,
+    caseResolve
 }: deleteExerciseProps) {
     try {
         setConfirmDelete(confirmDelete => !confirmDelete)
@@ -27,12 +27,15 @@ export default async function deleteExercise({
             const routine = await axios.get(`/calentamiento/${routineId}`)
             setWarmUpAdmin(routine.data)
         }
-        if (routineId && routineActual) {
-            const routine = await axios.get(`/rutina/${routineId}`)
-            routineActual(routine.data)
-        } else if (warmUpId && warmUpActual) {
-            const routine = await axios.get(`/calentamiento/${warmUpId}`)
-            warmUpActual(routine.data)
+        if (routineActual) {
+            if (caseResolve == CaseResolve.rutina) {
+                const routine = await axios.get(`/rutina/${routineId}`)
+                routineActual(routine.data)
+            }
+            else {
+                const routine = await axios.get(`/calentamiento/${routineId}`)
+                routineActual(routine.data)
+            }
         }
         setLoader({ state: false })
     } catch (error: any) {

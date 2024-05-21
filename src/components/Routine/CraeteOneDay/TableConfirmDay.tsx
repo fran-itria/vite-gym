@@ -1,4 +1,4 @@
-import { createDayRoutine, createDayWarmUp } from "../../../services/creteDayRoutine/craeteDay";
+import { createDayRoutine } from "../../../services/creteDayRoutine/craeteDay";
 import addDayRoutine from "../../../services/routine/addDayRoutine";
 import { TableConfirmDayComponentProps } from "../../../types";
 
@@ -14,9 +14,6 @@ export default function TableConfirmDay({
     routine,
     routineActual,
     routineId,
-    warmUp,
-    warmUpActual,
-    warmUpId,
     setLoader,
     setRoutineAdmin,
     setWarmUpAdmin
@@ -45,61 +42,20 @@ export default function TableConfirmDay({
             </table>
             {!pagDays ?
                 <button onClick={() => {
-                    if (routine && routineId && (setRoutineAdmin || routineActual)) {
-                        createDayRoutine({
-                            routineId,
-                            dayCreate,
-                            routineActual,
-                            setAddDay,
-                            setDayCreate,
-                            setPag,
-                            setTotalExercise,
-                            routine,
-                            setLoader,
-                            setRoutineAdmin
-                        })
-                    }
-                    // else if (routine && routineActual && routineId) {
-                    //     createDayRoutine({
-                    //         routineId: routineId,
-                    //         dayCreate,
-                    //         routineActual,
-                    //         setAddDay,
-                    //         setDayCreate,
-                    //         setPag,
-                    //         setTotalExercise,
-                    //         routine,
-                    //         setLoader
-                    //     })
-                    // } 
-                    else if (warmUp && setWarmUpAdmin) {
-                        createDayWarmUp({
-                            dayCreate,
-                            setAddDay,
-                            setDayCreate,
-                            setPag,
-                            setTotalExercise,
-                            warmUp,
-                            warmUpId: routineId,
-                            setLoader,
-                            warmUpActual,
-                            setWarmUpAdmin
-                        })
-                    }
-                    else if (warmUp && warmUpActual && warmUpId) {
-                        createDayWarmUp({
-                            dayCreate,
-                            setAddDay,
-                            setDayCreate,
-                            setPag,
-                            setTotalExercise,
-                            warmUp,
-                            warmUpId,
-                            warmUpActual,
-                            setLoader
-                        })
-                    }
-                }}>Confirmar</button>
+                    createDayRoutine({
+                        routineId,
+                        dayCreate,
+                        routineActual,
+                        setAddDay,
+                        setDayCreate,
+                        setPag,
+                        setTotalExercise,
+                        routine,
+                        setLoader,
+                        setRoutineAdmin,
+                        setWarmUpAdmin
+                    })
+                }}>Confirmar</button >
                 :
                 <button onClick={() => {
                     setRoutine && setPagDays ?

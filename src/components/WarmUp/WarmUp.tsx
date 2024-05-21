@@ -3,7 +3,7 @@ import { deleteWarmup } from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
-import useWarmUpRoutine from "../../hook/Components/WarmUp/useWarmUpRoutine";
+// import useWarmUpRoutine from "../../hook/Components/WarmUp/useWarmUpRoutine";
 import FormTotalExercise from "../Routine/FormTotalExercise";
 import FormOneDay from "../Routine/CraeteOneDay/FormOneDay";
 import TableConfirmDay from "../Routine/CraeteOneDay/TableConfirmDay";
@@ -11,9 +11,11 @@ import CreateRoutine from "../Routine/CreateRoutine";
 import Chronometer from "../Chronometer";
 import Detail from "../Routine/Detail";
 import { basicLoaders, specificLoaders } from "../../const";
+import useInformation from "../../hook/Components/Routine/useInformation";
+import { CaseResolve } from "../../types";
 
 export default function WarmUp() {
-    const { WarmUps, id, updateWarmUpIdGlobal, warmUpActual, warmUpId, warmUp, loader, setLoader } = useWarmUpRoutine()
+    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal } = useInformation()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
@@ -23,10 +25,10 @@ export default function WarmUp() {
             <div>
                 <p>Seleccionar Calentamiento:</p>
                 <select onChange={(e) => {
-                    updateWarmUpIdGlobal(e.target.value)
+                    updateIdGlobal(e.target.value)
                     setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.warm}` })
                 }}>
-                    <option value={warmUpId.id}></option>
+                    <option value={routineId.id}></option>
                     {WarmUps.map((routine, i: number) => (
                         <option value={routine.id}>
                             {i !== WarmUps.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
@@ -35,26 +37,27 @@ export default function WarmUp() {
                     )}
                 </select>
             </div>
-            {warmUp.Days?.length && warmUp.Days?.length > 0 ?
+            {routine.Days?.length && routine.Days?.length > 0 ?
                 <>
-                    {warmUp.Days.map((day, i) => {
+                    {routine.Days.map((day, i) => {
                         return (
                             <>
                                 <Detail
                                     day={day}
                                     i={i}
-                                    routineOrWarmUp={{ warmUpId: warmUpId.id, warmUpActual }}
+                                    routineOrWarmUp={{ routineId: routineId.id, routineActual }}
                                     setLoader={setLoader}
+                                    caseResolve={CaseResolve.calentamiento}
                                 />
                             </>
                         )
                     })}
                     <button onClick={() => setAddDay(!addDay)}>+ Día</button>
                     <button onClick={() => deleteWarmup({
-                        id: warmUpId.id,
+                        id: routineId.id,
                         userId: id,
                         updateWarmUpUser,
-                        updateWarmUpIdGlobal,
+                        updateIdGlobal,
                         setLoader
                     })}>
                         Borrar calentamiento
@@ -70,22 +73,22 @@ export default function WarmUp() {
             }
             {
                 addDay ?
-                    <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={warmUp} />
+                    <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />
                     :
                     pag != 0 ?
                         pag < Number(totalExercise) + 1 ?
                             <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
                             :
                             <TableConfirmDay
-                                key={warmUpId.id}
+                                key={routineId.id}
                                 dayCreate={dayCreate}
                                 setAddDay={setAddDay}
                                 setDayCreate={setDayCreate}
                                 setPag={setPag}
                                 setTotalExercise={setTotalExercise}
-                                warmUp={warmUp}
-                                warmUpActual={warmUpActual}
-                                warmUpId={warmUpId.id}
+                                routine={routine}
+                                routineActual={routineActual}
+                                routineId={routineId.id}
                                 setLoader={setLoader}
                             />
                         :
@@ -97,7 +100,7 @@ export default function WarmUp() {
                         setOpenCreateRouitine={setCreateWarm}
                         userId={id}
                         updateWarmUpUser={updateWarmUpUser}
-                        updateWarmUpIdGlobal={updateWarmUpIdGlobal}
+                        updateIdGlobal={updateIdGlobal}
                         createWarm={createWarm}
                         setLoader={setLoader}
                     />

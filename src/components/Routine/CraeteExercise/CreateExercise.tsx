@@ -8,11 +8,10 @@ export default function CreateExercise({
     day,
     routineActual,
     routineId,
-    warmUpActual,
-    warmUpId,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin
+    setWarmUpAdmin,
+    caseResolve
 }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
 
@@ -20,39 +19,18 @@ export default function CreateExercise({
         <form
             style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
             onSubmit={(e) => {
-                if (setRoutineAdmin || setWarmUpAdmin) {
-                    addExerciseFunction({
-                        e,
-                        dayId: day.id,
-                        exercise: day.Exercises.length + 1,
-                        inputs,
-                        routineId,
-                        setAddExercise,
-                        setWarmUpAdmin,
-                        setRoutineAdmin,
-                        setLoader
-                    })
-                }
-                if (routineActual && routineId) {
-                    addExerciseFunction({
-                        e,
-                        dayId: day.id,
-                        exercise: day.Exercises.length + 1,
-                        inputs,
-                        routineId,
-                        setAddExercise,
-                        routineActual,
-                        setLoader
-                    })
-                } else if (warmUpId && warmUpActual) addExerciseFunction({
+                addExerciseFunction({
                     e,
                     dayId: day.id,
                     exercise: day.Exercises.length + 1,
                     inputs,
-                    warmUpId,
-                    warmUpActual,
+                    routineId,
                     setAddExercise,
-                    setLoader
+                    setWarmUpAdmin,
+                    setRoutineAdmin,
+                    routineActual,
+                    setLoader,
+                    caseResolve
                 })
             }}
         >

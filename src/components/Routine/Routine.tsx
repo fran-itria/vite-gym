@@ -10,6 +10,7 @@ import CreateRoutine from "./CreateRoutine";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
 import { basicLoaders, specificLoaders } from "../../const";
+import { CaseResolve } from "../../types";
 
 export default function Routine() {
     const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader } = useInformation()
@@ -43,6 +44,7 @@ export default function Routine() {
                                 i={i}
                                 routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
                                 setLoader={setLoader}
+                                caseResolve={CaseResolve.rutina}
                             />
                         )
                     })}

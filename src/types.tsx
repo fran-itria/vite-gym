@@ -72,6 +72,7 @@ export type TableComponentProps = {
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
 }
 
 export type TableRowComponentProps = Exercise & {
@@ -79,6 +80,7 @@ export type TableRowComponentProps = Exercise & {
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
 }
 
 export type ModalAddLoadComponentProps = {
@@ -134,9 +136,6 @@ export type TableConfirmDayComponentProps = {
   routineId?: string
   routineActual?: (Days: Routine) => void
   routine?: Routine
-  warmUpId?: string
-  warmUpActual?: (Days: WarmUp) => void
-  warmUp?: WarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
@@ -149,13 +148,12 @@ export type CreateExerciseComponentProps = {
     WarmUp?: string | null | undefined;
     Exercises: [] | Exercise[]
   }
-  warmUpId?: string
-  warmUpActual?: (Days: WarmUp) => void
   routineId?: string
   routineActual?: (Days: Routine) => void
   setLoader: SetLoader;
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
 }
 
 export type TableCellComponentProps = Exercise & {
@@ -172,8 +170,6 @@ export type TableCellComponentProps = Exercise & {
 export type RoutineOrWarmUp = {
   routineId?: string
   routineActual?: (Days: Routine) => void
-  warmUpId?: string
-  warmUpActual?: (Days: WarmUp) => void
   weeks?: number
 }
 
@@ -188,6 +184,12 @@ export type DetailComponenProps = {
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
+}
+
+export enum CaseResolve {
+  calentamiento,
+  rutina
 }
 
 export type FormTotalExerciseComponentProps = {
@@ -208,6 +210,7 @@ export type ModifiedExerciseProps = {
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
 }
 
 export type UsersComponent = [] | {
@@ -266,8 +269,7 @@ export type CreateRoutineComponentProps = {
   userId: string | null
   gymName?: string | null
   createWarm?: boolean
-  updateWarmUpIdGlobal?: (id: string | undefined) => void
-  updateIdGlobal?: (id: string | undefined) => void
+  updateIdGlobal: (id: string | undefined) => void
   id?: string
   setLoader: SetLoader
 }
@@ -278,11 +280,10 @@ export type ConfirmDeleteComponentProps = {
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   routineId?: string
   routineActual?: (Days: Routine) => void
-  warmUpActual?: ((Days: WarmUp) => void)
-  warmUpId?: string
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setWarmUpAdmin?: setWarmUpAdmin
+  caseResolve: CaseResolve
 }
 
 export type InputsCreateFood = {
