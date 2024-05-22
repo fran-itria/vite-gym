@@ -1,4 +1,5 @@
-export const baseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3001"
+export const baseUrlDeploy = "https://back-gym.onrender.com";
 
 export const selects = {
     summary: "resumen",
