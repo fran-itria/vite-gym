@@ -13,11 +13,11 @@ export default function Register() {
     const [allIds, setAllIds] = useState<{ id: string, gym: string }[]>()
     const { Gym } = useAppSelector(state => state.user)
     const { loader, setLoader } = useLoaders()
-    const baseUrl = `http://localhost:5173/register/${Gym?.name}/`
+    const baseUrl = `https://pro-active-center.vercel.app/register/${Gym?.name}`
 
     const createLink = async () => {
         const id = await axios.post('/idRegistro', { gym: Gym?.name })
-        setLink(baseUrl + id.data.id)
+        setLink(`${baseUrl}` + id.data.id)
     }
 
     const copy = (text: string) => {
