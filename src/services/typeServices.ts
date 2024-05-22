@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser, WarmUpsUser, extraTraining, meal, payments, shift } from "../store/user/slice";
-import { WarmUp } from "../store/warmUp/slice";
 import { CaseResolve, InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, SetLoader, UsersComponent, setRoutineAdmin, setWarmUpAdmin } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
@@ -112,24 +111,24 @@ export type createDayRoutineProps = {
   setWarmUpAdmin?: setWarmUpAdmin
 }
 
-export type createDayWarmUpProps = {
-  warmUp: WarmUp
-  warmUpId: string | undefined
-  warmUpActual?: ((Days: WarmUp) => void)
-  dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string }[]
-  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
-  setTotalExercise: React.Dispatch<React.SetStateAction<string>>
-  setPag: React.Dispatch<React.SetStateAction<number>>
-  setDayCreate: React.Dispatch<React.SetStateAction<{
-    exercise?: number | undefined;
-    name?: string | undefined;
-    series?: string | undefined;
-    reps?: string | undefined;
-    link?: string | undefined
-  }[]>>
-  setLoader: SetLoader
-  setWarmUpAdmin?: setWarmUpAdmin
-}
+// export type createDayWarmUpProps = {
+//   // warmUp: WarmUp
+//   warmUpId: string | undefined
+//   // warmUpActual?: ((Days: WarmUp) => void)
+//   dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string }[]
+//   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+//   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
+//   setPag: React.Dispatch<React.SetStateAction<number>>
+//   setDayCreate: React.Dispatch<React.SetStateAction<{
+//     exercise?: number | undefined;
+//     name?: string | undefined;
+//     series?: string | undefined;
+//     reps?: string | undefined;
+//     link?: string | undefined
+//   }[]>>
+//   setLoader: SetLoader
+//   setWarmUpAdmin?: setWarmUpAdmin
+// }
 
 export type CreateExerciseInputsProps = {
   e: React.ChangeEvent<HTMLInputElement>,
@@ -209,8 +208,7 @@ export type confirmRoutineProps = createRoutineProps & {
   createWarm?: boolean
   setOpenCreateRouitine: React.Dispatch<React.SetStateAction<boolean>>
   updateWarmUpUser?: (warmUps: WarmUpsUser) => void
-  updateWarmUpIdGlobal?: (id: string | undefined) => void
-  updateIdGlobal?: (id: string | undefined) => void
+  updateIdGlobal: (id: string | undefined) => void
   id?: string
   setLoader: SetLoader
 }

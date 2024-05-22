@@ -7,7 +7,6 @@ export default async function confirmRoutine({
     updateRoutinesUser,
     updateIdGlobal,
     updateWarmUpUser,
-    updateWarmUpIdGlobal,
     setOpenCreateRouitine,
     setUsers,
     days,
@@ -22,7 +21,7 @@ export default async function confirmRoutine({
         if (!createWarm) {
             setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.routine}` })
             const routine = await axios.post("/rutina/createRutina", { userId, days })
-            if (updateRoutinesUser && updateIdGlobal) {
+            if (updateRoutinesUser) {
                 if (!setUsers) {
                     const user = await axios.get(`/user/getOneUser/${userId}`)
                     updateIdGlobal(routine.data.id)
@@ -40,15 +39,15 @@ export default async function confirmRoutine({
         } else {
             setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.warm}` })
             const warmUp = await axios.post('/calentamiento/createCalentamiento', { userId, days })
-            if (updateWarmUpUser && updateWarmUpIdGlobal) {
+            if (updateWarmUpUser) {
                 if (!setUsers) {
                     const user = await axios.get(`/user/getOneUser/${userId}`)
-                    updateWarmUpIdGlobal(warmUp.data.id)
+                    updateIdGlobal(warmUp.data.id)
                     updateWarmUpUser(user.data)
                 } else {
                     if (id == userId) {
                         const user = await axios.get(`/user/getOneUser/${userId}`)
-                        updateWarmUpIdGlobal(warmUp.data.id)
+                        updateIdGlobal(warmUp.data.id)
                         updateWarmUpUser(user.data)
                     }
                     const users = await axios.get(`/user/forGym/${gymName}`)

@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux"
 import { updateId } from "../store/routineIdGlobal/slice"
-import { updateWarmUpId } from "../store/warmUpId/slice"
 
 export default function useRoutineIdActions() {
     const dispatch = useDispatch()
@@ -9,8 +8,5 @@ export default function useRoutineIdActions() {
         dispatch(updateId(id))
     }
 
-    const updateWarmUpIdGlobal = (id: string | undefined) => {
-        dispatch(updateWarmUpId(id))
-    }
-    return { updateIdGlobal, updateWarmUpIdGlobal }
+    return { updateIdGlobal }
 }
