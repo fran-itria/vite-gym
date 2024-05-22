@@ -12,7 +12,6 @@ export default async function deleteExercise({
     routineId,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin,
     caseResolve
 }: deleteExerciseProps) {
     try {
@@ -20,12 +19,14 @@ export default async function deleteExercise({
         setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.exercise}` })
         await axios.delete(`/ejercicio/delete/${idExercise}`)
         if (setRoutineAdmin) {
-            const routine = await axios.get(`/rutina/${routineId}`)
-            setRoutineAdmin(routine.data)
-        }
-        if (setWarmUpAdmin) {
-            const routine = await axios.get(`/calentamiento/${routineId}`)
-            setWarmUpAdmin(routine.data)
+            if (caseResolve == CaseResolve.rutina) {
+                const routine = await axios.get(`/rutina/${routineId}`)
+                setRoutineAdmin(routine.data)
+            }
+            else {
+                const routine = await axios.get(`/calentamiento/${routineId}`)
+                setRoutineAdmin(routine.data)
+            }
         }
         if (routineActual) {
             if (caseResolve == CaseResolve.rutina) {

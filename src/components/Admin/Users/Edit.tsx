@@ -1,13 +1,12 @@
 import Switch from '@mui/material/Switch';
 import CreateRoutine from '../../Routine/CreateRoutine';
-import { SetLoader, UsersComponent } from '../../../types';
+import { CaseResolve, SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Routine } from '../../../store/routine/slice';
 import Detail from '../../Routine/Detail';
-import { WarmUp } from '../../../store/warmUp/slice';
 import useDayCreate from '../../../hook/Components/Routine/useCreateDay';
 import FormTotalExercise from '../../Routine/FormTotalExercise';
 import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
@@ -33,14 +32,12 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
-        updateWarmUpIdGlobal,
         id
     } = useEdit()
     const [modal, setModal] = useState<string | undefined>('')
     const [saw, setSaw] = useState<boolean>(false)
     const [routinesUser, setRoutinesUser] = useState<{ id: string }[]>()
     const [routineAdmin, setRoutineAdmin] = useState<Routine>()
-    const [warmUpAdmin, setWarmUpAdmin] = useState<WarmUp>()
     const [selectId, setId] = useState<string>()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const warmUp = 'Calentamiento'
@@ -62,7 +59,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setLoader({ state: true, reason: 'Cargando calentamiento' })
         axios.get(`/calentamiento/${id}`)
             .then(response => {
-                setWarmUpAdmin(response.data)
+                setRoutineAdmin(response.data)
                 setLoader({ state: false })
                 setId(id)
             })
@@ -118,7 +115,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 </form>
                 <button onClick={() => {
                     getWarmUpsUser(userId)
-                    // setModalWarmUps(prev => !prev)
                     setModal((prev) => {
                         if (prev != '') return ''
                         else return warmUp
@@ -171,16 +167,17 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             {saw ?
                 modal == warmUp ?
                     (
-                        warmUpAdmin?.Days && warmUpAdmin.Days.length > 0 ?
+                        routineAdmin?.Days && routineAdmin.Days.length > 0 ?
                             <>
-                                {warmUpAdmin.Days.map((day, i) => {
+                                {routineAdmin.Days.map((day, i) => {
                                     return (
                                         <Detail
                                             day={day}
                                             i={i}
                                             routineOrWarmUp={{ routineId: selectId }}
                                             setLoader={setLoader}
-                                            setWarmUpAdmin={setWarmUpAdmin}
+                                            setRoutineAdmin={setRoutineAdmin}
+                                            caseResolve={CaseResolve.calentamiento}
                                         />
                                     )
                                 })}
@@ -203,6 +200,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                                 routineOrWarmUp={{ weeks: routineAdmin.weeks, routineId: selectId }}
                                                 setLoader={setLoader}
                                                 setRoutineAdmin={setRoutineAdmin}
+                                                caseResolve={CaseResolve.rutina}
                                             />
                                         )
                                     })}
@@ -232,10 +230,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             setTotalExercise={setTotalExercise}
                             routine={routineAdmin}
                             routineId={selectId}
-                            warmUpId={selectId}
                             setLoader={setLoader}
                             setRoutineAdmin={setRoutineAdmin}
-                            setWarmUpAdmin={setWarmUpAdmin}
                         />
                     :
                     <></>
@@ -257,7 +253,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             {createWarm ?
                 <CreateRoutine
                     updateWarmUpUser={updateWarmUpUser}
-                    updateWarmUpIdGlobal={updateWarmUpIdGlobal}
+                    updateIdGlobal={updateIdGlobal}
                     userId={userId}
                     setOpenCreateRouitine={setCreateWarm}
                     gymName={gymName}

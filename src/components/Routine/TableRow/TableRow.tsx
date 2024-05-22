@@ -8,7 +8,7 @@ import ModifiedExercise from "./ModifiedExercise";
 import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise";
 import { useState } from "react";
 
-export default function TableRow({ id, name, series, reps, link, Loads, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin, caseResolve }: TableRowComponentProps) {
+export default function TableRow({ id, name, series, reps, link, Loads, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve }: TableRowComponentProps) {
     const { open, setOpen, confirmDelete, setConfirmDelete, openLoad, setOpenLoad, idLoad, setIdLoad, load, setLoad, newLoads, setNewLoads } = useTabelRow()
     const { routineActual, routineId, weeks } = routineOrWarmUp
     const [weekLoad, setWeekLoad] = useState<number>(0)
@@ -43,7 +43,6 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                         routineOrWarmUp={{ routineActual, routineId }}
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
-                        setWarmUpAdmin={setWarmUpAdmin}
                         caseResolve={caseResolve}
                     />
                     :
@@ -64,7 +63,6 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                         routineId={routineId}
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
-                        setWarmUpAdmin={setWarmUpAdmin}
                         caseResolve={caseResolve}
                     />
                     :

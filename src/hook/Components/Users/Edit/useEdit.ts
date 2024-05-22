@@ -7,7 +7,7 @@ export default function useEdit() {
     const [createRoutine, setCreateRoutine] = useState<boolean>(false)
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateRoutinesUser, updateWarmUpUser } = useUserActions()
-    const { updateIdGlobal, updateWarmUpIdGlobal } = useRoutineIdActions()
+    const { updateIdGlobal } = useRoutineIdActions()
     const [inputs, setInputs] = useState<{ admin?: boolean, pay?: boolean, ban?: boolean }>()
     const { id } = useAppSelector(state => state.user)
 
@@ -19,7 +19,6 @@ export default function useEdit() {
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
-        updateWarmUpIdGlobal,
         inputs,
         setInputs,
         id

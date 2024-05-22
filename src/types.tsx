@@ -2,7 +2,6 @@
 
 import { Routine } from "./store/routine/slice";
 import { RoutinesUser, WarmUpsUser, meal, payments } from "./store/user/slice";
-import { WarmUp } from "./store/warmUp/slice";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
@@ -60,7 +59,6 @@ export type SetLoader = (value: React.SetStateAction<{
 }>) => void
 
 export type setRoutineAdmin = React.Dispatch<React.SetStateAction<Routine | undefined>>
-export type setWarmUpAdmin = React.Dispatch<React.SetStateAction<WarmUp | undefined>>
 
 export type TableComponentProps = {
   day: {
@@ -71,7 +69,6 @@ export type TableComponentProps = {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 
@@ -79,7 +76,6 @@ export type TableRowComponentProps = Exercise & {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 
@@ -138,7 +134,6 @@ export type TableConfirmDayComponentProps = {
   routine?: Routine
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
 }
 
 export type CreateExerciseComponentProps = {
@@ -152,7 +147,6 @@ export type CreateExerciseComponentProps = {
   routineActual?: (Days: Routine) => void
   setLoader: SetLoader;
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 
@@ -183,7 +177,6 @@ export type DetailComponenProps = {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 
@@ -197,7 +190,7 @@ export type FormTotalExerciseComponentProps = {
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
-  routine?: Routine | WarmUp
+  routine?: Routine
 }
 
 export type ModifiedExerciseProps = {
@@ -209,7 +202,6 @@ export type ModifiedExerciseProps = {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 
@@ -282,7 +274,6 @@ export type ConfirmDeleteComponentProps = {
   routineActual?: (Days: Routine) => void
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
-  setWarmUpAdmin?: setWarmUpAdmin
   caseResolve: CaseResolve
 }
 

@@ -9,7 +9,7 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, setWarmUpAdmin, caseResolve }: DetailComponenProps) {
+export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
     const { weeks, routineActual, routineId } = routineOrWarmUp
     return (
@@ -23,7 +23,6 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                     routineOrWarmUp={{ routineActual, routineId, weeks }}
                     setLoader={setLoader}
                     setRoutineAdmin={setRoutineAdmin}
-                    setWarmUpAdmin={setWarmUpAdmin}
                     caseResolve={caseResolve}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>
@@ -39,7 +38,6 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                         routineActual={routineActual ? routineActual : undefined}
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
-                        setWarmUpAdmin={setWarmUpAdmin}
                         caseResolve={caseResolve}
                     />
                     :
@@ -50,7 +48,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                 <DeleteIcon
                     sx={{ color: theme.palette.tashIcon.light }}
                     onClick={() => {
-                        deleteDay({ caseResolve, id: day.id, routineActual, routineId, setRoutineAdmin, setWarmUpAdmin })
+                        deleteDay({ caseResolve, id: day.id, routineActual, routineId, setRoutineAdmin })
                     }} />
             </ThemeProvider>
         </>

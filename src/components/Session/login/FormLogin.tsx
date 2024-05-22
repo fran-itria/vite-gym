@@ -16,12 +16,12 @@ export default function FormLogin() {
   const { addUser } = useUserActions()
   const { loader, setLoader } = useLoaders()
   useLoginSession()
-  const { updateIdGlobal, updateWarmUpIdGlobal } = useRoutineIdActions()
+  const { updateIdGlobal } = useRoutineIdActions()
 
   return (
     <>
       <form onSubmit={(event) => {
-        onSubmit({ event, inputs, navigate, addUser, setLoader, updateIdGlobal, updateWarmUpIdGlobal })
+        onSubmit({ event, inputs, navigate, addUser, setLoader, updateIdGlobal })
       }}>
         <label>
           Usuario:

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { InputsRegister } from "../../../types";
+import { InputsLogin, InputsRegister } from "../../../types";
 import { labels, namesElements, typesElement } from "../../../const";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import onSubmit from "../../../services/form/onSubmit";
@@ -11,7 +11,7 @@ import useLoaders from "../../../hook/Components/useLoaders";
 import Loader from "../../Loader";
 
 export default function FormRegister() {
-    const [inputs, setInputs] = useState<InputsRegister>()
+    const [inputs, setInputs] = useState<InputsRegister | InputsLogin>()
     const url = useLocation()
     const params = useParams()
     const navigate = useNavigate()

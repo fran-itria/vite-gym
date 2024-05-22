@@ -9,14 +9,13 @@ export default function ConfirmDelete({
     routineId,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin,
     caseResolve
 }: ConfirmDeleteComponentProps) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', background: 'white', border: '5px, solid, black', position: 'absolute', top: '50%', right: '50%' }}>
             <p> Desea eliminar el ejercicio {name} </p>
             <button style={{ background: 'red', color: 'white' }} onClick={() => {
-                if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, setWarmUpAdmin, caseResolve })
+                if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
             }}>
                 Borrar
             </button>
