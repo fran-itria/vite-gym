@@ -13,8 +13,7 @@ export async function createDayRoutine({
     setTotalExercise,
     routine,
     setLoader,
-    setRoutineAdmin,
-    setWarmUpAdmin
+    setRoutineAdmin
 }: createDayRoutineProps) {
     try {
         setAddDay(false)
@@ -39,7 +38,7 @@ export async function createDayRoutine({
                         exercises: dayCreate
                     }
                 })
-                if (setWarmUpAdmin) setWarmUpAdmin(response.data)
+                if (setRoutineAdmin) setRoutineAdmin(response.data)
                 else if (routineActual) routineActual(response.data)
             }
         }

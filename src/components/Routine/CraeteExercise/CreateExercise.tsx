@@ -10,7 +10,6 @@ export default function CreateExercise({
     routineId,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin,
     caseResolve
 }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
@@ -26,7 +25,6 @@ export default function CreateExercise({
                     inputs,
                     routineId,
                     setAddExercise,
-                    setWarmUpAdmin,
                     setRoutineAdmin,
                     routineActual,
                     setLoader,

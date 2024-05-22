@@ -15,8 +15,7 @@ export default function TableConfirmDay({
     routineActual,
     routineId,
     setLoader,
-    setRoutineAdmin,
-    setWarmUpAdmin
+    setRoutineAdmin
 }: TableConfirmDayComponentProps) {
     return (
         <>
@@ -52,8 +51,7 @@ export default function TableConfirmDay({
                         setTotalExercise,
                         routine,
                         setLoader,
-                        setRoutineAdmin,
-                        setWarmUpAdmin
+                        setRoutineAdmin
                     })
                 }}>Confirmar</button >
                 :

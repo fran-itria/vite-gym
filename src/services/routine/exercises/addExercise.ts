@@ -14,7 +14,6 @@ export default async function addExerciseFunction({
     routineActual,
     setLoader,
     setRoutineAdmin,
-    setWarmUpAdmin,
     caseResolve
 }: addExerciseProps) {
     e.preventDefault()
@@ -31,12 +30,14 @@ export default async function addExerciseFunction({
             link
         })
         if (setRoutineAdmin) {
-            const routine = await axios.get(`/rutina/${routineId}`)
-            setRoutineAdmin(routine.data)
-        }
-        if (setWarmUpAdmin) {
-            const warmUp = await axios.get(`/calentamiento/${routineId}`)
-            setWarmUpAdmin(warmUp.data)
+            if (caseResolve == CaseResolve.rutina) {
+                const routine = await axios.get(`/rutina/${routineId}`)
+                setRoutineAdmin(routine.data)
+            }
+            else {
+                const routine = await axios.get(`/calentamiento/${routineId}`)
+                setRoutineAdmin(routine.data)
+            }
         }
         if (routineId && routineActual) {
             if (caseResolve == CaseResolve.rutina) {
