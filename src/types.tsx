@@ -197,6 +197,7 @@ export type ModifiedExerciseProps = {
   series?: number
   name?: string
   reps?: string
+  link?: string
   id?: string
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   routineOrWarmUp: RoutineOrWarmUp

@@ -39,6 +39,7 @@ export default function TableRow({ id, name, series, reps, link, Loads, routineO
                         name={name}
                         series={series}
                         reps={reps}
+                        link={link}
                         setOpen={setOpen}
                         routineOrWarmUp={{ routineActual, routineId }}
                         setLoader={setLoader}

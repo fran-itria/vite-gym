@@ -5,9 +5,10 @@ import { basicLoaders, specificLoaders } from "../../../const";
 import { CaseResolve } from "../../../types";
 
 export type InputsModified = {
-    name?: string | undefined;
-    series?: number | undefined;
-    reps?: string | undefined;
+    name?: string
+    series?: number
+    reps?: string
+    link?: string
 }
 
 export const changeInputs = (e: React.ChangeEvent<HTMLInputElement>, setInputs: React.Dispatch<React.SetStateAction<InputsModified>>) => {

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { ModifiedExerciseProps } from "../../../types";
 import { InputsModified, changeInputs, modifiedExercise } from "../../../services/routine/exercises/modifiedExercise";
 
-export default function ModifiedExercise({ id, name, reps, series, setOpen, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve }: ModifiedExerciseProps) {
+export default function ModifiedExercise({ id, name, reps, series, link, setOpen, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve }: ModifiedExerciseProps) {
 
-    const [inputs, setInputs] = useState<InputsModified>({ name, series, reps })
+    const [inputs, setInputs] = useState<InputsModified>({ name, series, reps, link })
     return (
         <div style={{ border: 'solid, black, 2px', position: 'absolute', top: '50%', right: '50%', background: 'white' }}>
             <label>
@@ -19,6 +19,10 @@ export default function ModifiedExercise({ id, name, reps, series, setOpen, rout
             <label>
                 Repeticiones:
                 <input name='reps' defaultValue={reps} onChange={(e) => changeInputs(e, setInputs)}></input>
+            </label>
+            <label>
+                Link de video:
+                <input name='link' defaultValue={link} onChange={(e) => changeInputs(e, setInputs)}></input>
             </label>
             <button onClick={() => modifiedExercise({ id, inputs, routineOrWarmUp, setOpen, setLoader, setRoutineAdmin, caseResolve })}> Modificar </button>
         </div>
