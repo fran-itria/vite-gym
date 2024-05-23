@@ -34,9 +34,14 @@ export default function Header() {
                     {menu ?
                         <div className={style.menu}>
                             <button>Perfil</button>
+                            <button
+                                onClick={() => {
+                                    if (!photo) setImage(prev => !prev)
+                                    else deleteImage(setLoader, updatePhotoUser, id, setMenu)
+                                }}>
+                                {!photo ? <>Cargar foto</> : <>Borrar foto</>}
+                            </button>
                             <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
-                            <button onClick={() => setImage(prev => !prev)}>Subir imagen</button>
-                            <button onClick={() => deleteImage(setLoader, updatePhotoUser, id, setMenu)}>Borrar foto</button>
                         </div>
                         :
                         <></>
