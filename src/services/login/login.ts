@@ -1,4 +1,3 @@
-import { baseUrlDeploy } from "../../const";
 import axios, { AxiosResponse } from "axios";
 import { InputsLogin } from "../../types";
 
@@ -6,7 +5,7 @@ export const login = (inputs: InputsLogin | undefined): Promise<AxiosResponse> =
   const user = inputs?.user;
   const password = inputs?.password;
   return axios
-    .put(`${baseUrlDeploy}/user/login`, {
+    .put('/user/login', {
       user,
       password,
     })
