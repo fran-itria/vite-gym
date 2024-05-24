@@ -31,5 +31,16 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
     } catch (error: any) {
         setLoader({ state: false })
         window.alert(error.response.data.Error);
+        if (inputs && (error.response.data.Error.includes('Usuario') || error.response.data.Error.includes('Email'))) {
+            if ('gymName' in inputs) {
+                const gym = await axios.get(`/gym/getGymName/${inputs.gymName}`)
+                if (gym.data.Users.length == 0) {
+                    await axios.delete(`/gym/delete/${gym.data.id}`)
+                    console.log('Gimnasio borrado')
+                } else {
+                    console.log('Gimnasio en uso')
+                }
+            }
+        }
     }
 }
