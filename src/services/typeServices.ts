@@ -300,7 +300,7 @@ export type createPaymentProps = {
 
 export type uploadImageProps = {
   nameFile: string
-  file: File
+  file: File | undefined
   id: string | null
   updatePhotoUser: (photo: string) => void
   setLoader: React.Dispatch<React.SetStateAction<{
