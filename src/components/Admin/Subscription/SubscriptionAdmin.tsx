@@ -29,7 +29,7 @@ export default function SubscriptionAdmin() {
                 setLoader({ state: false })
             })
             .catch(error => window.alert(error.data.Error))
-    }, [])
+    }, [GymId])
 
     return (
         <>

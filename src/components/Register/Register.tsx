@@ -35,7 +35,7 @@ export default function Register() {
                 setLoader({ state: false })
             }
         })()
-    }, [])
+    }, [Gym])
 
     return (
         <>

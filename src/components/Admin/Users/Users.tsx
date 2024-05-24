@@ -32,6 +32,7 @@ export default function Users() {
         setLoader,
         copy
     } = useUsers()
+
     const filterUsers = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.value.toLowerCase()
         if (name) {
