@@ -1,25 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from './Header.module.css'
-import { useAppSelector } from "../../hook/store";
-import { useState } from "react";
 import { logout } from "../../services/logout/logout";
 import HomeAdmin from "../Admin/Home/HomeAdmin";
-import useLoaders from "../../hook/Components/useLoaders";
 import Loader from "../Loader";
 import uploadImage from "../../services/firebase/uploadImage";
-import { useUserActions } from "../../hook/useUserActions";
 import deleteImage from "../../services/deleteImage";
+import { useHeader } from "./useHeader";
+import { getGyms, change } from "./functions";
 
 export default function Header() {
-    const { pathname } = useLocation()
-    const { name, surname, id, admin, Gym, photo } = useAppSelector(state => state.user)
-    const [menu, setMenu] = useState<boolean>(false)
-    const navigate = useNavigate()
-    const { loader, setLoader } = useLoaders()
-    const [image, setImage] = useState(false)
-    const [file, setFile] = useState<any>()
-    const { updatePhotoUser } = useUserActions()
+    const {
+        Gym,
+        admin,
+        cahngeGym,
+        file,
+        gyms,
+        id,
+        image,
+        loader,
+        menu,
+        name,
+        pathname,
+        photo,
+        surname,
+        valueGym,
+        navigate,
+        setChangeGym,
+        setFile,
+        setGyms,
+        setImage,
+        setLoader,
+        setMenu,
+        setValueGym,
+        updateGymUser,
+        updatePhotoUser
+    } = useHeader()
 
     return (
         <>
@@ -33,7 +49,6 @@ export default function Header() {
                     }
                     {menu ?
                         <div className={style.menu}>
-                            <button>Perfil</button>
                             <button
                                 onClick={() => {
                                     if (!photo) setImage(prev => !prev)
@@ -41,6 +56,10 @@ export default function Header() {
                                 }}>
                                 {!photo ? <>Cargar foto</> : <>Borrar foto</>}
                             </button>
+                            <button onClick={() => {
+                                getGyms(setGyms)
+                                setChangeGym(prev => !prev)
+                            }}> Cambiar de gym </button>
                             <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
                         </div>
                         :
@@ -82,6 +101,22 @@ export default function Header() {
                     <input type="file" onChange={(e) => { setFile(e.target.files ? e.target.files[0] : undefined) }}></input>
                     <button onClick={() => uploadImage({ nameFile: `${name} ${surname}`, file, id, updatePhotoUser, setLoader, setImage, setMenu })}>Subir</button>
                 </div >
+                :
+                <></>
+            }
+            {cahngeGym && gyms.length > 0 ?
+                <div>
+                    <select onChange={(e) => setValueGym(e.target.value)}>
+                        <option value=''>Selecciona un gym</option>
+                        {gyms.map((gym: { id: string, name: string }) => <option key={gym.id} value={gym.id}>{gym.name}</option>)}
+                    </select>
+                    <button onClick={() => {
+                        setLoader({ state: true, reason: 'Cambiando de gym' })
+                        change(id, valueGym, updateGymUser)
+                        setChangeGym(false)
+                        setLoader({ state: false })
+                    }}>Cambiar</button>
+                </div>
                 :
                 <></>
             }

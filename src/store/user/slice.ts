@@ -173,6 +173,16 @@ export const userSlice = createSlice({
                 ...state,
                 photo: action.payload
             }
+        },
+
+        updateGymId: (state, action: PayloadAction<{ gymName: string, gymId: string }>) => {
+            return {
+                ...state,
+                Gym: {
+                    name: action.payload.gymName
+                },
+                GymId: action.payload.gymId
+            }
         }
 
     }
@@ -189,5 +199,6 @@ export const {
     updateShifts,
     updatePayments,
     updateStateSubscription,
-    updatePhoto
+    updatePhoto,
+    updateGymId
 } = userSlice.actions
