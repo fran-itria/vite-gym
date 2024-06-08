@@ -63,7 +63,8 @@ export const specificLoaders = {
     register: 'registros',
     load: 'carga',
     cahnges: 'cambios',
-    image: 'foto'
+    image: 'foto',
+    limit: 'límites'
 }
 
 export const momentsFood = ['Desayuno', 'Media mañana', 'Almuerzo', 'Merienda', 'Cena']
