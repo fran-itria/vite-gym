@@ -15,6 +15,7 @@ export default function ShiftsAdmin() {
     const { loader, setLoader } = useLoaders()
     const [inputs, setInputs] = useState<{ limit: number, time: number, open: string, close: string }>({ limit: 0, time: 0, open: '', close: '' })
     const [limitShift, setLimitShift] = useState<{ limit: number, time: string, open: string, close: string }>()
+    const [stateButton, setStateButton] = useState<string>('')
     useEffect(() => {
         setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.shift}s` })
         axios.get(`/gym/getGymId/${GymId}`)
@@ -22,40 +23,45 @@ export default function ShiftsAdmin() {
                 const shifts: { id: string, day: string, hour: string }[] = response.data.Shifts
                 const today = shifts.filter(shift => shift.day == date)
                 setShifts(today)
-                const open = response.data.range[0].split('-')[0].replace(' ', '')
-                const close = response.data.range[response.data.range.length - 1].split('-')[1].replace(' ', '')
-                setLimitShift({
-                    limit: response.data.limit,
-                    time: response.data.time,
-                    open: Number(open.split(':')[0]) < 10 ? `0${open}` : open,
-                    close: Number(close.split(':')[0]) < 10 ? `0${close}` : close
-                })
+                if (response.data.range.length > 0) {
+                    const open = response.data.range[0].split('-')[0].replace(' ', '')
+                    const close = response.data.range[response.data.range.length - 1].split('-')[1].replace(' ', '')
+                    setLimitShift({
+                        limit: response.data.limit,
+                        time: response.data.time,
+                        open: Number(open.split(':')[0]) < 10 ? `0${open}` : open,
+                        close: Number(close.split(':')[0]) < 10 ? `0${close}` : close
+                    })
+                }
                 setLoader({ state: false })
             })
-            .catch(error => window.alert(error.data.Error))
+            .catch(error => {
+                window.alert(error.data.Error)
+            })
     }, [])
 
     return (
         <>
             <p>Si desea limitar los turnos complete los siguientes campos: </p>
-            <form onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader)}>
+            <form onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader, stateButton, setLimitShift)}>
                 <label>
                     Limite por turnos:
-                    <input type="number" name="limit" defaultValue={limitShift?.limit} onChange={(e) => onChange(e, setInputs)}></input>
+                    <input type="number" name="limit" defaultValue={limitShift?.limit || ''} onChange={(e) => onChange(e, setInputs)}></input>
                 </label>
                 <label>
                     Tiempo por turno:
-                    <input type="number" name="time" defaultValue={limitShift?.time} onChange={(e) => onChange(e, setInputs)}></input>
+                    <input type="number" name="time" defaultValue={limitShift?.time || ''} onChange={(e) => onChange(e, setInputs)}></input>
                 </label>
                 <label>
                     Abre:
-                    <input type="time" name="open" defaultValue={limitShift?.open} onChange={(e) => onChange(e, setInputs)}></input>
+                    <input type="time" name="open" defaultValue={limitShift?.open || ''} onChange={(e) => onChange(e, setInputs)}></input>
                 </label>
                 <label>
                     Cierra:
-                    <input type="time" name="close" defaultValue={limitShift?.close} onChange={(e) => onChange(e, setInputs)}></input>
+                    <input type="time" name="close" defaultValue={limitShift?.close || ''} onChange={(e) => onChange(e, setInputs)}></input>
                 </label>
-                <button>Confirmar</button>
+                <button onClick={() => setStateButton('confirm')}>Confirmar</button>
+                <button onClick={() => setStateButton('reset')}>Resetear</button>
             </form>
             {shifts?.length > 0 ?
                 <>

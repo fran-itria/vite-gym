@@ -26,17 +26,31 @@ export const onSubmit = async (
     setLoader: React.Dispatch<React.SetStateAction<{
         state: boolean;
         reason?: string | undefined;
-    }>>
+    }>>,
+    stateButton: string,
+    setLimitShift: React.Dispatch<React.SetStateAction<{
+        limit: number;
+        time: string;
+        open: string;
+        close: string;
+    } | undefined>>
 ) => {
     e.preventDefault()
+    console.log(e)
     try {
         setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.limit}` })
         const { limit, time, open, close } = inputs
-        const response = await axios.put(`/gym`, { limit, time, open, close, id: GymId })
+        if (stateButton == 'confirm') {
+            const response = await axios.put(`/gym`, { limit, time, open, close, id: GymId })
+            const data = response.data
+            setLimitShift({ limit: data.limit, time: data.time.toString(), open: data.open, close: data.open })
+        }
+        else if (stateButton == 'reset') {
+            await axios.put(`/gym`, { limit: 0, time: 0, open: '', close: '', id: GymId })
+            setLimitShift(undefined)
+        }
         setLoader({ state: false })
-        console.log(response.data)
     } catch (error: any) {
-        console.log(error)
         window.alert(error.data.Error)
     }
 }

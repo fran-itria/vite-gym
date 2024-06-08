@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useAppSelector } from "../../hook/store"
 import DeleteIcon from "@mui/icons-material/Delete";
 import Calendar from "./Calendar/Calendar"
