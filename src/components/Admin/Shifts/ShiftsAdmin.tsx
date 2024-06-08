@@ -6,13 +6,15 @@ import moment from "moment"
 import useLoaders from "../../../hook/Components/useLoaders"
 import { basicLoaders, specificLoaders } from "../../../const"
 import Loader from "../../Loader"
+import { onChange, onSubmit } from "./functions"
 
 export default function ShiftsAdmin() {
     const { GymId } = useAppSelector(state => state.user)
     const [shifts, setShifts] = useState<{ id: string, day: string, hour: string }[]>([])
     const date = moment().format().split('T')[0]
     const { loader, setLoader } = useLoaders()
-
+    const [inputs, setInputs] = useState<{ limit: number, time: number, open: string, close: string }>({ limit: 0, time: 0, open: '', close: '' })
+    const [limitShift, setLimitShift] = useState<{ limit: number, time: string, open: string, close: string }>()
     useEffect(() => {
         setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.shift}s` })
         axios.get(`/gym/getGymId/${GymId}`)
@@ -20,6 +22,14 @@ export default function ShiftsAdmin() {
                 const shifts: { id: string, day: string, hour: string }[] = response.data.Shifts
                 const today = shifts.filter(shift => shift.day == date)
                 setShifts(today)
+                const open = response.data.range[0].split('-')[0].replace(' ', '')
+                const close = response.data.range[response.data.range.length - 1].split('-')[1].replace(' ', '')
+                setLimitShift({
+                    limit: response.data.limit,
+                    time: response.data.time,
+                    open: Number(open.split(':')[0]) < 10 ? `0${open}` : open,
+                    close: Number(close.split(':')[0]) < 10 ? `0${close}` : close
+                })
                 setLoader({ state: false })
             })
             .catch(error => window.alert(error.data.Error))
@@ -27,6 +37,26 @@ export default function ShiftsAdmin() {
 
     return (
         <>
+            <p>Si desea limitar los turnos complete los siguientes campos: </p>
+            <form onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader)}>
+                <label>
+                    Limite por turnos:
+                    <input type="number" name="limit" defaultValue={limitShift?.limit} onChange={(e) => onChange(e, setInputs)}></input>
+                </label>
+                <label>
+                    Tiempo por turno:
+                    <input type="number" name="time" defaultValue={limitShift?.time} onChange={(e) => onChange(e, setInputs)}></input>
+                </label>
+                <label>
+                    Abre:
+                    <input type="time" name="open" defaultValue={limitShift?.open} onChange={(e) => onChange(e, setInputs)}></input>
+                </label>
+                <label>
+                    Cierra:
+                    <input type="time" name="close" defaultValue={limitShift?.close} onChange={(e) => onChange(e, setInputs)}></input>
+                </label>
+                <button>Confirmar</button>
+            </form>
             {shifts?.length > 0 ?
                 <>
                     <p>Turnos para el dia de hoy: {shifts.length}</p>

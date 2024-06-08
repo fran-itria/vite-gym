@@ -7,18 +7,38 @@ import Loader from "../Loader";
 import { useUserActions } from "../../hook/useUserActions";
 import deleteShift from "../../services/calendar/deleteShift";
 import ShiftsAdmin from "../Admin/Shifts/ShiftsAdmin";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Shifts() {
-    const { Shifts, id, admin } = useAppSelector(state => state.user)
+    const { Shifts, id, admin, GymId } = useAppSelector(state => state.user)
     const { updateShiftsUser } = useUserActions()
     const { loader, setLoader } = useLoaders()
+    const [shifts, setShifts] = useState<{ limit: number, time: number, range: string[] }>()
+
+    useEffect(() => {
+        axios.get(`/gym/getGymId/${GymId}`)
+            .then(response => {
+                console.log(response.data)
+                const { limit, time, range } = response.data
+                setShifts({ limit, time, range })
+            })
+            .catch(error => window.alert(error.data.Error))
+    }, [])
 
     return (
         <>
             {!admin ?
                 <>
+                    {shifts ?
+                        <div>
+                            <h3>El limite de cupos por turno es de {shifts.limit} con duracion de {shifts.time} hora</h3>
+                        </div>
+                        :
+                        <></>
+                    }
                     <div className={style.container}>
-                        <Calendar setLoader={setLoader} />
+                        <Calendar setLoader={setLoader} range={shifts?.range} limit={shifts ? shifts.limit : null} />
                         <div>
                             <p>Mis turnos: </p>
                             {Shifts.length > 0 ?
