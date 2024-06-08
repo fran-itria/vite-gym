@@ -54,3 +54,19 @@
     cursor: pointer;
 
 }
+
+.dayComplete {
+    background-color: rgb(199, 199, 199);
+    border-radius: 43px;
+    border: solid black 1px;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 900;
+    width: 55px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}

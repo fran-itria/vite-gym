@@ -29,8 +29,8 @@ export default function ShiftsAdmin() {
                     setLimitShift({
                         limit: response.data.limit,
                         time: response.data.time,
-                        open: Number(open.split(':')[0]) < 10 ? `0${open}` : open,
-                        close: Number(close.split(':')[0]) < 10 ? `0${close}` : close
+                        open,
+                        close
                     })
                 }
                 setLoader({ state: false })

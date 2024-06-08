@@ -358,6 +358,8 @@ export type DaysProps = {
   day: number
   setDay: React.Dispatch<React.SetStateAction<number>>
   actualYear: number
+  GymId: string | null
+  limit: number | null
 }
 
 export type TableSubscriptionProps = {

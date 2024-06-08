@@ -36,7 +36,6 @@ export const onSubmit = async (
     } | undefined>>
 ) => {
     e.preventDefault()
-    console.log(e)
     try {
         setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.limit}` })
         const { limit, time, open, close } = inputs

@@ -20,7 +20,6 @@ export default function Shifts() {
     useEffect(() => {
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
-                console.log(response.data)
                 const { limit, time, range } = response.data
                 setShifts({ limit, time, range })
             })
@@ -31,7 +30,7 @@ export default function Shifts() {
         <>
             {!admin ?
                 <>
-                    {shifts ?
+                    {shifts && shifts.limit != 0 ?
                         <div>
                             <h3>El limite de cupos por turno es de {shifts.limit} con duracion de {shifts.time} hora</h3>
                         </div>

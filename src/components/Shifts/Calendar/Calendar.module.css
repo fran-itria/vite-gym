@@ -1,12 +1,14 @@
-.complete{
+.complete {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.month{
+
+.month {
     width: 700px;
 }
+
 .calendar {
     justify-content: center;
     display: grid;
@@ -15,13 +17,17 @@
     margin-top: 20px;
 }
 
-.confirm{
+.confirm {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: fit-content;
 }
 
-.button{
+.button {
     width: fit-content;
+}
+
+.hourSelected {
+    background-color: rgb(125, 255, 125);
 }
