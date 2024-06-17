@@ -25,7 +25,6 @@ export default function Days({ month, day, setDay, actualYear, GymId, limit }: D
         getShiftsMonth()
     }, [month, Shifts])
 
-    useEffect(() => { console.log(shiftsMonth, limit) }, [shiftsMonth])
     return (
         <>
             {month !== undefined ? daysInMonth.map((dayMonth, index) => {
@@ -41,7 +40,7 @@ export default function Days({ month, day, setDay, actualYear, GymId, limit }: D
                                 (index) % 7 === 0 ?
                                     style.dayOff
                                     :
-                                    shiftsMonth.filter(shift => {
+                                    limit && shiftsMonth.filter(shift => {
                                         return shift.day.split('-')[2] === (dayMonth + 1 < 10 ? `0${dayMonth + 1}` : `${dayMonth + 1}`)
                                     }).length >= (limit ? limit : 1) ?
                                         style.dayComplete
