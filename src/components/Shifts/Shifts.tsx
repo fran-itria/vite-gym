@@ -52,7 +52,7 @@ export default function Shifts() {
                                             <div className={style.row}>
                                                 <tr>
                                                     <td>{`${shift.day.split('-')[2]} - ${shift.day.split('-')[1]}`}</td>
-                                                    <td>{`${shift.hour.split(':')[0]}:${shift.hour.split(':')[1]}`}</td>
+                                                    <td>{`${shift.hour.split('-')[0]}`}</td>
                                                 </tr>
                                                 <DeleteIcon onClick={() => deleteShift({ shiftId: shift.id, userId: id, updateShiftsUser, setLoader })} />
                                             </div>
