@@ -71,9 +71,11 @@ export default function ShiftsAdmin() {
                             <th>Hora</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                {shifts.map(shift => <td>{shift.hour}</td>)}
-                            </tr>
+                            {shifts.map(shift =>
+                                <tr>
+                                    <td>{shift.hour.split('-')[0]}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </>
