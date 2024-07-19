@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useUserActions } from "../../../useUserActions"
 import useRoutineIdActions from "../../../useRoutineIdActions"
 import { useAppSelector } from "../../../store"
+import { Routine } from "../../../../store/routine/slice"
 
 export default function useEdit() {
     const [createRoutine, setCreateRoutine] = useState<boolean>(false)
@@ -10,6 +11,12 @@ export default function useEdit() {
     const { updateIdGlobal } = useRoutineIdActions()
     const [inputs, setInputs] = useState<{ admin?: boolean, pay?: boolean, ban?: boolean }>()
     const { id } = useAppSelector(state => state.user)
+
+    const [modal, setModal] = useState<string | undefined>('')
+    const [saw, setSaw] = useState<boolean>(false)
+    const [routinesUser, setRoutinesUser] = useState<{ id: string }[]>()
+    const [routineAdmin, setRoutineAdmin] = useState<Routine>()
+    const [selectId, setId] = useState<string>()
 
     return {
         createRoutine,
@@ -21,6 +28,16 @@ export default function useEdit() {
         updateIdGlobal,
         inputs,
         setInputs,
-        id
+        id,
+        modal,
+        setModal,
+        saw,
+        setSaw,
+        routinesUser,
+        setRoutinesUser,
+        routineAdmin,
+        setRoutineAdmin,
+        selectId,
+        setId
     }
 }

@@ -3,14 +3,12 @@ import CreateRoutine from '../../Routine/CreateRoutine';
 import { CaseResolve, SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Routine } from '../../../store/routine/slice';
 import Detail from '../../Routine/Detail';
 import useDayCreate from '../../../hook/Components/Routine/useCreateDay';
 import FormTotalExercise from '../../Routine/FormTotalExercise';
 import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
 import TableConfirmDay from '../../Routine/CraeteOneDay/TableConfirmDay';
+import { change, getOneRoutine, getOneWarmUp, getRoutinesUser, getWarmUpsUser } from './functions';
 
 export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader }: {
     gymName?: string
@@ -32,102 +30,57 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         updateRoutinesUser,
         updateWarmUpUser,
         updateIdGlobal,
-        id
+        id,
+        modal,
+        setModal,
+        routineAdmin,
+        setRoutineAdmin,
+        saw,
+        setSaw,
+        routinesUser,
+        setRoutinesUser,
+        selectId,
+        setId,
     } = useEdit()
-    const [modal, setModal] = useState<string | undefined>('')
-    const [saw, setSaw] = useState<boolean>(false)
-    const [routinesUser, setRoutinesUser] = useState<{ id: string }[]>()
-    const [routineAdmin, setRoutineAdmin] = useState<Routine>()
-    const [selectId, setId] = useState<string>()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const warmUp = 'Calentamiento'
     const routine = 'Rutina'
-    useEffect(() => console.log(modal, saw), [modal, saw])
 
-    const getRoutinesUser = async (id: string) => {
-        axios.get(`/user/getOneUser/${id}`)
-            .then(response => setRoutinesUser(response.data.Routines))
-            .catch(error => window.alert(error.message))
-    }
-
-    const getWarmUpsUser = async (id: string) => {
-        axios.get(`/user/getOneUser/${id}`)
-            .then(response => setRoutinesUser(response.data.WarmUps))
-            .catch(error => window.alert(error.message))
-    }
-    const getOneWarmUp = (id: string) => {
-        setLoader({ state: true, reason: 'Cargando calentamiento' })
-        axios.get(`/calentamiento/${id}`)
-            .then(response => {
-                setRoutineAdmin(response.data)
-                setLoader({ state: false })
-                setId(id)
-            })
-            .catch(error => window.alert(error.data.Error))
-    }
-    const getOneRoutine = (id: string) => {
-        setLoader({ state: true, reason: 'Cargando rutina' })
-        axios.get(`/rutina/${id}`)
-            .then(response => {
-                setRoutineAdmin(response.data)
-                setLoader({ state: false })
-                setId(id)
-            })
-            .catch(error => window.alert(error.data.Error))
-    }
-
-    const change = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const name = e.target.name
-        const value = e.target.checked
-        setInputs(prev => { return { ...prev, [name]: value } })
-    }
-
-    const sawRoutineFunction = (id: string) => {
-        if (!saw) {
-            setSaw(prev => !prev)
-            getOneRoutine(id)
-        } else setSaw(prev => !prev)
-    }
-
-    const sawWarmUpFunction = (id: string) => {
-        if (!saw) {
-            setSaw(prev => !prev)
-            getOneWarmUp(id)
-        } else setSaw(prev => !prev)
-    }
     return (
         <>
             <menu>
                 <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit })}>
                     <label>
                         Admin:
-                        <Switch name='admin' onChange={(e) => change(e)} defaultChecked={admin ? true : false} />
+                        <Switch name='admin' onChange={(e) => change({ e, setInputs })} defaultChecked={admin ? true : false} />
                     </label>
                     <label>
                         Suscripción:
-                        <Switch name='pay' onChange={(e) => change(e)} defaultChecked={subscription ? true : false} />
+                        <Switch name='pay' onChange={(e) => change({ e, setInputs })} defaultChecked={subscription ? true : false} />
                     </label>
                     <label>
                         Ban:
-                        <Switch name='ban' onChange={(e) => change(e)} defaultChecked={ban ? true : false} />
+                        <Switch name='ban' onChange={(e) => change({ e, setInputs })} defaultChecked={ban ? true : false} />
                     </label>
                     <button>Guardar cambios</button>
                 </form>
                 <button onClick={() => {
-                    getWarmUpsUser(userId)
+                    getWarmUpsUser({ id: userId, setRoutinesUser })
                     setModal((prev) => {
                         if (prev != '') return ''
                         else return warmUp
                     })
+                    setRoutineAdmin(undefined)
                 }}>
                     Calentamientos
                 </button>
                 <button onClick={() => {
-                    getRoutinesUser(userId)
+                    getRoutinesUser({ id: userId, setRoutinesUser })
                     setModal((prev) => {
                         if (prev != '') return ''
                         else return routine
                     })
+                    setRoutineAdmin(undefined)
                 }}>
                     Rutinas
                 </button>
@@ -138,29 +91,27 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             {modal != '' ?
                 routinesUser?.length && routinesUser?.length > 0 ?
                     modal == warmUp ?
-                        <ol>
+                        <select onChange={(e) => {
+                            getOneWarmUp({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
+                            setSaw(true)
+                        }}>
+                            <option value=''>Seleccionar calentamiento</option>
                             {routinesUser?.map((warmUp, index) =>
-                                <div>
-                                    <li>Calentamiento {index + 1}</li>
-                                    <button onClick={() => sawWarmUpFunction(warmUp.id)}>
-                                        ver
-                                    </button>
-                                </div>
+                                <option value={warmUp.id}>Calentamiento {index + 1}</option>
                             )}
-                        </ol>
+                        </select>
                         :
-                        <ol>
-                            {routinesUser?.map((routine, index) =>
-                                <div>
-                                    <li>Rutina {index + 1}</li>
-                                    <button onClick={() => sawRoutineFunction(routine.id)}>
-                                        ver
-                                    </button>
-                                </div>
+                        <select onChange={(e) => {
+                            getOneRoutine({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
+                            setSaw(true)
+                        }}>
+                            <option value=''>Seleccionar rutina</option>
+                            {routinesUser?.map((warmUp, index) =>
+                                <option value={warmUp.id}>Rutina {index + 1}</option>
                             )}
-                        </ol>
+                        </select>
                     :
-                    <></>
+                    <>No hay {modal?.toLowerCase()}s existentes</>
                 :
                 <></>
             }
@@ -185,7 +136,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 <button onClick={() => setSaw(false)}>❌</button>
                             </>
                             :
-                            <>No tiene calentamientos creados</>
+                            <></>
                     )
                     :
                     modal == routine ?
@@ -208,7 +159,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     <button onClick={() => setSaw(false)}>❌</button>
                                 </>
                                 :
-                                <>No tiene rutinas creadas</>
+                                <></>
                         )
                         :
                         <></>
