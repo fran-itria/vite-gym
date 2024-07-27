@@ -43,6 +43,7 @@ export const labels = {
 }
 
 export const basicLoaders = {
+    register: 'Registrando usuario',
     init: 'Iniciado sesión',
     out: 'Cerrando sesión',
     loading: 'Cargando',
