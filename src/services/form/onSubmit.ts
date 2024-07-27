@@ -30,7 +30,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                     name: response.data.name,
                     temporalCode: response.data.temporalCode
                 })
-                if (sendMail.status == 200) {
+                if (sendMail.status == 200 && handleOpen && setMail) {
                     setLoader({ state: false })
                     setMail(user.data.email)
                     handleOpen()
