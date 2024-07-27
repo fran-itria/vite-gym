@@ -4,8 +4,8 @@ import onSubmit from "../../../services/form/onSubmit";
 import FormElement from "../FormElement";
 import Loader from "../../Loader";
 import { Modal } from "@mui/material";
-import verify from "./verify";
 import useForm from "./useForm";
+import checkCode from "./checkCode";
 
 export default function FormRegister() {
     const { inputs, setInputs, url, navigate, addUser, loader, setLoader, open, handleOpen, mail, setMail, temporalCode, setTemporalCode } = useForm()
@@ -41,7 +41,7 @@ export default function FormRegister() {
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <h3 style={{ color: 'white' }}>CODIGO</h3>
                         <input type="number" onChange={(e) => setTemporalCode(e.target.value.toString())} />
-                        <button onClick={() => verify(navigate, addUser, mail, temporalCode, setLoader)}>Verificar</button>
+                        <button onClick={() => checkCode(navigate, addUser, mail, temporalCode, setLoader)}>Verificar</button>
                     </div>
                 </div>
             </Modal>

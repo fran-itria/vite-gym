@@ -25,6 +25,8 @@ export type onSubmitProps = {
   url?: Location<any>,
   setLoader: SetLoader
   updateIdGlobal?: (id: string | undefined) => void
+  handleOpen: () => void
+  setMail: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type modifiedExerciseProps = {
