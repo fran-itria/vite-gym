@@ -36,6 +36,7 @@ export default function ShiftsAdmin() {
                 setLoader({ state: false })
             })
             .catch(error => {
+                setLoader({ state: false })
                 window.alert(error.data.Error)
             })
     }, [])
