@@ -5,11 +5,11 @@ import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 import { basicLoaders, storage } from "../../const";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal, handleOpen, setMail }: onSubmitProps) {
     event.preventDefault();
     try {
-        setLoader({ state: true, reason: `${basicLoaders.init}` })
         if (!url) {
+            setLoader({ state: true, reason: `${basicLoaders.init}` })
             const response = await login(inputs);
             if (response.status == 200 && updateIdGlobal) {
                 addUser(response.data.user)
@@ -21,11 +21,21 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
+            setLoader({ state: true, reason: `${basicLoaders.register}` })
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
-                addUser(user.data)
-                navigate(`/home/${user.data.id}/resumen`);
+                const sendMail = await axios.post("/mails/registro", {
+                    email: response.data.email,
+                    name: response.data.name,
+                    temporalCode: response.data.temporalCode
+                })
+                if (sendMail.status == 200) {
+                    setLoader({ state: false })
+                    setMail(user.data.email)
+                    handleOpen()
+                    return
+                }
             }
         }
     } catch (error: any) {
