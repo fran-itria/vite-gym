@@ -50,7 +50,8 @@ export const basicLoaders = {
     create: 'Creando',
     remove: 'Eliminando',
     save: 'Guardando',
-    up: 'Subiendo'
+    up: 'Subiendo',
+    changeGym: 'Cambiando de gimnasio',
 }
 export const specificLoaders = {
     routine: 'rutina',
