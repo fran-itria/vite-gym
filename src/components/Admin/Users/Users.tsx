@@ -109,7 +109,7 @@ export default function Users() {
                 />
                 :
                 <></>}
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }
