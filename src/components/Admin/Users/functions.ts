@@ -36,21 +36,21 @@ export const getWarmUpsUser = async ({ id, setRoutinesUser }: getUserFunctionsPr
         .catch(error => window.alert(error.message))
 }
 export const getOneWarmUp = ({ id, setId, setLoader, setRoutineAdmin }: getOneFunctionProps) => {
-    setLoader({ state: true, reason: 'Cargando calentamiento' })
+    setLoader('Cargando calentamiento')
     axios.get(`/calentamiento/${id}`)
         .then(response => {
             setRoutineAdmin(response.data)
-            setLoader({ state: false })
+            setLoader(undefined)
             setId(id)
         })
         .catch(error => window.alert(error.data.Error))
 }
 export const getOneRoutine = ({ id, setId, setLoader, setRoutineAdmin }: getOneFunctionProps) => {
-    setLoader({ state: true, reason: 'Cargando rutina' })
+    setLoader('Cargando rutina')
     axios.get(`/rutina/${id}`)
         .then(response => {
             setRoutineAdmin(response.data)
-            setLoader({ state: false })
+            setLoader(undefined)
             setId(id)
         })
         .catch(error => window.alert(error.data.Error))

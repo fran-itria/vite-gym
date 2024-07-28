@@ -6,11 +6,11 @@ import { basicLoaders, specificLoaders } from "../../const"
 
 export default async function deleteFood({ mealId, setLoader, updateMealsUser, id }: deleteMealProps) {
   try {
-    setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.meal}` })
+    setLoader(`${basicLoaders.remove} ${specificLoaders.meal}`)
     await axios.delete(`/comidas/delete/${mealId}`)
     const user = await axios.get(`/user/getOneUser/${id}`)
     updateMealsUser(user.data.Meals)
-    setLoader({ state: false })
+    setLoader(undefined)
   } catch (error: any) {
     window.alert(error.response.data.Error)
   }

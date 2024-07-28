@@ -26,7 +26,7 @@ export default function WarmUp() {
                 <p>Seleccionar Calentamiento:</p>
                 <select onChange={(e) => {
                     updateIdGlobal(e.target.value)
-                    setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.warm}` })
+                    setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
                 }}>
                     <option value={routineId.id}></option>
                     {WarmUps.map((routine, i: number) => (
@@ -107,7 +107,7 @@ export default function WarmUp() {
                     :
                     <></>
             }
-            {loader.state && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

@@ -25,7 +25,7 @@ export default function Subscription() {
                     :
                     <></>
                 }
-                {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+                {loader ? <Loader text={loader} /> : <></>}
             </>
     )
 }

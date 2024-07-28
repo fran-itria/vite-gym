@@ -24,7 +24,7 @@ export default function Routine() {
                 <p>Seleccionar rutina:</p>
                 <select onChange={(e) => {
                     updateIdGlobal(e.target.value)
-                    setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.routine}` })
+                    setLoader(`${basicLoaders.loading} ${specificLoaders.routine}`)
                 }}>
                     <option value={routineId.id}></option>
                     {Routines.map((routine, i: number) => (
@@ -99,7 +99,7 @@ export default function Routine() {
                 :
                 <></>
             }
-            {loader.state && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

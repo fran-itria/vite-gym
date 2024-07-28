@@ -8,14 +8,14 @@ export default async function createFood({ e, id, inputs, setAdd, updateMealsUse
     try {
         if (setAdd) {
             setAdd(false)
-            setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.meal}` })
+            setLoader(`${basicLoaders.create} ${specificLoaders.meal}`)
             await axios.post('/comidas', { ...inputs, userId: id })
-            setLoader({ state: false })
+            setLoader(undefined)
         } else if (mealId && setEdit) {
-            setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.meal}` })
+            setLoader(`${basicLoaders.save} ${specificLoaders.meal}`)
             await axios.put('/comidas', { ...inputs, id: mealId })
             setEdit(false)
-            setLoader({ state: false })
+            setLoader(undefined)
         }
         const user = await axios.get(`/user/getOneUser/${id}`)
         updateMealsUser(user.data.Meals)

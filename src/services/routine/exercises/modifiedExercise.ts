@@ -21,7 +21,7 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
     try {
         const { routineActual, routineId } = routineOrWarmUp
         setOpen(false)
-        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.cahnges}` })
+        setLoader(`${basicLoaders.save} ${specificLoaders.cahnges}`)
         await axios.put('/ejercicio', { ...inputs, id })
         if (setRoutineAdmin) {
             if (caseResolve == CaseResolve.rutina) {
@@ -43,7 +43,7 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
                 routineActual(warmUp.data)
             }
         }
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }
@@ -51,7 +51,7 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
 
 export async function modifiedLoads({ exerciseId, id, load, routineActual, routineId, setOpenLoad, setLoad, setLoader, weekLoad }: modifiedLoadsProps) {
     try {
-        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.load}` })
+        setLoader(`${basicLoaders.save} ${specificLoaders.load}`)
         if (id && setLoad) {
             setLoad(false)
             await axios.put('/cargas', {
@@ -72,7 +72,7 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
                 .then(response => {
                     routineActual(response.data)
                 })
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

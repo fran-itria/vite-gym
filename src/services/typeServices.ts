@@ -38,10 +38,7 @@ export type modifiedExerciseProps = {
     series?: number | undefined;
     reps?: string | undefined;
   }
-  setLoader: (value: React.SetStateAction<{
-    state: boolean;
-    reason?: string | undefined;
-  }>) => void
+  setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   caseResolve: CaseResolve
 }
@@ -54,10 +51,7 @@ export type modifiedLoadsProps = {
   routineActual?: ((Days: Routine) => void)
   setOpenLoad?: React.Dispatch<React.SetStateAction<boolean>>
   setLoad?: React.Dispatch<React.SetStateAction<boolean>>
-  setLoader: (value: React.SetStateAction<{
-    state: boolean;
-    reason?: string | undefined;
-  }>) => void
+  setLoader: SetLoader
   weekLoad?: number
 }
 

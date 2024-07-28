@@ -12,7 +12,7 @@ export default function FormRegister() {
     return (
         <>
             {
-                !loader.state ?
+                !loader ?
                     <form onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setLoader, handleOpen, setMail })}>
                         {url.pathname.includes("admin") ?
                             <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
@@ -31,7 +31,7 @@ export default function FormRegister() {
                         <button>Registrarme</button>
                     </form>
                     :
-                    <Loader text={loader.reason ? loader.reason : ''} />
+                    <Loader text={loader ? loader : ''} />
             }
             <Modal open={open}>
                 <div style={{ background: 'black' }}>
