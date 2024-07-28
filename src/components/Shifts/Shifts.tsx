@@ -64,7 +64,7 @@ export default function Shifts() {
                             }
                         </div>
                     </div>
-                    {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+                    {loader ? <Loader text={loader} /> : <></>}
                 </>
                 :
                 <ShiftsAdmin />

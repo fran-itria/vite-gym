@@ -19,12 +19,12 @@ export default function useSubscription() {
     const { loader, setLoader } = useLoaders()
 
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.pay}` })
+        setLoader(`${basicLoaders.loading} ${specificLoaders.pay}`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 setLinkMp(response.data.linkMp)
                 setAmount(response.data.amount)
-                setLoader({ state: false })
+                setLoader(undefined)
             })
     }, [GymId])
 
@@ -39,11 +39,11 @@ export default function useSubscription() {
                     const init = await login({ user, password })
                     addUser(init.data.user)
                 } else if (approved && amount) {
-                    setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.pay}` })
+                    setLoader(`${basicLoaders.create} ${specificLoaders.pay}`)
                     await createPayment({ amount, GymId, id, updatePaymentsUser })
                     const user = await axios.put('/user', { id, pay: true })
                     updatePayUser(user.data.pay)
-                    setLoader({ state: false })
+                    setLoader(undefined)
                 }
             } catch (error: any) {
                 window.alert(error.data.Error)

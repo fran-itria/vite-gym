@@ -9,7 +9,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
     event.preventDefault();
     try {
         if (!url) {
-            setLoader({ state: true, reason: `${basicLoaders.init}` })
+            setLoader(basicLoaders.init)
             const response = await login(inputs);
             if (response.status == 200 && updateIdGlobal) {
                 addUser(response.data.user)
@@ -21,7 +21,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
-            setLoader({ state: true, reason: `${basicLoaders.register}` })
+            setLoader(basicLoaders.register)
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
@@ -31,7 +31,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                     temporalCode: response.data.temporalCode
                 })
                 if (sendMail.status == 200 && handleOpen && setMail) {
-                    setLoader({ state: false })
+                    setLoader(undefined)
                     setMail(user.data.email)
                     handleOpen()
                     return
@@ -39,7 +39,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             }
         }
     } catch (error: any) {
-        setLoader({ state: false })
+        setLoader(undefined)
         window.alert(error.response.data.Error);
         if (inputs && (error.response.data.Error.includes('Usuario') || error.response.data.Error.includes('Email'))) {
             if ('gymName' in inputs) {

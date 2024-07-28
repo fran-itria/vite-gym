@@ -20,13 +20,13 @@ export default function SubscriptionAdmin() {
     const { loader, setLoader } = useLoaders()
 
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.pay}s` })
+        setLoader(`${basicLoaders.loading} ${specificLoaders.pay}s`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 setLinkMp(response.data.linkMp)
                 setAmount(response.data.amount)
                 setPayments(response.data.Payments)
-                setLoader({ state: false })
+                setLoader(undefined)
             })
             .catch(error => window.alert(error.data.Error))
     }, [GymId])
@@ -58,7 +58,7 @@ export default function SubscriptionAdmin() {
                 :
                 <p>No hay pagos registrados</p>
             }
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

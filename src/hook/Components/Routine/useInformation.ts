@@ -25,14 +25,14 @@ const useInformation = () => {
         const param = query.pathname.split('/')[1]
         if (param == rutina) {
             if (Routines.length > 0) {
-                setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.routine}` })
+                setLoader(`${basicLoaders.loading} ${specificLoaders.routine}`)
                 if (routineId.id == undefined) {
                     updateIdGlobal(Routines[Routines.length - 1].id)
                 }
                 axios.get(`/rutina/${routineId.id}`)
                     .then(response => {
                         routineActual(response.data)
-                        setLoader({ state: false })
+                        setLoader(undefined)
                     })
                     .catch(error => window.alert(error.data.Error))
             } else {
@@ -41,14 +41,14 @@ const useInformation = () => {
         }
         else if (param == calentamiento) {
             if (WarmUps.length > 0) {
-                setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.warm}` })
+                setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
                 if (routineId.id == undefined) {
                     updateIdGlobal(WarmUps[WarmUps.length - 1].id)
                 }
                 axios.get(`/calentamiento/${routineId.id}`)
                     .then(response => {
                         routineActual(response.data)
-                        setLoader({ state: false })
+                        setLoader(undefined)
                     })
                     .catch(error => window.alert(error.data.Error))
             } else routineActual({ Days: undefined })

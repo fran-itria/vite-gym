@@ -45,7 +45,7 @@ export default function Meals() {
                 : edit ? <FormCreate mealId={mealId} values={values} setEdit={setEdit} setLoader={setLoader} />
                     : <></>
             }
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

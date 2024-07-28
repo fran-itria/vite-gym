@@ -25,14 +25,14 @@ export default function Register() {
     }
 
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.register}` });
+        setLoader(`${basicLoaders.loading} ${specificLoaders.register}`);
         (async () => {
             try {
                 const response = await axios.get('/idRegistro')
-                setLoader({ state: false })
+                setLoader(undefined)
                 setAllIds(response.data)
             } catch (error) {
-                setLoader({ state: false })
+                setLoader(undefined)
             }
         })()
     }, [Gym])
@@ -59,7 +59,7 @@ export default function Register() {
                     :
                     <p>No hay links creados</p>
             }
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

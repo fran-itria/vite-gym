@@ -45,7 +45,7 @@ export default function Training() {
                     <FormCreateTraining trainId={trainId} defaultValues={defaultValues} setEdit={setEdit} setLoader={setLoader} />
                     :
                     <></>}
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

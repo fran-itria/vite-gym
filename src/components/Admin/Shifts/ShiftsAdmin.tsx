@@ -17,7 +17,7 @@ export default function ShiftsAdmin() {
     const [limitShift, setLimitShift] = useState<{ limit: number, time: string, open: string, close: string }>()
     const [stateButton, setStateButton] = useState<string>('')
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.shift}s` })
+        setLoader(`${basicLoaders.loading} ${specificLoaders.shift}s`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
                 const shifts: { id: string, day: string, hour: string }[] = response.data.Shifts
@@ -33,10 +33,10 @@ export default function ShiftsAdmin() {
                         close
                     })
                 }
-                setLoader({ state: false })
+                setLoader(undefined)
             })
             .catch(error => {
-                setLoader({ state: false })
+                setLoader(undefined)
                 window.alert(error.data.Error)
             })
     }, [])
@@ -83,7 +83,7 @@ export default function ShiftsAdmin() {
                 :
                 <p>No tienes turnos para el día de hoy</p>
             }
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

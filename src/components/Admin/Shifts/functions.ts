@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { basicLoaders, specificLoaders } from "../../../const";
+import { SetLoader } from "../../../types";
 
 export const onChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -23,10 +24,7 @@ export const onSubmit = async (
         close: string;
     },
     GymId: string | null,
-    setLoader: React.Dispatch<React.SetStateAction<{
-        state: boolean;
-        reason?: string | undefined;
-    }>>,
+    setLoader: SetLoader,
     stateButton: string,
     setLimitShift: React.Dispatch<React.SetStateAction<{
         limit: number;
@@ -37,7 +35,7 @@ export const onSubmit = async (
 ) => {
     e.preventDefault()
     try {
-        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.limit}` })
+        setLoader(`${basicLoaders.save} ${specificLoaders.limit}`)
         const { limit, time, open, close } = inputs
         if (stateButton == 'confirm') {
             const response = await axios.put(`/gym`, { limit, time, open, close, id: GymId })
@@ -48,7 +46,7 @@ export const onSubmit = async (
             await axios.put(`/gym`, { limit: 0, time: 0, open: '', close: '', id: GymId })
             setLimitShift(undefined)
         }
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.data.Error)
     }

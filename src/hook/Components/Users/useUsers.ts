@@ -18,14 +18,14 @@ export default function useUsers() {
     const { loader, setLoader } = useLoaders()
 
     useEffect(() => {
-        setLoader({ state: true, reason: `${basicLoaders.loading} ${specificLoaders.users}` })
+        setLoader(`${basicLoaders.loading} ${specificLoaders.users}`)
         axios.get(`/user/forGym/${Gym?.name}`)
             .then(
                 response => {
                     if (response.status == 200) {
                         setUsers(response.data)
                         setCopy(response.data)
-                        setLoader({ state: false })
+                        setLoader(undefined)
                     }
                 }
             )
