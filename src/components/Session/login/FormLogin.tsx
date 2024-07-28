@@ -43,7 +43,10 @@ export default function FormLogin() {
         </label>
         <button>Enviar</button>
       </form>
-      {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
+      <a onClick={() => navigate('/reset')}>
+        ¿Olvidaste tu contraseña?
+      </a>
+      {loader ? <Loader text={loader} /> : <></>}
     </>
   );
 }
