@@ -305,10 +305,7 @@ export type uploadImageProps = {
   file: File | undefined
   id: string | null
   updatePhotoUser: (photo: string) => void
-  setLoader: React.Dispatch<React.SetStateAction<{
-    state: boolean;
-    reason?: string | undefined;
-  }>>
+  setLoader: SetLoader
   setImage: (value: React.SetStateAction<boolean>) => void
   setMenu: (value: React.SetStateAction<boolean>) => void
 }

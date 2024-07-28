@@ -22,6 +22,7 @@ export default async function searchUser(
             setLoader(undefined)
         }
     } catch (error: any) {
+        setLoader(undefined)
         window.alert(error.data.Error)
     }
 }

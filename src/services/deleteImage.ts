@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { basicLoaders, specificLoaders } from "../const";
+import { SetLoader } from "../types";
 
 export default async function deleteImage(
-    setLoader: (value: React.SetStateAction<{
-        state: boolean;
-        reason?: string | undefined;
-    }>) => void,
+    setLoader: SetLoader,
     updatePhotoUser: (photo: string) => void,
     id: string | null,
     setMenu: (value: React.SetStateAction<boolean>) => void
 ) {
     try {
-        setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.image}` })
+        setLoader(`${basicLoaders.remove} ${specificLoaders.image}`)
         setMenu(false)
         await axios.put('/user', { id, photo: '' })
         updatePhotoUser('')
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

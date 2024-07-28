@@ -9,7 +9,7 @@ import { basicLoaders, specificLoaders } from "../../const";
 export default async function uploadImage({ file, id, nameFile, setLoader, updatePhotoUser, setImage, setMenu }: uploadImageProps) {
     const storageRef = ref(storage, nameFile)
     try {
-        setLoader({ state: true, reason: `${basicLoaders.up} ${specificLoaders.image}` })
+        setLoader(`${basicLoaders.up} ${specificLoaders.image}`)
         setImage(false)
         setMenu(false)
         if (file) {
@@ -17,7 +17,7 @@ export default async function uploadImage({ file, id, nameFile, setLoader, updat
             const urlImage = await getDownloadURL(storageRef)
             const user = await axios.put('/user', { id, photo: urlImage })
             updatePhotoUser(user.data.photo)
-            setLoader({ state: false })
+            setLoader(undefined)
         }
     } catch (error: any) {
         window.alert(error.response.data.Error)
