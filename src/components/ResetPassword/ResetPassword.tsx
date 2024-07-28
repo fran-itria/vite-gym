@@ -3,7 +3,7 @@ import cahngePassword from "./services/reset"
 import useResetPassword from "./useResetPassword"
 import Loader from "../Loader"
 
-export default function ResetPassword() {
+export default function ResetPassword({ setResetPassword }: { setResetPassword?: React.Dispatch<React.SetStateAction<boolean>> }) {
     const {
         reset,
         setReset,
@@ -31,6 +31,7 @@ export default function ResetPassword() {
                     <form onSubmit={(e) => searchUser(e, dni, setReset, setUser, setLoader)}>
                         <input placeholder="DNI" onChange={(e) => setDni(e.target.value)}></input>
                         <button>Buscar</button>
+                        <button type="button" onClick={() => { if (setResetPassword) setResetPassword(false) }}>Cancelar</button>
                     </form>
                 </div>
                 :
