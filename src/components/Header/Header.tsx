@@ -8,6 +8,8 @@ import uploadImage from "../../services/firebase/uploadImage";
 import deleteImage from "../../services/deleteImage";
 import { useHeader } from "./useHeader";
 import { getGyms, change } from "./functions";
+import { basicLoaders } from "../../const";
+import ResetPassword from "../ResetPassword/ResetPassword";
 
 export default function Header() {
     const {
@@ -34,7 +36,9 @@ export default function Header() {
         setMenu,
         setValueGym,
         updateGymUser,
-        updatePhotoUser
+        updatePhotoUser,
+        reset,
+        setResetPassword
     } = useHeader()
 
     return (
@@ -61,6 +65,7 @@ export default function Header() {
                                 setChangeGym(prev => !prev)
                             }}> Cambiar de gym </button>
                             <button onClick={() => logout(id, navigate, setLoader)}>Cerrar sesión</button>
+                            <button onClick={() => setResetPassword(prev => !prev)}>Cambiar contraseña</button>
                         </div>
                         :
                         <></>
@@ -95,7 +100,6 @@ export default function Header() {
                 :
                 <HomeAdmin />
             }
-            {loader && loader.reason ? <Loader text={loader.reason} /> : <></>}
             {image ?
                 <div style={{ position: 'absolute', top: '50%', right: '50%' }}>
                     <input type="file" onChange={(e) => { setFile(e.target.files ? e.target.files[0] : undefined) }}></input>
@@ -111,15 +115,17 @@ export default function Header() {
                         {gyms.map((gym: { id: string, name: string }) => <option key={gym.id} value={gym.id}>{gym.name}</option>)}
                     </select>
                     <button onClick={() => {
-                        setLoader({ state: true, reason: 'Cambiando de gym' })
+                        setLoader(basicLoaders.changeGym)
                         change(id, valueGym, updateGymUser)
                         setChangeGym(false)
-                        setLoader({ state: false })
+                        setLoader(undefined)
                     }}>Cambiar</button>
                 </div>
                 :
                 <></>
             }
+            {reset ? <ResetPassword setResetPassword={setResetPassword} /> : <></>}
+            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }
