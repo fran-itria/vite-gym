@@ -16,6 +16,7 @@ export function useHeader() {
     const [cahngeGym, setChangeGym] = useState(false)
     const [gyms, setGyms] = useState<{ id: string, name: string }[]>([])
     const [valueGym, setValueGym] = useState<string>()
+    const [reset, setResetPassword] = useState(false)
 
     return {
         pathname,
@@ -41,6 +42,8 @@ export function useHeader() {
         gyms,
         setGyms,
         valueGym,
-        setValueGym
+        setValueGym,
+        reset,
+        setResetPassword
     }
 }
