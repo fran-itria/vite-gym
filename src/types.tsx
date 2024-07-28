@@ -53,10 +53,7 @@ export type Exercise = {
   }[]
 }
 
-export type SetLoader = (value: React.SetStateAction<{
-  state: boolean;
-  reason?: string | undefined;
-}>) => void
+export type SetLoader = (value: React.SetStateAction<string | undefined>) => void
 
 export type setRoutineAdmin = React.Dispatch<React.SetStateAction<Routine | undefined>>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useLoaders() {
-    const [loader, setLoader] = useState<{ state: boolean, reason?: string }>({ state: false })
+    const [loader, setLoader] = useState<string>()
 
     return { loader, setLoader }
 }
