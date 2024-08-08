@@ -16,7 +16,7 @@ export default async function deleteExercise({
 }: deleteExerciseProps) {
     try {
         setConfirmDelete(confirmDelete => !confirmDelete)
-        setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.exercise}` })
+        setLoader(`${basicLoaders.remove} ${specificLoaders.exercise}`)
         await axios.delete(`/ejercicio/delete/${idExercise}`)
         if (setRoutineAdmin) {
             if (caseResolve == CaseResolve.rutina) {
@@ -38,7 +38,7 @@ export default async function deleteExercise({
                 routineActual(routine.data)
             }
         }
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

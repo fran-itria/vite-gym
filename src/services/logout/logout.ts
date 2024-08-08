@@ -6,7 +6,7 @@ import { SetLoader } from "../../types"
 
 export const logout = async (id: string | null, navigate: NavigateFunction, setLoader: SetLoader) => {
     try {
-        setLoader({ state: true, reason: basicLoaders.out })
+        setLoader(basicLoaders.out)
         const logoutUser = await axios.put('/user/logout', { id })
         if (logoutUser.status == 200) {
             storage.removeItem('user')

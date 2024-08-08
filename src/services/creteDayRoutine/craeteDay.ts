@@ -17,7 +17,7 @@ export async function createDayRoutine({
 }: createDayRoutineProps) {
     try {
         setAddDay(false)
-        setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.day}` })
+        setLoader(`${basicLoaders.create} ${specificLoaders.day}`)
         if (routine) {
             if (routine.weeks) {
                 const response = await axios.post('/rutina/createOneDayRutina', {
@@ -45,7 +45,7 @@ export async function createDayRoutine({
         setDayCreate([])
         setPag(0)
         setTotalExercise('0')
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

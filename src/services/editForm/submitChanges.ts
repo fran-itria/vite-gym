@@ -7,10 +7,10 @@ export default async function submitChanges({ e, setLoader, gymName, inputs, set
     e.preventDefault()
     try {
         setEdit(false)
-        setLoader({ state: true, reason: `${basicLoaders.save} ${specificLoaders.cahnges}` })
+        setLoader(`${basicLoaders.save} ${specificLoaders.cahnges}`)
         await axios.put('/user', { ...inputs, id: userId })
         const users = await axios.get(`/user/forGym/${gymName}`)
-        setLoader({ state: false })
+        setLoader(undefined)
         setUsers(users.data)
     } catch (error: any) {
         window.alert(error.response.data.Error)

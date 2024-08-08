@@ -6,11 +6,11 @@ import { basicLoaders, specificLoaders } from "../../const";
 
 export default async function deleteTraining({ id, setLoader, updateTrainingsUser, userId }: deleteTrainingProps) {
     try {
-        setLoader({ state: true, reason: `${basicLoaders.remove} ${specificLoaders.exercise}` })
+        setLoader(`${basicLoaders.remove} ${specificLoaders.exercise}`)
         await axios.delete(`/extra/delete/${id}`)
         const user = await axios.get(`/user/getOneUser/${userId}`)
         updateTrainingsUser(user.data.ExtraTrainings)
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

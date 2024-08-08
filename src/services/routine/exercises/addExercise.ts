@@ -19,7 +19,7 @@ export default async function addExerciseFunction({
     e.preventDefault()
     try {
         setAddExercise(prev => !prev)
-        setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.exercise}` })
+        setLoader(`${basicLoaders.create} ${specificLoaders.exercise}`)
         const { exerciseName, reps, series, link } = inputs
         await axios.post("/ejercicio/createOneEjercicio", {
             dayId,
@@ -49,7 +49,7 @@ export default async function addExerciseFunction({
                 routineActual(routine.data)
             }
         }
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }

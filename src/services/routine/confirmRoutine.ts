@@ -19,7 +19,7 @@ export default async function confirmRoutine({
     try {
         setOpenCreateRouitine(false)
         if (!createWarm) {
-            setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.routine}` })
+            setLoader(`${basicLoaders.create} ${specificLoaders.routine}`)
             const routine = await axios.post("/rutina/createRutina", { userId, days })
             if (updateRoutinesUser) {
                 if (!setUsers) {
@@ -37,7 +37,7 @@ export default async function confirmRoutine({
                 }
             }
         } else {
-            setLoader({ state: true, reason: `${basicLoaders.create} ${specificLoaders.warm}` })
+            setLoader(`${basicLoaders.create} ${specificLoaders.warm}`)
             const warmUp = await axios.post('/calentamiento/createCalentamiento', { userId, days })
             if (updateWarmUpUser) {
                 if (!setUsers) {
@@ -55,7 +55,7 @@ export default async function confirmRoutine({
                 }
             }
         }
-        setLoader({ state: false })
+        setLoader(undefined)
     } catch (error: any) {
         window.alert(error.response.data.Error)
     }
