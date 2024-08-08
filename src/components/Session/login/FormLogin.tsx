@@ -9,6 +9,7 @@ import Loader from "../../Loader";
 import useLoaders from "../../../hook/Components/useLoaders";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
+import './formLogin.module.css'
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -43,7 +44,7 @@ export default function FormLogin() {
         </label>
         <button>Enviar</button>
       </form>
-      <a onClick={() => navigate('/reset')}>
+      <a onClick={() => navigate('/reset')} >
         ¿Olvidaste tu contraseña?
       </a>
       {loader ? <Loader text={loader} /> : <></>}
