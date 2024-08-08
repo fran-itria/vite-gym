@@ -12,7 +12,7 @@ export function useHeader() {
     const { loader, setLoader } = useLoaders()
     const [image, setImage] = useState(false)
     const [file, setFile] = useState<File>()
-    const { updatePhotoUser, updateGymUser } = useUserActions()
+    const { updatePhotoUser } = useUserActions()
     const [cahngeGym, setChangeGym] = useState(false)
     const [gyms, setGyms] = useState<{ id: string, name: string }[]>([])
     const [valueGym, setValueGym] = useState<string>()
@@ -36,7 +36,6 @@ export function useHeader() {
         file,
         setFile,
         updatePhotoUser,
-        updateGymUser,
         cahngeGym,
         setChangeGym,
         gyms,

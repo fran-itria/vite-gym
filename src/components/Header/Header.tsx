@@ -35,7 +35,6 @@ export default function Header() {
         setLoader,
         setMenu,
         setValueGym,
-        updateGymUser,
         updatePhotoUser,
         reset,
         setResetPassword
@@ -116,9 +115,7 @@ export default function Header() {
                     </select>
                     <button onClick={() => {
                         setLoader(basicLoaders.changeGym)
-                        change(id, valueGym, updateGymUser)
-                        setChangeGym(false)
-                        setLoader(undefined)
+                        change(id, valueGym, navigate)
                     }}>Cambiar</button>
                 </div>
                 :
