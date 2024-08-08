@@ -7,6 +7,7 @@ export default function useTabelRow() {
     const [load, setLoad] = useState<boolean>(false)
     const [idLoad, setIdLoad] = useState<string>('')
     const [newLoads, setNewLoads] = useState<string>('')
+    const [weekLoad, setWeekLoad] = useState<number>(0)
 
     return {
         open,
@@ -20,6 +21,8 @@ export default function useTabelRow() {
         idLoad,
         setIdLoad,
         newLoads,
-        setNewLoads
+        setNewLoads,
+        weekLoad,
+        setWeekLoad
     }
 }

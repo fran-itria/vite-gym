@@ -81,6 +81,7 @@ export type ModalAddLoadComponentProps = {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: SetLoader
   weekLoad: number
+  routineOrWarmUp: RoutineOrWarmUp
 }
 
 

@@ -1,13 +1,9 @@
 import { useState } from "react"
-import { useRoutineActions } from "../../../hook/useRoutineActions"
 import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise"
 import { ModalAddLoadComponentProps } from "../../../types"
-import useInformation from "../../../hook/Components/Routine/useInformation"
 
-export default function ModalAddLoad({ id, setOpenLoad, setLoader, weekLoad }: ModalAddLoadComponentProps) {
+export default function ModalAddLoad({ id, setOpenLoad, setLoader, weekLoad, routineOrWarmUp }: ModalAddLoadComponentProps) {
     const [inputLoad, setInputLoad] = useState<string>('')
-    const { routineActual } = useRoutineActions()
-    const { routineId } = useInformation()
 
     return (
         <div style={{ border: 'solid, black, 2px', position: 'absolute', top: '50%', right: '50%', background: 'white' }}>
@@ -18,8 +14,8 @@ export default function ModalAddLoad({ id, setOpenLoad, setLoader, weekLoad }: M
             <button onClick={() => modifiedLoads({
                 exerciseId: id,
                 load: inputLoad,
-                routineId: routineId.id,
-                routineActual,
+                routineId: routineOrWarmUp.routineId,
+                routineActual: routineOrWarmUp.routineActual,
                 setOpenLoad,
                 setLoader,
                 weekLoad
