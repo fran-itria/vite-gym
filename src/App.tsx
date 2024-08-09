@@ -12,6 +12,7 @@ import WarmUp from "./components/WarmUp/WarmUp";
 import Register from "./components/Register/Register";
 import Subscription from "./components/Suscripcion/Subscription";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import AcceptUser from './components/AcceptUser/AcceptUser'
 
 function App() {
   const path = useLocation();
@@ -22,7 +23,8 @@ function App() {
         path.pathname != "/" &&
           !path.pathname.includes("register") &&
           !path.pathname.includes("null") &&
-          !path.pathname.includes("reset") ?
+          !path.pathname.includes("reset") &&
+          !path.pathname.includes("acceptUser") ?
           <Header /> : <></>
       }
       <Routes>
@@ -37,6 +39,7 @@ function App() {
         <Route path="/suscripcion/:id" element={<Subscription />} />
         <Route path="/suscripcion" element={<Subscription />} />
         <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/acceptUser" element={<AcceptUser />} />
       </Routes>
     </>
   );
