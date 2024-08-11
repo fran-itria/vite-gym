@@ -9,7 +9,8 @@ export const getId = (id: string | undefined, navigate: NavigateFunction) => {
             }
         })
         .catch(error => {
-            window.alert('El link de registro ya fue utilizado')
+            window.alert(`${error.response.data.Error}:
+            El link de registro ya fue utilizado`)
             navigate("/")
         })
 }
