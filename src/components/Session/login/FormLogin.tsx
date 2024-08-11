@@ -9,7 +9,7 @@ import Loader from "../../Loader";
 import useLoaders from "../../../hook/Components/useLoaders";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
-import './formLogin.module.css'
+import style from './formLogin.module.css'
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -20,34 +20,37 @@ export default function FormLogin() {
   const { updateIdGlobal } = useRoutineIdActions()
 
   return (
-    <>
-      <form onSubmit={(event) => {
-        onSubmit({ event, inputs, navigate, addUser, setLoader, updateIdGlobal })
-      }}>
-        <label>
-          Usuario:
-          <input
-            name="user"
-            type="text"
-            onChange={(event) => onChange({ event, setInputs })}
-            required={true}
-          ></input>
-        </label>
-        <label>
-          Contraseña:
-          <input
-            name="password"
-            type="password"
-            onChange={(event) => onChange({ event, setInputs })}
-            required={true}
-          ></input>
-        </label>
-        <button>Enviar</button>
-      </form>
-      <a onClick={() => navigate('/reset')} >
-        ¿Olvidaste tu contraseña?
-      </a>
-      {loader ? <Loader text={loader} /> : <></>}
-    </>
+    <div>
+      <section>
+        <h2>Bienvenidos a Pro Active Center</h2>
+        <form onSubmit={(event) => {
+          onSubmit({ event, inputs, navigate, addUser, setLoader, updateIdGlobal })
+        }}>
+          <label>
+            Usuario:
+            <input
+              name="user"
+              type="text"
+              onChange={(event) => onChange({ event, setInputs })}
+              required={true}
+            ></input>
+          </label>
+          <label>
+            Contraseña:
+            <input
+              name="password"
+              type="password"
+              onChange={(event) => onChange({ event, setInputs })}
+              required={true}
+            ></input>
+          </label>
+          <button className={style.button}>Iniciar sesión</button>
+          <a onClick={() => navigate('/reset')} className={style.a}>
+            ¿Olvidaste tu contraseña?
+          </a>
+        </form>
+        {loader ? <Loader text={loader} /> : <></>}
+      </section>
+    </div>
   );
 }
