@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
 import FormRegister from "./components/Session/register/FormRegister";
 import axios from "axios";
-import { baseUrl, baseUrlDeploy } from "./const";
+import { baseUrlDeploy } from "./const";
 import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
@@ -16,7 +16,7 @@ import AcceptUser from './components/AcceptUser/AcceptUser'
 
 function App() {
   const path = useLocation();
-  axios.defaults.baseURL = baseUrl
+  axios.defaults.baseURL = baseUrlDeploy
   return (
     <>
       {
