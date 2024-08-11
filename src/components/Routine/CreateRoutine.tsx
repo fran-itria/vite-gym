@@ -5,6 +5,7 @@ import FormTotalExercise from "./FormTotalExercise"
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay"
 import confirmRoutine from "../../services/routine/confirmRoutine"
 import { CreateRoutineComponentProps } from "../../types"
+import { useAppSelector } from "../../hook/store"
 
 export default function CreateRoutine({
     updateRoutinesUser,
@@ -22,6 +23,7 @@ export default function CreateRoutine({
     const [pagDays, setPagDays] = useState<number>(0)
     const { pag, setPag, totalExercise, setTotalExercise, dayCreate, setDayCreate, addDay, setAddDay } = useDayCreate()
     const [routine, setRoutine] = useState<[] | { day: number, exercises: { exercise?: number; name?: string; series?: string; reps?: string; link?: string }[] }[]>([])
+    const { email } = useAppSelector(state => state.user)
 
     return (
         <div style={{ background: 'white', height: '200px', position: 'absolute', top: '50%', right: '50%' }}>
@@ -99,7 +101,8 @@ export default function CreateRoutine({
                                     setUsers,
                                     gymName,
                                     id,
-                                    setLoader
+                                    setLoader,
+                                    email
                                 })
                             }}>
                                 {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}

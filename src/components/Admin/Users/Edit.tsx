@@ -9,8 +9,9 @@ import FormTotalExercise from '../../Routine/FormTotalExercise';
 import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
 import TableConfirmDay from '../../Routine/CraeteOneDay/TableConfirmDay';
 import { change, getOneRoutine, getOneWarmUp, getRoutinesUser, getWarmUpsUser } from './functions';
+import { useState } from 'react';
 
-export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader }: {
+export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader, email }: {
     gymName?: string
     userId: string
     setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
@@ -19,6 +20,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     subscription: boolean
     setEdit: React.Dispatch<React.SetStateAction<boolean>>
     setLoader: SetLoader
+    email: string
 }) {
     const {
         createRoutine,
@@ -45,11 +47,12 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const warmUp = 'Calentamiento'
     const routine = 'Rutina'
+    const [banMotive, setBanMotive] = useState<boolean>(ban)
 
     return (
         <>
             <menu>
-                <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit })}>
+                <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit, email })}>
                     <label>
                         Admin:
                         <Switch name='admin' onChange={(e) => change({ e, setInputs })} defaultChecked={admin ? true : false} />
@@ -60,7 +63,22 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     </label>
                     <label>
                         Ban:
-                        <Switch name='ban' onChange={(e) => change({ e, setInputs })} defaultChecked={ban ? true : false} />
+                        <Switch 
+                            name='banMotive' 
+                            onChange={() => {
+                                setBanMotive(prev => !prev)
+                                if(banMotive){
+                                    setInputs(prev => { return { ...prev, ban: null } })    
+                                }
+                            }
+                            } 
+                            defaultChecked={ban ? true : false} 
+                        />
+                            {inputs?.ban ? 
+                            <>
+                                <p>{inputs.ban}</p>
+                                <button onClick={() => setBanMotive(prev => !prev)}>Editar ban</button>
+                            </> : <></>}
                     </label>
                     <button>Guardar cambios</button>
                 </form>
@@ -88,6 +106,13 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
                 <button onClick={() => setEdit(false)}>❌</button>
             </menu>
+            {banMotive ?
+                <>
+                    <input name='ban' placeholder='Motivo del ban' onChange={(e) => change({ e, setInputs })} />
+                    <button onClick={() => setBanMotive(false)}>Guardar ban</button>
+                </>
+                : <></>
+            }
             {modal != '' ?
                 routinesUser?.length && routinesUser?.length > 0 ?
                     modal == warmUp ?

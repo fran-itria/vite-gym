@@ -14,7 +14,8 @@ export default async function confirmRoutine({
     gymName,
     createWarm,
     id,
-    setLoader
+    setLoader,
+    email
 }: confirmRoutineProps) {
     try {
         setOpenCreateRouitine(false)
@@ -36,6 +37,9 @@ export default async function confirmRoutine({
                     setUsers(users.data)
                 }
             }
+            if(email){
+                await axios.post('/mails/newRoutine', {email, routine: 'rutina'})
+            }
         } else {
             setLoader(`${basicLoaders.create} ${specificLoaders.warm}`)
             const warmUp = await axios.post('/calentamiento/createCalentamiento', { userId, days })
@@ -53,6 +57,9 @@ export default async function confirmRoutine({
                     const users = await axios.get(`/user/forGym/${gymName}`)
                     setUsers(users.data)
                 }
+            }
+            if(email){
+                await axios.post('/mails/newRoutine', {email, routine: 'calentamiento'})
             }
         }
         setLoader(undefined)

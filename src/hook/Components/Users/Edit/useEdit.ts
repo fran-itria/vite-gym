@@ -9,7 +9,7 @@ export default function useEdit() {
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateRoutinesUser, updateWarmUpUser } = useUserActions()
     const { updateIdGlobal } = useRoutineIdActions()
-    const [inputs, setInputs] = useState<{ admin?: boolean, pay?: boolean, ban?: boolean }>()
+    const [inputs, setInputs] = useState<{ admin?: boolean, pay?: boolean, ban?: string | null}>()
     const { id } = useAppSelector(state => state.user)
 
     const [modal, setModal] = useState<string | undefined>('')

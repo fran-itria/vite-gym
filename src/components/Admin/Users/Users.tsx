@@ -30,7 +30,9 @@ export default function Users() {
         users,
         loader,
         setLoader,
-        copy
+        copy,
+        email,
+        setEmail
     } = useUsers()
 
     const filterUsers = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +77,7 @@ export default function Users() {
                                                     setBan(user.ban)
                                                     setSubscription(user.pay)
                                                     setEdit(prev => !prev)
+                                                    setEmail(user.email)
                                                 }} sx={{ color: theme.palette.pencil.main }} />
                                             </ThemeProvider>
                                         </StyledTableCell>
@@ -106,6 +109,7 @@ export default function Users() {
                     subscription={subscription}
                     setEdit={setEdit}
                     setLoader={setLoader}
+                    email={email}
                 />
                 :
                 <></>}

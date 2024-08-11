@@ -12,6 +12,7 @@ export default function useUsers() {
     const { Gym } = useAppSelector(state => state.user)
     const [edit, setEdit] = useState<boolean>(false)
     const [userId, setUserId] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
     const [admin, setAdmin] = useState<boolean>(false)
     const [subscription, setSubscription] = useState<boolean>(false)
     const [ban, setBan] = useState<boolean>(false)
@@ -47,6 +48,8 @@ export default function useUsers() {
         setBan,
         loader,
         setLoader,
-        copy
+        copy,
+        email,
+        setEmail
     }
 }

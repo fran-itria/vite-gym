@@ -184,6 +184,7 @@ export type confirmRoutineProps = createRoutineProps & {
   updateIdGlobal: (id: string | undefined) => void
   id?: string
   setLoader: SetLoader
+  email: string | null
 }
 
 export type deleteDayProps = {
@@ -206,12 +207,13 @@ export type deleteExerciseProps = {
 
 export type submitChangesProps = {
   e: React.FormEvent<HTMLFormElement>
-  inputs?: { admin?: boolean, pay?: boolean, ban?: boolean }
+  inputs?: { admin?: boolean, pay?: boolean, ban?: string | null}
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
   setLoader: SetLoader
   setEdit: React.Dispatch<React.SetStateAction<boolean>>
+  email?: string | null
 }
 
 export type createFoodProps = {

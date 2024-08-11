@@ -21,7 +21,7 @@ type changeFunctionProps = {
     setInputs: React.Dispatch<React.SetStateAction<{
         admin?: boolean;
         pay?: boolean;
-        ban?: boolean;
+        ban?: string | null;
     } | undefined>>
 }
 // FUNCTIONS
@@ -58,6 +58,10 @@ export const getOneRoutine = ({ id, setId, setLoader, setRoutineAdmin }: getOneF
 
 export const change = ({ e, setInputs }: changeFunctionProps) => {
     const name = e.target.name
+    if(name == 'ban'){
+        setInputs(prev => { return { ...prev, [name]: e.target.value } })
+    } else {
     const value = e.target.checked
     setInputs(prev => { return { ...prev, [name]: value } })
+    }
 }
