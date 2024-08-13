@@ -3,26 +3,27 @@ import axios from "axios";
 
 export default async function searchUser(
     e: React.FormEvent<HTMLFormElement>,
-    dni: string,
+    email: string,
     setReset: React.Dispatch<React.SetStateAction<boolean>>,
-    setUser: React.Dispatch<React.SetStateAction<{
-        id: string;
-        mail: string;
-        user: string;
-    }>>,
-    setLoader: React.Dispatch<React.SetStateAction<string | undefined>>
+    setLoader: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setIdUser: React.Dispatch<React.SetStateAction<string>>
 ) {
     e.preventDefault()
     setLoader("Buscando usuario")
     try {
-        const user = await axios.get(`/user/getOneUserByDni/${dni}`)
+        const user = await axios.get(`/user/getOneUserByEmail/${email}`)
         if (user.status == 200) {
-            setUser(prev => { return { ...prev, id: user.data.id, mail: user.data.email, user: user.data.user } })
+            const randomCode = Math.floor(Math.random() * 1000000)
+            await axios.post(`/mails/resetPassword`, {email, user: user.data.user, code: randomCode})
+            await axios.put('/user', {id: user.data.id, temporalCode: randomCode})
+            setIdUser(user.data.id)
             setReset(true)
             setLoader(undefined)
         }
     } catch (error: any) {
         setLoader(undefined)
         window.alert(error.data.Error)
+        console.log(error)
+        setLoader(undefined)
     }
 }

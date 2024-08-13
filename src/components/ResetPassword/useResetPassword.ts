@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom"
 
 export default function useResetPassword() {
     const [reset, setReset] = useState<boolean>(false)
-    const [dni, setDni] = useState<string>("")
-    const [user, setUser] = useState<{ id: string, mail: string, user: string }>({ id: "", mail: "", user: "" })
-    const [newPassword, setNewPassword] = useState<{ password: string, confirmPassword: string }>({
+    const [email, setEmail] = useState<string>("")
+    const [idUser, setIdUser] = useState<string>("")
+    const [newPassword, setNewPassword] = useState<{ password: string, confirmPassword: string, code: number }>({
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        code: 0
     })
     const [error, setError] = useState<string>("")
     const navigate = useNavigate()
@@ -17,10 +18,10 @@ export default function useResetPassword() {
     return {
         reset,
         setReset,
-        dni,
-        setDni,
-        user,
-        setUser,
+        email,
+        setEmail,
+        idUser,
+        setIdUser,
         newPassword,
         setNewPassword,
         error,
