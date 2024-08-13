@@ -5,14 +5,13 @@ import { useAppSelector } from "../../hook/store"
 import Loader from "../Loader"
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import style from './Register.module.css'
-import useLoaders from "../../hook/Components/useLoaders"
 import { basicLoaders, specificLoaders } from "../../const";
 
 export default function Register() {
     const [link, setLink] = useState<string>()
     const [allIds, setAllIds] = useState<{ id: string, gym: string }[]>()
     const { Gym } = useAppSelector(state => state.user)
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
     const baseUrl = `https://pro-active-center.vercel.app/register/${Gym?.name}/`
 
     const createLink = async () => {
@@ -39,6 +38,7 @@ export default function Register() {
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             <button onClick={() => createLink()}>Crear link de registro</button>
             <p>Nuevo link creado: {link ? link : <></>}</p>
             {
@@ -59,7 +59,6 @@ export default function Register() {
                     :
                     <p>No hay links creados</p>
             }
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

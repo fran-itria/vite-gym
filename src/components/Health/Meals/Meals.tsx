@@ -5,7 +5,6 @@ import { useState } from 'react';
 import FormCreate from './FormCreate';
 import Loader from '../../Loader';
 import { InputsCreateFood, MealProps } from '../../../types';
-import useLoaders from '../../../hook/Components/useLoaders';
 
 export default function Meals() {
     const { Meals } = useAppSelector(state => state.user)
@@ -13,10 +12,11 @@ export default function Meals() {
     const [edit, setEdit] = useState<boolean>(false)
     const [values, setValues] = useState<InputsCreateFood>()
     const [mealId, setMealId] = useState<string>()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             {Meals.length > 0 ?
                 <>
                     {Meals.map((meal: MealProps) => {
@@ -45,7 +45,6 @@ export default function Meals() {
                 : edit ? <FormCreate mealId={mealId} values={values} setEdit={setEdit} setLoader={setLoader} />
                     : <></>
             }
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

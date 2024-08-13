@@ -8,7 +8,6 @@ import { useUserActions } from "../../useUserActions"
 import { basicLoaders, specificLoaders, storage } from "../../../const"
 import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
-import useLoaders from "../useLoaders"
 
 export default function useSubscription() {
     const { admin, GymId, id, Payments } = useAppSelector(state => state.user)
@@ -16,7 +15,7 @@ export default function useSubscription() {
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     useEffect(() => {
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}`)

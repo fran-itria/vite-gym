@@ -3,7 +3,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useAppSelector } from "../../store"
 import { UsersComponent } from "../../../types"
-import useLoaders from "../useLoaders"
 import { basicLoaders, specificLoaders } from "../../../const"
 
 export default function useUsers() {
@@ -16,7 +15,7 @@ export default function useUsers() {
     const [admin, setAdmin] = useState<boolean>(false)
     const [subscription, setSubscription] = useState<boolean>(false)
     const [ban, setBan] = useState<boolean>(false)
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     useEffect(() => {
         setLoader(`${basicLoaders.loading} ${specificLoaders.users}`)

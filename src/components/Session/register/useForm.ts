@@ -4,7 +4,6 @@ import { InputsLogin, InputsRegister } from "../../../types";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getId } from "../../../services/getId";
 import { useUserActions } from "../../../hook/useUserActions";
-import useLoaders from "../../../hook/Components/useLoaders";
 
 export default function useForm() {
     const [inputs, setInputs] = useState<InputsRegister | InputsLogin>()
@@ -12,7 +11,7 @@ export default function useForm() {
     const params = useParams()
     const navigate = useNavigate()
     const { addUser } = useUserActions()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     const [open, setOpen] = useState(false)
     const [mail, setMail] = useState('')

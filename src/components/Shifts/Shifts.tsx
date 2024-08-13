@@ -3,7 +3,6 @@ import { useAppSelector } from "../../hook/store"
 import DeleteIcon from "@mui/icons-material/Delete";
 import Calendar from "./Calendar/Calendar"
 import style from './Shifts.module.css'
-import useLoaders from "../../hook/Components/useLoaders";
 import Loader from "../Loader";
 import { useUserActions } from "../../hook/useUserActions";
 import deleteShift from "../../services/calendar/deleteShift";
@@ -14,7 +13,7 @@ import axios from "axios";
 export default function Shifts() {
     const { Shifts, id, admin, GymId } = useAppSelector(state => state.user)
     const { updateShiftsUser } = useUserActions()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
     const [shifts, setShifts] = useState<{ limit: number, time: number, range: string[] }>()
 
     useEffect(() => {
@@ -28,6 +27,7 @@ export default function Shifts() {
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             {!admin ?
                 <>
                     {shifts && shifts.limit != 0 ?
@@ -64,7 +64,6 @@ export default function Shifts() {
                             }
                         </div>
                     </div>
-                    {loader ? <Loader text={loader} /> : <></>}
                 </>
                 :
                 <ShiftsAdmin />

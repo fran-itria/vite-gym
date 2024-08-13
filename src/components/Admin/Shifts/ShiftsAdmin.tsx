@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useAppSelector } from "../../../hook/store"
 import axios from "axios"
 import moment from "moment"
-import useLoaders from "../../../hook/Components/useLoaders"
 import { basicLoaders, specificLoaders } from "../../../const"
 import Loader from "../../Loader"
 import { onChange, onSubmit } from "./functions"
@@ -12,7 +11,7 @@ export default function ShiftsAdmin() {
     const { GymId } = useAppSelector(state => state.user)
     const [shifts, setShifts] = useState<{ id: string, day: string, hour: string }[]>([])
     const date = moment().format().split('T')[0]
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
     const [inputs, setInputs] = useState<{ limit: number, time: number, open: string, close: string }>({ limit: 0, time: 0, open: '', close: '' })
     const [limitShift, setLimitShift] = useState<{ limit: number, time: string, open: string, close: string }>()
     const [stateButton, setStateButton] = useState<string>('')
@@ -43,6 +42,7 @@ export default function ShiftsAdmin() {
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             <p>Si desea limitar los turnos complete los siguientes campos: </p>
             <form onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader, stateButton, setLimitShift)}>
                 <label>
@@ -83,7 +83,6 @@ export default function ShiftsAdmin() {
                 :
                 <p>No tienes turnos para el día de hoy</p>
             }
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

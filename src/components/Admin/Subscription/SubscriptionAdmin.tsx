@@ -5,7 +5,6 @@ import subscription from "../../../services/subscription/subscription"
 import axios from "axios"
 import { useAppSelector } from "../../../hook/store"
 import TablePayments from "./Table"
-import useLoaders from "../../../hook/Components/useLoaders"
 import { basicLoaders, specificLoaders } from "../../../const"
 import Loader from "../../Loader"
 
@@ -17,7 +16,7 @@ export default function SubscriptionAdmin() {
     const [payments, setPayments] = useState<{ id: string, date: string, hour: string, amount: string, User: { name: string, surname: string } }[]>()
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<number>()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     useEffect(() => {
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}s`)
@@ -33,6 +32,7 @@ export default function SubscriptionAdmin() {
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             <form onSubmit={(e) => {
                 if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
             }}>
@@ -58,7 +58,6 @@ export default function SubscriptionAdmin() {
                 :
                 <p>No hay pagos registrados</p>
             }
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

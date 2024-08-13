@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hook/store";
 import { useState } from "react";
-import useLoaders from "../../hook/Components/useLoaders";
 import { useUserActions } from "../../hook/useUserActions";
 
 export function useHeader() {
@@ -9,7 +8,7 @@ export function useHeader() {
     const { name, surname, id, admin, Gym, photo } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
     const [image, setImage] = useState(false)
     const [file, setFile] = useState<File>()
     const { updatePhotoUser } = useUserActions()

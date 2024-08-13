@@ -5,7 +5,6 @@ import DetailsExtra from "./DeatilsExtra"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FormCreateTraining from "./FormCreateTraining";
 import Loader from "../Loader";
-import useLoaders from "../../hook/Components/useLoaders";
 
 
 
@@ -15,10 +14,11 @@ export default function Training() {
     const [edit, setEdit] = useState<boolean>(false)
     const [trainId, setTrainId] = useState<string>()
     const [defaultValues, setDefaultValues] = useState<InputsCreateTraining>()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     return (
         <>
+            {loader && <Loader text={loader} />}
             {ExtraTrainings.length > 0 ?
                 <>
                     {ExtraTrainings.map((extra: Extra) => {
@@ -45,7 +45,6 @@ export default function Training() {
                     <FormCreateTraining trainId={trainId} defaultValues={defaultValues} setEdit={setEdit} setLoader={setLoader} />
                     :
                     <></>}
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }

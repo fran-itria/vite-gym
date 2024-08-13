@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAppSelector } from "../../store"
 import { useRoutineActions } from "../../useRoutineActions"
 import axios from "axios"
 import useRoutineIdActions from "../../useRoutineIdActions"
-import useLoaders from "../useLoaders"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { useLocation } from "react-router-dom"
 
@@ -14,7 +13,7 @@ const useInformation = () => {
     const { routineActual } = useRoutineActions()
     const routineId = useAppSelector(state => state.routineIdGlobal)
     const { updateIdGlobal } = useRoutineIdActions()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
     const query = useLocation()
     const rutina = 'rutina'
     const calentamiento = 'calentamiento'

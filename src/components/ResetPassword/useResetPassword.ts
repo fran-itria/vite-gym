@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useLoaders from "../../hook/Components/useLoaders"
 
 
 export default function useResetPassword() {
@@ -13,7 +12,7 @@ export default function useResetPassword() {
     })
     const [error, setError] = useState<string>("")
     const navigate = useNavigate()
-    const { loader, setLoader } = useLoaders()
+    const [loader, setLoader] = useState<string>()
 
     return {
         reset,

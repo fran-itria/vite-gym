@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import onSubmit from "../../../services/form/onSubmit";
 import { useUserActions } from "../../../hook/useUserActions";
 import Loader from "../../Loader";
-import useLoaders from "../../../hook/Components/useLoaders";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
 import style from "./formLogin.module.css";
@@ -14,7 +13,7 @@ export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
   const navigate = useNavigate();
   const { addUser } = useUserActions();
-  const { loader, setLoader } = useLoaders();
+  const [loader, setLoader] = useState<string>()
   useLoginSession();
   const { updateIdGlobal } = useRoutineIdActions();
 
