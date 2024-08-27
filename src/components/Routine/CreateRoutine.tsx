@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import useDayCreate from "../../hook/Components/Routine/useCreateDay"
 import FormOneDay from "./CraeteOneDay/FormOneDay"
 import FormTotalExercise from "./FormTotalExercise"
