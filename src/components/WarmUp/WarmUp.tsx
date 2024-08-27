@@ -13,6 +13,7 @@ import Detail from "../Routine/Detail";
 import { basicLoaders, specificLoaders } from "../../const";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve } from "../../types";
+import { Modal } from "@mui/material";
 
 export default function WarmUp() {
     const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal } = useInformation()
@@ -71,43 +72,47 @@ export default function WarmUp() {
                     <button onClick={() => setCreateWarm(!createWarm)}>Crear calentamiento</button>
                 </>
             }
-            {
-                addDay ?
-                    <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />
-                    :
-                    pag != 0 ?
-                        pag < Number(totalExercise) + 1 ?
-                            <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+            <Modal open={addDay || createWarm || Boolean(loader) || Boolean(pag)}>
+                <>
+                    {
+                        addDay ?
+                            <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />
                             :
-                            <TableConfirmDay
-                                key={routineId.id}
-                                dayCreate={dayCreate}
-                                setAddDay={setAddDay}
-                                setDayCreate={setDayCreate}
-                                setPag={setPag}
-                                setTotalExercise={setTotalExercise}
-                                routine={routine}
-                                routineActual={routineActual}
-                                routineId={routineId.id}
+                            pag != 0 ?
+                                pag < Number(totalExercise) + 1 ?
+                                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                                    :
+                                    <TableConfirmDay
+                                        key={routineId.id}
+                                        dayCreate={dayCreate}
+                                        setAddDay={setAddDay}
+                                        setDayCreate={setDayCreate}
+                                        setPag={setPag}
+                                        setTotalExercise={setTotalExercise}
+                                        routine={routine}
+                                        routineActual={routineActual}
+                                        routineId={routineId.id}
+                                        setLoader={setLoader}
+                                    />
+                                :
+                                <></>
+                    }
+                    {
+                        createWarm ?
+                            <CreateRoutine
+                                setOpenCreateRouitine={setCreateWarm}
+                                userId={id}
+                                updateWarmUpUser={updateWarmUpUser}
+                                updateIdGlobal={updateIdGlobal}
+                                createWarm={createWarm}
                                 setLoader={setLoader}
                             />
-                        :
-                        <></>
-            }
-            {
-                createWarm ?
-                    <CreateRoutine
-                        setOpenCreateRouitine={setCreateWarm}
-                        userId={id}
-                        updateWarmUpUser={updateWarmUpUser}
-                        updateIdGlobal={updateIdGlobal}
-                        createWarm={createWarm}
-                        setLoader={setLoader}
-                    />
-                    :
-                    <></>
-            }
-            {loader ? <Loader text={loader} /> : <></>}
+                            :
+                            <></>
+                    }
+                    {loader ? <Loader text={loader} /> : <></>}
+                </>
+            </Modal>
         </>
     )
 }
