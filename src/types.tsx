@@ -95,6 +95,7 @@ export type FormOneDayComponentProps = {
     reps?: string | undefined;
     link?: string | undefined;
   }[]>>
+  setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type TableConfirmDayComponentProps = {
@@ -132,6 +133,7 @@ export type TableConfirmDayComponentProps = {
   routine?: Routine
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
+  setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export type CreateExerciseComponentProps = {
@@ -187,6 +189,9 @@ export type FormTotalExerciseComponentProps = {
   setPag: React.Dispatch<React.SetStateAction<number>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  setPagDays?: React.Dispatch<React.SetStateAction<number>>
+  setTotalDays?: React.Dispatch<React.SetStateAction<string>>
+  setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
   routine?: Routine
 }

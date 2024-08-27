@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormOneDayComponentProps } from "../../../types";
 import onChangeInputs from "../../../services/creteDayRoutine/form/onChangeInputs";
 
-export default function FormOneDay({ actualExercise, setDayCreate, setPag }: FormOneDayComponentProps) {
+export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOpenCreateRouitine }: FormOneDayComponentProps) {
     const [inputsExecise, setInputsExecise] = useState<{
         exercise: number,
         name: string,
@@ -52,6 +52,12 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag }: For
                 <input type='url' name="link" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.link}></input>
             </label>
             <button onClick={() => next()}> Siguiente </button>
+            <button onClick={() => {
+                setPag(0)
+                if (setOpenCreateRouitine) {
+                    setOpenCreateRouitine(false)
+                }
+            }}> Cancelar </button>
         </div>
     )
 }

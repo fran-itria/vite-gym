@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useDayCreate from "../../hook/Components/Routine/useCreateDay"
 import FormOneDay from "./CraeteOneDay/FormOneDay"
 import FormTotalExercise from "./FormTotalExercise"
@@ -26,16 +26,17 @@ export default function CreateRoutine({
     const { email } = useAppSelector(state => state.user)
 
     return (
-        <div style={{ background: 'white', height: '200px', position: 'absolute', top: '50%', right: '50%' }}>
+        <div style={{ background: 'white', height: '200px' }}>
             {
                 pagDays == 0 ?
-                    <label>
+                    <label style={{ color: 'black' }}>
                         Días a realizar:
-                        <input onChange={(e) => setTotalDays(e.target.value)}></input>
+                        <input onChange={(e) => setTotalDays(e.target.value)} style={{ borderColor: 'black', borderStyle: 'solid' }}></input>
                         <button onClick={() => {
                             setAddDay(!addDay)
                             setPagDays(pagDays + 1)
                         }}>Siguiente</button>
+                        <button onClick={() => setOpenCreateRouitine(false)}>Cancelar</button>
                     </label>
                     :
                     <></>
@@ -44,10 +45,22 @@ export default function CreateRoutine({
                 pagDays != 0 && pagDays < Number(totalDays) + 1 ?
                     <div>
                         {addDay ?
-                            <FormTotalExercise setAddDay={setAddDay} setPag={setPag} setTotalExercise={setTotalExercise} pagDays={pagDays} />
+                            <FormTotalExercise
+                                setAddDay={setAddDay}
+                                setPag={setPag}
+                                setTotalExercise={setTotalExercise}
+                                pagDays={pagDays}
+                                setPagDays={setPagDays}
+                                setTotalDays={setTotalDays}
+                                setOpenCreateRouitine={setOpenCreateRouitine} />
                             :
                             pag != 0 && pag < Number(totalExercise) + 1 ?
-                                <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                                <FormOneDay
+                                    actualExercise={pag}
+                                    setDayCreate={setDayCreate}
+                                    setPag={setPag}
+                                    setOpenCreateRouitine={setOpenCreateRouitine}
+                                />
                                 :
                                 <TableConfirmDay
                                     dayCreate={dayCreate}
@@ -59,6 +72,7 @@ export default function CreateRoutine({
                                     setRoutine={setRoutine}
                                     setPagDays={setPagDays}
                                     setLoader={setLoader}
+                                    setOpenCreateRouitine={setOpenCreateRouitine}
                                 />
                         }
                     </div>
@@ -107,6 +121,9 @@ export default function CreateRoutine({
                             }}>
                                 {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
                             </button>
+                            <button onClick={() => {
+                                setOpenCreateRouitine(false)
+                            }}>Cancelar</button>
                         </>
                         :
                         <></>

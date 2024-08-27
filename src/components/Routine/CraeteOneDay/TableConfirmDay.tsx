@@ -15,7 +15,8 @@ export default function TableConfirmDay({
     routineActual,
     routineId,
     setLoader,
-    setRoutineAdmin
+    setRoutineAdmin,
+    setOpenCreateRouitine
 }: TableConfirmDayComponentProps) {
     return (
         <>
@@ -64,6 +65,13 @@ export default function TableConfirmDay({
                     Agregar día
                 </button >
             }
+            <button onClick={() => {
+                setPag(0)
+                setAddDay(false)
+                if (setOpenCreateRouitine) {
+                    setOpenCreateRouitine(false)
+                }
+            }}>Cancelar</button>
         </>
     )
 }

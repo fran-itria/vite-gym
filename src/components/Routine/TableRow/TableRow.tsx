@@ -57,7 +57,7 @@ export default function TableRow({
         setWeekLoad={setWeekLoad}
         setRoutineAdmin={setRoutineAdmin}
       />
-      <Modal open={open || openLoad || confirmDelete}>
+      <Modal open={open || openLoad || load || confirmDelete}>
         <>
           {open ? (
             <ModifiedExercise
@@ -102,36 +102,36 @@ export default function TableRow({
           ) : (
             <></>
           )}
+          {load ? (
+            <div>
+              <label>
+                Carga:
+                <input
+                  type="text"
+                  onChange={(e) => setNewLoads(e.target.value)}
+                ></input>
+              </label>
+              <button
+                onClick={() =>
+                  modifiedLoads({
+                    id: idLoad,
+                    load: newLoads,
+                    routineActual,
+                    routineId,
+                    setLoad,
+                    setLoader,
+                  })
+                }
+              >
+                Guardar
+              </button>
+              <button onClick={() => setLoad(!load)}>Cancelar</button>
+            </div>
+          ) : (
+            <></>
+          )}
         </>
       </Modal>
-      {load ? (
-        <div>
-          <label>
-            Carga:
-            <input
-              type="text"
-              onChange={(e) => setNewLoads(e.target.value)}
-            ></input>
-          </label>
-          <button
-            onClick={() =>
-              modifiedLoads({
-                id: idLoad,
-                load: newLoads,
-                routineActual,
-                routineId,
-                setLoad,
-                setLoader,
-              })
-            }
-          >
-            Guardar
-          </button>
-          <button onClick={() => setLoad(!load)}>Cancelar</button>
-        </div>
-      ) : (
-        <></>
-      )}
     </tr>
   );
 }
