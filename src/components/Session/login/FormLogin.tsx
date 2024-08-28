@@ -26,7 +26,7 @@ export default function FormLogin() {
         </>
       </Modal>
       <section className="flex flex-col justify-around h-96 bg-gray-300 dark:bg-gray-800 rounded p-11 shadow-xl shadow-black">
-        <h2 className="p-0 m-0 text-black dark:text-white"> Pro Active Center</h2>
+        <h2 className="p-0 m-0 text-black text-2xl font-bold dark:text-white"> Pro Active Center</h2>
         <form
           onSubmit={(event) => {
             onSubmit({
@@ -46,7 +46,7 @@ export default function FormLogin() {
             placeholder="Usuario"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black  dark:bg-white dark:placeolder:text-white"
+            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black dark:bg-white"
           ></input>
           <input
             name="password"
