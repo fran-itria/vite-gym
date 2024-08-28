@@ -7,7 +7,8 @@ import { useUserActions } from "../../../hook/useUserActions";
 import Loader from "../../Loader";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
-import style from "./formLogin.module.css";
+// import style from "./formLogin.module.css";
+import { Modal } from "@mui/material";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -18,10 +19,14 @@ export default function FormLogin() {
   const { updateIdGlobal } = useRoutineIdActions();
 
   return (
-    <div>
-      {loader && <Loader text={loader} />}
-      <section>
-        <h2>Bienvenidos a Pro Active Center</h2>
+    <div className="w-full h-full flex flex-col justify-center items-center bg-gray-800">
+      <Modal open={Boolean(loader)}>
+        <>
+          {loader && <Loader text={loader} />}
+        </>
+      </Modal>
+      <section className="flex flex-col justify-around h-96 bg-gray-800 rounded p-11 shadow-xl shadow-black">
+        <h2 className="p-0 m-0 text-white"> Pro Active Center</h2>
         <form
           onSubmit={(event) => {
             onSubmit({
@@ -33,30 +38,29 @@ export default function FormLogin() {
               updateIdGlobal,
             });
           }}
+          className="items-start flex flex-col"
         >
-          <label>
-            Usuario:
-            <input
-              name="user"
-              type="text"
-              onChange={(event) => onChange({ event, setInputs })}
-              required={true}
-            ></input>
-          </label>
-          <label>
-            Contraseña:
-            <input
-              name="password"
-              type="password"
-              onChange={(event) => onChange({ event, setInputs })}
-              required={true}
-            ></input>
-          </label>
-          <button className={style.button}>Iniciar sesión</button>
-          <a onClick={() => navigate("/reset")} className={style.a}>
-            ¿Olvidaste tu contraseña?
-          </a>
+          <input
+            name="user"
+            type="text"
+            placeholder="Usuario"
+            onChange={(event) => onChange({ event, setInputs })}
+            required={true}
+            className="bg-white rounded mb-7 p-1 text-black"
+          ></input>
+          <input
+            name="password"
+            type="password"
+            placeholder="Contraseña"
+            onChange={(event) => onChange({ event, setInputs })}
+            required={true}
+            className="bg-white rounded mb-7 p-1 text-black"
+          ></input>
+          <button className="bg-gray-600 text-white p-1.5 rounded border-none hover:bg-gray-900">Iniciar sesión</button>
         </form>
+        <a onClick={() => navigate("/reset")} className=' hover:text-white cursor-pointer'>
+          ¿Olvidaste tu contraseña?
+        </a>
       </section>
     </div>
   );
