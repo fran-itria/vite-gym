@@ -54,7 +54,7 @@ export default function FormLogin() {
             placeholder="Contraseña"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black dark:bg-white dark:placeolder:text-white"
+            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black dark:bg-white"
           ></input>
           <button className="bg-gray-600 text-white p-1.5 rounded border-none hover:bg-gray-900">Iniciar sesión</button>
         </form>
