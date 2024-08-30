@@ -15,9 +15,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 addUser(response.data.user)
                 updateIdGlobal(undefined)
                 updateIdGlobal(undefined)
-                storage.setItem('user', response.data.user.user)
-                storage.setItem('email', response.data.user.email)
-                storage.setItem('password', response.data.user.password)
+                storage.setItem('token', response.data.token)
                 navigate(`/home/${response.data.user.id}/resumen`);
             }
         } else {
@@ -44,12 +42,8 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
         if (inputs && (error.response.data.Error.includes('Usuario') || error.response.data.Error.includes('Email'))) {
             if ('gymName' in inputs) {
                 const gym = await axios.get(`/gym/getGymName/${inputs.gymName}`)
-                if (gym.data.Users.length == 0) {
+                if (gym.data.Users.length == 0)
                     await axios.delete(`/gym/delete/${gym.data.id}`)
-                    console.log('Gimnasio borrado')
-                } else {
-                    console.log('Gimnasio en uso')
-                }
             }
         }
     }

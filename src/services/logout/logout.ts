@@ -9,9 +9,7 @@ export const logout = async (id: string | null, navigate: NavigateFunction, setL
         setLoader(basicLoaders.out)
         const logoutUser = await axios.put('/user/logout', { id })
         if (logoutUser.status == 200) {
-            storage.removeItem('user')
-            storage.removeItem('email')
-            storage.removeItem('password')
+            storage.removeItem('token')
             navigate('/')
         }
         return logoutUser
