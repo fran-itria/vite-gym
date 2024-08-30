@@ -3,9 +3,13 @@ import { Elements } from "../../types";
 
 export default function FormElement({ labelName, type, name, setInputs }: Elements) {
     return (
-        <label>
-            {labelName}:
-            <input type={type} name={name} onChange={(event) => onChange({ event, setInputs })} required={true}></input>
-        </label>
+        <input
+            placeholder={labelName}
+            type={type}
+            name={name}
+            onChange={(event) => onChange({ event, setInputs })}
+            required={true}
+            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
+        ></input>
     )
 }
