@@ -95,8 +95,7 @@ export default function FormLogin() {
             border-none 
             dark:hover:bg-gray-900
             dark:text-white 
-            dark:bg-cyan-800
-            dark:hover:bg-cyan-950"
+            dark:bg-cyan-800"
           >Iniciar sesión</button>
         </form>
         <a onClick={() => navigate("/reset")} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>

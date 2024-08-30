@@ -87,7 +87,6 @@ export default function FormRegister() {
                                     dark:hover:bg-gray-900
                                     dark:text-white 
                                     dark:bg-cyan-800
-                                    dark:hover:bg-cyan-950
                                 ">
                                 Registrarme
                             </button>
@@ -96,17 +95,34 @@ export default function FormRegister() {
                 </div >
             }
             <Modal open={open}>
-                <div style={{ background: 'black' }}>
-                    <p style={{ color: 'white' }}>
-                        Se ha enviado un correo a {mail}, por favor coloque el codigo proporcionado para verificar su cuenta
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <h3 style={{ color: 'white' }}>CODIGO</h3>
-                        <input type="number" onChange={(e) => setTemporalCode(e.target.value.toString())} />
-                        <button onClick={() => checkCode(navigate, addUser, mail, temporalCode, setLoader)}>Verificar</button>
+                <div className="flex justify-center items-center h-screen">
+                    <div className="border p-4 rounded bg-gray-300 text-gray-900 dark:text-white dark:bg-cyan-950 flex flex-col items-center">
+                        <p>
+                            Se ha enviado un correo a <b>francoitria01@gmail.com</b>, por favor coloque el codigo proporcionado para verificar su cuenta
+                        </p>
+                        <input
+                            type="number"
+                            onChange={(e) => setTemporalCode(e.target.value.toString())}
+                            placeholder="Código"
+                            className="bg-gray-700 placeholder:text-white rounded mt-5 mb-5 p-1 text-black dark:bg-white dark:placeholder:text-black" />
+                        <button
+                            onClick={() => checkCode(navigate, addUser, mail, temporalCode, setLoader)}
+                            className="
+                                    bg-gray-100
+                                    hover:bg-gray-500
+                                    text-black
+                                    hover:text-white 
+                                    p-1.5 
+                                    rounded 
+                                    border-none
+                                    dark:bg-cyan-800
+                                    dark:hover:bg-gray-900
+                                    dark:text-white 
+                                "
+                        >Verificar</button>
                     </div>
                 </div>
-            </Modal>
+            </Modal >
         </>
     )
 }
