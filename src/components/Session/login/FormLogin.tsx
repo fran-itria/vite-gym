@@ -7,7 +7,6 @@ import { useUserActions } from "../../../hook/useUserActions";
 import Loader from "../../Loader";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
-// import style from "./formLogin.module.css";
 import { Modal } from "@mui/material";
 
 export default function FormLogin() {
@@ -19,14 +18,44 @@ export default function FormLogin() {
   const { updateIdGlobal } = useRoutineIdActions();
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center  bg-gray-300 dark:bg-gray-800">
+    <div className='
+      w-full 
+      h-full 
+      flex 
+      flex-col 
+      justify-center 
+      items-center
+      bg-gradient-to-t  
+      from-gray-300
+      via-gray-500
+      to-gray-300 
+      dark:bg-gradient-to-t 
+      dark:from-gray-800
+      dark:via-cyan-900
+      dark:to-gray-800'>
       <Modal open={Boolean(loader)}>
         <>
           {loader && <Loader text={loader} />}
         </>
       </Modal>
-      <section className="flex flex-col justify-around h-96 bg-gray-300 dark:bg-gray-800 rounded p-11 shadow-xl shadow-black">
-        <h2 className="p-0 m-0 text-black text-2xl font-bold dark:text-white"> Pro Active Center</h2>
+      <section className="
+      flex 
+      flex-col 
+      justify-around 
+      h-96 
+      rounded 
+      p-11 
+      shadow-xl 
+      shadow-black
+      bg-gradient-to-t  
+      from-gray-300
+      via-gray-500
+      to-gray-300 
+      dark:bg-gradient-to-t 
+      dark:from-gray-800
+      dark:via-cyan-900
+      dark:to-gray-800">
+        <h2 className="p-0 m-0 text-gray-800 text-2xl font-bold dark:text-white"> Pro Active Center</h2>
         <form
           onSubmit={(event) => {
             onSubmit({
@@ -46,7 +75,7 @@ export default function FormLogin() {
             placeholder="Usuario"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black dark:bg-white"
+            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
           ></input>
           <input
             name="password"
@@ -54,11 +83,23 @@ export default function FormLogin() {
             placeholder="Contraseña"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-400 placeholder:text-black rounded mb-7 p-1 text-black dark:bg-white"
+            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
           ></input>
-          <button className="bg-gray-600 text-white p-1.5 rounded border-none hover:bg-gray-900">Iniciar sesión</button>
+          <button className="
+            bg-gray-300
+            hover:bg-gray-500
+            hover:text-white 
+            text-gray-800 
+            p-1.5 
+            rounded 
+            border-none 
+            dark:hover:bg-gray-900
+            dark:text-white 
+            dark:bg-cyan-800
+            dark:hover:bg-cyan-950"
+          >Iniciar sesión</button>
         </form>
-        <a onClick={() => navigate("/reset")} className=' hover:text-white cursor-pointer'>
+        <a onClick={() => navigate("/reset")} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>
           ¿Olvidaste tu contraseña?
         </a>
       </section>
