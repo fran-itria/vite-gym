@@ -55,7 +55,7 @@ export default function FormRegister() {
                         <h2 className="p-0 m-0 mb-8 text-gray-800 text-2xl font-bold dark:text-white"> Pro Active Center</h2>
                         <form
                             onSubmit={(event) => onSubmit({ event, inputs, navigate, addUser, url, setLoader, handleOpen, setMail })}
-                            className="grid grid-cols-2 gap-x-4 gap-y-px"
+                            className="grid grid-cols-2 gap-x-4 gap-y-1"
                         >
                             {url.pathname.includes("admin") ?
                                 <FormElement labelName={labels.gymName} type={typesElement.text} name={namesElements.gymName} setInputs={setInputs}></FormElement>
@@ -73,6 +73,10 @@ export default function FormRegister() {
                             <FormElement labelName={labels.password} type={typesElement.password} name={namesElements.password} setInputs={setInputs}></FormElement>
                             <FormElement labelName={labels.confirmPassword} type={typesElement.password} name={namesElements.confimrPassword} setInputs={setInputs}></FormElement>
                             <button className="
+                                    h-8
+                                    flex
+                                    justify-center
+                                    items-center
                                     bg-gray-300
                                     hover:bg-gray-500
                                     hover:text-white 
@@ -89,7 +93,7 @@ export default function FormRegister() {
                             </button>
                         </form>
                     </section>
-                </div>
+                </div >
             }
             <Modal open={open}>
                 <div style={{ background: 'black' }}>
