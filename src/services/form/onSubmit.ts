@@ -4,8 +4,9 @@ import { login } from "../login/login";
 import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 import { basicLoaders, storage } from "../../const";
+import { InputsRegister } from "../../types";
 
-export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal, handleOpen, setMail }: onSubmitProps) {
+export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal, handleOpen, setMail }: onSubmitProps & { inputs?: InputsRegister }) {
     event.preventDefault();
     try {
         if (!url) {
@@ -20,6 +21,7 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
             }
         } else {
             setLoader(basicLoaders.register)
+            if (inputs?.password !== inputs?.confirmPassword) throw new Error('Las contraseñas no coinciden')
             const response = await register({ inputs, url });
             if (response.status == 200) {
                 const user = await axios.get(`/user/getOneUser/${response.data.id}`)
@@ -38,7 +40,8 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
         }
     } catch (error: any) {
         setLoader(undefined)
-        window.alert(error.response.data.Error);
+        if (error.response) window.alert(error.response.data.Error);
+        else window.alert(error.message)
         if (inputs && (error.response.data.Error.includes('Usuario') || error.response.data.Error.includes('Email'))) {
             if ('gymName' in inputs) {
                 const gym = await axios.get(`/gym/getGymName/${inputs.gymName}`)

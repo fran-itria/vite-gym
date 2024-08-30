@@ -26,6 +26,7 @@ export const namesElements = {
     contactEmergency: "contactEmergency",
     user: "user",
     password: "password",
+    confimrPassword: "confirmPassword",
     phone: "phone"
 }
 
@@ -39,6 +40,7 @@ export const labels = {
     contactEmergency: "Contacto de emergencia",
     user: "Usuario",
     password: "Contraseña",
+    confirmPassword: "Confirmar contraseña",
     phone: "Telefono"
 }
 

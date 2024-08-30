@@ -19,7 +19,7 @@ export type registerProps = {
 
 export type onSubmitProps = {
   event: React.FormEvent<HTMLFormElement>;
-  inputs: Inputs;
+  inputs?: Inputs;
   navigate: NavigateFunction;
   addUser: Function,
   url?: Location<any>,
@@ -207,7 +207,7 @@ export type deleteExerciseProps = {
 
 export type submitChangesProps = {
   e: React.FormEvent<HTMLFormElement>
-  inputs?: { admin?: boolean, pay?: boolean, ban?: string | null}
+  inputs?: { admin?: boolean, pay?: boolean, ban?: string | null }
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>

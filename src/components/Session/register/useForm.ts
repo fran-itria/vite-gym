@@ -6,7 +6,7 @@ import { getId } from "../../../services/getId";
 import { useUserActions } from "../../../hook/useUserActions";
 
 export default function useForm() {
-    const [inputs, setInputs] = useState<InputsRegister | InputsLogin>()
+    const [inputs, setInputs] = useState<InputsRegister | InputsLogin | undefined>()
     const url = useLocation()
     const params = useParams()
     const navigate = useNavigate()
@@ -19,14 +19,14 @@ export default function useForm() {
     const handleOpen = () => {
         setOpen(true);
     }
-    useEffect(() => {
-        const { id } = params
-        getId(id, navigate)
-        const gymName = params.gymName
-        if (gymName) {
-            setInputs(prevInputs => { return { ...prevInputs, gymName } })
-        }
-    }, [])
+    // useEffect(() => {
+    //     const { id } = params
+    //     getId(id, navigate)
+    //     const gymName = params.gymName
+    //     if (gymName) {
+    //         setInputs(prevInputs => { return { ...prevInputs, gymName } })
+    //     }
+    // }, [])
 
     return { inputs, setInputs, url, navigate, addUser, loader, setLoader, open, handleOpen, mail, setMail, temporalCode, setTemporalCode }
 }

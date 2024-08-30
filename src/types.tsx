@@ -15,8 +15,8 @@ export type PropsNavHealth = {
 };
 
 export type InputsLogin = {
-  user?: string | null;
-  password?: string | null;
+  user?: string;
+  password?: string;
 };
 
 export type InputsRegister = {
@@ -30,6 +30,7 @@ export type InputsRegister = {
   phone?: number,
   user?: string;
   password?: string;
+  confirmPassword?: string;
 };
 
 export type Elements = {
