@@ -19,14 +19,14 @@ export default function useForm() {
     const handleOpen = () => {
         setOpen(true);
     }
-    // useEffect(() => {
-    //     const { id } = params
-    //     getId(id, navigate)
-    //     const gymName = params.gymName
-    //     if (gymName) {
-    //         setInputs(prevInputs => { return { ...prevInputs, gymName } })
-    //     }
-    // }, [])
+    useEffect(() => {
+        const { id } = params
+        getId(id, navigate)
+        const gymName = params.gymName
+        if (gymName) {
+            setInputs(prevInputs => { return { ...prevInputs, gymName } })
+        }
+    }, [])
 
     return { inputs, setInputs, url, navigate, addUser, loader, setLoader, open, handleOpen, mail, setMail, temporalCode, setTemporalCode }
 }
