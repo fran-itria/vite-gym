@@ -1,14 +1,8 @@
-import style from './Loader.module.css'
 
 export default function Loader({ text }: { text: string }) {
-
     return (
         <div className='w-screen h-screen flex justify-center items-center text-center'>
-            <div className={style.loader}>
-                <p className={style.text}>{text}</p>
-                <div className={style.demo}>
-                </div>
-            </div>
+            <p className='animate-bounce text-white text-4xl rounded-lg border p-2 bg-gray-700 dark:bg-cyan-950'>{text}...</p>
         </div>
     )
 }
