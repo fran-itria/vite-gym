@@ -24,15 +24,8 @@ export default function FormLogin() {
       flex 
       flex-col 
       justify-center 
-      items-center
-      bg-gradient-to-t  
-      from-gray-300
-      via-gray-500
-      to-gray-300 
-      dark:bg-gradient-to-t 
-      dark:from-gray-800
-      dark:via-cyan-900
-      dark:to-gray-800'>
+      items-center'
+    >
       <Modal open={Boolean(loader)}>
         <>
           {loader && <Loader text={loader} />}
@@ -85,18 +78,7 @@ export default function FormLogin() {
             required={true}
             className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
           ></input>
-          <button className="
-            bg-gray-300
-            hover:bg-gray-500
-            hover:text-white 
-            text-gray-800 
-            p-1.5 
-            rounded 
-            border-none 
-            dark:hover:bg-gray-900
-            dark:text-white 
-            dark:bg-cyan-800"
-          >Iniciar sesión</button>
+          <button>Iniciar sesión</button>
         </form>
         <a onClick={() => navigate("/reset")} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>
           ¿Olvidaste tu contraseña?
