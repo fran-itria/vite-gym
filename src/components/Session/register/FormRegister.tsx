@@ -98,7 +98,7 @@ export default function FormRegister() {
                 <div className="flex justify-center items-center h-screen">
                     <div className="border p-4 rounded bg-gray-300 text-gray-900 dark:text-white dark:bg-cyan-950 flex flex-col items-center">
                         <p>
-                            Se ha enviado un correo a <b>francoitria01@gmail.com</b>, por favor coloque el codigo proporcionado para verificar su cuenta
+                            Se ha enviado un correo a <b>{mail}</b>, por favor coloque el codigo proporcionado para verificar su cuenta
                         </p>
                         <input
                             type="number"
