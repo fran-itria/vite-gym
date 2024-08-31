@@ -8,9 +8,9 @@ export default function HomeAdmin() {
             flex
             justify-evenly
             w-screen
-            max-[375px]:grid
-            max-[375px]:grid-cols-3
-            max-[375px]:gap-2
+            max-[425px]:grid
+            max-[425px]:grid-cols-3
+            max-[425px]:gap-2
             ">
                 <NavLink to={`/usuarios/${id}`}>
                     Uuarios
