@@ -6,6 +6,7 @@ import Loader from "../Loader"
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import style from './Register.module.css'
 import { basicLoaders, specificLoaders } from "../../const";
+import { Modal } from "@mui/material";
 
 export default function Register() {
     const [link, setLink] = useState<string>()
@@ -38,7 +39,11 @@ export default function Register() {
 
     return (
         <>
-            {loader && <Loader text={loader} />}
+            <Modal open={Boolean(loader)}>
+                <>
+                    {loader && <Loader text={loader} />}
+                </>
+            </Modal>
             <button onClick={() => createLink()}>Crear link de registro</button>
             <p>Nuevo link creado: {link ? link : <></>}</p>
             {

@@ -6,17 +6,15 @@ import axios from "axios"
 import { useAppSelector } from "../../../hook/store"
 import TablePayments from "./Table"
 import { basicLoaders, specificLoaders } from "../../../const"
-import Loader from "../../Loader"
 
 
 
-export default function SubscriptionAdmin() {
+export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Dispatch<React.SetStateAction<string | undefined>> }) {
     const { GymId } = useAppSelector(state => state.user)
     const [link, setLink] = useState<string>()
     const [payments, setPayments] = useState<{ id: string, date: string, hour: string, amount: string, User: { name: string, surname: string } }[]>()
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<number>()
-    const [loader, setLoader] = useState<string>()
 
     useEffect(() => {
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}s`)
@@ -32,7 +30,6 @@ export default function SubscriptionAdmin() {
 
     return (
         <>
-            {loader && <Loader text={loader} />}
             <form onSubmit={(e) => {
                 if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
             }}>
