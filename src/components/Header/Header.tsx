@@ -42,7 +42,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="flex justify-between items-center w-screen h-12 mt-2.5">
+            <header className="flex justify-between items-center w-full h-12 mt-2.5">
                 <h1 className="text-gray-800 dark:text-white font-mono font-normal text-3xl ml-5 max-[425px]:text-2xl">{Gym?.name}</h1>
                 <div className="flex flex-col justify-center items-center">
                     {photo && photo.length > 0 ?
