@@ -12,6 +12,7 @@ import theme, { StyledTableCell, StyledTableRow } from "../../../themeIcons/cust
 import Loader from "../../Loader";
 import Edit from "./Edit";
 import useUsers from "../../../hook/Components/Users/useUsers";
+import { Modal } from '@mui/material';
 
 export default function Users() {
     const {
@@ -46,6 +47,23 @@ export default function Users() {
     }
     return (
         <>
+            <Modal open={Boolean(loader) || edit}>
+                <>
+                    {loader
+                        ? <Loader text={loader} />
+                        : edit && <Edit
+                            userId={userId}
+                            setUsers={setUsers}
+                            gymName={Gym?.name}
+                            admin={admin}
+                            ban={ban}
+                            subscription={subscription}
+                            setEdit={setEdit}
+                            setLoader={setLoader}
+                            email={email}
+                        />}
+                </>
+            </Modal>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
@@ -99,21 +117,6 @@ export default function Users() {
                     }
                 </Table>
             </TableContainer>
-            {edit ?
-                <Edit
-                    userId={userId}
-                    setUsers={setUsers}
-                    gymName={Gym?.name}
-                    admin={admin}
-                    ban={ban}
-                    subscription={subscription}
-                    setEdit={setEdit}
-                    setLoader={setLoader}
-                    email={email}
-                />
-                :
-                <></>}
-            {loader ? <Loader text={loader} /> : <></>}
         </>
     )
 }
