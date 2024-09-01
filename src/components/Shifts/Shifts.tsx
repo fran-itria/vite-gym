@@ -9,6 +9,7 @@ import deleteShift from "../../services/calendar/deleteShift";
 import ShiftsAdmin from "../Admin/Shifts/ShiftsAdmin";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Modal } from "@mui/material";
 
 export default function Shifts() {
     const { Shifts, id, admin, GymId } = useAppSelector(state => state.user)
@@ -27,7 +28,11 @@ export default function Shifts() {
 
     return (
         <>
-            {loader && <Loader text={loader} />}
+            <Modal open={Boolean(loader)}>
+                <>
+                    {loader && <Loader text={loader} />}
+                </>
+            </Modal>
             {!admin ?
                 <>
                     {shifts && shifts.limit != 0 ?
@@ -66,7 +71,7 @@ export default function Shifts() {
                     </div>
                 </>
                 :
-                <ShiftsAdmin />
+                <ShiftsAdmin setLoader={setLoader} />
             }
         </>
     )
