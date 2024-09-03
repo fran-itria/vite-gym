@@ -18,7 +18,7 @@ function App() {
   const path = useLocation();
   axios.defaults.baseURL = baseUrlDeploy
   return (
-    <>
+    <div className="h-full w-full flex flex-col">
       {
         path.pathname != "/" &&
           !path.pathname.includes("register") &&
@@ -41,7 +41,7 @@ function App() {
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/acceptUser" element={<AcceptUser />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
