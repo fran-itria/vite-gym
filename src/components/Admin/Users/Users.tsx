@@ -64,59 +64,82 @@ export default function Users() {
                         />}
                 </>
             </Modal>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell align="center">
-                                <input onChange={(e) => filterUsers(e)} placeholder='Usuario'></input>
-                            </StyledTableCell>
-                            <StyledTableCell align="center"> Nombre </StyledTableCell>
-                            <StyledTableCell align="center"> Apellido </StyledTableCell>
-                            <StyledTableCell align="center"> Teléfono </StyledTableCell>
-                            <StyledTableCell align="center"> Contacto emergencia </StyledTableCell>
-                            <StyledTableCell align="center"> Admin </StyledTableCell>
-                            <StyledTableCell align="center"> Calentamientos </StyledTableCell>
-                            <StyledTableCell align="center"> Rutinas </StyledTableCell>
-                            <StyledTableCell align="center"> Suscripción </StyledTableCell>
-                            <StyledTableCell align="center"> Ban </StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    {users.length > 0 ?
-                        <TableBody>
-                            {users.map(user => (
-                                <>
-                                    <StyledTableRow key={user.id}>
-                                        <StyledTableCell align="center">
-                                            <ThemeProvider theme={theme}>
-                                                <CreateIcon onClick={() => {
-                                                    setUserId(user.id)
-                                                    setAdmin(user.admin)
-                                                    setBan(user.ban)
-                                                    setSubscription(user.pay)
-                                                    setEdit(prev => !prev)
-                                                    setEmail(user.email)
-                                                }} sx={{ color: theme.palette.pencil.main }} />
-                                            </ThemeProvider>
-                                        </StyledTableCell>
-                                        <StyledTableCell align="center">{user.name}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.surname}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.phone}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.contactEmergency}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.admin ? '✅' : '❌'}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.WarmUps.length}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.Routines.length}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.pay ? '✅' : '❌'}</StyledTableCell>
-                                        <StyledTableCell align="center">{user.ban ? '✅' : '❌'}</StyledTableCell>
-                                    </StyledTableRow>
-                                </>
-                            ))}
-                        </TableBody>
-                        :
-                        <p>No tienes usuarios registrados</p>
-                    }
-                </Table>
-            </TableContainer>
+            <div className='h-full flex items-center justify-center mt-5'>
+                <TableContainer component={Paper} className='overflow-auto w-full max-w-6xl ll:max-w-sm ll:max-h-96'>
+                    <Table aria-label="customized table" >
+                        <TableHead>
+                            <TableRow>
+                                {/* <StyledTableCell align="center">
+                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-white placeholder:p-2'></input>
+                                </StyledTableCell> */}
+                                <StyledTableCell align="center" className='flex flex-col'>
+                                    <p>Nombre</p>
+                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-white placeholder:p-2'></input>
+                                </StyledTableCell>
+                                <StyledTableCell align="center"> Apellido </StyledTableCell>
+                                <StyledTableCell align="center"> Suscripción </StyledTableCell>
+                                <StyledTableCell align="center"> Ban </StyledTableCell>
+                                <StyledTableCell align="center"> Admin </StyledTableCell>
+                                <StyledTableCell align="center"> Rutinas </StyledTableCell>
+                                <StyledTableCell align="center"> Calentamientos </StyledTableCell>
+                                <StyledTableCell align="center"> Teléfono </StyledTableCell>
+                                <StyledTableCell align="center"> Contacto emergencia </StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        {users.length > 0 ?
+                            <TableBody>
+                                {users.map(user => (
+                                    <>
+                                        <StyledTableRow key={user.id}>
+                                            {/* <StyledTableCell align="center">
+                                                <ThemeProvider theme={theme}>
+                                                    <CreateIcon onClick={() => {
+                                                        setUserId(user.id)
+                                                        setAdmin(user.admin)
+                                                        setBan(user.ban)
+                                                        setSubscription(user.pay)
+                                                        setEdit(prev => !prev)
+                                                        setEmail(user.email)
+                                                    }} sx={{ color: theme.palette.pencil.main }} />
+                                                </ThemeProvider>
+                                            </StyledTableCell> */}
+                                            <StyledTableCell align="center" className='w-20'>
+                                                <div className='w-full flex justify-center'>
+                                                    <button onClick={() => {
+                                                        setUserId(user.id)
+                                                        setAdmin(user.admin)
+                                                        setBan(user.ban)
+                                                        setSubscription(user.pay)
+                                                        setEdit(prev => !prev)
+                                                        setEmail(user.email)
+                                                    }}
+                                                        className='flex bg-gray-900'
+                                                    >
+                                                        <ThemeProvider theme={theme}>
+                                                            <CreateIcon sx={{ color: theme.palette.pencil.main }} />
+                                                        </ThemeProvider>
+                                                        <p className='ml-2'>{user.name}</p>
+                                                    </button>
+                                                </div>
+                                            </StyledTableCell>
+                                            <StyledTableCell align="center">{user.surname}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.pay ? '✅' : '❌'}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.ban ? '✅' : '❌'}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.admin ? '✅' : '❌'}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.Routines.length}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.WarmUps.length}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.phone}</StyledTableCell>
+                                            <StyledTableCell align="center">{user.contactEmergency}</StyledTableCell>
+                                        </StyledTableRow>
+                                    </>
+                                ))}
+                            </TableBody>
+                            :
+                            <p>No tienes usuarios registrados</p>
+                        }
+                    </Table>
+                </TableContainer>
+            </div>
         </>
     )
 }

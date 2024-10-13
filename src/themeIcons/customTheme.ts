@@ -2,8 +2,6 @@ import { createTheme } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import TableRow from '@mui/material/TableRow';
-import { blue } from "@mui/material/colors";
-
 
 declare module '@mui/material/styles' {
     interface Palette {
@@ -47,21 +45,22 @@ theme = createTheme(theme, {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: blue[700],
+        backgroundColor: '#083344',
         color: theme.palette.common.white,
+        border: '3px solid #083344',
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 15,
+        color: theme.palette.common.white,
     },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(() => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: '#164e63',
     },
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
+    backgroundColor: '#155e75',
+    border: '3px solid #083344',
 }));
 
 export default theme
