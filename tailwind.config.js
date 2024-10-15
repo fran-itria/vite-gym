@@ -13,6 +13,16 @@ export default {
         'l': {'max': '425px'},
         'll': {'max': '500px'},
         ...defaultTheme.screens,
+      },
+      height: {
+        '120': '582px'
+      },
+      maxHeight:{
+        '100': '441px',
+        '120': '582px'
+      },
+      maxWidth:{
+        'smd': '410px'
       }
     },
   },
