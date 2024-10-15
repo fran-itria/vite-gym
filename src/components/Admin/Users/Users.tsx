@@ -64,14 +64,18 @@ export default function Users() {
                         />}
                 </>
             </Modal>
-            <div className='h-full flex items-center justify-center mt-5'>
-                <TableContainer component={Paper} className='overflow-auto w-full max-w-6xl ll:max-w-sm ll:max-h-96'>
-                    <Table aria-label="customized table" >
+            <div className='h-full flex flex-col items-center justify-center'>
+                {users.length > 1 &&
+                    <div className='ll:w-full ll:ml-5'>
+                        <p className='border p-2 rounded mb-2 w-fit'>Total de usuarios:
+                            <b className='ml-2'>{users.length}</b>
+                        </p>
+                    </div>
+                }
+                <TableContainer className='overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+                    <Table className='ll:h-120' aria-label="customized table" >
                         <TableHead>
                             <TableRow>
-                                {/* <StyledTableCell align="center">
-                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-white placeholder:p-2'></input>
-                                </StyledTableCell> */}
                                 <StyledTableCell align="center" className='flex flex-col'>
                                     <p>Nombre</p>
                                     <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-white placeholder:p-2'></input>
@@ -91,18 +95,6 @@ export default function Users() {
                                 {users.map(user => (
                                     <>
                                         <StyledTableRow key={user.id}>
-                                            {/* <StyledTableCell align="center">
-                                                <ThemeProvider theme={theme}>
-                                                    <CreateIcon onClick={() => {
-                                                        setUserId(user.id)
-                                                        setAdmin(user.admin)
-                                                        setBan(user.ban)
-                                                        setSubscription(user.pay)
-                                                        setEdit(prev => !prev)
-                                                        setEmail(user.email)
-                                                    }} sx={{ color: theme.palette.pencil.main }} />
-                                                </ThemeProvider>
-                                            </StyledTableCell> */}
                                             <StyledTableCell align="center" className='w-20'>
                                                 <div className='w-full flex justify-center'>
                                                     <button onClick={() => {
