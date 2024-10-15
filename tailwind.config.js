@@ -15,11 +15,11 @@ export default {
         ...defaultTheme.screens,
       },
       height: {
-        '120': '582px'
+        '120': '581px'
       },
       maxHeight:{
         '100': '441px',
-        '120': '582px'
+        '120': '581px'
       },
       maxWidth:{
         'smd': '410px'

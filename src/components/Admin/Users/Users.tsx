@@ -65,13 +65,13 @@ export default function Users() {
             </Modal>
             <div className='h-full flex flex-col items-center justify-center'>
                 {users.length > 1 &&
-                    <div className='ll:w-full ll:ml-5'>
-                        <p className='border p-2 rounded mb-2 w-fit'>Total de usuarios:
+                    <div className='ll:w-full'>
+                        <p className='border p-2 rounded mb-2 w-fit ll:ml-2'>Total de usuarios:
                             <b className='ml-2'>{users.length}</b>
                         </p>
                     </div>
                 }
-                <TableContainer className='overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+                <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
                     <Table className='ll:h-120' aria-label="customized table" >
                         <TableHead>
                             <TableRow>
