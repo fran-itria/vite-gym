@@ -5,7 +5,6 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
 import { ThemeProvider } from "styled-components";
 import theme, { StyledTableCell, StyledTableRow } from "../../../themeIcons/customTheme";
