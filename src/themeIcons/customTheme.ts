@@ -21,6 +21,14 @@ declare module '@mui/material/styles' {
 //     }
 // }
 
+const getSystemTheme = () => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    return 'light';
+};
+const systemTheme = getSystemTheme();
+
 let theme = createTheme()
 theme = createTheme(theme, {
     palette: {
@@ -43,24 +51,26 @@ theme = createTheme(theme, {
     }
 })
 
+
+console.log(systemTheme)
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: '#083344',
+        backgroundColor: systemTheme == 'dark' ? '#083344' : '#1f2937',
         color: theme.palette.common.white,
-        border: '3px solid #083344',
+        border: systemTheme == 'dark' ? '3px solid #083344' : '3px solid #1f2937',
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 15,
-        color: theme.palette.common.white,
+        color: systemTheme == 'dark' ? theme.palette.common.white : theme.palette.common.black,
     },
 }));
 
 const StyledTableRow = styled(TableRow)(() => ({
     '&:nth-of-type(odd)': {
-        backgroundColor: '#164e63',
+        backgroundColor: systemTheme == 'dark' ? '#164e63' : '#9ca3af',
     },
-    backgroundColor: '#155e75',
-    border: '3px solid #083344',
+    backgroundColor: systemTheme == 'dark' ? '#155e75' : '#d4d4d8',
+    border: systemTheme == 'dark' ? '3px solid #083344' : '3px solid #1f2937',
 }));
 
 export default theme

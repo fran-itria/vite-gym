@@ -12,6 +12,7 @@ import Loader from "../../Loader";
 import Edit from "./Edit";
 import useUsers from "../../../hook/Components/Users/useUsers";
 import { Modal } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 export default function Users() {
     const {
@@ -44,6 +45,7 @@ export default function Users() {
             setUsers(copy)
         }
     }
+
     return (
         <>
             <Modal open={Boolean(loader) || edit}>
@@ -66,7 +68,7 @@ export default function Users() {
             <div className='h-full flex flex-col items-center justify-center'>
                 {users.length > 1 &&
                     <div className='ll:w-full'>
-                        <p className='border p-2 rounded mb-2 w-fit ll:ml-2'>Total de usuarios:
+                        <p className='border p-2 rounded mb-2 border-black border-2 font-bold dark:border-white dark:text-white w-fit ll:ml-2'>Total de usuarios:
                             <b className='ml-2'>{users.length}</b>
                         </p>
                     </div>
@@ -77,7 +79,7 @@ export default function Users() {
                             <TableRow>
                                 <StyledTableCell align="center" className='flex flex-col'>
                                     <p>Nombre</p>
-                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-white placeholder:p-2'></input>
+                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-black dark:placeholder:text-white placeholder:text-center'></input>
                                 </StyledTableCell>
                                 <StyledTableCell align="center"> Apellido </StyledTableCell>
                                 <StyledTableCell align="center"> Suscripción </StyledTableCell>
@@ -104,12 +106,12 @@ export default function Users() {
                                                         setEdit(prev => !prev)
                                                         setEmail(user.email)
                                                     }}
-                                                        className='flex bg-gray-900'
+                                                        className='flex bg-gray-600 dark:bg-gray-900'
                                                     >
                                                         <ThemeProvider theme={theme}>
                                                             <CreateIcon sx={{ color: theme.palette.pencil.main }} />
                                                         </ThemeProvider>
-                                                        <p className='ml-2'>{user.name}</p>
+                                                        <p className='ml-2 text-white'>{user.name}</p>
                                                     </button>
                                                 </div>
                                             </StyledTableCell>
