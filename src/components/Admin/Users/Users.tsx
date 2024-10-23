@@ -12,7 +12,6 @@ import Loader from "../../Loader";
 import Edit from "./Edit";
 import useUsers from "../../../hook/Components/Users/useUsers";
 import { Modal } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 export default function Users() {
     const {
