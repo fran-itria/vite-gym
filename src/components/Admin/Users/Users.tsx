@@ -73,7 +73,7 @@ export default function Users() {
                     </div>
                 }
                 <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
-                    <Table className='ll:h-120' aria-label="customized table" >
+                    <Table aria-label="customized table" >
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell align="center" className='flex flex-col'>
