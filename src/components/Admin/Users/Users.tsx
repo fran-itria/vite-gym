@@ -11,7 +11,6 @@ import theme, { StyledTableCell, StyledTableRow } from "../../../themeIcons/cust
 import Loader from "../../Loader";
 import Edit from "./Edit";
 import useUsers from "../../../hook/Components/Users/useUsers";
-import { Modal } from '@mui/material';
 
 export default function Users() {
     const {
