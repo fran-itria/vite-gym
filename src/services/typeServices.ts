@@ -212,7 +212,11 @@ export type submitChangesProps = {
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
   setLoader: SetLoader
-  setEdit: React.Dispatch<React.SetStateAction<boolean>>
+  setEdit: React.Dispatch<React.SetStateAction<{
+    state: boolean;
+    warmUps?: number;
+    routines?: number;
+  }>>
   email?: string | null
 }
 

@@ -47,23 +47,22 @@ export default function Users() {
 
     return (
         <>
-            <Modal open={Boolean(loader) || edit}>
-                <>
-                    {loader
-                        ? <Loader text={loader} />
-                        : edit && <Edit
-                            userId={userId}
-                            setUsers={setUsers}
-                            gymName={Gym?.name}
-                            admin={admin}
-                            ban={ban}
-                            subscription={subscription}
-                            setEdit={setEdit}
-                            setLoader={setLoader}
-                            email={email}
-                        />}
-                </>
-            </Modal>
+            <>
+                {loader
+                    ? <Loader text={loader} />
+                    : edit.state && <Edit
+                        userId={userId}
+                        setUsers={setUsers}
+                        gymName={Gym?.name}
+                        admin={admin}
+                        ban={ban}
+                        subscription={subscription}
+                        setEdit={setEdit}
+                        edit={edit}
+                        setLoader={setLoader}
+                        email={email}
+                    />}
+            </>
             <div className='h-full flex flex-col items-center justify-center'>
                 {users.length > 1 &&
                     <div className='ll:w-full'>
@@ -102,7 +101,7 @@ export default function Users() {
                                                         setAdmin(user.admin)
                                                         setBan(user.ban)
                                                         setSubscription(user.pay)
-                                                        setEdit(prev => !prev)
+                                                        setEdit({ state: true, warmUps: user.WarmUps.length, routines: user.Routines.length })
                                                         setEmail(user.email)
                                                     }}
                                                         className='flex bg-gray-600 dark:bg-gray-900'
