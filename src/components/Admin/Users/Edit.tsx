@@ -10,15 +10,25 @@ import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
 import TableConfirmDay from '../../Routine/CraeteOneDay/TableConfirmDay';
 import { change, getOneRoutine, getOneWarmUp, getRoutinesUser, getWarmUpsUser } from './functions';
 import { useState } from 'react';
+import { Modal } from '@mui/material';
 
-export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, setLoader, email }: {
+export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, edit, setLoader, email }: {
     gymName?: string
     userId: string
     setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
     admin: boolean
     ban: boolean
     subscription: boolean
-    setEdit: React.Dispatch<React.SetStateAction<boolean>>
+    setEdit: React.Dispatch<React.SetStateAction<{
+        state: boolean;
+        warmUps?: number;
+        routines?: number;
+    }>>
+    edit: {
+        state: boolean;
+        warmUps?: number;
+        routines?: number;
+    }
     setLoader: SetLoader
     email: string
 }) {
@@ -51,92 +61,105 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
 
     return (
         <>
-            <menu>
-                <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit, email })}>
-                    <label>
-                        Admin:
-                        <Switch name='admin' onChange={(e) => change({ e, setInputs })} defaultChecked={admin ? true : false} />
-                    </label>
-                    <label>
-                        Suscripción:
-                        <Switch name='pay' onChange={(e) => change({ e, setInputs })} defaultChecked={subscription ? true : false} />
-                    </label>
-                    <label>
-                        Ban:
-                        <Switch 
-                            name='banMotive' 
-                            onChange={() => {
-                                setBanMotive(prev => !prev)
-                                if(banMotive){
-                                    setInputs(prev => { return { ...prev, ban: null } })    
+            <Modal open>
+                <menu>
+                    <form onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit, email })}>
+                        <label>
+                            Admin:
+                            <Switch name='admin' onChange={(e) => change({ e, setInputs })} defaultChecked={admin ? true : false} />
+                        </label>
+                        <label>
+                            Suscripción:
+                            <Switch name='pay' onChange={(e) => change({ e, setInputs })} defaultChecked={subscription ? true : false} />
+                        </label>
+                        <label>
+                            Ban:
+                            <Switch
+                                name='banMotive'
+                                onChange={() => {
+                                    setBanMotive(prev => !prev)
+                                    if (banMotive) {
+                                        setInputs(prev => { return { ...prev, ban: null } })
+                                    }
                                 }
-                            }
-                            } 
-                            defaultChecked={ban ? true : false} 
-                        />
-                            {inputs?.ban ? 
-                            <>
-                                <p>{inputs.ban}</p>
-                                <button onClick={() => setBanMotive(prev => !prev)}>Editar ban</button>
-                            </> : <></>}
-                    </label>
-                    <button>Guardar cambios</button>
-                </form>
-                <button onClick={() => {
-                    getWarmUpsUser({ id: userId, setRoutinesUser })
-                    setModal((prev) => {
-                        if (prev != '') return ''
-                        else return warmUp
-                    })
-                    setRoutineAdmin(undefined)
-                }}>
-                    Calentamientos
-                </button>
-                <button onClick={() => {
-                    getRoutinesUser({ id: userId, setRoutinesUser })
-                    setModal((prev) => {
-                        if (prev != '') return ''
-                        else return routine
-                    })
-                    setRoutineAdmin(undefined)
-                }}>
-                    Rutinas
-                </button>
-                <button onClick={() => setCreateWarm(prev => !prev)}>Crear calentamiento</button>
-                <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
-                <button onClick={() => setEdit(false)}>❌</button>
-            </menu>
+                                }
+                                defaultChecked={ban ? true : false}
+                            />
+                            {inputs?.ban ?
+                                <>
+                                    <p>{inputs.ban}</p>
+                                    <button onClick={() => setBanMotive(prev => !prev)}>Editar ban</button>
+                                </> : <></>}
+                        </label>
+                        <button>Guardar cambios</button>
+                    </form>
+                    <button className={edit.warmUps == 0 ? 'opacity-25 pointer-events-none' : 'pointer-events-auto'} onClick={() => {
+                        getWarmUpsUser({ id: userId, setRoutinesUser })
+                        setModal((prev) => {
+                            if (prev != '') return ''
+                            else return warmUp
+                        })
+                        setRoutineAdmin(undefined)
+                    }}>
+                        Calentamientos
+                    </button>
+                    <button className={edit.warmUps == 0 ? 'opacity-25 pointer-events-none' : 'pointer-events-auto'} onClick={() => {
+                        getRoutinesUser({ id: userId, setRoutinesUser })
+                        setModal((prev) => {
+                            if (prev != '') return ''
+                            else return routine
+                        })
+                        setRoutineAdmin(undefined)
+                    }}>
+                        Rutinas
+                    </button>
+                    <button onClick={() => setCreateWarm(prev => !prev)}>Crear calentamiento</button>
+                    <button onClick={() => setCreateRoutine(prev => !prev)}>Crear rutina</button>
+                    <button onClick={() => setEdit({ state: false })}>❌</button>
+                </menu>
+            </Modal>
             {banMotive ?
                 <>
-                    <input name='ban' placeholder='Motivo del ban' onChange={(e) => change({ e, setInputs })} />
-                    <button onClick={() => setBanMotive(false)}>Guardar ban</button>
+                    <Modal open>
+                        <>
+                            <input name='ban' placeholder='Motivo del ban' onChange={(e) => change({ e, setInputs })} />
+                            <button onClick={() => setBanMotive(false)}>Guardar ban</button>
+                            <button onClick={() => setBanMotive(false)}>❌</button>
+                        </>
+                    </Modal>
                 </>
                 : <></>
             }
             {modal != '' ?
                 routinesUser?.length && routinesUser?.length > 0 ?
                     modal == warmUp ?
-                        <select onChange={(e) => {
-                            getOneWarmUp({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
-                            setSaw(true)
-                        }}>
-                            <option value=''>Seleccionar calentamiento</option>
-                            {routinesUser?.map((warmUp, index) =>
-                                <option value={warmUp.id}>Calentamiento {index + 1}</option>
-                            )}
-                        </select>
+                        <Modal open={Boolean(warmUp)}>
+                            <select onChange={(e) => {
+                                getOneWarmUp({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
+                                setSaw(true)
+                            }}>
+                                <option value=''>Seleccionar calentamiento</option>
+                                {routinesUser?.map((warmUp, index) =>
+                                    <option value={warmUp.id}>Calentamiento {index + 1}</option>
+                                )}
+                            </select>
+                        </Modal>
                         :
-                        <select onChange={(e) => {
-                            getOneRoutine({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
-                            setSaw(true)
-                        }}>
-                            <option value=''>Seleccionar rutina</option>
-                            {routinesUser?.map((warmUp, index) =>
-                                <option value={warmUp.id}>Rutina {index + 1}</option>
-                            )}
-                        </select>
+                        <Modal open={!warmUp}>
+                            <select onChange={(e) => {
+                                getOneRoutine({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
+                                setSaw(true)
+                            }}>
+                                <option value=''>Seleccionar rutina</option>
+                                {routinesUser?.map((warmUp, index) =>
+                                    <option value={warmUp.id}>Rutina {index + 1}</option>
+                                )}
+                            </select>
+                        </Modal>
                     :
-                    <>No hay {modal?.toLowerCase()}s existentes</>
+                    <Modal open>
+                        <>No hay {modal?.toLowerCase()}s existentes</>
+                    </Modal>
                 :
                 <></>
             }
