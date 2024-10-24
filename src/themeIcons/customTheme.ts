@@ -51,8 +51,6 @@ theme = createTheme(theme, {
     }
 })
 
-
-console.log(systemTheme)
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: systemTheme == 'dark' ? '#083344' : '#1f2937',
