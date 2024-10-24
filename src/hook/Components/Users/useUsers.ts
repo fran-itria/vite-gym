@@ -9,7 +9,7 @@ export default function useUsers() {
     const [users, setUsers] = useState<UsersComponent>([])
     const [copy, setCopy] = useState<UsersComponent>([])
     const { Gym } = useAppSelector(state => state.user)
-    const [edit, setEdit] = useState<boolean>(false)
+    const [edit, setEdit] = useState<{ state: boolean, warmUps?: number, routines?: number }>({ state: false })
     const [userId, setUserId] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [admin, setAdmin] = useState<boolean>(false)
