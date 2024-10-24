@@ -14,7 +14,7 @@ export default function useUsers() {
     const [email, setEmail] = useState<string>('')
     const [admin, setAdmin] = useState<boolean>(false)
     const [subscription, setSubscription] = useState<boolean>(false)
-    const [ban, setBan] = useState<boolean>(false)
+    const [ban, setBan] = useState<string | null | boolean>(null)
     const [loader, setLoader] = useState<string>()
 
     useEffect(() => {

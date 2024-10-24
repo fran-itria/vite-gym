@@ -207,7 +207,7 @@ export type deleteExerciseProps = {
 
 export type submitChangesProps = {
   e: React.FormEvent<HTMLFormElement>
-  inputs?: { admin?: boolean, pay?: boolean, ban?: string | null }
+  inputs?: { admin?: boolean, pay?: boolean, ban?: string | null | boolean }
   userId: string
   gymName?: string
   setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
