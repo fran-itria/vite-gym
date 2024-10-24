@@ -39,11 +39,7 @@ export default function Register() {
 
     return (
         <>
-            <Modal open={Boolean(loader)}>
-                <>
-                    {loader && <Loader text={loader} />}
-                </>
-            </Modal>
+            {loader && <Loader text={loader} />}
             <button onClick={() => createLink()}>Crear link de registro</button>
             <p>Nuevo link creado: {link ? link : <></>}</p>
             {

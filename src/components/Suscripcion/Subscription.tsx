@@ -3,18 +3,13 @@ import SubscriptionAdmin from "../Admin/Subscription/SubscriptionAdmin"
 import useSubscription from "../../hook/Components/Subscription/useSubscription";
 import TableSubscription from "./TableSubscription";
 import Loader from "../Loader";
-import { Modal } from "@mui/material";
 
 export default function Subscription() {
     const { Payments, admin, amount, id, linkMp, updatePaymentsUser, loader, setLoader } = useSubscription()
 
     return (
         <>
-            <Modal open={Boolean(loader)}>
-                <>
-                    {loader && <Loader text={loader} />}
-                </>
-            </Modal>
+            {loader && <Loader text={loader} />}
             {admin ?
                 <SubscriptionAdmin setLoader={setLoader} />
                 :

@@ -7,7 +7,6 @@ import { useUserActions } from "../../../hook/useUserActions";
 import Loader from "../../Loader";
 import { useLoginSession } from "../../../hook/Components/Session/useLoginSession";
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
-import { Modal } from "@mui/material";
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -26,11 +25,7 @@ export default function FormLogin() {
       justify-center 
       items-center'
     >
-      <Modal open={Boolean(loader)}>
-        <>
-          {loader && <Loader text={loader} />}
-        </>
-      </Modal>
+      {loader && <Loader text={loader} />}
       <section className="
       flex 
       flex-col 

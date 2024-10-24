@@ -28,11 +28,7 @@ export default function Shifts() {
 
     return (
         <>
-            <Modal open={Boolean(loader)}>
-                <>
-                    {loader && <Loader text={loader} />}
-                </>
-            </Modal>
+            {loader && <Loader text={loader} />}
             {!admin ?
                 <>
                     {shifts && shifts.limit != 0 ?

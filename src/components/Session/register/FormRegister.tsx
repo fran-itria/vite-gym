@@ -29,11 +29,7 @@ export default function FormRegister() {
                     dark:via-cyan-900
                     dark:to-gray-800
                 '>
-                    <Modal open={Boolean(loader)}>
-                        <>
-                            {loader && <Loader text={loader} />}
-                        </>
-                    </Modal>
+                    {loader && <Loader text={loader} />}
                     <section className=" 
                         flex 
                         flex-col 
