@@ -6,7 +6,6 @@ import Loader from "../Loader"
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import style from './Register.module.css'
 import { basicLoaders, specificLoaders } from "../../const";
-import { Modal } from "@mui/material";
 
 export default function Register() {
     const [link, setLink] = useState<string>()

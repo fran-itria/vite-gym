@@ -9,7 +9,6 @@ import deleteShift from "../../services/calendar/deleteShift";
 import ShiftsAdmin from "../Admin/Shifts/ShiftsAdmin";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Modal } from "@mui/material";
 
 export default function Shifts() {
     const { Shifts, id, admin, GymId } = useAppSelector(state => state.user)
