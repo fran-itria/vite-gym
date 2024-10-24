@@ -28,14 +28,15 @@ export default function useSubscription() {
     }, [GymId])
 
     useEffect(() => {
-        const params = new URLSearchParams(query.search)
-        const approved = params.get('collection_status')
-        const user = storage.getItem('user')
-        const password = storage.getItem('password');
+        // const user = storage.getItem('user')
+        // const password = storage.getItem('password');
         (async () => {
+            const params = new URLSearchParams(query.search)
+            const approved = params.get('collection_status')
+            const token = storage.getItem('token')
             try {
-                if (!GymId && user && password) {
-                    const init = await login({ user, password })
+                if (!GymId && token) {
+                    const init = await login(undefined, token)
                     addUser(init.data.user)
                 } else if (approved && amount) {
                     setLoader(`${basicLoaders.create} ${specificLoaders.pay}`)
