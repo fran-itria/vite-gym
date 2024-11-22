@@ -69,48 +69,84 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             <Modal open>
                 <div className='w-screen h-screen flex justify-center items-center text-center flex-col ll:p-2'>
                     <menu
-                        className='relative flex flex-col p-4 bg-gradient-to-t from-gray-800 via-cyan-900 to-gray-800 w-1/4 rounded
-                        ll:w-full'>
+                        className='
+                            relative
+                            flex
+                            flex-col 
+                            p-4 
+                            w-1/4 
+                            rounded
+                            ll:w-full
+                            bg-gradient-to-t
+                            from-gray-300
+                            via-gray-500
+                            to-gray-300 
+                            dark:from-gray-800 
+                            dark:via-cyan-900 
+                            dark:to-gray-800 
+                        '>
                         <form className='flex flex-col' onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit, email })}>
-                            <label className='w-full felx text-start font-bold'>
+                            <label className='w-fit felx text-start font-bold'>
                                 Admin:
                                 <Switch name='admin' color='success' onChange={(e) => change({ e, setInputs })} defaultChecked={admin ? true : false} />
                             </label>
-                            <label className='w-full text-start font-bold'>
+                            <label className='w-fit text-start font-bold'>
                                 Suscripción:
                                 <Switch name='pay' color='success' onChange={(e) => change({ e, setInputs })} defaultChecked={subscription ? true : false} />
                             </label>
-                            <label className={`${inputs?.ban ? 'justify-between' : 'justify-start'} w-full text-start font-bold flex items-center`}>
-                                Ban:
-                                <Switch
-                                    name='banMotive'
-                                    color='success'
-                                    checked={inputs?.ban ? true : false}
-                                    onChange={() => {
-                                        if (inputs?.ban) {
-                                            setInputs(prev => { return { ...prev, ban: null } })
-                                        } else
-                                            setCreateBan(prev => !prev)
-                                    }
-                                    }
-                                    defaultChecked={ban ? true : false}
-                                />
+                            <div className='flex'>
+                                <label className='text-start font-bold flex items-center'>
+                                    Ban:
+                                    <Switch
+                                        name='banMotive'
+                                        color='success'
+                                        checked={inputs?.ban ? true : false}
+                                        onChange={() => {
+                                            if (inputs?.ban) {
+                                                setInputs(prev => { return { ...prev, ban: null } })
+                                            } else
+                                                setCreateBan(prev => !prev)
+                                        }
+                                        }
+                                        defaultChecked={ban ? true : false}
+                                    />
+                                </label>
                                 {inputs?.ban &&
-                                    <>
-                                        <p className='max-w-20 break-all'>{inputs?.ban || ban}</p>
+                                    <div className='flex items-center'>
+                                        <p className='max-w-38 break-all mr-2 font-bold'>{inputs?.ban || ban}</p>
                                         <button type='button' onClick={() => {
                                             setCreateBan(prev => !prev)
                                             setEditBan(prev => !prev)
                                         }}
                                             className='h-6 flex items-center justify-center bg-gray-900 border-solid border-gray-900 hover:border-solid hover:border-cyan-500 hover:bg-cyan-900'
                                         >Editar ban</button>
-                                    </>}
-                            </label>
-                            <button className='bg-gray-900 border-solid border-gray-900 hover:border-cyan-500 hover:bg-cyan-900 flex items-center justify-center h-8'>Guardar cambios</button>
+                                    </div>}
+                            </div>
+                            <button className='
+                                border-solid
+                                border-2 
+                                hover:bg-gray-700
+                                hover:border-none
+                                dark:border-none 
+                                dark:bg-gray-900 
+                                dark:hover:bg-gray-400 
+                                dark:hover:text-black
+                                flex 
+                                items-center 
+                                justify-center 
+                                h-8'
+                            >
+                                Guardar cambios
+                            </button>
                         </form>
                         <div className='w-full flex justify-between mt-2 mb-2'>
-                            <button className={`${edit.warmUps == 0 ? 'opacity-50 pointer-events-none' : 'pointer-events-auto'
-                                } bg-transparent border-solid border-cyan-950 flex items-center justify-center h-8`}
+                            <button className={`${edit.warmUps == 0 ?
+                                'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
+                                :
+                                'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
+                                } 
+                                flex items-center justify-center h-8`
+                            }
                                 onClick={() => {
                                     getWarmUpsUser({ id: userId, setRoutinesUser })
                                     setModal((prev) => {
@@ -122,10 +158,13 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 <VisibilityIcon className='mr-2'></VisibilityIcon>
                                 Calentamientos
                             </button>
-                            <button className={`${edit.warmUps == 0 ?
-                                'opacity-50 pointer-events-none bg-transparent border-solid border-cyan-950'
+                            <button className={`${edit.routines == 0 ?
+                                'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
                                 :
-                                'pointer-events-auto bg-cyan-800 border-solid border-cyan-500 hover:border-gray-900'} w-28 flex items-center justify-center h-8`}
+                                'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
+                                } 
+                                w-28 flex items-center justify-center h-8`
+                            }
                                 onClick={() => {
                                     getRoutinesUser({ id: userId, setRoutinesUser })
                                     setModal((prev) => {
@@ -140,13 +179,37 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         </div>
                         <div className='w-full flex justify-between'>
                             <button
-                                className='w-40 bg-gray-900 border-solid border-gray-900 hover:border-solid hover:border-cyan-500 hover:bg-cyan-900 flex items-center justify-center h-8'
+                                className='
+                                    w-40 
+                                    border-solid
+                                    border-2 
+                                    hover:bg-gray-700
+                                    hover:border-none
+                                    dark:border-none
+                                    dark:bg-gray-900 
+                                    dark:hover:bg-gray-400 
+                                    dark:hover:text-black 
+                                    flex 
+                                    items-center 
+                                    justify-center 
+                                    h-8
+                                '
                                 onClick={() => setCreateWarm(prev => !prev)}>
                                 <AddIcon className='mr-2'></AddIcon>
                                 Calentamiento
                             </button>
                             <button
-                                className='w-28 bg-gray-900 border-solid border-gray-900 hover:border-solid hover:border-cyan-500 hover:bg-cyan-900 flex items-center justify-center h-8'
+                                className='
+                                w-40
+                                border-solid
+                                border-2 
+                                hover:bg-gray-700
+                                hover:border-none
+                                dark:border-none
+                                dark:bg-gray-900 
+                                dark:hover:bg-gray-400 
+                                dark:hover:text-black 
+                                flex items-center justify-center h-8'
                                 onClick={() => setCreateRoutine(prev => !prev)}>
                                 <AddIcon className='mr-2'></AddIcon>
                                 Rutina
@@ -157,24 +220,70 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 </div>
             </Modal >
             {
-                createBan ?
-                    <>
-                        < Modal open >
-                            <>
-                                <input name='ban' placeholder='Motivo del ban' onChange={(e) => change({ e, setInputs })} defaultValue={typeof inputs?.ban == 'string' ? inputs?.ban : ''} />
-                                <button onClick={() => {
-                                    setCreateBan(false)
-                                    if (editBan) setEditBan(false)
-                                }}>Guardar ban</button>
-                                <button onClick={() => {
-                                    setCreateBan(false)
-                                    if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
-                                    else setEditBan(false)
-                                }}>❌</button>
-                            </>
-                        </Modal >
-                    </>
-                    : <></>
+                createBan &&
+                < Modal open className='w-100 h-screen flex justify-center items-center text-center flex-col ll:p-2'>
+                    <div className='
+                        relative flex flex-col justify-between p-4 
+                        bg-gradient-to-t
+                        from-gray-300
+                        via-gray-500
+                        to-gray-300 
+                        dark:from-gray-800 
+                        dark:via-cyan-900 
+                        dark:to-gray-800 
+                        w-80 h-32 rounded ll:w-full
+                        ll:w-80
+                    '>
+                        <input
+                            className="
+                                w-fit 
+                                p-1 
+                                font-bold 
+                                bg-transparent 
+                                border-b-4 
+                                border-black 
+                                placeholder:font-bold 
+                                focus:outline-0 
+                                focus:border-gray-300
+                                placeholder:text-black
+                                dark:focus:border-cyan-600 
+                                dark:placeholder:text-gray-300 
+                            "
+                            name='ban'
+                            placeholder='Motivo del ban'
+                            maxLength={20}
+                            autoFocus
+                            onChange={(e) => change({ e, setInputs })}
+                            defaultValue={typeof inputs?.ban == 'string' ? inputs?.ban : ''}
+                        />
+                        <button
+                            className={`${!inputs?.ban ?
+                                'opacity-50 pointer-events-none' : 'pointer-events-auto'
+                                }
+                                w-fit 
+                                hover:bg-gray-700
+                                border-solid
+                                border-2
+                                hover:border-none
+                                dark:border-none
+                                dark:bg-gray-900 
+                                dark:hover:bg-gray-400 
+                                dark:hover:text-black
+                                flex items-center justify-center h-8`
+                            }
+                            onClick={() => {
+                                setCreateBan(false)
+                                if (editBan) setEditBan(false)
+                            }}>Guardar ban</button>
+                        <button
+                            className='absolute rounded-full top-4 right-4 bg-gray-900'
+                            onClick={() => {
+                                setCreateBan(false)
+                                if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
+                                else setEditBan(false)
+                            }}>❌</button>
+                    </div>
+                </Modal >
             }
             {
                 modal != '' ?
