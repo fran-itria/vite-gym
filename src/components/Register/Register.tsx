@@ -39,26 +39,28 @@ export default function Register() {
     return (
         <>
             {loader && <Loader text={loader} />}
-            <button onClick={() => createLink()}>Crear link de registro</button>
-            <p>Nuevo link creado: {link ? link : <></>}</p>
-            {
-                allIds && allIds?.length > 0 ?
-                    <div className={style.table}>
-                        <p>Links de registros creados: </p>
-                        <div className={style.links}>
-                            {allIds?.filter(id => id.gym == Gym?.name).map(id => {
-                                return (
-                                    <div className={style.link}>
-                                        <p>{baseUrl + id.id}</p>
-                                        <ContentCopyIcon onClick={() => { copy(baseUrl + id.id) }} />
-                                    </div>
-                                )
-                            })}
+            <div className="h-full">
+                <button onClick={() => createLink()}>Crear link de registro</button>
+                <p>Nuevo link creado: {link ? link : <></>}</p>
+                {
+                    allIds && allIds?.length > 0 ?
+                        <div className={style.table}>
+                            <p>Links de registros creados: </p>
+                            <div className={style.links}>
+                                {allIds?.filter(id => id.gym == Gym?.name).map(id => {
+                                    return (
+                                        <div className={style.link}>
+                                            <p>{baseUrl + id.id}</p>
+                                            <ContentCopyIcon onClick={() => { copy(baseUrl + id.id) }} />
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    :
-                    <p>No hay links creados</p>
-            }
+                        :
+                        <p>No hay links creados</p>
+                }
+            </div>
         </>
     )
 }

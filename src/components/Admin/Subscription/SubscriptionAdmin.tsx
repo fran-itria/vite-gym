@@ -29,7 +29,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
     }, [GymId])
 
     return (
-        <>
+        <div className="h-full ">
             <form onSubmit={(e) => {
                 if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
             }}>
@@ -55,6 +55,6 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 :
                 <p>No hay pagos registrados</p>
             }
-        </>
+        </div>
     )
 }

@@ -22,7 +22,7 @@ export default function WarmUp() {
     const { updateWarmUpUser } = useUserActions()
 
     return (
-        <>
+        <div className="h-full">
             <div>
                 <p>Seleccionar Calentamiento:</p>
                 <select onChange={(e) => {
@@ -113,6 +113,6 @@ export default function WarmUp() {
                     {loader ? <Loader text={loader} /> : <></>}
                 </>
             </Modal>
-        </>
+        </div>
     )
 }

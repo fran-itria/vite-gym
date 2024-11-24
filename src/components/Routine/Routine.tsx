@@ -20,7 +20,7 @@ export default function Routine() {
     const { updateRoutinesUser } = useUserActions()
 
     return (
-        <>
+        <div className="h-full">
             <div>
                 <p>Seleccionar rutina:</p>
                 <select onChange={(e) => {
@@ -105,6 +105,6 @@ export default function Routine() {
                     {loader ? <Loader text={loader} /> : <></>}
                 </>
             </Modal>
-        </>
+        </div>
     )
 }
