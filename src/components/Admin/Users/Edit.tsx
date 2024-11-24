@@ -194,7 +194,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         justify-between 
                         p-4 
                         w-80 
-                        h-32 
+                        h-28 
                         rounded 
                         background
                     '>
