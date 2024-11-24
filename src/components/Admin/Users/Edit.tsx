@@ -199,20 +199,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         background
                     '>
                         <input
-                            className="
-                                w-fit 
-                                p-1 
-                                font-bold 
-                                bg-transparent 
-                                border-b-4 
-                                border-black 
-                                placeholder:font-bold 
-                                focus:outline-0 
-                                focus:border-gray-300
-                                placeholder:text-black
-                                dark:focus:border-cyan-600 
-                                dark:placeholder:text-gray-300 
-                            "
                             name='ban'
                             placeholder='Motivo del ban'
                             maxLength={20}
@@ -225,14 +211,14 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 className={`${!inputs?.ban ?
                                     'opacity-50 pointer-events-none' : 'pointer-events-auto'
                                     }
-                            buttonConfirm`
+                            buttonConfirm w-20`
                                 }
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (editBan) setEditBan(false)
                                 }}>Guardar</button>
                             <button
-                                className='buttonCancel'
+                                className='buttonCancel w-20'
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (!editBan) setInputs(prev => { return { ...prev, ban: null } })

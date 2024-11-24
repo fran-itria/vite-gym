@@ -96,6 +96,35 @@ button:focus-visible {
   border-color: transparent;
 }
 
+/* w-fit   */
+/* font-bold  */
+/* bg-transparent  */
+/* border-b-4  */
+/* border-black  */
+/* placeholder:font-bold  */
+/* focus:outline-0  */
+/* focus:border-gray-300 */
+/* placeholder:text-black */
+/* dark:focus:border-cyan-600  */
+/* dark:placeholder:text-gray-300 */
+input {
+  width: fit-content;
+  font-weight: bold;
+  background: transparent;
+  border-bottom: solid 4px black;
+}
+
+input::placeholder {
+  font-weight: bold;
+  color: black;
+}
+
+input:focus {
+  outline: 0;
+  border-bottom: solid 4px #d1d5db;
+  color: black;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     width: 100vw;
@@ -125,6 +154,15 @@ button:focus-visible {
 
   .buttonCancel:hover {
     color: white;
+  }
+
+  input:focus {
+    border-bottom: solid 4px #0891b2;
+    color: white;
+  }
+
+  input::placeholder {
+    color: #d1d5db
   }
 }
 
