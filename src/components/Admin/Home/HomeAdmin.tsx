@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../../hook/store";
 export default function HomeAdmin() {
     const { id } = useAppSelector(state => state.user)
+    const styleNavButton = 'p-1 w-32 ll:h-fit ll:text-sm'
     return (
         <nav className="
             mt-3
@@ -16,48 +17,68 @@ export default function HomeAdmin() {
             <NavLink
                 to={`/usuarios/${id}`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300  ${styleNavButton}`
+                    :
+                    `button ${styleNavButton}`
+                }
             >
                 Uuarios
             </NavLink>
             <NavLink
                 to={`/registro/${id}`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300  ${styleNavButton}`
+                    :
+                    `button ${styleNavButton}`
+                }
             >
                 Registro
             </NavLink>
             <NavLink
                 to={`/suscripcion/${id}`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300  ${styleNavButton}`
+                    :
+                    `
+                    button ${styleNavButton}`
+                }
             >
                 Suscripción
             </NavLink>
             <NavLink
                 to={`/home/${id}/turnos`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300 ${styleNavButton}`
+                    :
+                    `button ${styleNavButton}`
+                }
             >
                 Turnos
             </NavLink>
             <NavLink
                 to={`/calentamiento/${id}`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300  ${styleNavButton}`
+                    :
+                    `
+                    button ${styleNavButton}`
+                }
             >
                 Calentamiento
             </NavLink>
             <NavLink
                 to={`/rutina/${id}`}
                 className={({ isActive }) => isActive
-                    ? "transition duration-500 ease-in-out text-black p-1 rounded bg-gray-500 dark:text-white dark:bg-cyan-700 ll:h-fit ll:w-28 ll:text-sm"
-                    : "transition duration-500 ease-in-out text-white p-1 rounded bg-gray-900 dark:bg-cyan-900 border border-gray-700 dark:border-cyan-700 ll:h-fit ll:w-28 ll:text-sm"}
+                    ?
+                    `rounded bg-gray-300  ${styleNavButton}`
+                    :
+                    `button ${styleNavButton}`
+                }
             >
                 Rutina
             </NavLink>

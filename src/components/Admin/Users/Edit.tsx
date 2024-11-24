@@ -76,14 +76,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             p-4 
                             w-1/4 
                             rounded
-                            ll:w-full
-                            bg-gradient-to-t
-                            from-gray-300
-                            via-gray-500
-                            to-gray-300 
-                            dark:from-gray-800 
-                            dark:via-cyan-900 
-                            dark:to-gray-800 
+                            ll:w-full 
+                            background 
                         '>
                         <form className='flex flex-col' onSubmit={(e) => submitChanges({ e, inputs, userId, gymName, setUsers, setLoader, setEdit, email })}>
                             <label className='w-fit felx text-start font-bold'>
@@ -118,20 +112,15 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                             setCreateBan(prev => !prev)
                                             setEditBan(prev => !prev)
                                         }}
-                                            className='h-6 flex items-center justify-center bg-gray-900 border-solid border-gray-900 hover:border-solid hover:border-cyan-500 hover:bg-cyan-900'
+                                            className='button h-6 flex items-center justify-center'
                                         >Editar ban</button>
                                     </div>}
                             </div>
                             <div className='w-full flex justify-between mt-2 mb-2'>
-                                <button className={`${edit.warmUps == 0 ?
-                                    'opacity-50 pointer-events-none bg-transparent dark:bg-gray-900'
-                                    :
-                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-200 dark:hover:text-black'
+                                <button
+                                    className={`${edit.warmUps == 0 ? 'opacity-50 pointer-events-none' : 'pointer-events-auto'} 
+                                        button flex items-center justify-center h-8`
                                     }
-                                    border-solid border-2 border-white 
-                                dark:hover:border-transparent 
-                                flex items-center justify-center h-8`
-                                }
                                     onClick={() => {
                                         getWarmUpsUser({ id: userId, setRoutinesUser })
                                         setModal((prev) => {
@@ -139,19 +128,16 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                             else return warmUp
                                         })
                                         setRoutineAdmin(undefined)
-                                    }}>
+                                    }}
+                                    type='button'
+                                >
                                     <VisibilityIcon className='mr-2'></VisibilityIcon>
                                     Calentamientos
                                 </button>
-                                <button className={`${edit.routines == 0 ?
-                                    'opacity-50 pointer-events-none bg-transparent dark:bg-gray-900'
-                                    :
-                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-200 dark:hover:text-black'
+                                <button
+                                    className={`${edit.routines == 0 ? 'opacity-50 pointer-events-none' : 'pointer-events-auto'}
+                                        button w-28 flex items-center justify-center h-8`
                                     }
-                                border-solid border-2 border-white 
-                                dark:hover:border-transparent
-                                w-28 flex items-center justify-center h-8`
-                                }
                                     onClick={() => {
                                         getRoutinesUser({ id: userId, setRoutinesUser })
                                         setModal((prev) => {
@@ -159,63 +145,36 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                             else return routine
                                         })
                                         setRoutineAdmin(undefined)
-                                    }}>
+                                    }}
+                                    type='button'>
                                     <VisibilityIcon className='mr-2'></VisibilityIcon>
                                     Rutinas
                                 </button>
                             </div>
                             <div className='w-full flex justify-between'>
                                 <button
-                                    className='
-                                    w-40 
-                                    border-solid
-                                    border-2 
-                                    hover:bg-gray-700
-                                    hover:border-none
-                                    dark:border-white
-                                    dark:bg-gray-900 
-                                    dark:hover:bg-gray-200
-                                    dark:hover:border-transparent 
-                                    dark:hover:text-black 
-                                    flex 
-                                    items-center 
-                                    justify-center 
-                                    h-8
-                                '
-                                    onClick={() => setCreateWarm(prev => !prev)}>
+                                    className='button w-40 flex items-center justify-center h-8'
+                                    onClick={() => setCreateWarm(prev => !prev)}
+                                    type='button'
+                                >
                                     <AddIcon className='mr-2'></AddIcon>
                                     Calentamiento
                                 </button>
                                 <button
-                                    className='
-                                w-28
-                                border-solid
-                                border-2 
-                                hover:bg-gray-700
-                                hover:border-none
-                                dark:border-white
-                                dark:bg-gray-900 
-                                dark:hover:bg-gray-200 
-                                dark:hover:border-transparent 
-                                dark:hover:text-black 
-                                flex items-center justify-center h-8'
-                                    onClick={() => setCreateRoutine(prev => !prev)}>
+                                    className='button w-28 flex items-center justify-center h-8'
+                                    onClick={() => setCreateRoutine(prev => !prev)}
+                                    type='button'
+                                >
                                     <AddIcon className='mr-2'></AddIcon>
                                     Rutina
                                 </button>
                             </div>
-                            {/* <button className='absolute rounded-full top-4 right-4 bg-gray-900' onClick={() => setEdit({ state: false })}>❌</button> */}
                             <div className='flex flex-col mt-2'>
-                                <button className='
-                                confirm 
-                                h-8'
+                                <button className='buttonConfirm hover:border-solid h-8'
                                 >
                                     Guardar cambios
                                 </button>
-                                <button className='
-                                    cancel 
-                                    h-8
-                                    mt-2'
+                                <button className='buttonCancel h-8 mt-2'
                                     type='button'
                                     onClick={() => setEdit({ state: false })}
                                 >
@@ -228,18 +187,16 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             </Modal >
             {
                 createBan &&
-                < Modal open className='w-100 h-screen flex justify-center items-center text-center flex-col ll:p-2'>
+                < Modal open className='w-100 h-screen flex justify-center items-center text-center flex-col'>
                     <div className='
-                        relative flex flex-col justify-between p-4 
-                        bg-gradient-to-t
-                        from-gray-300
-                        via-gray-500
-                        to-gray-300 
-                        dark:from-gray-800 
-                        dark:via-cyan-900 
-                        dark:to-gray-800 
-                        w-80 h-32 rounded ll:w-full
-                        ll:w-80
+                        flex 
+                        flex-col 
+                        justify-between 
+                        p-4 
+                        w-80 
+                        h-32 
+                        rounded 
+                        background
                     '>
                         <input
                             className="
@@ -268,14 +225,14 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 className={`${!inputs?.ban ?
                                     'opacity-50 pointer-events-none' : 'pointer-events-auto'
                                     }
-                            confirm`
+                            buttonConfirm`
                                 }
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (editBan) setEditBan(false)
                                 }}>Guardar</button>
                             <button
-                                className='cancel'
+                                className='buttonCancel'
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
@@ -394,35 +351,31 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         <></>
             }
             {
-                createRoutine ?
-                    <CreateRoutine
-                        updateRoutinesUser={updateRoutinesUser}
-                        updateIdGlobal={updateIdGlobal}
-                        userId={userId}
-                        setOpenCreateRouitine={setCreateRoutine}
-                        gymName={gymName}
-                        setUsers={setUsers}
-                        id={id ? id : undefined}
-                        setLoader={setLoader}
-                    />
-                    :
-                    <></>
+                createRoutine &&
+                <CreateRoutine
+                    updateRoutinesUser={updateRoutinesUser}
+                    updateIdGlobal={updateIdGlobal}
+                    userId={userId}
+                    setOpenCreateRouitine={setCreateRoutine}
+                    gymName={gymName}
+                    setUsers={setUsers}
+                    id={id ? id : undefined}
+                    setLoader={setLoader}
+                />
             }
             {
-                createWarm ?
-                    <CreateRoutine
-                        updateWarmUpUser={updateWarmUpUser}
-                        updateIdGlobal={updateIdGlobal}
-                        userId={userId}
-                        setOpenCreateRouitine={setCreateWarm}
-                        gymName={gymName}
-                        setUsers={setUsers}
-                        createWarm={createWarm}
-                        id={id ? id : undefined}
-                        setLoader={setLoader}
-                    />
-                    :
-                    <></>
+                createWarm &&
+                <CreateRoutine
+                    updateWarmUpUser={updateWarmUpUser}
+                    updateIdGlobal={updateIdGlobal}
+                    userId={userId}
+                    setOpenCreateRouitine={setCreateWarm}
+                    gymName={gymName}
+                    setUsers={setUsers}
+                    createWarm={createWarm}
+                    id={id ? id : undefined}
+                    setLoader={setLoader}
+                />
             }
         </>
     )

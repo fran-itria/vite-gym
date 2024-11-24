@@ -159,7 +159,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:text-center
                             ll:p-0
                             ll:mr-4
-                            cancel 
+                            buttonCancel 
                             `}
                         >
                             Resetear
@@ -181,7 +181,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:text-center
                             ll:p-0
                             ll:mr-4
-                            confirm 
+                            buttonConfirm 
                             "
                         >
                             Confirmar

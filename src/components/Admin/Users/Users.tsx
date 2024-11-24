@@ -103,7 +103,7 @@ export default function Users() {
                                                         setEdit({ state: true, warmUps: user.WarmUps.length, routines: user.Routines.length })
                                                         setEmail(user.email)
                                                     }}
-                                                        className='flex bg-gray-600 dark:bg-gray-900'
+                                                        className='flex button w-full justify-center items-center'
                                                     >
                                                         <ThemeProvider theme={theme}>
                                                             <CreateIcon sx={{ color: theme.palette.pencil.main }} />
