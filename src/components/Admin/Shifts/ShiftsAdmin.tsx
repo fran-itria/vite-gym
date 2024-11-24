@@ -141,11 +141,12 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             required
                         ></input>
                     </div>
-                    <div className="flex col-span-2 w-full justify-between ll:col-span-0 ll:justify-center">
+                    <div className="col-span-2 w-full flex justify-around ll:justify-center">
                         <button
                             onClick={() => setStateButton('reset')}
-                            className="
-                            ml-6 
+                            className={`${limitShift ? 'pointer-events-auto' : "opacity-50 pointer-events-none"}
+                            mr-6
+                            ll:ml-6 
                             l:ml-4
                             w-28
                             l:w-20
@@ -160,21 +161,22 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:mr-4
                             border-2
                             bg-transparent 
-                            text-red-700 
-                            dark:text-red-500 
                             border-solid 
-                            border-red-700 
+                            border-red-500 
+                            text-red-500 
+                            hover:bg-red-500
+                            hover:border-transparent 
+                            dark:text-red-500 
                             dark:border-red-500 
-                            hover:bg-red-500 
-                            dark:hover:bg-red-950 
-                            hover:border-none"
+                            `}
                         >
                             Resetear
                         </button>
                         <button
                             onClick={() => setStateButton('confirm')}
                             className="
-                            mr-10
+                            mr-4
+                            ll:mr-4
                             l:mr-14 
                             w-28
                             l:w-20
@@ -187,16 +189,18 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:text-center
                             ll:p-0
                             ll:mr-4
+                            bg-green-500
+                            text-white 
                             border-2
-                            bg-transparent
-                            text-green-700 
-                            dark:text-green-500 
                             border-solid
-                            border-green-700 
+                            border-transparent
+                            hover:bg-transparent
+                            hover:text-green-500
+                            hover:border-green-500
                             dark:border-green-500 
-                            hover:bg-green-500 
-                            dark:hover:bg-green-950 
-                            hover:border-none"
+                            dark:hover:bg-transparent
+                            dark:hover:text-green-500 
+                            "
                         >
                             Confirmar
                         </button>

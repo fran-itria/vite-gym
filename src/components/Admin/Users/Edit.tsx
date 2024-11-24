@@ -122,64 +122,47 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                         >Editar ban</button>
                                     </div>}
                             </div>
-                            <button className='
-                                border-solid
-                                border-2 
-                                hover:bg-gray-700
-                                hover:border-none
-                                dark:border-none 
-                                dark:bg-gray-900 
-                                dark:hover:bg-gray-400 
-                                dark:hover:text-black
-                                flex 
-                                items-center 
-                                justify-center 
-                                h-8'
-                            >
-                                Guardar cambios
-                            </button>
-                        </form>
-                        <div className='w-full flex justify-between mt-2 mb-2'>
-                            <button className={`${edit.warmUps == 0 ?
-                                'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
-                                :
-                                'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
-                                } 
+                            <div className='w-full flex justify-between mt-2 mb-2'>
+                                <button className={`${edit.warmUps == 0 ?
+                                    'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
+                                    :
+                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
+                                    } 
                                 flex items-center justify-center h-8`
-                            }
-                                onClick={() => {
-                                    getWarmUpsUser({ id: userId, setRoutinesUser })
-                                    setModal((prev) => {
-                                        if (prev != '') return ''
-                                        else return warmUp
-                                    })
-                                    setRoutineAdmin(undefined)
-                                }}>
-                                <VisibilityIcon className='mr-2'></VisibilityIcon>
-                                Calentamientos
-                            </button>
-                            <button className={`${edit.routines == 0 ?
-                                'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
-                                :
-                                'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
-                                } 
+                                }
+                                    onClick={() => {
+                                        getWarmUpsUser({ id: userId, setRoutinesUser })
+                                        setModal((prev) => {
+                                            if (prev != '') return ''
+                                            else return warmUp
+                                        })
+                                        setRoutineAdmin(undefined)
+                                    }}>
+                                    <VisibilityIcon className='mr-2'></VisibilityIcon>
+                                    Calentamientos
+                                </button>
+                                <button className={`${edit.routines == 0 ?
+                                    'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
+                                    :
+                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
+                                    } 
                                 w-28 flex items-center justify-center h-8`
-                            }
-                                onClick={() => {
-                                    getRoutinesUser({ id: userId, setRoutinesUser })
-                                    setModal((prev) => {
-                                        if (prev != '') return ''
-                                        else return routine
-                                    })
-                                    setRoutineAdmin(undefined)
-                                }}>
-                                <VisibilityIcon className='mr-2'></VisibilityIcon>
-                                Rutinas
-                            </button>
-                        </div>
-                        <div className='w-full flex justify-between'>
-                            <button
-                                className='
+                                }
+                                    onClick={() => {
+                                        getRoutinesUser({ id: userId, setRoutinesUser })
+                                        setModal((prev) => {
+                                            if (prev != '') return ''
+                                            else return routine
+                                        })
+                                        setRoutineAdmin(undefined)
+                                    }}>
+                                    <VisibilityIcon className='mr-2'></VisibilityIcon>
+                                    Rutinas
+                                </button>
+                            </div>
+                            <div className='w-full flex justify-between'>
+                                <button
+                                    className='
                                     w-40 
                                     border-solid
                                     border-2 
@@ -194,13 +177,13 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     justify-center 
                                     h-8
                                 '
-                                onClick={() => setCreateWarm(prev => !prev)}>
-                                <AddIcon className='mr-2'></AddIcon>
-                                Calentamiento
-                            </button>
-                            <button
-                                className='
-                                w-40
+                                    onClick={() => setCreateWarm(prev => !prev)}>
+                                    <AddIcon className='mr-2'></AddIcon>
+                                    Calentamiento
+                                </button>
+                                <button
+                                    className='
+                                w-28
                                 border-solid
                                 border-2 
                                 hover:bg-gray-700
@@ -210,12 +193,55 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 dark:hover:bg-gray-400 
                                 dark:hover:text-black 
                                 flex items-center justify-center h-8'
-                                onClick={() => setCreateRoutine(prev => !prev)}>
-                                <AddIcon className='mr-2'></AddIcon>
-                                Rutina
-                            </button>
-                        </div>
-                        <button className='absolute rounded-full top-4 right-4 bg-gray-900' onClick={() => setEdit({ state: false })}>❌</button>
+                                    onClick={() => setCreateRoutine(prev => !prev)}>
+                                    <AddIcon className='mr-2'></AddIcon>
+                                    Rutina
+                                </button>
+                            </div>
+                            {/* <button className='absolute rounded-full top-4 right-4 bg-gray-900' onClick={() => setEdit({ state: false })}>❌</button> */}
+                            <div className='flex flex-col mt-2'>
+                                <button className='
+                                bg-green-500
+                                border-solid
+                                border-2
+                                border-transparent
+                                hover:bg-transparent
+                                hover:border-green-500
+                                hover:text-black
+                                dark:bg-green-500
+                                dark:hover:bg-transparent
+                                dark:text-white
+                                dark:hover:text-green-500
+                                flex 
+                                items-center 
+                                justify-center 
+                                h-8'
+                                >
+                                    Guardar cambios
+                                </button>
+                                <button className='
+                                    flex 
+                                    justify-center 
+                                    items-center 
+                                    rounded 
+                                    h-8 
+                                    border-solid 
+                                    border-2 
+                                    border-red-500
+                                    hover:border-transparent
+                                    hover:bg-red-500 
+                                    dark:bg-transparent
+                                    dark:hover:bg-red-500
+                                    dark:hover:text-white
+                                    text-red-500
+                                    mt-2'
+                                    type='button'
+                                    onClick={() => setEdit({ state: false })}
+                                >
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
                     </menu>
                 </div>
             </Modal >
@@ -256,32 +282,49 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             onChange={(e) => change({ e, setInputs })}
                             defaultValue={typeof inputs?.ban == 'string' ? inputs?.ban : ''}
                         />
-                        <button
-                            className={`${!inputs?.ban ?
-                                'opacity-50 pointer-events-none' : 'pointer-events-auto'
+                        <div className='flex justify-between w-56 h-8'>
+                            <button
+                                className={`${!inputs?.ban ?
+                                    'opacity-50 pointer-events-none' : 'pointer-events-auto'
+                                    }
+                            w-fit 
+                            bg-green-500
+                            border-solid
+                            border-2
+                            border-transparent
+                            hover:bg-transparent
+                            hover:border-green-500
+                            hover:text-black
+                            dark:hover:text-green-500
+                            flex items-center justify-center h-8`
                                 }
+                                onClick={() => {
+                                    setCreateBan(false)
+                                    if (editBan) setEditBan(false)
+                                }}>Guardar</button>
+                            <button
+                                className='
                                 w-fit 
-                                hover:bg-gray-700
                                 border-solid
                                 border-2
-                                hover:border-none
-                                dark:border-none
-                                dark:bg-gray-900 
-                                dark:hover:bg-gray-400 
-                                dark:hover:text-black
-                                flex items-center justify-center h-8`
-                            }
-                            onClick={() => {
-                                setCreateBan(false)
-                                if (editBan) setEditBan(false)
-                            }}>Guardar ban</button>
-                        <button
-                            className='absolute rounded-full top-4 right-4 bg-gray-900'
-                            onClick={() => {
-                                setCreateBan(false)
-                                if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
-                                else setEditBan(false)
-                            }}>❌</button>
+                                bg-transparent
+                                border-red-500
+                                text-red-500
+                                hover:bg-red-500
+                                hover:border-transparent
+                                dark:border-red-500
+                                dark:bg-transparent 
+                                dark:hover:bg-red-500 
+                                dark:hover:text-white
+                                dark:hover:border-transparent
+                                flex items-center justify-center`
+                                '
+                                onClick={() => {
+                                    setCreateBan(false)
+                                    if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
+                                    else setEditBan(false)
+                                }}>Cancelar</button>
+                        </div>
                     </div>
                 </Modal >
             }
