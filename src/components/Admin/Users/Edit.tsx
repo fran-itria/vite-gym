@@ -124,10 +124,12 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             </div>
                             <div className='w-full flex justify-between mt-2 mb-2'>
                                 <button className={`${edit.warmUps == 0 ?
-                                    'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
+                                    'opacity-50 pointer-events-none bg-transparent dark:bg-gray-900'
                                     :
-                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
-                                    } 
+                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-200 dark:hover:text-black'
+                                    }
+                                    border-solid border-2 border-white 
+                                dark:hover:border-transparent 
                                 flex items-center justify-center h-8`
                                 }
                                     onClick={() => {
@@ -142,10 +144,12 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     Calentamientos
                                 </button>
                                 <button className={`${edit.routines == 0 ?
-                                    'opacity-50 pointer-events-none bg-transparent border-solid border-2 dark:border-none dark:bg-gray-900'
+                                    'opacity-50 pointer-events-none bg-transparent dark:bg-gray-900'
                                     :
-                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-400 dark:hover:text-black'
-                                    } 
+                                    'pointer-events-auto hover:bg-gray-700 dark:bg-gray-900 dark:hover:bg-gray-200 dark:hover:text-black'
+                                    }
+                                border-solid border-2 border-white 
+                                dark:hover:border-transparent
                                 w-28 flex items-center justify-center h-8`
                                 }
                                     onClick={() => {
@@ -168,9 +172,10 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     border-2 
                                     hover:bg-gray-700
                                     hover:border-none
-                                    dark:border-none
+                                    dark:border-white
                                     dark:bg-gray-900 
-                                    dark:hover:bg-gray-400 
+                                    dark:hover:bg-gray-200
+                                    dark:hover:border-transparent 
                                     dark:hover:text-black 
                                     flex 
                                     items-center 
@@ -188,9 +193,10 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 border-2 
                                 hover:bg-gray-700
                                 hover:border-none
-                                dark:border-none
+                                dark:border-white
                                 dark:bg-gray-900 
-                                dark:hover:bg-gray-400 
+                                dark:hover:bg-gray-200 
+                                dark:hover:border-transparent 
                                 dark:hover:text-black 
                                 flex items-center justify-center h-8'
                                     onClick={() => setCreateRoutine(prev => !prev)}>
@@ -201,39 +207,14 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             {/* <button className='absolute rounded-full top-4 right-4 bg-gray-900' onClick={() => setEdit({ state: false })}>❌</button> */}
                             <div className='flex flex-col mt-2'>
                                 <button className='
-                                bg-green-500
-                                border-solid
-                                border-2
-                                border-transparent
-                                hover:bg-transparent
-                                hover:border-green-500
-                                hover:text-black
-                                dark:bg-green-500
-                                dark:hover:bg-transparent
-                                dark:text-white
-                                dark:hover:text-green-500
-                                flex 
-                                items-center 
-                                justify-center 
+                                confirm 
                                 h-8'
                                 >
                                     Guardar cambios
                                 </button>
                                 <button className='
-                                    flex 
-                                    justify-center 
-                                    items-center 
-                                    rounded 
-                                    h-8 
-                                    border-solid 
-                                    border-2 
-                                    border-red-500
-                                    hover:border-transparent
-                                    hover:bg-red-500 
-                                    dark:bg-transparent
-                                    dark:hover:bg-red-500
-                                    dark:hover:text-white
-                                    text-red-500
+                                    cancel 
+                                    h-8
                                     mt-2'
                                     type='button'
                                     onClick={() => setEdit({ state: false })}
@@ -287,38 +268,14 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 className={`${!inputs?.ban ?
                                     'opacity-50 pointer-events-none' : 'pointer-events-auto'
                                     }
-                            w-fit 
-                            bg-green-500
-                            border-solid
-                            border-2
-                            border-transparent
-                            hover:bg-transparent
-                            hover:border-green-500
-                            hover:text-black
-                            dark:hover:text-green-500
-                            flex items-center justify-center h-8`
+                            confirm`
                                 }
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (editBan) setEditBan(false)
                                 }}>Guardar</button>
                             <button
-                                className='
-                                w-fit 
-                                border-solid
-                                border-2
-                                bg-transparent
-                                border-red-500
-                                text-red-500
-                                hover:bg-red-500
-                                hover:border-transparent
-                                dark:border-red-500
-                                dark:bg-transparent 
-                                dark:hover:bg-red-500 
-                                dark:hover:text-white
-                                dark:hover:border-transparent
-                                flex items-center justify-center`
-                                '
+                                className='cancel'
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (!editBan) setInputs(prev => { return { ...prev, ban: null } })

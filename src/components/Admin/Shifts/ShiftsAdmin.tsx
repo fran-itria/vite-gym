@@ -159,15 +159,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:text-center
                             ll:p-0
                             ll:mr-4
-                            border-2
-                            bg-transparent 
-                            border-solid 
-                            border-red-500 
-                            text-red-500 
-                            hover:bg-red-500
-                            hover:border-transparent 
-                            dark:text-red-500 
-                            dark:border-red-500 
+                            cancel 
                             `}
                         >
                             Resetear
@@ -189,17 +181,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ll:text-center
                             ll:p-0
                             ll:mr-4
-                            bg-green-500
-                            text-white 
-                            border-2
-                            border-solid
-                            border-transparent
-                            hover:bg-transparent
-                            hover:text-green-500
-                            hover:border-green-500
-                            dark:border-green-500 
-                            dark:hover:bg-transparent
-                            dark:hover:text-green-500 
+                            confirm 
                             "
                         >
                             Confirmar

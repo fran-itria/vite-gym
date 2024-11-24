@@ -60,6 +60,36 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #10b981;
+  border: solid 2px transparent;
+  border-radius: 4px;
+}
+
+.confirm:hover {
+  background-color: transparent;
+  border-color: #10b981;
+  color: black;
+}
+
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: solid 2px #ef4444;
+  border-radius: 4px;
+  color: #ef4444;
+}
+
+.cancel:hover {
+  background-color: #ef4444;
+  border-color: transparent;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     width: 100vw;
@@ -74,6 +104,14 @@ button:focus-visible {
 
   button:hover {
     background-color: #111827;
+  }
+
+  .confirm:hover {
+    color: #10b981
+  }
+
+  .cancel:hover {
+    color: white;
   }
 }
 
