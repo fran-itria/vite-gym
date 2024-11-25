@@ -73,12 +73,13 @@ button:focus-visible {
   background-color: #10b981;
   border: solid 2px transparent;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 .buttonConfirm:hover {
   background-color: transparent;
   border: solid 2px #10b981;
-  color: black;
+  color: #0c6a4b;
 }
 
 .buttonCancel {
@@ -89,24 +90,15 @@ button:focus-visible {
   border: solid 2px #ef4444;
   border-radius: 4px;
   color: #ef4444;
+  font-weight: bold;
 }
 
 .buttonCancel:hover {
   background-color: #ef4444;
   border-color: transparent;
+  color: white;
 }
 
-/* w-fit   */
-/* font-bold  */
-/* bg-transparent  */
-/* border-b-4  */
-/* border-black  */
-/* placeholder:font-bold  */
-/* focus:outline-0  */
-/* focus:border-gray-300 */
-/* placeholder:text-black */
-/* dark:focus:border-cyan-600  */
-/* dark:placeholder:text-gray-300 */
 input {
   width: fit-content;
   font-weight: bold;
@@ -135,7 +127,7 @@ input:focus {
   .button {
     background-color: #111827;
     color: white;
-    border: white
+    border: white;
   }
 
   .button:hover {
