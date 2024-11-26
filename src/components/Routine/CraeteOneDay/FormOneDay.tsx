@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormOneDayComponentProps } from "../../../types";
 import onChangeInputs from "../../../services/creteDayRoutine/form/onChangeInputs";
 
-export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOpenCreateRouitine }: FormOneDayComponentProps) {
+export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOpenCreateRouitine, setAddDay, pag }: FormOneDayComponentProps) {
     const [inputsExecise, setInputsExecise] = useState<{
         exercise: number,
         name: string,
@@ -32,32 +32,94 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
         setPag(prev => prev + 1)
     }
 
+    const back = () => {
+        if (pag == 1) {
+            setPag(prev => prev - 1)
+            setAddDay(prev => !prev)
+        } else {
+            setPag(prev => {
+                return prev - 1
+            })
+            setDayCreate(day => {
+                day.pop()
+                return [...day]
+            })
+        }
+    }
     return (
-        <div>
-            Ejercicio Número {actualExercise}
-            <label>
-                Nombre del ejercicio:
-                <input name="name" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.name}></input>
-            </label>
-            <label>
-                Series:
-                <input name="series" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.series}></input>
-            </label>
-            <label>
-                Repeticiones:
-                <input name="reps" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.reps}></input>
-            </label>
-            <label>
-                Link de video del ejercicio:
-                <input type='url' name="link" onChange={event => onChangeInputs({ event, setInputsExecise })} value={inputsExecise.link}></input>
-            </label>
-            <button onClick={() => next()}> Siguiente </button>
-            <button onClick={() => {
-                setPag(0)
-                if (setOpenCreateRouitine) {
-                    setOpenCreateRouitine(false)
-                }
-            }}> Cancelar </button>
+        <div className="flex flex-col">
+            <b
+                className="
+                italic 
+                underline 
+                underline-offset-4 
+                decoration-2 
+                decoration-red-700
+                mb-4
+                text-black
+                dark:text-gray-300">
+                Ejercicio Número {actualExercise}
+            </b>
+            <div className="flex flex-col">
+                <label className="flex items-center font-bold">Nombre del ejercicio:
+                    <input
+                        className="w-40 ml-2"
+                        name="name"
+                        onChange={event => onChangeInputs({ event, setInputsExecise })}
+                        value={inputsExecise.name}>
+                    </input>
+                </label>
+                <label className="flex items-center font-bold">Series:
+                    <input
+                        className="w-40 ml-2"
+                        name="series"
+                        onChange={event => onChangeInputs({ event, setInputsExecise })}
+                        value={inputsExecise.series}>
+                    </input>
+                </label>
+                <label className="flex items-center font-bold">Repeticiones:
+                    <input
+                        className="w-40 ml-2"
+                        name="reps"
+                        onChange={event => onChangeInputs({ event, setInputsExecise })}
+                        value={inputsExecise.reps}>
+                    </input>
+                </label>
+                <label className="flex items-center font-bold">* Link de video:
+                    <input
+                        className="w-40 ml-2"
+                        type='url'
+                        name="link"
+                        onChange={event => onChangeInputs({ event, setInputsExecise })}
+                        value={inputsExecise.link}>
+                    </input>
+                </label>
+                <b>* opcional</b>
+                <div className="flex justify-between mt-4">
+                    <button onClick={() => back()}
+                        className="buttonBack">
+                        Volver
+                    </button>
+                    <button
+                        onClick={() => next()}
+                        className={`${(inputsExecise.name == '' || inputsExecise.series == '' || inputsExecise.reps == '')
+                            ? 'opacity-50 pointer-events-none'
+                            : 'pointer-events-auto'
+                            } buttonConfirm w-24`}
+                    >
+                        Siguiente
+                    </button>
+                    <button onClick={() => {
+                        setPag(0)
+                        if (setOpenCreateRouitine) {
+                            setOpenCreateRouitine(false)
+                        }
+                    }}
+                        className="buttonCancel w-24">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
