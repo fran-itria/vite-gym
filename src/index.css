@@ -99,6 +99,19 @@ button:focus-visible {
   color: white;
 }
 
+.buttonBack {
+  width: 6rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  background: #0284c7;
+}
+
+.buttonBack:hover {
+  background: transparent;
+  border: solid 2px #0284c7;
+  color: #0284c7;
+}
+
 input {
   width: fit-content;
   font-weight: bold;
@@ -146,6 +159,15 @@ input:focus {
 
   .buttonCancel:hover {
     color: white;
+  }
+
+  .buttonBack {
+    background: #075985;
+  }
+
+  .buttonBack:hover {
+    border: solid 2px #075985;
+    color: #075985;
   }
 
   input:focus {
