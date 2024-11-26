@@ -97,6 +97,8 @@ export type FormOneDayComponentProps = {
     link?: string | undefined;
   }[]>>
   setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
+  setAddDay: React.Dispatch<React.SetStateAction<boolean>>
+  pag: number
 }
 
 export type TableConfirmDayComponentProps = {
