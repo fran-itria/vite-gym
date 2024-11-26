@@ -7,6 +7,12 @@ import confirmRoutine from "../../services/routine/confirmRoutine"
 import { CreateRoutineComponentProps } from "../../types"
 import { useAppSelector } from "../../hook/store"
 import { Modal } from "@mui/material"
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme"
 
 export default function CreateRoutine({
     updateRoutinesUser,
@@ -31,40 +37,36 @@ export default function CreateRoutine({
             <div className="bg-transparent w-screen h-screen flex justify-center items-center">
                 <div className="
                     p-4 
-                    w-96 
+                    w-1/4 
                     rounded
-                    ll:w-full
-                    bg-gradient-to-t
-                    from-gray-300
-                    via-gray-500
-                    to-gray-300 
-                    dark:from-gray-800 
-                    dark:via-cyan-900 
-                    dark:to-gray-800"
+                    ll:p-3
+                    ll:w-11/12
+                    background"
                 >
-                    <p className="text-3xl text-center">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
+                    <p className="text-2xl text-start mb-4 font-bold dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
                     {
                         pagDays == 0 ?
-                            <div className="flex flex-col">
-                                <div className="flex flex-col">
-                                    <label className="mt-3">
-                                        Días a realizar:
-                                    </label>
-                                    <input onChange={(e) => setTotalDays(e.target.value)} style={{ borderColor: 'black', borderStyle: 'solid' }}></input>
-                                </div>
-                                <div className="flex justify-around mt-3">
+                            <div className="flex flex-col justify-start">
+                                <input
+                                    onChange={(e) => setTotalDays(e.target.value)}
+                                    type="number"
+                                    placeholder="Días a realizar:"
+                                    className="w-52"
+                                >
+                                </input>
+                                <div className="flex justify-between mt-3 w-52">
                                     <button
                                         onClick={() => {
                                             setAddDay(!addDay)
                                             setPagDays(pagDays + 1)
                                         }}
-                                        className="confirm"
+                                        className={`${(totalDays == '' || totalDays == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
                                     >
                                         Siguiente
                                     </button>
                                     <button
                                         onClick={() => setOpenCreateRouitine(false)}
-                                        className="cancel"
+                                        className="buttonCancel w-24"
                                     >
                                         Cancelar
                                     </button>
@@ -92,6 +94,8 @@ export default function CreateRoutine({
                                             setDayCreate={setDayCreate}
                                             setPag={setPag}
                                             setOpenCreateRouitine={setOpenCreateRouitine}
+                                            setAddDay={setAddDay}
+                                            pag={pag}
                                         />
                                         :
                                         <TableConfirmDay
@@ -111,57 +115,83 @@ export default function CreateRoutine({
                             :
                             pagDays > Number(totalDays) ?
                                 <>
-                                    <table>
-                                        <thead>
-                                            <th>Ejercicios</th>
-                                            <th>Series</th>
-                                            <th>Repeticiones</th>
-                                            <th>Link de video</th>
-                                        </thead>
-                                        <tbody>
-                                            {routine.map(day => {
-                                                return day.exercises.map(exercise => {
+                                    <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+                                        <Table aria-label="customized table" >
+                                            <TableHead>
+                                                <TableRow>
+                                                    <StyledTableCell align="center"> Ejercicios </StyledTableCell>
+                                                    <StyledTableCell align="center"> Series </StyledTableCell>
+                                                    <StyledTableCell align="center"> Repeticiones </StyledTableCell>
+                                                    <StyledTableCell align="center"> Video </StyledTableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {routine.map(day => {
                                                     return (
                                                         <>
-                                                            <tr>
-                                                                <td>{exercise.name}</td>
-                                                                <td>{exercise.series}</td>
-                                                                <td>{exercise.reps}</td>
-                                                                <td>{exercise.link ? exercise.link : <></>}</td>
-                                                            </tr>
+                                                            <StyledTableRow key={day.day} className="fullRow">
+                                                                <StyledTableCell align="center" colSpan={4}>
+                                                                    Día {day.day}
+                                                                </StyledTableCell>
+                                                            </StyledTableRow>
+                                                            {day.exercises.map(exercise => {
+                                                                return (
+                                                                    <StyledTableRow key={exercise.exercise}>
+                                                                        <StyledTableCell align="center" className='w-20'>
+                                                                            {exercise.name}
+                                                                        </StyledTableCell>
+                                                                        <StyledTableCell align="center">
+                                                                            {exercise.series}
+                                                                        </StyledTableCell>
+                                                                        <StyledTableCell align="center">
+                                                                            {exercise.reps}
+                                                                        </StyledTableCell>
+                                                                        <StyledTableCell align="center">
+                                                                            {exercise.link ? exercise.link : <></>}
+                                                                        </StyledTableCell>
+                                                                    </StyledTableRow>
+                                                                )
+                                                            })}
                                                         </>
+
                                                     )
-                                                })
-                                            })}
-                                        </tbody>
-                                    </table>
-                                    <button onClick={() => {
-                                        confirmRoutine({
-                                            updateRoutinesUser,
-                                            updateIdGlobal,
-                                            updateWarmUpUser,
-                                            setOpenCreateRouitine,
-                                            userId,
-                                            days: routine,
-                                            createWarm,
-                                            setUsers,
-                                            gymName,
-                                            id,
-                                            setLoader,
-                                            email
-                                        })
-                                    }}>
-                                        {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
-                                    </button>
-                                    <button onClick={() => {
-                                        setOpenCreateRouitine(false)
-                                    }}>Cancelar</button>
+                                                })}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                    <div className="flex justify-around mt-3">
+                                        <button onClick={() => {
+                                            confirmRoutine({
+                                                updateRoutinesUser,
+                                                updateIdGlobal,
+                                                updateWarmUpUser,
+                                                setOpenCreateRouitine,
+                                                userId,
+                                                days: routine,
+                                                createWarm,
+                                                setUsers,
+                                                gymName,
+                                                id,
+                                                setLoader,
+                                                email
+                                            })
+                                        }}
+                                            className="buttonConfirm w-28">
+                                            {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
+                                        </button>
+                                        <button onClick={() => {
+                                            setOpenCreateRouitine(false)
+                                        }}
+                                            className="buttonCancel w-28">
+                                            Cancelar
+                                        </button>
+                                    </div>
                                 </>
                                 :
                                 <></>
                     }
                 </div>
             </div>
-        </Modal>
+        </Modal >
     )
 }
