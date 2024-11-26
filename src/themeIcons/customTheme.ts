@@ -15,12 +15,6 @@ declare module '@mui/material/styles' {
     }
 }
 
-// declare module '@mui/icons-material/Delete' {
-//     interface DeletePropsColorOverrides {
-//         tashIcon: true;
-//     }
-// }
-
 const getSystemTheme = () => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return 'dark';
