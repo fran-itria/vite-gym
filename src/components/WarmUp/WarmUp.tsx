@@ -80,7 +80,7 @@ export default function WarmUp() {
                             :
                             pag != 0 ?
                                 pag < Number(totalExercise) + 1 ?
-                                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} />
+                                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} setAddDay={setAddDay} pag={pag} />
                                     :
                                     <TableConfirmDay
                                         key={routineId.id}
