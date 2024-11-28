@@ -63,7 +63,7 @@ export default function FormLogin() {
             placeholder="Usuario"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
+            className="mb-7"
           ></input>
           <input
             name="password"
@@ -71,9 +71,9 @@ export default function FormLogin() {
             placeholder="Contraseña"
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
+            className="mb-7"
           ></input>
-          <button>Iniciar sesión</button>
+          <button className="button">Iniciar sesión</button>
         </form>
         <a onClick={() => navigate("/reset")} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>
           ¿Olvidaste tu contraseña?

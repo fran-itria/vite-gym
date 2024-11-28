@@ -11,7 +11,6 @@ export default function FormRegister() {
     const { inputs, setInputs, url, navigate, addUser, loader, setLoader, open, handleOpen, mail, setMail, temporalCode, setTemporalCode } = useForm()
     return (
         <>
-
             {
                 <div className='
                     w-full 
@@ -20,14 +19,7 @@ export default function FormRegister() {
                     flex-col 
                     justify-center 
                     items-center
-                    bg-gradient-to-t  
-                    from-gray-300
-                    via-gray-500
-                    to-gray-300 
-                    dark:bg-gradient-to-t 
-                    dark:from-gray-800
-                    dark:via-cyan-900
-                    dark:to-gray-800
+                    background
                 '>
                     {loader && <Loader text={loader} />}
                     <section className=" 
@@ -39,14 +31,7 @@ export default function FormRegister() {
                         p-11 
                         shadow-xl 
                         shadow-black
-                        bg-gradient-to-t  
-                        from-gray-300
-                        via-gray-500
-                        to-gray-300 
-                        dark:bg-gradient-to-t 
-                        dark:from-gray-800
-                        dark:via-cyan-900
-                        dark:to-gray-800
+                        background
                     ">
                         <h2 className="p-0 m-0 mb-8 text-gray-800 text-2xl font-bold dark:text-white"> Pro Active Center</h2>
                         <form
@@ -68,22 +53,7 @@ export default function FormRegister() {
                             <FormElement labelName={labels.user} type={typesElement.text} name={namesElements.user} setInputs={setInputs}></FormElement>
                             <FormElement labelName={labels.password} type={typesElement.password} name={namesElements.password} setInputs={setInputs}></FormElement>
                             <FormElement labelName={labels.confirmPassword} type={typesElement.password} name={namesElements.confimrPassword} setInputs={setInputs}></FormElement>
-                            <button className="
-                                    h-8
-                                    flex
-                                    justify-center
-                                    items-center
-                                    bg-gray-300
-                                    hover:bg-gray-500
-                                    hover:text-white 
-                                    text-gray-800 
-                                    p-1.5 
-                                    rounded 
-                                    border-none 
-                                    dark:hover:bg-gray-900
-                                    dark:text-white 
-                                    dark:bg-cyan-800
-                                ">
+                            <button className="button">
                                 Registrarme
                             </button>
                         </form>

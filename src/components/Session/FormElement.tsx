@@ -9,7 +9,7 @@ export default function FormElement({ labelName, type, name, setInputs }: Elemen
             name={name}
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="bg-gray-700 placeholder:text-white rounded mb-7 p-1 text-black dark:bg-white dark:placeholder:text-black"
+            className="mb-7"
         ></input>
     )
 }
