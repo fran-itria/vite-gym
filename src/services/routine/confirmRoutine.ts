@@ -15,9 +15,13 @@ export default async function confirmRoutine({
     createWarm,
     id,
     setLoader,
-    email
+    email,
+    setEdit
 }: confirmRoutineProps) {
     try {
+        console.log('createWarm', createWarm)
+        console.log('setEdit', setEdit)
+        console.log('setUsers', setUsers)
         setOpenCreateRouitine(false)
         if (!createWarm) {
             setLoader(`${basicLoaders.create} ${specificLoaders.routine}`)
@@ -28,17 +32,18 @@ export default async function confirmRoutine({
                     updateIdGlobal(routine.data.id)
                     updateRoutinesUser(user.data)
                 } else {
-                    if (id == userId) {
+                    if (id == userId && setEdit) {
                         const user = await axios.get(`/user/getOneUser/${userId}`)
                         updateIdGlobal(routine.data.id)
                         updateRoutinesUser(user.data)
+                        setEdit({ state: false, warmUps: user.data.WarmUps.length, routines: user.data.Routines.length })
                     }
                     const users = await axios.get(`/user/forGym/${gymName}`)
                     setUsers(users.data)
                 }
             }
-            if(email){
-                await axios.post('/mails/newRoutine', {email, routine: 'rutina'})
+            if (email) {
+                await axios.post('/mails/newRoutine', { email, routine: 'rutina' })
             }
         } else {
             setLoader(`${basicLoaders.create} ${specificLoaders.warm}`)
@@ -49,17 +54,18 @@ export default async function confirmRoutine({
                     updateIdGlobal(warmUp.data.id)
                     updateWarmUpUser(user.data)
                 } else {
-                    if (id == userId) {
+                    if (id == userId && setEdit) {
                         const user = await axios.get(`/user/getOneUser/${userId}`)
                         updateIdGlobal(warmUp.data.id)
                         updateWarmUpUser(user.data)
+                        setEdit({ state: false, warmUps: user.data.WarmUps.length, routines: user.data.Routines.length })
                     }
                     const users = await axios.get(`/user/forGym/${gymName}`)
                     setUsers(users.data)
                 }
             }
-            if(email){
-                await axios.post('/mails/newRoutine', {email, routine: 'calentamiento'})
+            if (email) {
+                await axios.post('/mails/newRoutine', { email, routine: 'calentamiento' })
             }
         }
         setLoader(undefined)

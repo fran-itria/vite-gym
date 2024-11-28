@@ -24,7 +24,8 @@ export default function CreateRoutine({
     updateWarmUpUser,
     updateIdGlobal,
     id,
-    setLoader
+    setLoader,
+    setEdit
 }: CreateRoutineComponentProps) {
     const [totalDays, setTotalDays] = useState<string>('0')
     const [pagDays, setPagDays] = useState<number>(0)
@@ -130,7 +131,7 @@ export default function CreateRoutine({
                                                     return (
                                                         <>
                                                             <StyledTableRow key={day.day} className="fullRow">
-                                                                <StyledTableCell align="center" colSpan={4}>
+                                                                <StyledTableCell align="center" colSpan={4} className="bg-cyan-600">
                                                                     Día {day.day}
                                                                 </StyledTableCell>
                                                             </StyledTableRow>
@@ -173,7 +174,8 @@ export default function CreateRoutine({
                                                 gymName,
                                                 id,
                                                 setLoader,
-                                                email
+                                                email,
+                                                setEdit
                                             })
                                         }}
                                             className="buttonConfirm w-28">

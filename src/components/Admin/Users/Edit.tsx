@@ -337,30 +337,19 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         <></>
             }
             {
-                createRoutine &&
+                (createRoutine || createWarm) &&
                 <CreateRoutine
-                    updateRoutinesUser={updateRoutinesUser}
+                    updateRoutinesUser={createRoutine ? updateRoutinesUser : undefined}
+                    updateWarmUpUser={createWarm ? updateWarmUpUser : undefined}
                     updateIdGlobal={updateIdGlobal}
                     userId={userId}
-                    setOpenCreateRouitine={setCreateRoutine}
-                    gymName={gymName}
-                    setUsers={setUsers}
-                    id={id ? id : undefined}
-                    setLoader={setLoader}
-                />
-            }
-            {
-                createWarm &&
-                <CreateRoutine
-                    updateWarmUpUser={updateWarmUpUser}
-                    updateIdGlobal={updateIdGlobal}
-                    userId={userId}
-                    setOpenCreateRouitine={setCreateWarm}
+                    setOpenCreateRouitine={createRoutine ? setCreateRoutine : setCreateWarm}
                     gymName={gymName}
                     setUsers={setUsers}
                     createWarm={createWarm}
                     id={id ? id : undefined}
                     setLoader={setLoader}
+                    setEdit={setEdit}
                 />
             }
         </>

@@ -185,6 +185,11 @@ export type confirmRoutineProps = createRoutineProps & {
   id?: string
   setLoader: SetLoader
   email: string | null
+  setEdit?: React.Dispatch<React.SetStateAction<{
+    state: boolean;
+    warmUps?: number;
+    routines?: number;
+  }>>
 }
 
 export type deleteDayProps = {
