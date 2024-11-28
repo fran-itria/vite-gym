@@ -346,6 +346,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     setOpenCreateRouitine={createRoutine ? setCreateRoutine : setCreateWarm}
                     gymName={gymName}
                     setUsers={setUsers}
+                    id={id ? id : undefined}
                     createWarm={createWarm}
                     setLoader={setLoader}
                     setEdit={setEdit}

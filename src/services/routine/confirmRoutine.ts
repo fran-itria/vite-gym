@@ -13,6 +13,7 @@ export default async function confirmRoutine({
     userId,
     gymName,
     createWarm,
+    id,
     setLoader,
     email,
     setEdit
@@ -22,22 +23,34 @@ export default async function confirmRoutine({
         setLoader(`${basicLoaders.create} ${!createWarm ? specificLoaders.routine : specificLoaders.warm}`)
         if (!createWarm) {
             const routine = await axios.post("/rutina/createRutina", { userId, days })
-            const user = await axios.get(`/user/getOneUser/${userId}`)
             if (updateRoutinesUser) {
-                updateIdGlobal(routine.data.id)
-                updateRoutinesUser(user.data)
-                if (setUsers) {
+                if (!setUsers) {
+                    const user = await axios.get(`/user/getOneUser/${userId}`)
+                    updateIdGlobal(routine.data.id)
+                    updateRoutinesUser(user.data)
+                } else {
+                    if (id == userId) {
+                        const user = await axios.get(`/user/getOneUser/${userId}`)
+                        updateIdGlobal(routine.data.id)
+                        updateRoutinesUser(user.data)
+                    }
                     const users = await axios.get(`/user/forGym/${gymName}`)
                     setUsers(users.data)
                 }
             }
         } else {
             const warmUp = await axios.post('/calentamiento/createCalentamiento', { userId, days })
-            const user = await axios.get(`/user/getOneUser/${userId}`)
             if (updateWarmUpUser) {
-                updateIdGlobal(warmUp.data.id)
-                updateWarmUpUser(user.data)
-                if (setUsers) {
+                if (!setUsers) {
+                    const user = await axios.get(`/user/getOneUser/${userId}`)
+                    updateIdGlobal(warmUp.data.id)
+                    updateWarmUpUser(user.data)
+                } else {
+                    if (id == userId) {
+                        const user = await axios.get(`/user/getOneUser/${userId}`)
+                        updateIdGlobal(warmUp.data.id)
+                        updateWarmUpUser(user.data)
+                    }
                     const users = await axios.get(`/user/forGym/${gymName}`)
                     setUsers(users.data)
                 }
