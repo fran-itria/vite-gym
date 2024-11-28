@@ -347,7 +347,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                     gymName={gymName}
                     setUsers={setUsers}
                     createWarm={createWarm}
-                    id={id ? id : undefined}
                     setLoader={setLoader}
                     setEdit={setEdit}
                 />
