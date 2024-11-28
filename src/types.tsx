@@ -271,7 +271,7 @@ export type CreateRoutineComponentProps = {
   updateIdGlobal: (id: string | undefined) => void
   id?: string
   setLoader: SetLoader
-  setEdit: React.Dispatch<React.SetStateAction<{
+  setEdit?: React.Dispatch<React.SetStateAction<{
     state: boolean;
     warmUps?: number;
     routines?: number;
