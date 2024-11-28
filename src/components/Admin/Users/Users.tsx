@@ -88,9 +88,9 @@ export default function Users() {
                                 <StyledTableCell align="center"> Contacto emergencia </StyledTableCell>
                             </TableRow>
                         </TableHead>
-                        {users.length > 0 ?
-                            <TableBody>
-                                {users.map(user => (
+                        <TableBody>
+                            {users.length > 0 ?
+                                users.map(user => (
                                     <>
                                         <StyledTableRow key={user.id}>
                                             <StyledTableCell align="center" className='w-20'>
@@ -122,11 +122,15 @@ export default function Users() {
                                             <StyledTableCell align="center">{user.contactEmergency}</StyledTableCell>
                                         </StyledTableRow>
                                     </>
-                                ))}
-                            </TableBody>
-                            :
-                            <p>No tienes usuarios registrados</p>
-                        }
+                                ))
+                                :
+                                <StyledTableRow>
+                                    <StyledTableCell align='center' colSpan={9}>
+                                        <p>No hay usuarios registrados</p>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            }
+                        </TableBody>
                     </Table>
                 </TableContainer>
             </div>
