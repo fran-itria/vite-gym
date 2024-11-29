@@ -13,10 +13,8 @@ export default function useEdit() {
     const { id } = useAppSelector(state => state.user)
 
     const [modal, setModal] = useState<string | undefined>('')
-    const [saw, setSaw] = useState<boolean>(false)
     const [routinesUser, setRoutinesUser] = useState<{ id: string }[]>()
     const [routineAdmin, setRoutineAdmin] = useState<Routine>()
-    const [selectId, setId] = useState<string>()
 
     return {
         createRoutine,
@@ -31,13 +29,9 @@ export default function useEdit() {
         id,
         modal,
         setModal,
-        saw,
-        setSaw,
         routinesUser,
         setRoutinesUser,
         routineAdmin,
-        setRoutineAdmin,
-        selectId,
-        setId
+        setRoutineAdmin
     }
 }

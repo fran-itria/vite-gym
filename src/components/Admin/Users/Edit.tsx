@@ -55,7 +55,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setRoutineAdmin,
         routinesUser,
         setRoutinesUser,
-        selectId,
     } = useEdit()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createBan, setCreateBan] = useState<boolean>(false)
@@ -251,14 +250,13 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} setAddDay={setAddDay} pag={pag} />
                             :
                             <TableConfirmDay
-                                key={selectId}
+                                key={pag}
                                 dayCreate={dayCreate}
                                 setAddDay={setAddDay}
                                 setDayCreate={setDayCreate}
                                 setPag={setPag}
                                 setTotalExercise={setTotalExercise}
                                 routine={routineAdmin}
-                                routineId={selectId}
                                 setLoader={setLoader}
                                 setRoutineAdmin={setRoutineAdmin}
                             />
