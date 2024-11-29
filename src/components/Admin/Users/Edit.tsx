@@ -237,7 +237,10 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                             :
                             <Routine otherUserId={userId} isWarmupOrRoutine={routine}></Routine>
                         }
-                        <button className='buttonCancel' onClick={() => setModal('')}>Cancelar</button>
+                        <button className='buttonCancel' onClick={() => {
+                            setModal('')
+                            updateIdGlobal(undefined)
+                        }}>Cancelar</button>
                     </div>
                 </Modal>
             }
