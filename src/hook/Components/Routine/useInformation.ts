@@ -8,7 +8,7 @@ import { basicLoaders, specificLoaders } from "../../../const"
 import { useLocation } from "react-router-dom"
 import { warmUp, routine as routineString } from "../../../components/Admin/Users/Edit"
 
-const useInformation = (otherUserId: string, isWarmUpOrRoutine: string, chagenOtherRoutine: boolean) => {
+const useInformation = (otherUserId: string | undefined, isWarmUpOrRoutine: string | undefined, chagenOtherRoutine: boolean) => {
     const { Routines, WarmUps, id } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()

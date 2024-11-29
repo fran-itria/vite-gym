@@ -13,7 +13,7 @@ import { basicLoaders, specificLoaders } from "../../const";
 import { CaseResolve } from "../../types";
 import { Modal } from "@mui/material";
 
-export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserId: string, isWarmupOrRoutine: string }) {
+export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserId?: string, isWarmupOrRoutine?: string }) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
     const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader, viewRoutineOtherUser } = useInformation(otherUserId, isWarmupOrRoutine, chagenOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()

@@ -1,6 +1,4 @@
 import axios from "axios"
-import { SetLoader } from "../../../types";
-import { Routine } from "../../../store/routine/slice";
 
 // TYPES FUNCTIONS
 type getUserFunctionsProps = {
@@ -8,13 +6,6 @@ type getUserFunctionsProps = {
     setRoutinesUser: React.Dispatch<React.SetStateAction<{
         id: string;
     }[] | undefined>>
-}
-
-type getOneFunctionProps = getUserFunctionsProps & {
-    id: string
-    setId: React.Dispatch<React.SetStateAction<string | undefined>>
-    setLoader: SetLoader
-    setRoutineAdmin: React.Dispatch<React.SetStateAction<Routine | undefined>>
 }
 
 type changeFunctionProps = {

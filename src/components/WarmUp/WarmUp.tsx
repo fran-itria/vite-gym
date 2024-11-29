@@ -15,7 +15,7 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve } from "../../types";
 import { Modal } from "@mui/material";
 
-export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId: string, isWarmUpOrRoutine: string }) {
+export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId?: string, isWarmUpOrRoutine?: string }) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
     const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
