@@ -1,18 +1,22 @@
 import Switch from '@mui/material/Switch';
 import CreateRoutine from '../../Routine/CreateRoutine';
-import { CaseResolve, SetLoader, UsersComponent } from '../../../types';
+import { SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
-import Detail from '../../Routine/Detail';
 import useDayCreate from '../../../hook/Components/Routine/useCreateDay';
 import FormTotalExercise from '../../Routine/FormTotalExercise';
 import FormOneDay from '../../Routine/CraeteOneDay/FormOneDay';
 import TableConfirmDay from '../../Routine/CraeteOneDay/TableConfirmDay';
-import { change, getOneRoutine, getOneWarmUp, getRoutinesUser, getWarmUpsUser } from './functions';
+import { change, getRoutinesUser, getWarmUpsUser } from './functions';
 import { useEffect, useState } from 'react';
 import { Modal } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
+import WarmUp from '../../WarmUp/WarmUp';
+import Routine from '../../Routine/Routine';
+
+export const warmUp = 'Calentamiento'
+export const routine = 'Rutina'
 
 export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, edit, setLoader, email }: {
     gymName?: string
@@ -49,20 +53,17 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
         setModal,
         routineAdmin,
         setRoutineAdmin,
-        saw,
-        setSaw,
         routinesUser,
         setRoutinesUser,
         selectId,
-        setId,
     } = useEdit()
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
-    const warmUp = 'Calentamiento'
-    const routine = 'Rutina'
     const [createBan, setCreateBan] = useState<boolean>(false)
     const [editBan, setEditBan] = useState(false)
 
     useEffect(() => { setInputs(prev => { return { ...prev, ban: ban } }) }, [])
+
+    useEffect(() => console.log(routineAdmin), [routineAdmin])
 
     return (
         <>
@@ -229,89 +230,17 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 </Modal >
             }
             {
-                modal != '' ?
-                    routinesUser?.length && routinesUser?.length > 0 ?
-                        modal == warmUp ?
-                            <Modal open={Boolean(warmUp)}>
-                                <select onChange={(e) => {
-                                    getOneWarmUp({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
-                                    setSaw(true)
-                                }}>
-                                    <option value=''>Seleccionar calentamiento</option>
-                                    {routinesUser?.map((warmUp, index) =>
-                                        <option value={warmUp.id}>Calentamiento {index + 1}</option>
-                                    )}
-                                </select>
-                            </Modal>
+                modal != '' && (routinesUser?.length && routinesUser?.length > 0) && (modal == warmUp || modal == routine) &&
+                <Modal open={Boolean(warmUp) || Boolean(routine)}>
+                    <div>
+                        {modal == warmUp ?
+                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={warmUp}></WarmUp>
                             :
-                            <Modal open={!warmUp}>
-                                <select onChange={(e) => {
-                                    getOneRoutine({ id: e.target.value, setId, setLoader, setRoutineAdmin, setRoutinesUser })
-                                    setSaw(true)
-                                }}>
-                                    <option value=''>Seleccionar rutina</option>
-                                    {routinesUser?.map((warmUp, index) =>
-                                        <option value={warmUp.id}>Rutina {index + 1}</option>
-                                    )}
-                                </select>
-                            </Modal>
-                        :
-                        <Modal open>
-                            <>No hay {modal?.toLowerCase()}s existentes</>
-                        </Modal>
-                    :
-                    <></>
-            }
-            {
-                saw ?
-                    modal == warmUp ?
-                        (
-                            routineAdmin?.Days && routineAdmin.Days.length > 0 ?
-                                <>
-                                    {routineAdmin.Days.map((day, i) => {
-                                        return (
-                                            <Detail
-                                                day={day}
-                                                i={i}
-                                                routineOrWarmUp={{ routineId: selectId }}
-                                                setLoader={setLoader}
-                                                setRoutineAdmin={setRoutineAdmin}
-                                                caseResolve={CaseResolve.calentamiento}
-                                            />
-                                        )
-                                    })}
-                                    <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                                    <button onClick={() => setSaw(false)}>❌</button>
-                                </>
-                                :
-                                <></>
-                        )
-                        :
-                        modal == routine ?
-                            (
-                                routineAdmin?.Days && routineAdmin.Days.length > 0 ?
-                                    <>
-                                        {routineAdmin.Days.map((day, i) => {
-                                            return (
-                                                <Detail
-                                                    day={day}
-                                                    i={i}
-                                                    routineOrWarmUp={{ weeks: routineAdmin.weeks, routineId: selectId }}
-                                                    setLoader={setLoader}
-                                                    setRoutineAdmin={setRoutineAdmin}
-                                                    caseResolve={CaseResolve.rutina}
-                                                />
-                                            )
-                                        })}
-                                        <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                                        <button onClick={() => setSaw(false)}>❌</button>
-                                    </>
-                                    :
-                                    <></>
-                            )
-                            :
-                            <></>
-                    : <></>
+                            <Routine otherUserId={userId} isWarmupOrRoutine={routine}></Routine>
+                        }
+                        <button className='buttonCancel' onClick={() => setModal('')}>Cancelar</button>
+                    </div>
+                </Modal>
             }
             {
                 addDay ?
