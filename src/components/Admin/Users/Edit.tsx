@@ -1,6 +1,6 @@
 import Switch from '@mui/material/Switch';
 import CreateRoutine from '../../Routine/CreateRoutine';
-import { SetLoader, UsersComponent } from '../../../types';
+import { CaseResolve, SetLoader, UsersComponent } from '../../../types';
 import submitChanges from '../../../services/editForm/submitChanges';
 import useEdit from '../../../hook/Components/Users/Edit/useEdit';
 import useDayCreate from '../../../hook/Components/Routine/useCreateDay';
@@ -14,9 +14,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddIcon from '@mui/icons-material/Add';
 import WarmUp from '../../WarmUp/WarmUp';
 import Routine from '../../Routine/Routine';
-
-export const warmUp = 'Calentamiento'
-export const routine = 'Rutina'
 
 export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, edit, setLoader, email }: {
     gymName?: string
@@ -61,8 +58,6 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     const [editBan, setEditBan] = useState(false)
 
     useEffect(() => { setInputs(prev => { return { ...prev, ban: ban } }) }, [])
-
-    useEffect(() => console.log(routineAdmin), [routineAdmin])
 
     return (
         <>
@@ -124,8 +119,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     onClick={() => {
                                         getWarmUpsUser({ id: userId, setRoutinesUser })
                                         setModal((prev) => {
-                                            if (prev != '') return ''
-                                            else return warmUp
+                                            if (prev != undefined) return undefined
+                                            else return CaseResolve.calentamiento
                                         })
                                         setRoutineAdmin(undefined)
                                     }}
@@ -141,8 +136,8 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     onClick={() => {
                                         getRoutinesUser({ id: userId, setRoutinesUser })
                                         setModal((prev) => {
-                                            if (prev != '') return ''
-                                            else return routine
+                                            if (prev != undefined) return undefined
+                                            else return CaseResolve.rutina
                                         })
                                         setRoutineAdmin(undefined)
                                     }}
@@ -229,16 +224,16 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 </Modal >
             }
             {
-                modal != '' && (routinesUser?.length && routinesUser?.length > 0) && (modal == warmUp || modal == routine) &&
-                <Modal open={Boolean(warmUp) || Boolean(routine)}>
+                modal != undefined && (routinesUser?.length && routinesUser?.length > 0) && (modal == CaseResolve.calentamiento || modal == CaseResolve.rutina) &&
+                <Modal open>
                     <div>
-                        {modal == warmUp ?
-                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={warmUp}></WarmUp>
+                        {modal == CaseResolve.calentamiento ?
+                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={CaseResolve.calentamiento}></WarmUp>
                             :
-                            <Routine otherUserId={userId} isWarmupOrRoutine={routine}></Routine>
+                            <Routine otherUserId={userId} isWarmupOrRoutine={CaseResolve.rutina}></Routine>
                         }
                         <button className='buttonCancel' onClick={() => {
-                            setModal('')
+                            setModal(undefined)
                             updateIdGlobal(undefined)
                         }}>Cancelar</button>
                     </div>

@@ -6,9 +6,9 @@ import axios from "axios"
 import useRoutineIdActions from "../../useRoutineIdActions"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { useLocation } from "react-router-dom"
-import { warmUp, routine as routineString } from "../../../components/Admin/Users/Edit"
+import { CaseResolve } from "../../../types"
 
-const useInformation = (otherUserId: string | undefined, isWarmUpOrRoutine: string | undefined, chagenOtherRoutine: boolean) => {
+const useInformation = (otherUserId: string | undefined, isWarmUpOrRoutine: CaseResolve | undefined, chagenOtherRoutine: boolean) => {
     const { Routines, WarmUps, id } = useAppSelector(state => state.user)
     const routine = useAppSelector(state => state.routine)
     const { routineActual } = useRoutineActions()
@@ -31,7 +31,7 @@ const useInformation = (otherUserId: string | undefined, isWarmUpOrRoutine: stri
             axios.get(`/user/getOneUser/${otherUserId}`).then((response) => {
                 const warmUpsUser = response.data.WarmUps
                 const routinesUser = response.data.Routines
-                if (isWarmUpOrRoutine == warmUp) {
+                if (isWarmUpOrRoutine == CaseResolve.calentamiento) {
                     setViewRoutineOtherUser(warmUpsUser)
                     setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
                     if (!chagenOtherRoutine) {
@@ -43,7 +43,7 @@ const useInformation = (otherUserId: string | undefined, isWarmUpOrRoutine: stri
                             setLoader(undefined)
                         })
                         .catch(error => window.alert(error.data.Error))
-                } else if (isWarmUpOrRoutine == routineString) {
+                } else if (isWarmUpOrRoutine == CaseResolve.rutina) {
                     setViewRoutineOtherUser(routinesUser)
                     setLoader(`${basicLoaders.loading} ${specificLoaders.routine}`)
                     if (!chagenOtherRoutine) {
