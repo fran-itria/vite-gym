@@ -29,14 +29,14 @@ export default async function addExerciseFunction({
             series,
             link
         })
-        if (setRoutineAdmin) {
+        if (setRoutineAdmin && routineActual) {
             if (caseResolve == CaseResolve.rutina) {
                 const routine = await axios.get(`/rutina/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
             else {
                 const routine = await axios.get(`/calentamiento/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
         }
         if (routineId && routineActual) {

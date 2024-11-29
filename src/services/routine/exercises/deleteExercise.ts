@@ -18,14 +18,14 @@ export default async function deleteExercise({
         setConfirmDelete(confirmDelete => !confirmDelete)
         setLoader(`${basicLoaders.remove} ${specificLoaders.exercise}`)
         await axios.delete(`/ejercicio/delete/${idExercise}`)
-        if (setRoutineAdmin) {
+        if (setRoutineAdmin && routineActual) {
             if (caseResolve == CaseResolve.rutina) {
                 const routine = await axios.get(`/rutina/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
             else {
                 const routine = await axios.get(`/calentamiento/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
         }
         if (routineActual) {

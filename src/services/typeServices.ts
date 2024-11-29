@@ -39,7 +39,7 @@ export type modifiedExerciseProps = {
     reps?: string | undefined;
   }
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -69,7 +69,7 @@ export type addExerciseProps = {
   routineId?: string
   routineActual: ((Days: Routine) => void) | undefined
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -164,6 +164,7 @@ export type deleteRoutineProps = {
   userId: string | null
   updateIdGlobal: (id: string | undefined) => void
   setLoader: SetLoader
+  setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
 }
 
 export type deleteWarmUpProps = {
@@ -172,6 +173,7 @@ export type deleteWarmUpProps = {
   userId: string | null
   updateIdGlobal: (id: string | undefined) => void
   setLoader: SetLoader
+  setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
 }
 
 export type confirmRoutineProps = createRoutineProps & {
@@ -196,7 +198,7 @@ export type deleteDayProps = {
   id?: string,
   routineId?: string,
   routineActual?: (Days: Routine) => void
-  setRoutineAdmin?: setRoutineAdmin | undefined
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -206,7 +208,7 @@ export type deleteExerciseProps = {
   routineActual?: (Days: Routine) => void
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 

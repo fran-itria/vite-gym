@@ -22,7 +22,6 @@ function App() {
   axios.defaults.baseURL = baseUrlDeploy
   const { addUser } = useUserActions()
   useEffect(() => {
-    console.log(path.pathname)
     if (path.pathname != "/") {
       const token = storage.getItem('token')
       if (token) {

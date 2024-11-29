@@ -8,14 +8,14 @@ export default async function deleteDay({ id, routineId, routineActual, setRouti
     try {
         const response = await axios.delete(`/day/delete/${id}`)
         if (response.status == 200) window.alert(response.data.Message)
-        if (setRoutineAdmin) {
+        if (setRoutineAdmin && routineActual) {
             if (caseResolve == CaseResolve.rutina) {
                 const routine = await axios.get(`/rutina/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
             else {
                 const warmUp = await axios.get(`/calentamiento/${routineId}`)
-                setRoutineAdmin(warmUp.data)
+                routineActual(warmUp.data)
             }
         }
         else if (routineActual) {

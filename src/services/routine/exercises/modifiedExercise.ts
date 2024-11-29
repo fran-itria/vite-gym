@@ -23,14 +23,14 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
         setOpen(false)
         setLoader(`${basicLoaders.save} ${specificLoaders.cahnges}`)
         await axios.put('/ejercicio', { ...inputs, id })
-        if (setRoutineAdmin) {
+        if (setRoutineAdmin && routineActual) {
             if (caseResolve == CaseResolve.rutina) {
                 const routine = await axios.get(`/rutina/${routineId}`)
-                setRoutineAdmin(routine.data)
+                routineActual(routine.data)
             }
             else {
                 const warmUp = await axios.get(`/calentamiento/${routineId}`)
-                setRoutineAdmin(warmUp.data)
+                routineActual(warmUp.data)
             }
         }
         else if (routineActual) {
