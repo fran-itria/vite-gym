@@ -66,14 +66,14 @@ export type TableComponentProps = {
   }
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
 export type TableRowComponentProps = Exercise & {
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -149,7 +149,7 @@ export type CreateExerciseComponentProps = {
   routineId?: string
   routineActual?: (Days: Routine) => void
   setLoader: SetLoader;
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -161,7 +161,7 @@ export type TableCellComponentProps = Exercise & {
   setLoad: React.Dispatch<React.SetStateAction<boolean>>
   setIdLoad: React.Dispatch<React.SetStateAction<string>>
   setWeekLoad: React.Dispatch<React.SetStateAction<number>>
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
 }
 
 export type RoutineOrWarmUp = {
@@ -179,7 +179,8 @@ export type DetailComponenProps = {
   i: number
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
+  isWarmUpOrRoutine?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -208,7 +209,7 @@ export type ModifiedExerciseProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 
@@ -285,7 +286,7 @@ export type ConfirmDeleteComponentProps = {
   routineId?: string
   routineActual?: (Days: Routine) => void
   setLoader: SetLoader
-  setRoutineAdmin?: setRoutineAdmin
+  setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
 }
 

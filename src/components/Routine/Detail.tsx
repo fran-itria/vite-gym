@@ -9,7 +9,7 @@ import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 
 
-export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve }: DetailComponenProps) {
+export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, isWarmUpOrRoutine, caseResolve }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
     const { weeks, routineActual, routineId } = routineOrWarmUp
     return (
@@ -22,7 +22,7 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                     day={day}
                     routineOrWarmUp={{ routineActual, routineId, weeks }}
                     setLoader={setLoader}
-                    setRoutineAdmin={setRoutineAdmin}
+                    setRoutineAdmin={isWarmUpOrRoutine}
                     caseResolve={caseResolve}
                 />
                 <button onClick={() => setAddExercise(!addExercise)}> + Ejercicio</button>

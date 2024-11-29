@@ -11,16 +11,15 @@ import Chronometer from "../Chronometer";
 import Detail from "../Routine/Detail";
 import { basicLoaders, specificLoaders } from "../../const";
 import useInformation from "../../hook/Components/Routine/useInformation";
-import { CaseResolve } from "../../types";
+import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
 
-export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId?: string, isWarmUpOrRoutine?: CaseResolve }) {
+export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers }: { otherUserId?: string, isWarmUpOrRoutine?: CaseResolve, setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>> }) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
-    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine)
+    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine, setChangeOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
-
 
     return (
         <div>
@@ -60,6 +59,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId
                                     i={i}
                                     routineOrWarmUp={{ routineId: routineId.id, routineActual }}
                                     setLoader={setLoader}
+                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
                                     caseResolve={CaseResolve.calentamiento}
                                 />
                             </>
@@ -71,7 +71,8 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId
                         userId: id,
                         updateWarmUpUser,
                         updateIdGlobal,
-                        setLoader
+                        setLoader,
+                        setUsers
                     })}>
                         Borrar calentamiento
                     </button>
@@ -84,7 +85,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId
                     <button onClick={() => setCreateWarm(!createWarm)}>Crear calentamiento</button>
                 </>
             }
-            <Modal open={addDay || createWarm || Boolean(loader) || Boolean(pag)}>
+            <Modal open={addDay || createWarm || Boolean(pag)}>
                 <>
                     {
                         addDay ?

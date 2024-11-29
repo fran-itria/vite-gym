@@ -7,15 +7,15 @@ import FormTotalExercise from "./FormTotalExercise";
 import { deletRoutine } from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import CreateRoutine from "./CreateRoutine";
-import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
 import { basicLoaders, specificLoaders } from "../../const";
-import { CaseResolve } from "../../types";
+import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
+import { useUserActions } from "../../hook/useUserActions";
 
-export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserId?: string, isWarmupOrRoutine?: CaseResolve }) {
+export default function Routine({ otherUserId, isWarmupOrRoutine, setUsers }: { otherUserId?: string, isWarmupOrRoutine?: CaseResolve, setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>> }) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
-    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader, viewRoutineOtherUser } = useInformation(otherUserId, isWarmupOrRoutine, chagenOtherRoutine)
+    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader, viewRoutineOtherUser } = useInformation(otherUserId, isWarmupOrRoutine, chagenOtherRoutine, setChangeOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
@@ -57,6 +57,7 @@ export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserI
                                 i={i}
                                 routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
                                 setLoader={setLoader}
+                                isWarmUpOrRoutine={isWarmupOrRoutine}
                                 caseResolve={CaseResolve.rutina}
                             />
                         )
@@ -65,9 +66,10 @@ export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserI
                     <button onClick={() => deletRoutine({
                         id: routineId.id,
                         userId: id,
-                        updateRoutinesUser,
+                        updateRoutinesUser: updateRoutinesUser,
                         updateIdGlobal,
-                        setLoader
+                        setLoader,
+                        setUsers
                     })}>
                         Borrar rutina
                     </button>

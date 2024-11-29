@@ -228,9 +228,9 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                 <Modal open>
                     <div>
                         {modal == CaseResolve.calentamiento ?
-                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={CaseResolve.calentamiento}></WarmUp>
+                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={CaseResolve.calentamiento} setUsers={setUsers}></WarmUp>
                             :
-                            <Routine otherUserId={userId} isWarmupOrRoutine={CaseResolve.rutina}></Routine>
+                            <Routine otherUserId={userId} isWarmupOrRoutine={CaseResolve.rutina} setUsers={setUsers}></Routine>
                         }
                         <button className='buttonCancel' onClick={() => {
                             setModal(undefined)
