@@ -11,6 +11,7 @@ type getUserFunctionsProps = {
 }
 
 type getOneFunctionProps = getUserFunctionsProps & {
+    id: string
     setId: React.Dispatch<React.SetStateAction<string | undefined>>
     setLoader: SetLoader
     setRoutineAdmin: React.Dispatch<React.SetStateAction<Routine | undefined>>
@@ -34,26 +35,6 @@ export const getWarmUpsUser = async ({ id, setRoutinesUser }: getUserFunctionsPr
     axios.get(`/user/getOneUser/${id}`)
         .then(response => setRoutinesUser(response.data.WarmUps))
         .catch(error => window.alert(error.message))
-}
-export const getOneWarmUp = ({ id, setId, setLoader, setRoutineAdmin }: getOneFunctionProps) => {
-    setLoader('Cargando calentamiento')
-    axios.get(`/calentamiento/${id}`)
-        .then(response => {
-            setRoutineAdmin(response.data)
-            setLoader(undefined)
-            setId(id)
-        })
-        .catch(error => window.alert(error.data.Error))
-}
-export const getOneRoutine = ({ id, setId, setLoader, setRoutineAdmin }: getOneFunctionProps) => {
-    setLoader('Cargando rutina')
-    axios.get(`/rutina/${id}`)
-        .then(response => {
-            setRoutineAdmin(response.data)
-            setLoader(undefined)
-            setId(id)
-        })
-        .catch(error => window.alert(error.data.Error))
 }
 
 export const change = ({ e, setInputs }: changeFunctionProps) => {
