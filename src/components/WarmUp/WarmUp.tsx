@@ -15,27 +15,40 @@ import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve } from "../../types";
 import { Modal } from "@mui/material";
 
-export default function WarmUp() {
-    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal } = useInformation()
+export default function WarmUp({ otherUserId, isWarmUpOrRoutine }: { otherUserId: string, isWarmUpOrRoutine: string }) {
+    const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
+    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
 
+
     return (
-        <div className="h-full">
+        <div>
+            {loader && <Loader text={loader} />}
             <div>
                 <p>Seleccionar Calentamiento:</p>
                 <select onChange={(e) => {
+                    if (viewRoutineOtherUser) {
+                        setChangeOtherRoutine(true)
+                    }
                     updateIdGlobal(e.target.value)
                     setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
                 }}>
                     <option value={routineId.id}></option>
-                    {WarmUps.map((routine, i: number) => (
-                        <option value={routine.id}>
-                            {i !== WarmUps.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
-                        </option>
-                    )
-                    )}
+                    {!viewRoutineOtherUser ?
+                        WarmUps.map((routine, i: number) => (
+                            <option value={routine.id}>
+                                {i !== WarmUps.length - 1 ? `Calentamiento ${i + 1}` : 'Actual'}
+                            </option>
+                        )
+                        )
+                        :
+                        viewRoutineOtherUser.map((routine, i: number) => (
+                            <option value={routine.id}>
+                                {i !== viewRoutineOtherUser.length - 1 ? `Calentamiento ${i + 1}` : 'Actual'}
+                            </option>
+                        ))}
                 </select>
             </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
@@ -64,7 +77,7 @@ export default function WarmUp() {
                         Borrar calentamiento
                     </button>
                     <button onClick={() => setCreateWarm(prev => !prev)}> + Calentamiento </button>
-                    <Chronometer />
+                    {!otherUserId && <Chronometer />}
                 </>
                 :
                 <>
@@ -110,7 +123,6 @@ export default function WarmUp() {
                             :
                             <></>
                     }
-                    {loader ? <Loader text={loader} /> : <></>}
                 </>
             </Modal>
         </div>

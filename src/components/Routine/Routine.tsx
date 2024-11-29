@@ -13,27 +13,39 @@ import { basicLoaders, specificLoaders } from "../../const";
 import { CaseResolve } from "../../types";
 import { Modal } from "@mui/material";
 
-export default function Routine() {
-    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader } = useInformation()
+export default function Routine({ otherUserId, isWarmupOrRoutine }: { otherUserId: string, isWarmupOrRoutine: string }) {
+    const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
+    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader, viewRoutineOtherUser } = useInformation(otherUserId, isWarmupOrRoutine, chagenOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
 
     return (
         <div className="h-full">
+            {loader && <Loader text={loader} />}
             <div>
                 <p>Seleccionar rutina:</p>
                 <select onChange={(e) => {
+                    if (viewRoutineOtherUser) {
+                        setChangeOtherRoutine(true)
+                    }
                     updateIdGlobal(e.target.value)
                     setLoader(`${basicLoaders.loading} ${specificLoaders.routine}`)
                 }}>
                     <option value={routineId.id}></option>
-                    {Routines.map((routine, i: number) => (
-                        <option value={routine.id}>
-                            {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
-                        </option>
-                    )
-                    )}
+                    {!viewRoutineOtherUser ?
+                        Routines.map((routine, i: number) => (
+                            <option value={routine.id}>
+                                {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
+                            </option>
+                        )
+                        )
+                        :
+                        viewRoutineOtherUser.map((routine, i: number) => (
+                            <option value={routine.id}>
+                                {i !== viewRoutineOtherUser.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
+                            </option>
+                        ))}
                 </select>
             </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
@@ -102,7 +114,6 @@ export default function Routine() {
                         :
                         <></>
                     }
-                    {loader ? <Loader text={loader} /> : <></>}
                 </>
             </Modal>
         </div>
