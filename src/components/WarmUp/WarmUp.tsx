@@ -22,6 +22,7 @@ export type Props = {
     isWarmUpOrRoutine?: CaseResolve
     setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
     setModal?: (value: React.SetStateAction<CaseResolve | undefined>) => void
+    children?: React.ReactNode
 }
 
 export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
