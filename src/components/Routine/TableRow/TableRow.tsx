@@ -7,8 +7,10 @@ import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
 import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise";
 import { Modal } from "@mui/material";
+import { StyledTableRow } from "../../../themeIcons/customTheme";
 
-export default function TableRow({
+
+export default function TableRowComponet({
   id,
   name,
   series,
@@ -39,24 +41,27 @@ export default function TableRow({
   const { routineActual, routineId, weeks } = routineOrWarmUp;
 
   return (
-    <tr>
-      <TableCell
-        key={id}
-        weeks={weeks ? weeks : undefined}
-        id={id}
-        Loads={Loads ? Loads : undefined}
-        series={series}
-        reps={reps}
-        link={link}
-        name={name}
-        setOpenLoad={setOpenLoad}
-        setConfirmDelete={setConfirmDelete}
-        setOpen={setOpen}
-        setLoad={setLoad}
-        setIdLoad={setIdLoad}
-        setWeekLoad={setWeekLoad}
-        setRoutineAdmin={setRoutineAdmin}
-      />
+    <>
+      <StyledTableRow key={id}>
+        <TableCell
+          key={id}
+          weeks={weeks ? weeks : undefined}
+          id={id}
+          Loads={Loads ? Loads : undefined}
+          series={series}
+          reps={reps}
+          link={link}
+          name={name}
+          setOpenLoad={setOpenLoad}
+          setConfirmDelete={setConfirmDelete}
+          setOpen={setOpen}
+          setLoad={setLoad}
+          setIdLoad={setIdLoad}
+          setWeekLoad={setWeekLoad}
+          setRoutineAdmin={setRoutineAdmin}
+        />
+      </StyledTableRow>
+
       <Modal open={open || openLoad || load || confirmDelete}>
         <>
           {open ? (
@@ -132,6 +137,6 @@ export default function TableRow({
           )}
         </>
       </Modal>
-    </tr>
+    </>
   );
 }

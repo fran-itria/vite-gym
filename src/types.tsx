@@ -68,6 +68,9 @@ export type TableComponentProps = {
   setLoader: SetLoader
   setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
+  setSelectDay: React.Dispatch<React.SetStateAction<boolean>>
+  setAddExercise: (value: React.SetStateAction<boolean>) => void
+  addWeek(id: string | undefined, weeks: number, routineActual: Function | undefined): Promise<void>
 }
 
 export type TableRowComponentProps = Exercise & {

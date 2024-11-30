@@ -13,8 +13,18 @@ import { basicLoaders, specificLoaders } from "../../const";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../../themeIcons/customTheme";
 
-export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers }: { otherUserId?: string, isWarmUpOrRoutine?: CaseResolve, setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>> }) {
+export type Props = {
+    otherUserId?: string
+    isWarmUpOrRoutine?: CaseResolve
+    setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
+    setModal: (value: React.SetStateAction<CaseResolve | undefined>) => void
+}
+
+export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
     const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine, setChangeOtherRoutine)
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
@@ -22,17 +32,19 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers }: { o
     const { updateWarmUpUser } = useUserActions()
 
     return (
-        <div>
+        <div className="w-1/4 rounded background p-4 ll:w-full">
             {loader && <Loader text={loader} />}
-            <div>
-                <p>Seleccionar Calentamiento:</p>
-                <select onChange={(e) => {
-                    if (viewRoutineOtherUser) {
-                        setChangeOtherRoutine(true)
-                    }
-                    updateIdGlobal(e.target.value)
-                    setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
-                }}>
+            <div className="flex justify-center items-center">
+                <b className="mr-2">Seleccionar Calentamiento:</b>
+                <select
+                    className="rounded h-6 text-center"
+                    onChange={(e) => {
+                        if (viewRoutineOtherUser) {
+                            setChangeOtherRoutine(true)
+                        }
+                        updateIdGlobal(e.target.value)
+                        setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
+                    }}>
                     <option value={routineId.id}></option>
                     {!viewRoutineOtherUser ?
                         WarmUps.map((routine, i: number) => (
@@ -51,32 +63,64 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers }: { o
             </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
                 <>
-                    {routine.Days.map((day, i) => {
-                        return (
-                            <>
-                                <Detail
-                                    day={day}
-                                    i={i}
-                                    routineOrWarmUp={{ routineId: routineId.id, routineActual }}
-                                    setLoader={setLoader}
-                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
-                                    caseResolve={CaseResolve.calentamiento}
-                                />
-                            </>
-                        )
-                    })}
-                    <button onClick={() => setAddDay(!addDay)}>+ Día</button>
-                    <button onClick={() => deleteWarmup({
-                        id: routineId.id,
-                        userId: id,
-                        updateWarmUpUser,
-                        updateIdGlobal,
-                        setLoader,
-                        setUsers
-                    })}>
-                        Borrar calentamiento
-                    </button>
-                    <button onClick={() => setCreateWarm(prev => !prev)}> + Calentamiento </button>
+                    <div className={`grid grid-cols-${routine.Days.length > 4 ? "4" : routine.Days.length} gap-3 mt-3`}>
+                        {routine.Days.map((day, i) => {
+                            return (
+                                <div>
+                                    <Detail
+                                        day={day}
+                                        i={i}
+                                        routineOrWarmUp={{ routineId: routineId.id, routineActual }}
+                                        setLoader={setLoader}
+                                        isWarmUpOrRoutine={isWarmUpOrRoutine}
+                                        caseResolve={CaseResolve.calentamiento}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="flex flex-col items-center mt-5">
+                        <div className="flex w-full justify-around ll:justify-around">
+                            <button
+                                className="buttonConfirm w-52 ll:w-40"
+                                onClick={() => setAddDay(prev => !prev)}
+                            >
+                                Crear día
+                            </button>
+                            <button
+                                className="buttonConfirm w-52 ll:w-40"
+                                onClick={() => setCreateWarm(prev => !prev)}
+                            >
+                                Crear calentamiento
+                            </button>
+                        </div>
+                        <div className="flex w-full justify-around mt-3 ll:justify-around">
+                            <button
+                                className="buttonCancel w-52 ll:w-40"
+                                onClick={() => {
+                                    setModal(undefined)
+                                    updateIdGlobal(undefined)
+                                }
+                                }>
+                                Volver
+                            </button>
+                            <button
+                                className="buttonCancel w-52 ll:w-40"
+                                onClick={() => deleteWarmup({
+                                    id: routineId.id,
+                                    userId: id,
+                                    updateWarmUpUser,
+                                    updateIdGlobal,
+                                    setLoader,
+                                    setUsers
+                                })}>
+                                <ThemeProvider theme={theme}>
+                                    <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} />
+                                    calentamiento
+                                </ThemeProvider>
+                            </button>
+                        </div>
+                    </div>
                     {!otherUserId && <Chronometer />}
                 </>
                 :

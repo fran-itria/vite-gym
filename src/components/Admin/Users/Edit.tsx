@@ -226,16 +226,22 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
             {
                 modal != undefined && (routinesUser?.length && routinesUser?.length > 0) && (modal == CaseResolve.calentamiento || modal == CaseResolve.rutina) &&
                 <Modal open>
-                    <div>
+                    <div className='w-screen h-screen flex justify-center items-center text-center flex-col ll:p-2'>
                         {modal == CaseResolve.calentamiento ?
-                            <WarmUp otherUserId={userId} isWarmUpOrRoutine={CaseResolve.calentamiento} setUsers={setUsers}></WarmUp>
+                            <WarmUp
+                                otherUserId={userId}
+                                isWarmUpOrRoutine={CaseResolve.calentamiento}
+                                setUsers={setUsers}
+                                setModal={setModal}>
+                            </WarmUp>
                             :
-                            <Routine otherUserId={userId} isWarmupOrRoutine={CaseResolve.rutina} setUsers={setUsers}></Routine>
+                            <Routine
+                                otherUserId={userId}
+                                isWarmUpOrRoutine={CaseResolve.rutina}
+                                setUsers={setUsers}
+                                setModal={setModal}
+                            ></Routine>
                         }
-                        <button className='buttonCancel' onClick={() => {
-                            setModal(undefined)
-                            updateIdGlobal(undefined)
-                        }}>Cancelar</button>
                     </div>
                 </Modal>
             }
