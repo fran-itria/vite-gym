@@ -21,7 +21,7 @@ export type Props = {
     otherUserId?: string
     isWarmUpOrRoutine?: CaseResolve
     setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
-    setModal: (value: React.SetStateAction<CaseResolve | undefined>) => void
+    setModal?: (value: React.SetStateAction<CaseResolve | undefined>) => void
 }
 
 export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
@@ -98,7 +98,8 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                             <button
                                 className="buttonCancel w-52 ll:w-40"
                                 onClick={() => {
-                                    setModal(undefined)
+                                    if (setModal)
+                                        setModal(undefined)
                                     updateIdGlobal(undefined)
                                 }
                                 }>

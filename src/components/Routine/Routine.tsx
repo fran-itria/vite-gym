@@ -89,7 +89,8 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                             <button
                                 className="buttonCancel w-32"
                                 onClick={() => {
-                                    setModal(undefined)
+                                    if (setModal)
+                                        setModal(undefined)
                                     updateIdGlobal(undefined)
                                 }
                                 }>
