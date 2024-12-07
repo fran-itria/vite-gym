@@ -13,9 +13,7 @@ import { basicLoaders, specificLoaders } from "../../const";
 import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../themeIcons/customTheme";
+import QueueIcon from '@mui/icons-material/Queue';
 
 export type Props = {
     otherUserId?: string
@@ -33,7 +31,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
     const { updateWarmUpUser } = useUserActions()
 
     return (
-        <div className="w-1/4 rounded background p-4 ll:w-full">
+        <div className={`ll:w-full rounded ${setUsers ? 'background w-1/4 h-1/2' : 'flex flex-col items-center h-full justify-center'} p-4`}>
             {loader && <Loader text={loader} />}
             <div className="flex justify-center items-center">
                 <b className="mr-2">Seleccionar Calentamiento:</b>
@@ -44,68 +42,68 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                             setChangeOtherRoutine(true)
                         }
                         updateIdGlobal(e.target.value)
-                        setLoader(`${basicLoaders.loading} ${specificLoaders.warm}`)
+                        setLoader(`${basicLoaders.loading} ${specificLoaders.warm} `)
                     }}>
                     <option value={routineId.id}></option>
                     {!viewRoutineOtherUser ?
                         WarmUps.map((routine, i: number) => (
                             <option value={routine.id}>
-                                {i !== WarmUps.length - 1 ? `Calentamiento ${i + 1}` : 'Actual'}
+                                {i !== WarmUps.length - 1 ? `Calentamiento ${i + 1} ` : 'Actual'}
                             </option>
                         )
                         )
                         :
                         viewRoutineOtherUser.map((routine, i: number) => (
                             <option value={routine.id}>
-                                {i !== viewRoutineOtherUser.length - 1 ? `Calentamiento ${i + 1}` : 'Actual'}
+                                {i !== viewRoutineOtherUser.length - 1 ? `Calentamiento ${i + 1} ` : 'Actual'}
                             </option>
                         ))}
                 </select>
             </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
                 <>
-                    <div className={`grid grid-cols-${routine.Days.length > 4 ? "4" : routine.Days.length} gap-3 mt-3`}>
+                    <div className={`flex flex-col justify-around ${!setUsers ? 'h-2/5' : 'mt-5 h-3/5'}`}>
                         {routine.Days.map((day, i) => {
                             return (
-                                <div>
-                                    <Detail
-                                        day={day}
-                                        i={i}
-                                        routineOrWarmUp={{ routineId: routineId.id, routineActual }}
-                                        setLoader={setLoader}
-                                        isWarmUpOrRoutine={isWarmUpOrRoutine}
-                                        caseResolve={CaseResolve.calentamiento}
-                                    />
-                                </div>
+                                <Detail
+                                    day={day}
+                                    i={i}
+                                    routineOrWarmUp={{ routineId: routineId.id, routineActual }}
+                                    setLoader={setLoader}
+                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
+                                    caseResolve={CaseResolve.calentamiento}
+                                />
                             )
                         })}
                     </div>
-                    <div className="flex flex-col items-center mt-5">
-                        <div className="flex w-full justify-around ll:justify-around">
+                    <div className={`flex flex-col items-center ${setUsers && 'mt-5'}`}>
+                        <div className={`flex ${!setUsers && 'flex-col h-24'} w-full justify-around`}>
                             <button
-                                className="buttonConfirm w-52 ll:w-40"
+                                className="buttonConfirm w-52 ll:w-40 h-7"
                                 onClick={() => setAddDay(prev => !prev)}
                             >
-                                Crear día
+                                <QueueIcon className="mr-2" fontSize="small" /> Día
                             </button>
                             <button
-                                className="buttonConfirm w-52 ll:w-40"
+                                className="buttonConfirm w-52 ll:w-40 h-7"
                                 onClick={() => setCreateWarm(prev => !prev)}
                             >
-                                Crear calentamiento
+                                <QueueIcon className="mr-2" fontSize="small" /> Calentamiento
                             </button>
                         </div>
                         <div className="flex w-full justify-around mt-3 ll:justify-around">
-                            <button
-                                className="buttonCancel w-52 ll:w-40"
-                                onClick={() => {
-                                    if (setModal)
-                                        setModal(undefined)
-                                    updateIdGlobal(undefined)
-                                }
-                                }>
-                                Volver
-                            </button>
+                            {setUsers &&
+                                <button
+                                    className="buttonCancel w-52 ll:w-40 h-7"
+                                    onClick={() => {
+                                        if (setModal)
+                                            setModal(undefined)
+                                        updateIdGlobal(undefined)
+                                    }
+                                    }>
+                                    Volver
+                                </button>
+                            }
                             <button
                                 className="buttonCancel w-52 ll:w-40"
                                 onClick={() => deleteWarmup({
@@ -116,10 +114,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                                     setLoader,
                                     setUsers
                                 })}>
-                                <ThemeProvider theme={theme}>
-                                    <DeleteIcon sx={{ color: theme.palette.tashIcon.light }} />
-                                    calentamiento
-                                </ThemeProvider>
+                                🗑️ Calentamiento
                             </button>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ import { CaseResolve } from "../../types";
 import { Modal } from "@mui/material";
 import { useUserActions } from "../../hook/useUserActions";
 import { Props } from "../WarmUp/WarmUp";
+import QueueIcon from '@mui/icons-material/Queue';
 
 export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
@@ -22,7 +23,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
     const { updateRoutinesUser } = useUserActions()
 
     return (
-        <div className="w-1/6 rounded background p-4 ll:w-full">
+        <div className={`ll:w-full rounded ${setUsers ? 'background w-1/4 h-1/2' : 'flex flex-col items-center h-full justify-center'} p-4`}>
             {loader && <Loader text={loader} />}
             <div className="flex justify-center items-center">
                 <b className="mr-2">Seleccionar rutina:</b>
@@ -53,51 +54,52 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
             </div>
             {routine.Days?.length && routine.Days?.length > 0 ?
                 <>
-                    <div className={`grid grid-cols-${routine.Days.length > 4 ? "4" : routine.Days.length} gap-3 mt-3`}>
+                    <div className={`flex flex-col justify-around ${!setUsers ? 'h-2/5' : 'mt-5 h-3/5'}`}>
                         {routine.Days.map((day, i) => {
                             return (
-                                <div
-                                >
-                                    <Detail
-                                        day={day}
-                                        i={i}
-                                        routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
-                                        setLoader={setLoader}
-                                        isWarmUpOrRoutine={isWarmUpOrRoutine}
-                                        caseResolve={CaseResolve.rutina}
-                                    />
-                                </div>
+                                <Detail
+                                    day={day}
+                                    i={i}
+                                    routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
+                                    setLoader={setLoader}
+                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
+                                    caseResolve={CaseResolve.rutina}
+                                />
                             )
                         })}
                     </div>
-                    <div className="flex flex-col items-center mt-5">
-                        <div className="flex w-full justify-between ll:justify-around">
+                    <div className={`flex flex-col items-center ${setUsers && 'mt-5'}`}>
+                        <div className={`flex ${!setUsers && 'flex-col h-24'} w-full justify-around`}>
                             <button
-                                className="buttonConfirm w-32"
+                                className="buttonConfirm w-52 ll:w-40 h-7"
                                 onClick={() => setAddDay(prev => !prev)}
                             >
-                                Crear día
+                                <QueueIcon className="mr-2" fontSize="small" /> Día
+
                             </button>
                             <button
-                                className="buttonConfirm w-32"
+                                className="buttonConfirm w-52 ll:w-40 h-7"
                                 onClick={() => setOpenCreateRouitine(prev => !prev)}
                             >
-                                Crear rutina
+                                <QueueIcon className="mr-2" fontSize="small" /> Rutina
+
                             </button>
                         </div>
                         <div className="flex w-full justify-between mt-3 ll:justify-around">
+                            {setUsers &&
+                                <button
+                                    className="buttonCancel w-52 ll:w-40 h-7"
+                                    onClick={() => {
+                                        if (setModal)
+                                            setModal(undefined)
+                                        updateIdGlobal(undefined)
+                                    }
+                                    }>
+                                    Volver
+                                </button>
+                            }
                             <button
-                                className="buttonCancel w-32"
-                                onClick={() => {
-                                    if (setModal)
-                                        setModal(undefined)
-                                    updateIdGlobal(undefined)
-                                }
-                                }>
-                                Volver
-                            </button>
-                            <button
-                                className="buttonCancel w-32"
+                                className="buttonCancel w-52 ll:w-40"
                                 onClick={() => deletRoutine({
                                     id: routineId.id,
                                     userId: id,
@@ -106,7 +108,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                                     setLoader,
                                     setUsers
                                 })}>
-                                Borrar rutina
+                                🗑️ Rutina
                             </button>
                         </div>
                     </div>

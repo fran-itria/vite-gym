@@ -39,6 +39,9 @@ h1 {
 
 .button {
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   padding: 6px;
   font-size: 1em;

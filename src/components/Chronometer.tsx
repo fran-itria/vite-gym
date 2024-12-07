@@ -21,20 +21,22 @@ export default function Chronometer() {
       });
       setMinutes((minutes) => Math.floor(minutes + ((second % 60) + 1) / 60));
       setHours((hours) => Math.floor(hours + ((second % 3600) + 1) / 3600));
-    }, 10);
+    }, 1000);
     if (!play) clearInterval(time);
     return () => clearInterval(time);
   }, [play]);
   return (
-    <>
-      <p>
+    <div className="w-1/4 flex flex-col items-center ll:w-full mt-3 bg-gray-700 rounded p-2 border-2 border-gray-950">
+      <p className="font-bold text-xl">
         {hours < 10 ? ` 0${hours}` : ` ${hours % 60}`}h :
         {minutes < 10 ? ` 0${minutes}` : ` ${minutes % 60}`}m :
         {seconds < 10 ? ` 0${seconds}` : ` ${seconds % 60}`}s
       </p>
-      <button onClick={() => setPlay(true)}>Play</button>
-      <button onClick={() => setPlay(false)}>Pause</button>
-      <button onClick={() => reset()}>Reset</button>
-    </>
+      <div className="w-full flex justify-around mt-3">
+        <button onClick={() => reset()} className="buttonCancel w-24 h-7">Resetear</button>
+        <button onClick={() => setPlay(true)} className="buttonConfirm w-24 h-7">Iniciar</button>
+        <button onClick={() => setPlay(false)} className="button w-24 h-7">Pausar</button>
+      </div>
+    </div>
   );
 }

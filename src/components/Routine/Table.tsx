@@ -48,7 +48,7 @@ export default function TableComponent({ day, routineOrWarmUp, setLoader, setRou
                             setSelectDay(false)
                             deleteDay({ caseResolve, id: day.id, routineActual, routineId, setRoutineAdmin })
                         }}>
-                        Borrar día
+                        🗑️ Día
                     </button>
                     <button className='buttonCancel w-24' onClick={() => setSelectDay(false)}>Volver</button>
                 </div>
