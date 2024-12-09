@@ -12,38 +12,35 @@ export default function ModalAddLoad({
   const [inputLoad, setInputLoad] = useState<string>("");
 
   return (
-    <div
-      style={{
-        border: "solid, black, 2px",
-        background: "white",
-        color: "black",
-      }}
-    >
-      <label style={{ color: "black" }}>
-        Carga:
-        <input
-          style={{ border: "1px solid black" }}
-          onChange={(e) => setInputLoad(e.target.value)}
-        ></input>
-      </label>
-      <button
-        onClick={() =>
-          modifiedLoads({
-            exerciseId: id,
-            load: inputLoad,
-            routineId: routineOrWarmUp.routineId,
-            routineActual: routineOrWarmUp.routineActual,
-            setOpenLoad,
-            setLoader,
-            weekLoad,
-          })
-        }
-      >
-        Agregar
-      </button>
-      <button onClick={() => setOpenLoad((openLoad) => !openLoad)}>
-        Cerrar
-      </button>
+    <div className="background flex flex-col p-4 rounded">
+      <input
+        placeholder="Cargar peso"
+        onChange={(e) => setInputLoad(e.target.value)}
+      ></input>
+      <div className="flex justify-between mt-4">
+        <button
+          className="buttonCancel w-24"
+          onClick={() => setOpenLoad((openLoad) => !openLoad)}
+        >
+          Cancelar
+        </button>
+        <button
+          className="buttonConfirm w-24"
+          onClick={() =>
+            modifiedLoads({
+              exerciseId: id,
+              load: inputLoad,
+              routineId: routineOrWarmUp.routineId,
+              routineActual: routineOrWarmUp.routineActual,
+              setOpenLoad,
+              setLoader,
+              weekLoad,
+            })
+          }
+        >
+          Agregar
+        </button>
+      </div>
     </div>
   );
 }

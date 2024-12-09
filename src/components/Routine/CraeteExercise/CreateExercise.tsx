@@ -16,7 +16,7 @@ export default function CreateExercise({
 
     return (
         <form
-            style={{ border: 'solid, red, 5px', borderRadius: '50px', display: 'flex', flexDirection: 'column', position: 'absolute' }}
+            className="background rounded p-4 flex flex-col ll:w-96 ll:h-60 justify-between items-center"
             onSubmit={(e) => {
                 addExerciseFunction({
                     e,
@@ -32,24 +32,37 @@ export default function CreateExercise({
                 })
             }}
         >
-            <label>
-                Nombre del ejercicio:
-                <input name="exerciseName" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
-            </label>
-            <label>
-                Series:
-                <input name="series" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
-            </label>
-            <label>
-                Repeticiones:
-                <input name="reps" onChange={(e) => createExerciseInputs({ e, setInputs })} required></input>
-            </label>
-            <label>
-                Link de video del ejercicio:
-                <input type="url" name='link' onChange={(e) => createExerciseInputs({ e, setInputs })}></input>
-            </label>
-            <button >Crear</button>
-            <button onClick={() => setAddExercise(prev => !prev)}>Cancelar</button>
+            <input
+                placeholder="Nombre del ejercicio"
+                name="exerciseName"
+                onChange={(e) => createExerciseInputs({ e, setInputs })}
+                required>
+
+            </input>
+            <input
+                placeholder="Series:"
+                name="series"
+                onChange={(e) => createExerciseInputs({ e, setInputs })}
+                required>
+
+            </input>
+            <input
+                placeholder="Repeticiones:"
+                name="reps"
+                onChange={(e) => createExerciseInputs({ e, setInputs })}
+                required>
+
+            </input>
+            <input
+                placeholder="Link de video del ejercicio"
+                type="url"
+                name='link'
+                onChange={(e) => createExerciseInputs({ e, setInputs })}
+            ></input>
+            <div className="flex justify-between w-56">
+                <button className="buttonConfirm w-24">Crear</button>
+                <button className="buttonCancel w-24" onClick={() => setAddExercise(prev => !prev)}>Cancelar</button>
+            </div>
         </form>
     )
 }

@@ -62,9 +62,9 @@ export default function TableRowComponet({
         />
       </StyledTableRow>
 
-      <Modal open={open || openLoad || load || confirmDelete}>
+      <Modal open={open || openLoad || load || confirmDelete} className='flex flex-col items-center justify-center'>
         <>
-          {open ? (
+          {open &&
             <ModifiedExercise
               id={id}
               name={name}
@@ -77,10 +77,8 @@ export default function TableRowComponet({
               setRoutineAdmin={setRoutineAdmin}
               caseResolve={caseResolve}
             />
-          ) : (
-            <></>
-          )}
-          {openLoad ? (
+          }
+          {openLoad &&
             <ModalAddLoad
               key={id}
               id={id}
@@ -89,10 +87,8 @@ export default function TableRowComponet({
               weekLoad={weekLoad}
               routineOrWarmUp={{ routineActual, routineId }}
             />
-          ) : (
-            <></>
-          )}
-          {confirmDelete ? (
+          }
+          {confirmDelete &&
             <ConfirmDelete
               key={id}
               name={name}
@@ -104,10 +100,8 @@ export default function TableRowComponet({
               setRoutineAdmin={setRoutineAdmin}
               caseResolve={caseResolve}
             />
-          ) : (
-            <></>
-          )}
-          {load ? (
+          }
+          {load &&
             <div>
               <label>
                 Carga:
@@ -132,9 +126,7 @@ export default function TableRowComponet({
               </button>
               <button onClick={() => setLoad(!load)}>Cancelar</button>
             </div>
-          ) : (
-            <></>
-          )}
+          }
         </>
       </Modal>
     </>

@@ -14,8 +14,8 @@ export default function TableComponent({ day, routineOrWarmUp, setLoader, setRou
     const { weeks, routineActual, routineId } = routineOrWarmUp
 
     return (
-        <div className='background p-4 rounded ll:w-96'>
-            <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-full'>
+        <div className='background p-3 rounded ll:w-96 ll:p-3'>
+            <TableContainer className='rounded overflow-auto max-h-full max-w-6xl'>
                 <Table aria-label="customized table">
                     <TableHeadComponent weeks={weeks ? weeks : undefined} />
                     <TableBody>

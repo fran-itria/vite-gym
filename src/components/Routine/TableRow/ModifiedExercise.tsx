@@ -26,55 +26,71 @@ export default function ModifiedExercise({
     link,
   });
   return (
-    <div style={{ border: "solid, black, 2px", background: "white" }}>
-      <label>
-        Name:
+    <div className="background flex flex-col p-4 rounded">
+      <div className="flex flex-col mb-5">
+        <label className="font-bold italic mb-1 ">
+          Ejercicio:
+        </label>
         <input
           name="name"
           defaultValue={name}
           onChange={(e) => changeInputs(e, setInputs)}
         ></input>
-      </label>
-      <label>
-        Series:
+      </div>
+      <div className="flex flex-col mb-5">
+        <label className="font-bold italic mb-1">
+          Series:
+        </label>
         <input
           name="series"
           defaultValue={series}
           onChange={(e) => changeInputs(e, setInputs)}
         ></input>
-      </label>
-      <label>
-        Repeticiones:
+      </div>
+      <div className="flex flex-col mb-5">
+        <label className="font-bold italic mb-1">
+          Repeticiones:
+        </label>
         <input
           name="reps"
           defaultValue={reps}
           onChange={(e) => changeInputs(e, setInputs)}
         ></input>
-      </label>
-      <label>
-        Link de video:
+      </div>
+      <div className="flex flex-col mb-5">
+        <label className="font-bold italic mb-1">
+          Link de video:
+        </label>
         <input
           name="link"
           defaultValue={link}
           onChange={(e) => changeInputs(e, setInputs)}
         ></input>
-      </label>
-      <button
-        onClick={() =>
-          modifiedExercise({
-            id,
-            inputs,
-            routineOrWarmUp,
-            setOpen,
-            setLoader,
-            setRoutineAdmin,
-            caseResolve,
-          })
-        }
-      >
-        {" "}
-        Modificar{" "}
-      </button>
+      </div>
+      <div className="w-full flex justify-between">
+        <button
+          className="buttonCancel w-24"
+          onClick={() => setOpen(open => !open)}
+        >
+          Cancelar
+        </button>
+        <button
+          className="buttonConfirm w-24"
+          onClick={() =>
+            modifiedExercise({
+              id,
+              inputs,
+              routineOrWarmUp,
+              setOpen,
+              setLoader,
+              setRoutineAdmin,
+              caseResolve,
+            })
+          }
+        >
+          Modificar
+        </button>
+      </div>
     </div>
   );
 }
