@@ -21,7 +21,7 @@ export default function TableCell({
     setWeekLoad,
     setRoutineAdmin
 }: TableCellComponentProps) {
-
+    const weeksArray = Array.from({ length: Number(weeks) }, (_, i) => Loads && Loads[i] ? Loads[i] : undefined)
     return (
         <>
             <StyledTableCell align="center" className='w-20'>
@@ -36,48 +36,42 @@ export default function TableCell({
                 </ThemeProvider>
             </StyledTableCell>
             <StyledTableCell align="center">
-                {link ?
+                {link &&
                     <a target='_blank' href={link}>
                         <VisibilityIcon />
                     </a>
-                    :
-                    <></>
                 }
             </StyledTableCell>
             <StyledTableCell align="center">{name}</StyledTableCell>
             <StyledTableCell align="center">{series}</StyledTableCell>
             <StyledTableCell align="center">{reps}</StyledTableCell>
             {
-                Loads ? Loads?.map(load => {
-                    return (
-                        <StyledTableCell align="center">
-                            <button onClick={() => {
-                                setLoad(load => !load)
-                                setIdLoad(load.id ? load.id : '')
-                            }}>
-                                {load.loads}
-                            </button>
+                Loads && weeksArray && weeksArray?.map((value, index) => {
+                    if (value)
+                        return (
+                            <StyledTableCell align="center">
+                                <button
+                                    className={`button w-full ${setRoutineAdmin && 'opacity-90 pointer-events-none'}`}
+                                    onClick={() => {
+                                        setLoad(load => !load)
+                                        setIdLoad(value.id ? value.id : '')
+                                    }}>
+                                    {value.loads}
+                                </button>
+                            </StyledTableCell>
+                        )
+                    else if (weeksArray.findIndex((e) => e == undefined) == index) {
+                        return <StyledTableCell align='center'>
+                            <AddCircleIcon
+                                className={`${setRoutineAdmin && 'opacity-50 pointer-events-none'}`}
+                                color="success"
+                                onClick={() => {
+                                    setOpenLoad(openLoad => !openLoad)
+                                    setWeekLoad(Loads.length + 1)
+                                }} />
                         </StyledTableCell>
-                    )
+                    } else return <StyledTableCell></StyledTableCell>
                 })
-                    :
-                    <></>
-            }
-            {
-                weeks && Loads && weeks > Loads?.length ?
-                    !setRoutineAdmin ?
-                        <StyledTableCell align="center">
-                            <AddCircleIcon color="success" onClick={() => {
-                                setOpenLoad(openLoad => !openLoad)
-                                setWeekLoad(Loads.length + 1)
-                            }} />
-                        </StyledTableCell>
-                        :
-                        <StyledTableCell align="center">
-                            <AddCircleIcon color='success' style={{ opacity: 0.5 }} />
-                        </StyledTableCell>
-                    :
-                    <></>
             }
         </>
     )
