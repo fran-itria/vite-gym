@@ -5,9 +5,9 @@ import useTabelRow from "../../../hook/Components/useTableRow";
 import TableCell from "./TableCell";
 import ConfirmDelete from "./ConfirmDelete";
 import ModifiedExercise from "./ModifiedExercise";
-import { modifiedLoads } from "../../../services/routine/exercises/modifiedExercise";
 import { Modal } from "@mui/material";
 import { StyledTableRow } from "../../../themeIcons/customTheme";
+import ModifiedLoad from "./ModifiedLoad";
 
 
 export default function TableRowComponet({
@@ -102,31 +102,16 @@ export default function TableRowComponet({
             />
           }
           {load &&
-            <div>
-              <label>
-                Carga:
-                <input
-                  type="text"
-                  onChange={(e) => setNewLoads(e.target.value)}
-                ></input>
-              </label>
-              <button
-                onClick={() =>
-                  modifiedLoads({
-                    id: idLoad,
-                    load: newLoads,
-                    routineActual,
-                    routineId,
-                    setLoad,
-                    setLoader,
-                  })
-                }
-              >
-                Guardar
-              </button>
-              <button onClick={() => setLoad(!load)}>Cancelar</button>
-            </div>
-          }
+            <ModifiedLoad
+              key={idLoad}
+              id={idLoad}
+              load={newLoads}
+              routineId={routineId}
+              setLoad={setLoad}
+              setLoader={setLoader}
+              setNewLoads={setNewLoads}
+              routineActual={routineActual}
+            />}
         </>
       </Modal>
     </>
