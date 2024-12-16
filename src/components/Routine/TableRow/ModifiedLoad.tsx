@@ -5,22 +5,23 @@ import { SetLoader } from "../../../types"
 
 type ModifiedLoadProps = {
     setNewLoads: React.Dispatch<React.SetStateAction<string>>
-    setLoad: React.Dispatch<React.SetStateAction<boolean>>
+    setLoad: React.Dispatch<React.SetStateAction<string | undefined>>
     setLoader: SetLoader
     routineActual?: (Days: Routine) => void;
     routineId?: string
     id: string
     load: string
+    currentLoad: string
 }
 
-
-export default function ModifiedLoad({ setNewLoads, setLoad, setLoader, id, load, routineActual, routineId }: ModifiedLoadProps) {
+export default function ModifiedLoad({ setNewLoads, setLoad, setLoader, id, load, routineActual, routineId, currentLoad }: ModifiedLoadProps) {
     return (
         <div className="background rounded p-4 flex flex-col">
             <input
                 type="text"
                 placeholder="Carga"
                 onChange={(e) => setNewLoads(e.target.value)}
+                defaultValue={currentLoad}
             ></input>
             <div className="flex justify-between mt-3">
                 <button
@@ -42,7 +43,7 @@ export default function ModifiedLoad({ setNewLoads, setLoad, setLoader, id, load
                     className='buttonCancel w-24'
                     onClick={() => {
                         console.log('cancel')
-                        setLoad(false)
+                        setLoad(undefined)
                     }}
                 >
                     Cancelar

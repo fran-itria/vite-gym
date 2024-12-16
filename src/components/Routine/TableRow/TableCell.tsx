@@ -42,9 +42,30 @@ export default function TableCell({
                     </a>
                 }
             </StyledTableCell>
-            <StyledTableCell align="center">{name}</StyledTableCell>
-            <StyledTableCell align="center">{series}</StyledTableCell>
-            <StyledTableCell align="center">{reps}</StyledTableCell>
+            {name?.includes(',') ?
+                <StyledTableCell align="center">
+                    <p className='mb-3'>{name?.split(',')[0]}</p>
+                    <p>{name?.split(',')[1]}</p>
+                </StyledTableCell>
+                :
+                <StyledTableCell align="center">{name}</StyledTableCell>
+            }
+            {String(series).includes(',') ?
+                <StyledTableCell align="center">
+                    <p className='mb-3'>{String(series).split(',')[0]}</p>
+                    <p>{String(series).split(',')[1]}</p>
+                </StyledTableCell>
+                :
+                <StyledTableCell align="center">{series}</StyledTableCell>
+            }
+            {reps?.includes(',') ?
+                <StyledTableCell align="center">
+                    <p className='mb-3'>{reps?.split(',')[0]}</p>
+                    <p>{reps?.split(',')[1]}</p>
+                </StyledTableCell>
+                :
+                <StyledTableCell align="center">{reps}</StyledTableCell>
+            }
             {
                 Loads && weeksArray && weeksArray?.map((value, index) => {
                     if (value)
@@ -53,10 +74,17 @@ export default function TableCell({
                                 <button
                                     className={`button w-full ${setRoutineAdmin && 'opacity-90 pointer-events-none'}`}
                                     onClick={() => {
-                                        setLoad(load => !load)
+                                        setLoad(value.loads && value.loads)
                                         setIdLoad(value.id ? value.id : '')
                                     }}>
-                                    {value.loads}
+                                    {value.loads?.includes(',') ?
+                                        <div>
+                                            <p className='mb-3'>{value.loads?.split(',')[0]}</p>
+                                            <p>{value.loads?.split(',')[1]}</p>
+                                        </div>
+                                        :
+                                        value.loads
+                                    }
                                 </button>
                             </StyledTableCell>
                         )

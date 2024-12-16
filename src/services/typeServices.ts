@@ -50,7 +50,7 @@ export type modifiedLoadsProps = {
   routineId?: string,
   routineActual?: ((Days: Routine) => void)
   setOpenLoad?: React.Dispatch<React.SetStateAction<boolean>>
-  setLoad?: React.Dispatch<React.SetStateAction<boolean>>
+  setLoad: React.Dispatch<React.SetStateAction<string | undefined>>
   setLoader: SetLoader
   weekLoad?: number
 }

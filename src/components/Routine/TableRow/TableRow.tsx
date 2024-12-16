@@ -62,7 +62,7 @@ export default function TableRowComponet({
         />
       </StyledTableRow>
 
-      <Modal open={open || openLoad || load || confirmDelete} className='flex flex-col items-center justify-center'>
+      <Modal open={open || openLoad || Boolean(load) || confirmDelete} className='flex flex-col items-center justify-center'>
         <>
           {open &&
             <ModifiedExercise
@@ -111,6 +111,7 @@ export default function TableRowComponet({
               setLoader={setLoader}
               setNewLoads={setNewLoads}
               routineActual={routineActual}
+              currentLoad={load}
             />}
         </>
       </Modal>

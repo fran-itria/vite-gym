@@ -53,7 +53,7 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
     try {
         setLoader(`${basicLoaders.save} ${specificLoaders.load}`)
         if (id && setLoad) {
-            setLoad(false)
+            setLoad(undefined)
             await axios.put('/cargas', {
                 id,
                 newLoads: load

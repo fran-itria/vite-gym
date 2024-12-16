@@ -161,7 +161,7 @@ export type TableCellComponentProps = Exercise & {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setLoad: React.Dispatch<React.SetStateAction<boolean>>
+  setLoad: React.Dispatch<React.SetStateAction<string | undefined>>
   setIdLoad: React.Dispatch<React.SetStateAction<string>>
   setWeekLoad: React.Dispatch<React.SetStateAction<number>>
   setRoutineAdmin?: CaseResolve

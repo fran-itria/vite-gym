@@ -67,7 +67,10 @@ export default function ModifiedExercise({
           onChange={(e) => changeInputs(e, setInputs)}
         ></input>
       </div>
-      <div className="w-full flex justify-between">
+      <p>Si desea colocar una biserie </p>
+      <p>separe los ejercicios, series y </p>
+      <p>repeticiones con una <b>coma ( , )</b></p>
+      <div className="w-full flex justify-between mt-3">
         <button
           className="buttonCancel w-24"
           onClick={() => setOpen(open => !open)}
