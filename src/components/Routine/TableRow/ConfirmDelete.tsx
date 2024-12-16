@@ -12,16 +12,22 @@ export default function ConfirmDelete({
     caseResolve
 }: ConfirmDeleteComponentProps) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', background: 'white', border: '5px, solid, black' }}>
-            <p style={{ color: 'black' }}> Desea eliminar el ejercicio {name} </p>
-            <button style={{ background: 'red', color: 'white' }} onClick={() => {
-                if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
-            }}>
-                Borrar
-            </button>
-            <button style={{ background: 'green', color: 'white' }} onClick={() => setConfirmDelete(confirmDelete => !confirmDelete)}>
-                Cancelar
-            </button>
+        <div className="background p-4 flex flex-col">
+            <p className="mb-3"> Desea borrar <b className="decoration-2 decoration-red-700 underline underline-offset-2">{name}</b> </p>
+            <div className="flex justify-between">
+                <button
+                    className="buttonCancel w-24"
+                    onClick={() => {
+                        if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
+                    }}>
+                    🗑️ Borrar
+                </button>
+                <button
+                    className="buttonCancel w-24"
+                    onClick={() => setConfirmDelete(confirmDelete => !confirmDelete)}>
+                    Cancelar
+                </button>
+            </div>
         </div>
     )
 }
