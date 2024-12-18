@@ -44,24 +44,27 @@ export default function TableCell({
             </StyledTableCell>
             {name?.includes(',') ?
                 <StyledTableCell align="center">
-                    <p className='mb-3'>{name?.split(',')[0]}</p>
-                    <p>{name?.split(',')[1]}</p>
+                    {name.split(',').map(name => {
+                        return <p className='mb-3 last:mb-0'>{name}</p>
+                    })}
                 </StyledTableCell>
                 :
                 <StyledTableCell align="center">{name}</StyledTableCell>
             }
             {String(series).includes(',') ?
                 <StyledTableCell align="center">
-                    <p className='mb-3'>{String(series).split(',')[0]}</p>
-                    <p>{String(series).split(',')[1]}</p>
+                    {String(series).split(',').map(serie => {
+                        return <p className='mb-3 last:mb-0'>{serie}</p>
+                    })}
                 </StyledTableCell>
                 :
                 <StyledTableCell align="center">{series}</StyledTableCell>
             }
             {reps?.includes(',') ?
                 <StyledTableCell align="center">
-                    <p className='mb-3'>{reps?.split(',')[0]}</p>
-                    <p>{reps?.split(',')[1]}</p>
+                    {reps.split(',').map(rep => {
+                        return <p className='mb-3 last:mb-0'>{rep}</p>
+                    })}
                 </StyledTableCell>
                 :
                 <StyledTableCell align="center">{reps}</StyledTableCell>
@@ -79,8 +82,9 @@ export default function TableCell({
                                     }}>
                                     {value.loads?.includes(',') ?
                                         <div>
-                                            <p className='mb-3'>{value.loads?.split(',')[0]}</p>
-                                            <p>{value.loads?.split(',')[1]}</p>
+                                            {value.loads.split(',').map(load => {
+                                                return <p className='mb-3 last:mb-0'>{load}</p>
+                                            })}
                                         </div>
                                         :
                                         value.loads

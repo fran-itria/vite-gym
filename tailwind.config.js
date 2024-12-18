@@ -19,6 +19,7 @@ export default {
       },
       maxHeight:{
         '100': '441px',
+        '110': '496px',
         '120': '581px'
       },
       maxWidth:{
