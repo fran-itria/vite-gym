@@ -100,15 +100,6 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         className="buttonBack">
                         Volver
                     </button>
-                    <button
-                        onClick={() => next()}
-                        className={`${(inputsExecise.name == '' || inputsExecise.series == '' || inputsExecise.reps == '')
-                            ? 'opacity-50 pointer-events-none'
-                            : 'pointer-events-auto'
-                            } buttonConfirm w-24`}
-                    >
-                        Siguiente
-                    </button>
                     <button onClick={() => {
                         setPag(0)
                         if (setOpenCreateRouitine) {
@@ -117,6 +108,15 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                     }}
                         className="buttonCancel w-24">
                         Cancelar
+                    </button>
+                    <button
+                        onClick={() => next()}
+                        className={`${(inputsExecise.name == '' || inputsExecise.series == '' || inputsExecise.reps == '')
+                            ? 'opacity-50 pointer-events-none'
+                            : 'pointer-events-auto'
+                            } buttonConfirm w-24`}
+                    >
+                        Siguiente
                     </button>
                 </div>
             </div>

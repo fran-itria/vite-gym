@@ -57,6 +57,12 @@ export default function CreateRoutine({
                                 </input>
                                 <div className="flex justify-between mt-3 w-52">
                                     <button
+                                        onClick={() => setOpenCreateRouitine(false)}
+                                        className="buttonCancel w-24"
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
                                         onClick={() => {
                                             setAddDay(!addDay)
                                             setPagDays(pagDays + 1)
@@ -64,12 +70,6 @@ export default function CreateRoutine({
                                         className={`${(totalDays == '' || totalDays == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
                                     >
                                         Siguiente
-                                    </button>
-                                    <button
-                                        onClick={() => setOpenCreateRouitine(false)}
-                                        className="buttonCancel w-24"
-                                    >
-                                        Cancelar
                                     </button>
                                 </div>
                             </div>
@@ -162,6 +162,12 @@ export default function CreateRoutine({
                                     </TableContainer>
                                     <div className="flex justify-around mt-3">
                                         <button onClick={() => {
+                                            setOpenCreateRouitine(false)
+                                        }}
+                                            className="buttonCancel w-28">
+                                            Cancelar
+                                        </button>
+                                        <button onClick={() => {
                                             confirmRoutine({
                                                 updateRoutinesUser,
                                                 updateIdGlobal,
@@ -180,12 +186,6 @@ export default function CreateRoutine({
                                         }}
                                             className="buttonConfirm w-28">
                                             {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
-                                        </button>
-                                        <button onClick={() => {
-                                            setOpenCreateRouitine(false)
-                                        }}
-                                            className="buttonCancel w-28">
-                                            Cancelar
                                         </button>
                                     </div>
                                 </>

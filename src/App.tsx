@@ -1,4 +1,4 @@
-import { redirect, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { redirect, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";

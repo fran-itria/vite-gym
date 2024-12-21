@@ -66,6 +66,17 @@ export default function TableConfirmDay({
                 </Table>
             </TableContainer>
             <div className='flex justify-around mt-3'>
+                <button
+                    onClick={() => {
+                        setPag(0)
+                        setAddDay(false)
+                        if (setOpenCreateRouitine) {
+                            setOpenCreateRouitine(false)
+                        }
+                    }}
+                    className='buttonCancel w-24'>
+                    Cancelar
+                </button>
                 {!pagDays ?
                     <button onClick={() => {
                         createDayRoutine({
@@ -94,17 +105,6 @@ export default function TableConfirmDay({
                         Agregar día
                     </button>
                 }
-                <button
-                    onClick={() => {
-                        setPag(0)
-                        setAddDay(false)
-                        if (setOpenCreateRouitine) {
-                            setOpenCreateRouitine(false)
-                        }
-                    }}
-                    className='buttonCancel w-24'>
-                    Cancelar
-                </button>
             </div>
             {modifiedExercise && <ModifiedExercise
                 modifiedExercise={modifiedExercise}

@@ -77,21 +77,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                         })}
                     </div>
                     <div className={`flex flex-col items-center ${setUsers && 'mt-5'}`}>
-                        <div className={`flex ${!setUsers && 'flex-col h-24'} w-full justify-around`}>
-                            <button
-                                className="buttonConfirm w-52 ll:w-40 h-7"
-                                onClick={() => setAddDay(prev => !prev)}
-                            >
-                                <QueueIcon className="mr-2" fontSize="small" /> Día
-                            </button>
-                            <button
-                                className="buttonConfirm w-52 ll:w-40 h-7"
-                                onClick={() => setCreateWarm(prev => !prev)}
-                            >
-                                <QueueIcon className="mr-2" fontSize="small" /> Calentamiento
-                            </button>
-                        </div>
-                        <div className="flex w-full justify-around mt-3 ll:justify-around">
+                        <div className="flex w-full justify-around ll:justify-around">
                             {setUsers &&
                                 <button
                                     className="buttonCancel w-52 ll:w-40 h-7"
@@ -115,6 +101,20 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                                     setUsers
                                 })}>
                                 🗑️ Calentamiento
+                            </button>
+                        </div>
+                        <div className={`flex ${!setUsers && 'flex-col h-24'} mt-2 w-full justify-around`}>
+                            <button
+                                className="buttonConfirm w-52 ll:w-40 h-7"
+                                onClick={() => setAddDay(prev => !prev)}
+                            >
+                                <QueueIcon className="mr-2" fontSize="small" /> Día
+                            </button>
+                            <button
+                                className="buttonConfirm w-52 ll:w-40 h-7"
+                                onClick={() => setCreateWarm(prev => !prev)}
+                            >
+                                <QueueIcon className="mr-2" fontSize="small" /> Calentamiento
                             </button>
                         </div>
                     </div>

@@ -43,14 +43,6 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                     </button>
                 }
                 <button onClick={() => {
-                    setPag(prev => prev + 1)
-                    setAddDay(addDay => !addDay)
-                }}
-                    className={`${(exercise == '' || exercise == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
-                >
-                    Siguiente
-                </button>
-                <button onClick={() => {
                     setAddDay(addDay => !addDay)
                     if (setOpenCreateRouitine) {
                         setOpenCreateRouitine(false)
@@ -58,6 +50,14 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                 }}
                     className="buttonCancel w-24">
                     Cancelar
+                </button>
+                <button onClick={() => {
+                    setPag(prev => prev + 1)
+                    setAddDay(addDay => !addDay)
+                }}
+                    className={`${(exercise == '' || exercise == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
+                >
+                    Siguiente
                 </button>
             </div>
         </div>

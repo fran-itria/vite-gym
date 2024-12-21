@@ -16,7 +16,7 @@ export default function CreateExercise({
 
     return (
         <form
-            className="background rounded p-4 flex flex-col ll:w-96 ll:h-60 justify-between items-center"
+            className="background rounded p-4 flex flex-col h-60 justify-between items-center"
             onSubmit={(e) => {
                 addExerciseFunction({
                     e,
@@ -60,8 +60,8 @@ export default function CreateExercise({
                 onChange={(e) => createExerciseInputs({ e, setInputs })}
             ></input>
             <div className="flex justify-between w-56">
-                <button className="buttonConfirm w-24">Crear</button>
                 <button className="buttonCancel w-24" onClick={() => setAddExercise(prev => !prev)}>Cancelar</button>
+                <button className="buttonConfirm w-24">Crear</button>
             </div>
         </form>
     )

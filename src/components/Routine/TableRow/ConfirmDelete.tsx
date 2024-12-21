@@ -17,15 +17,15 @@ export default function ConfirmDelete({
             <div className="flex justify-between">
                 <button
                     className="buttonCancel w-24"
+                    onClick={() => setConfirmDelete(confirmDelete => !confirmDelete)}>
+                    Cancelar
+                </button>
+                <button
+                    className="buttonConfirm w-24"
                     onClick={() => {
                         if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
                     }}>
                     🗑️ Borrar
-                </button>
-                <button
-                    className="buttonCancel w-24"
-                    onClick={() => setConfirmDelete(confirmDelete => !confirmDelete)}>
-                    Cancelar
                 </button>
             </div>
         </div>

@@ -164,16 +164,16 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                     Rutina
                                 </button>
                             </div>
-                            <div className='flex flex-col mt-2'>
-                                <button className='buttonConfirm hover:border-solid h-8'
-                                >
-                                    Guardar cambios
-                                </button>
-                                <button className='buttonCancel h-8 mt-2'
+                            <div className='flex flex-col mt-3'>
+                                <button
+                                    className='buttonCancel h-8'
                                     type='button'
                                     onClick={() => setEdit({ state: false })}
                                 >
                                     Cancelar
+                                </button>
+                                <button className='buttonConfirm hover:border-solid h-8 mt-3'>
+                                    Guardar cambios
                                 </button>
                             </div>
                         </form>
@@ -203,22 +203,26 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         />
                         <div className='flex justify-between w-56 h-8'>
                             <button
-                                className={`${!inputs?.ban ?
-                                    'opacity-50 pointer-events-none' : 'pointer-events-auto'
-                                    }
-                            buttonConfirm w-20`
-                                }
-                                onClick={() => {
-                                    setCreateBan(false)
-                                    if (editBan) setEditBan(false)
-                                }}>Guardar</button>
-                            <button
                                 className='buttonCancel w-20'
                                 onClick={() => {
                                     setCreateBan(false)
                                     if (!editBan) setInputs(prev => { return { ...prev, ban: null } })
                                     else setEditBan(false)
-                                }}>Cancelar</button>
+                                }}>
+                                Cancelar
+                            </button>
+                            <button
+                                className={`
+                                    ${!inputs?.ban ? 'opacity-50 pointer-events-none' : 'pointer-events-auto'}
+                                    buttonConfirm w-20`
+                                }
+                                onClick={() => {
+                                    setCreateBan(false)
+                                    if (editBan) setEditBan(false)
+                                }}
+                            >
+                                Guardar
+                            </button>
                         </div>
                     </div>
                 </Modal >
