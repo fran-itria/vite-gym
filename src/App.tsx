@@ -1,11 +1,11 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { redirect, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
 import FormRegister from "./components/Session/register/FormRegister";
 import axios from "axios";
-import { baseUrlDeploy, basicLoaders, specificLoaders, storage } from "./const";
+import { baseUrlDeploy, basicLoaders, storage } from "./const";
 import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
@@ -23,7 +23,6 @@ function App() {
   axios.defaults.baseURL = baseUrlDeploy
   const { addUser } = useUserActions()
   const [loader, setLoader] = useState<string | undefined>(undefined)
-  const navigate = useNavigate()
   useEffect(() => {
     if (path.pathname != "/") {
       const token = storage.getItem('token')
@@ -34,8 +33,7 @@ function App() {
             addUser(response.data.user)
             setLoader(undefined)
           })
-      }
-      navigate('/')
+      } else redirect('/')
     }
   }, [])
 
