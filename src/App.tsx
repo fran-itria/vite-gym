@@ -1,11 +1,11 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
 import FormRegister from "./components/Session/register/FormRegister";
 import axios from "axios";
-import { baseUrlDeploy, storage } from "./const";
+import { baseUrlDeploy, basicLoaders, specificLoaders, storage } from "./const";
 import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
@@ -13,23 +13,29 @@ import Register from "./components/Register/Register";
 import Subscription from "./components/Suscripcion/Subscription";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import AcceptUser from './components/AcceptUser/AcceptUser'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { login } from "./services/login/login";
 import { useUserActions } from "./hook/useUserActions";
+import Loader from "./components/Loader";
 
 function App() {
   const path = useLocation();
   axios.defaults.baseURL = baseUrlDeploy
   const { addUser } = useUserActions()
+  const [loader, setLoader] = useState<string | undefined>(undefined)
+  const navigate = useNavigate()
   useEffect(() => {
     if (path.pathname != "/") {
       const token = storage.getItem('token')
       if (token) {
+        setLoader(`${basicLoaders.init}`)
         login(undefined, token)
           .then(response => {
             addUser(response.data.user)
+            setLoader(undefined)
           })
       }
+      navigate('/')
     }
   }, [])
 
@@ -42,6 +48,10 @@ function App() {
           !path.pathname.includes("reset") &&
           !path.pathname.includes("acceptUser") ?
           <Header /> : <></>
+      }
+      {
+        loader &&
+        <Loader text={loader} />
       }
       <Routes>
         <Route path="/" element={<FormLogin />} />
