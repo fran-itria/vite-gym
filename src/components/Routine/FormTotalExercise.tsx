@@ -5,7 +5,7 @@ import { FormTotalExerciseComponentProps } from "../../types"
 export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay, pagDays, routine, setPagDays, setTotalDays, setOpenCreateRouitine }: FormTotalExerciseComponentProps) {
     const [exercise, setExercise] = useState('')
     return (
-        <div className="flex flex-col">
+        <div className={`flex flex-col ${!setOpenCreateRouitine && 'background p-4 rounded'}`}>
             <b className="
                 italic 
                 underline 

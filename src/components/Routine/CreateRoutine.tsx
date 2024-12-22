@@ -35,13 +35,13 @@ export default function CreateRoutine({
 
     return (
         <Modal open>
-            <div className="bg-transparent w-screen h-screen flex justify-center items-center">
+            <div className="bg-transparent w-screen h-screen flex justify-center items-center ll:p-2">
                 <div className="
                     p-4 
                     w-1/4 
                     rounded
                     ll:p-3
-                    ll:w-11/12
+                    ll:w-full
                     background"
                 >
                     <p className="text-2xl text-start mb-4 font-bold dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>

@@ -77,7 +77,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                         })}
                     </div>
                     <div className={`flex flex-col items-center ${setUsers && 'mt-5'}`}>
-                        <div className="flex w-full justify-around ll:justify-around">
+                        <div className="flex w-full justify-around">
                             {setUsers &&
                                 <button
                                     className="buttonCancel w-52 ll:w-40 h-7"

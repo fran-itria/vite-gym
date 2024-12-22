@@ -47,7 +47,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
         }
     }
     return (
-        <div className="flex flex-col">
+        <div className={`flex flex-col ${!setOpenCreateRouitine && 'background rounded p-4'}`}>
             <b
                 className="
                 italic 
@@ -96,10 +96,6 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                 </label>
                 <b>* opcional</b>
                 <div className="flex justify-between mt-4">
-                    <button onClick={() => back()}
-                        className="buttonBack">
-                        Volver
-                    </button>
                     <button onClick={() => {
                         setPag(0)
                         if (setOpenCreateRouitine) {
@@ -108,6 +104,10 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                     }}
                         className="buttonCancel w-24">
                         Cancelar
+                    </button>
+                    <button onClick={() => back()}
+                        className="buttonBack">
+                        Volver
                     </button>
                     <button
                         onClick={() => next()}

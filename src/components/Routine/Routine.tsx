@@ -69,7 +69,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                         })}
                     </div>
                     <div className={`flex flex-col items-center ${setUsers && 'mt-5'}`}>
-                        <div className="flex w-full justify-between ll:justify-around">
+                        <div className="flex w-full justify-around">
                             {setUsers &&
                                 <button
                                     className="buttonCancel w-52 ll:w-40 h-7"
@@ -119,7 +119,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                     <button onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}>Crear rutina</button>
                 </>
             }
-            <Modal open={addDay || opneCreateRoutine || Boolean(loader) || Boolean(pag)}>
+            <Modal open={addDay || opneCreateRoutine || Boolean(loader) || Boolean(pag)} className='flex flex-col w-full h-full items-center justify-center'>
                 <>
                     {addDay ?
                         <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />

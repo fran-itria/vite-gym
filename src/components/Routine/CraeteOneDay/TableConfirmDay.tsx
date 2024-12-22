@@ -29,7 +29,7 @@ export default function TableConfirmDay({
 
     const [modifiedExercise, setModifiedExercise] = useState<number | undefined>(undefined)
     return (
-        <>
+        <div className={`${!setOpenCreateRouitine && 'background rounded p-4'}`}>
             <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
                 <Table aria-label="customized table" >
                     <TableHead>
@@ -65,7 +65,7 @@ export default function TableConfirmDay({
                     </TableBody>
                 </Table>
             </TableContainer>
-            <div className='flex justify-around mt-3'>
+            <div className='flex justify-between mt-3 w-full'>
                 <button
                     onClick={() => {
                         setPag(0)
@@ -91,7 +91,8 @@ export default function TableConfirmDay({
                             setLoader,
                             setRoutineAdmin
                         })
-                    }}>
+                    }}
+                        className='buttonConfirm w-24'>
                         Confirmar
                     </button>
                     :
@@ -111,6 +112,6 @@ export default function TableConfirmDay({
                 setModifiedExercise={setModifiedExercise}
                 dayCreate={dayCreate}
             />}
-        </>
+        </div>
     )
 }
