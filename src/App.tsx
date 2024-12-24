@@ -1,4 +1,4 @@
-import { redirect, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
@@ -23,6 +23,7 @@ function App() {
   axios.defaults.baseURL = baseUrlDeploy
   const { addUser } = useUserActions()
   const [loader, setLoader] = useState<string | undefined>(undefined)
+  const navigate = useNavigate()
   useEffect(() => {
     if (path.pathname != "/") {
       const token = storage.getItem('token')
@@ -33,7 +34,10 @@ function App() {
             addUser(response.data.user)
             setLoader(undefined)
           })
-      } else redirect('/')
+          .catch((_error) => {
+            navigate('/')
+          })
+      } else navigate('/')
     }
   }, [])
 
