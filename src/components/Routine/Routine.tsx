@@ -115,8 +115,13 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                 </>
                 :
                 <>
-                    <p>No tienes rutina actualmente</p>
-                    <button onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}>Crear rutina</button>
+                    <b className="text-xl mt-3">No tienes rutina actualmente</b>
+                    <button
+                        className="buttonConfirm w-52 ll:w-40 mt-2"
+                        onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}
+                    >
+                        Crear rutina
+                    </button>
                 </>
             }
             <Modal open={addDay || opneCreateRoutine || Boolean(loader) || Boolean(pag)} className='flex flex-col w-full h-full items-center justify-center'>

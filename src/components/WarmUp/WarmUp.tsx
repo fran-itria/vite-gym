@@ -122,8 +122,13 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                 </>
                 :
                 <>
-                    <p>No tienes calentamiento actualmente</p>
-                    <button onClick={() => setCreateWarm(!createWarm)}>Crear calentamiento</button>
+                    <b className="text-xl mt-3">No tienes calentamiento actualmente</b>
+                    <button
+                        className="buttonConfirm w-52 ll:w-40 mt-2"
+                        onClick={() => setCreateWarm(!createWarm)}
+                    >
+                        Crear calentamiento
+                    </button>
                 </>
             }
             <Modal open={addDay || createWarm || Boolean(pag)}>
