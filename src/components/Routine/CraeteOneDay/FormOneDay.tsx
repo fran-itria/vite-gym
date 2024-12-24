@@ -66,7 +66,9 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         className="w-40 ml-2"
                         name="name"
                         onChange={event => onChangeInputs({ event, setInputsExecise })}
-                        value={inputsExecise.name}>
+                        value={inputsExecise.name}
+                        autoFocus
+                    >
                     </input>
                 </label>
                 <label className="flex items-center font-bold">Series:

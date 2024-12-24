@@ -34,13 +34,13 @@ export default function CreateRoutine({
     const { email } = useAppSelector(state => state.user)
 
     return (
-        <Modal open>
-            <div className="bg-transparent w-screen h-screen flex justify-center items-center ll:p-2">
+        <Modal open className="flex justify-center items-center">
+            <div className="bg-transparent w-3/6 ll:w-fit h-screen flex justify-center items-center">
                 <div className="
                     p-4 
                     w-1/4 
                     rounded
-                    ll:p-3
+                    ll:p-4
                     ll:w-full
                     background"
                 >

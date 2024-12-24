@@ -26,6 +26,7 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                 }}
                 placeholder="Ejercicios a realizar:"
                 type="number"
+                autoFocus
             >
 
             </input>
