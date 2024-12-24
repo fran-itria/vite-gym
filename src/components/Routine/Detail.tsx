@@ -5,18 +5,24 @@ import TableComponent from "./Table";
 import { addWeek } from "../../services/routine/modifiedWeeks";
 import { DetailComponenProps } from "../../types";
 import { useState } from 'react';
+import ConfirmDeleteDay from "./ConfirmDeleteDay";
 
 
 export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, isWarmUpOrRoutine, caseResolve }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
     const { weeks, routineActual, routineId } = routineOrWarmUp
-    const [selectDay, setSelectDay] = useState<boolean>(false)
+    const [selectDay, setSelectDay] = useState<number | undefined>(undefined)
+    const [deleteDay, setDeleteDay] = useState<boolean>(false)
     return (
         <div className='flex flex-col w-full items-center'>
-            <button key={day.id} className='button h-6 w-16 flex justify-center items-center' onClick={() => setSelectDay(true)}>
+            <button
+                key={day.id}
+                className='button h-6 w-16 flex justify-center items-center'
+                onClick={() => setSelectDay(i + 1)}
+            >
                 Día {i + 1}
             </button >
-            <Modal open={selectDay} className='flex flex-col items-center justify-center'>
+            <Modal open={Boolean(selectDay)} className='flex flex-col items-center justify-center'>
                 <TableComponent
                     day={day}
                     routineOrWarmUp={{ routineActual, routineId, weeks }}
@@ -26,9 +32,11 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                     setSelectDay={setSelectDay}
                     setAddExercise={setAddExercise}
                     addWeek={addWeek}
+                    setDeleteDay={setDeleteDay}
                 />
             </Modal>
-            {addExercise &&
+            {addExercise || deleteDay &&
+                addExercise ?
                 <Modal open={addExercise} className='flex flex-col w-full h-full items-center justify-center'>
                     <CreateExercise
                         day={day}
@@ -38,6 +46,21 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                         setLoader={setLoader}
                         setRoutineAdmin={setRoutineAdmin}
                         caseResolve={caseResolve}
+                    />
+                </Modal>
+                :
+                deleteDay &&
+                <Modal open={deleteDay} className='flex flex-col w-full h-full items-center justify-center'>
+                    <ConfirmDeleteDay
+                        key={day.id}
+                        setLoader={setLoader}
+                        setDeleteDay={setDeleteDay}
+                        selectDay={selectDay}
+                        caseResolve={caseResolve}
+                        id={day.id}
+                        routineActual={routineActual}
+                        routineId={routineId}
+                        setRoutineAdmin={setRoutineAdmin}
                     />
                 </Modal>
             }

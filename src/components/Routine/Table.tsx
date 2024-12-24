@@ -7,9 +7,18 @@ import TableContainer from '@mui/material/TableContainer';
 import { Exercise, TableComponentProps } from '../../types';
 import TableHeadComponent from './TableHead'; './TableHead';
 import TableRowComponent from './TableRow/TableRow';
-import deleteDay from '../../services/routine/deleteDay';
 
-export default function TableComponent({ day, routineOrWarmUp, setLoader, setRoutineAdmin, caseResolve, setSelectDay, addWeek, setAddExercise }: TableComponentProps) {
+export default function TableComponent({
+    day,
+    routineOrWarmUp,
+    setLoader,
+    setRoutineAdmin,
+    caseResolve,
+    setSelectDay,
+    addWeek,
+    setAddExercise,
+    setDeleteDay
+}: TableComponentProps) {
 
     const { weeks, routineActual, routineId } = routineOrWarmUp
 
@@ -45,12 +54,11 @@ export default function TableComponent({ day, routineOrWarmUp, setLoader, setRou
                     <button
                         className={`buttonCancel w-24 ${!weeks && "mr-10"}`}
                         onClick={() => {
-                            setSelectDay(false)
-                            deleteDay({ caseResolve, id: day.id, routineActual, routineId, setRoutineAdmin })
+                            setDeleteDay(true)
                         }}>
                         🗑️ Día
                     </button>
-                    <button className='buttonCancel w-24' onClick={() => setSelectDay(false)}>Volver</button>
+                    <button className='buttonCancel w-24' onClick={() => setSelectDay(undefined)}>Volver</button>
                 </div>
                 <div className={`flex ${!weeks ? "w-fit" : "w-full ll:mt-3"} justify-around ll:justify-around `}>
                     <button onClick={() => setAddExercise(prev => !prev)} className=' buttonConfirm w-24'> + Ejercicio</button>

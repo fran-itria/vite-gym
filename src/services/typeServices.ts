@@ -200,6 +200,7 @@ export type deleteDayProps = {
   routineActual?: (Days: Routine) => void
   setRoutineAdmin?: CaseResolve
   caseResolve: CaseResolve
+  setLoader: SetLoader
 }
 
 export type deleteExerciseProps = {
