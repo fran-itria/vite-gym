@@ -9,10 +9,8 @@ export default function HomeAdmin() {
             flex
             justify-evenly
             w-full
-            ll:grid
-            ll:grid-cols-3
+            ll:flex-wrap
             ll:gap-2
-            ll:justify-items-center
             ">
             <NavLink
                 to={`/usuarios/${id}`}
@@ -25,7 +23,7 @@ export default function HomeAdmin() {
             >
                 Uuarios
             </NavLink>
-            <NavLink
+            {/* <NavLink
                 to={`/registro/${id}`}
                 className={({ isActive }) => isActive
                     ?
@@ -35,7 +33,7 @@ export default function HomeAdmin() {
                 }
             >
                 Registro
-            </NavLink>
+            </NavLink> */}
             <NavLink
                 to={`/suscripcion/${id}`}
                 className={({ isActive }) => isActive
@@ -61,12 +59,12 @@ export default function HomeAdmin() {
             </NavLink>
             <NavLink
                 to={`/calentamiento/${id}`}
-                className={({ isActive }) => isActive
-                    ?
-                    `rounded bg-gray-300  ${styleNavButton}`
-                    :
-                    `
-                    button ${styleNavButton}`
+                className={
+                    ({ isActive }) => isActive
+                        ?
+                        `rounded bg-gray-300  ${styleNavButton}`
+                        :
+                        `button ${styleNavButton}`
                 }
             >
                 Calentamiento
