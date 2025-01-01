@@ -3,6 +3,7 @@ import SubscriptionAdmin from "../Admin/Subscription/SubscriptionAdmin"
 import useSubscription from "../../hook/Components/Subscription/useSubscription";
 import TableSubscription from "./TableSubscription";
 import Loader from "../Loader";
+import Register from "../Register/Register";
 
 export default function Subscription() {
     const { Payments, admin, amount, id, linkMp, updatePaymentsUser, loader, setLoader } = useSubscription()
@@ -11,7 +12,10 @@ export default function Subscription() {
         <>
             {loader && <Loader text={loader} />}
             {admin ?
-                <SubscriptionAdmin setLoader={setLoader} />
+                <>
+                    <SubscriptionAdmin setLoader={setLoader} />
+                    <Register setLoader={setLoader} />
+                </>
                 :
                 <>
                     <p>Monto a pagar: {amount}</p>

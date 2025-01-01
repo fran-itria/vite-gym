@@ -65,6 +65,7 @@ export const specificLoaders = {
     meal: 'comida',
     users: 'usuarios',
     register: 'registros',
+    link: 'link',
     load: 'carga',
     cahnges: 'cambios',
     image: 'foto',

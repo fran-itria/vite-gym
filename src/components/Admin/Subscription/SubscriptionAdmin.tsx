@@ -29,31 +29,58 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
     }, [GymId])
 
     return (
-        <div className="h-full ">
-            <form onSubmit={(e) => {
-                if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
-            }}>
-                <label>
-                    Monto:
-                    <input type="number" required onChange={(e) => setAmount(Number(e.target.value))}></input>
-                </label>
-                <label>
-                    Link de pago:
-                    <input type="text" required onChange={(e) => setLink(e.target.value)}></input>
-                </label>
-                <button>Confrimar</button>
+        <div className="h-full w-full mt-5 flex flex-col items-center">
+            <form
+                onSubmit={(e) => {
+                    if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
+                }}
+                className="
+                flex 
+                flex-col
+                justify-between 
+                items-center 
+                border
+                border-2
+                border-b-0
+                border-cyan-700 
+                rounded-t
+                p-3  
+                w-80 
+                h-1/2"
+            >
+                <input
+                    type="number"
+                    required
+                    onChange={(e) => setAmount(Number(e.target.value))}
+                    placeholder="Monto:"
+                >
+                </input>
+                <input
+                    type="text"
+                    required
+                    onChange={(e) => setLink(e.target.value)}
+                    placeholder="Link de pago: "
+                ></input>
+                <button className="buttonConfirm w-24 mt-3">Confrimar</button>
             </form>
             {linkMp && amount ? (
-                <>
-                    <p>Link de pago actual: <b> {linkMp} </b> </p>
-                    <p>Monto a pagar: <b>{amount}</b></p>
-                </>) : <></>}
-            {payments && payments?.length > 0 ?
+                <div className="
+                flex 
+                flex-col 
+                items-center 
+                border 
+                border-2
+                border-t-0
+                rounded-b 
+                border-cyan-700
+                w-80">
+                    <b>Link actual: {linkMp} </b>
+                    <b className="mb-3">Monto a pagar: {amount} </b>
+                </div>) : <></>}
+            {payments && payments?.length > 0 &&
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
                     <TablePayments payments={payments} />
                 </div>
-                :
-                <p>No hay pagos registrados</p>
             }
         </div>
     )
