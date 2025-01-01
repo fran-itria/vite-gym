@@ -82,14 +82,13 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                     p-4 
                     rounded 
                     border 
-                    justify-items-center 
                     w-96 
                     ll:flex
                     ll:flex-col
                     ll:items-center
                     "
                 >
-                    <div>
+                    <div className="ll:items-start col-span-2 flex flex-col justify-center items-center">
                         <div className="flex flex-col w-fit mb-2 text-start ll:flex-row">
                             <label className="font-bold">
                                 Limite de turnos:
@@ -143,11 +142,10 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                             ></input>
                         </div>
                     </div>
-                    <div className="col-span-2 w-full flex justify-around ll:justify-center">
+                    <div className="col-span-2 flex justify-around ll:justify-center">
                         <button
                             onClick={() => setStateButton('reset')}
                             className={`${limitShift ? 'pointer-events-auto' : "opacity-50 pointer-events-none"}
-                            mr-6
                             ll:ml-6 
                             l:ml-4
                             w-28
@@ -169,7 +167,6 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                         <button
                             onClick={() => setStateButton('confirm')}
                             className="
-                            mr-4
                             ll:mr-4
                             l:mr-14 
                             w-28
