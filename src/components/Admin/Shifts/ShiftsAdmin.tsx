@@ -65,8 +65,8 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
     }, [])
 
     return (
-        <div className="h-full flex flex-col justify-start items-center ll:mt-10">
-            <p className="mt-10 mb-2.5 ll:mb-5 ll:w-96">Si desea limitar los turnos complete los siguientes campos: </p>
+        <div className="h-full flex flex-col justify-start items-center">
+            <b className="mt-10 mb-2.5 ll:mb-2 ll:w-96">Si desea limitar los turnos complete los siguientes campos: </b>
             <div className="flex justify-center w-full items-center h-fit ll:h-52">
                 <form
                     onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader, stateButton, setLimitShift)}
@@ -89,57 +89,59 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                     ll:items-center
                     "
                 >
-                    <div className="flex flex-col w-fit text-start ll:flex-row">
-                        <label className="font-bold">
-                            Limite de turnos:
-                        </label>
-                        <input
-                            type="number"
-                            name="limit"
-                            defaultValue={limitShift?.limit || ''}
-                            onChange={(e) => onChange(e, setInputs)}
-                            className="rounded p-1 w-16 h-6 ll:ml-3"
-                            required
-                        ></input>
-                    </div>
-                    <div className="flex flex-col  w-fit text-start ll:flex-row">
-                        <label className="font-bold">
-                            Tiempo de turno:
-                        </label>
-                        <input
-                            type="number"
-                            name="time"
-                            defaultValue={limitShift?.time || ''}
-                            onChange={(e) => onChange(e, setInputs)}
-                            className="rounded p-1 w-16 h-6 ll:ml-3"
-                            required
-                        ></input>
-                    </div>
-                    <div className="flex flex-col w-fit mr-12 ll:flex-row">
-                        <label className="font-bold">
-                            Apertura:
-                        </label>
-                        <input
-                            type="time"
-                            name="open"
-                            defaultValue={limitShift?.open || ''}
-                            onChange={(e) => onChange(e, setInputs)}
-                            className="rounded w-16 h-6 ll:ml-3"
-                            required
-                        ></input>
-                    </div>
-                    <div className="flex flex-col text-start w-fit mr-16 ll:flex-row">
-                        <label className="font-bold">
-                            Cierre:
-                        </label>
-                        <input
-                            type="time"
-                            name="close"
-                            defaultValue={limitShift?.close || ''}
-                            onChange={(e) => onChange(e, setInputs)}
-                            className="rounded w-16 h-6 ll:ml-3"
-                            required
-                        ></input>
+                    <div>
+                        <div className="flex flex-col w-fit mb-2 text-start ll:flex-row">
+                            <label className="font-bold">
+                                Limite de turnos:
+                            </label>
+                            <input
+                                type="number"
+                                name="limit"
+                                defaultValue={limitShift?.limit || ''}
+                                onChange={(e) => onChange(e, setInputs)}
+                                className="rounded p-1 w-16 h-6 ll:ml-3"
+                                required
+                            ></input>
+                        </div>
+                        <div className="flex flex-col mb-2 w-fit text-start ll:flex-row">
+                            <label className="font-bold">
+                                Tiempo de turno:
+                            </label>
+                            <input
+                                type="number"
+                                name="time"
+                                defaultValue={limitShift?.time || ''}
+                                onChange={(e) => onChange(e, setInputs)}
+                                className="rounded p-1 w-16 h-6 ll:ml-3"
+                                required
+                            ></input>
+                        </div>
+                        <div className="flex flex-col mb-2 w-fit mr-12 ll:flex-row">
+                            <label className="font-bold">
+                                Apertura:
+                            </label>
+                            <input
+                                type="time"
+                                name="open"
+                                defaultValue={limitShift?.open || ''}
+                                onChange={(e) => onChange(e, setInputs)}
+                                className="rounded w-16 h-6 ll:ml-3"
+                                required
+                            ></input>
+                        </div>
+                        <div className="flex flex-col text-start w-fit mr-16 ll:flex-row">
+                            <label className="font-bold">
+                                Cierre:
+                            </label>
+                            <input
+                                type="time"
+                                name="close"
+                                defaultValue={limitShift?.close || ''}
+                                onChange={(e) => onChange(e, setInputs)}
+                                className="rounded w-16 h-6 ll:ml-3"
+                                required
+                            ></input>
+                        </div>
                     </div>
                     <div className="col-span-2 w-full flex justify-around ll:justify-center">
                         <button
@@ -190,7 +192,6 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                 </form>
             </div >
             {shifts?.length > 0 ?
-                // <>
                 <section className="w-full flex justify-center mt-10 l:mt-2 ll:mt-10">
                     <div
                         className="
@@ -213,21 +214,8 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                         <p>Noche 🌙: <b className="ml-1">{shiftsSplit?.night.length}</b></p>
                     </div>
                 </section>
-                // <table>
-                //     <thead>
-                //         <th>Hora</th>
-                //     </thead>
-                //     <tbody>
-                //         {shifts.map(shift =>
-                //             <tr>
-                //                 <td>{shift.hour.split('-')[0]}</td>
-                //             </tr>
-                //         )}
-                //     </tbody>
-                // </table>
-                // </>
                 :
-                <p>No tienes turnos para el día de hoy</p>
+                <b className="mt-2">No tienes turnos para el día de hoy</b>
             }
         </div >
     )
