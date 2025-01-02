@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Loader from "../Loader";
 import { useHeader } from "./useHeader";
-import { change } from "./functions";
-import { basicLoaders } from "../../const";
 import ResetPassword from "../ResetPassword/ResetPassword";
 import { Modal } from "@mui/material";
 import SubHeader from "./SubHeader";
