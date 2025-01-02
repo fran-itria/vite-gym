@@ -1,10 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hook/store";
 import { useState } from "react";
 import { useUserActions } from "../../hook/useUserActions";
 
 export function useHeader() {
-    const { pathname } = useLocation()
     const { name, surname, id, admin, Gym, photo } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
@@ -12,13 +11,12 @@ export function useHeader() {
     const [image, setImage] = useState(false)
     const [file, setFile] = useState<File>()
     const { updatePhotoUser } = useUserActions()
-    const [cahngeGym, setChangeGym] = useState(false)
+    const [changeGym, setChangeGym] = useState(false)
     const [gyms, setGyms] = useState<{ id: string, name: string }[]>([])
     const [valueGym, setValueGym] = useState<string>()
     const [reset, setResetPassword] = useState(false)
 
     return {
-        pathname,
         name,
         surname,
         id,
@@ -35,7 +33,7 @@ export function useHeader() {
         file,
         setFile,
         updatePhotoUser,
-        cahngeGym,
+        changeGym,
         setChangeGym,
         gyms,
         setGyms,

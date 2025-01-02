@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../../hook/store";
-export default function HomeAdmin() {
+import { useAppSelector } from "../../hook/store";
+
+export default function HeaderAdmin() {
     const { id } = useAppSelector(state => state.user)
     const styleNavButton = 'p-1 w-32 ll:h-fit ll:text-sm'
     return (
@@ -23,17 +24,6 @@ export default function HomeAdmin() {
             >
                 Uuarios
             </NavLink>
-            {/* <NavLink
-                to={`/registro/${id}`}
-                className={({ isActive }) => isActive
-                    ?
-                    `rounded bg-gray-300  ${styleNavButton}`
-                    :
-                    `button ${styleNavButton}`
-                }
-            >
-                Registro
-            </NavLink> */}
             <NavLink
                 to={`/suscripcion/${id}`}
                 className={({ isActive }) => isActive
