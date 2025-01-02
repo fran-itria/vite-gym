@@ -3,9 +3,9 @@ import Loader from "../Loader";
 import { useHeader } from "./useHeader";
 import ResetPassword from "../ResetPassword/ResetPassword";
 import { Modal } from "@mui/material";
-import SubHeader from "./SubHeader";
-import HeaderAdmin from "./HeaderAdmin";
-import HeaderNotAdmin from "./HeaderNotAdmin";
+import HeaderPrincipal from "./HeaderPrincipal";
+import SubHeaderAdmin from "./SubHeaderAdmin";
+import SubHeaderNotAdmin from "./SubHeaderNotAdmin";
 import UpdateImage from "./UpdateImage";
 import ChangeGym from "./ChangeGym";
 
@@ -40,7 +40,7 @@ export default function Header() {
     return (
         <>
             {loader && <Loader text={loader} />}
-            <SubHeader
+            <HeaderPrincipal
                 Gym={Gym}
                 id={id}
                 menu={menu}
@@ -57,9 +57,9 @@ export default function Header() {
                 surname={surname}
             />
             {!admin ?
-                <HeaderNotAdmin id={id} />
+                <SubHeaderNotAdmin id={id} />
                 :
-                <HeaderAdmin />
+                <SubHeaderAdmin />
             }
             {(image || (changeGym && gyms.length > 0) || reset) &&
                 <Modal

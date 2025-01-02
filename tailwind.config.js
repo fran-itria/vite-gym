@@ -24,6 +24,9 @@ export default {
       },
       maxWidth:{
         'smd': '410px'
+      },
+      spacing: {
+        '15': '62px'
       }
     },
   },
