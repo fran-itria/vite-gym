@@ -26,7 +26,20 @@ export default function Chronometer() {
     return () => clearInterval(time);
   }, [play]);
   return (
-    <div className="w-1/4 flex flex-col items-center ll:w-full mt-3 bg-gray-700 rounded p-2 border-2 border-gray-950">
+    <div className="
+        w-1/4 
+        flex 
+        flex-col
+        items-center 
+        ll:w-full 
+        mt-3
+        bg-gray-300 
+        dark:bg-gray-950 
+        rounded 
+        p-2 
+        border-2 
+        border-gray-950
+     ">
       <p className="font-bold text-xl">
         {hours < 10 ? ` 0${hours}` : ` ${hours % 60}`}h :
         {minutes < 10 ? ` 0${minutes}` : ` ${minutes % 60}`}m :

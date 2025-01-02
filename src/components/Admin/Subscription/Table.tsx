@@ -51,7 +51,7 @@ export default function TablePayments({ payments }: {
                             <input
                                 onChange={(e) => filterPaymentsFuntcion(e)}
                                 placeholder='Usuario'
-                                className='rounded w-16 placeholder:text-black dark:placeholder:text-white placeholder:text-center'></input>
+                                className='rounded w-16 placeholder:text-white dark:placeholder:text-white placeholder:text-center'></input>
                         </StyledTableCell>
                         <StyledTableCell align="center">Apellido</StyledTableCell>
                         <StyledTableCell align="center">Fecha</StyledTableCell>

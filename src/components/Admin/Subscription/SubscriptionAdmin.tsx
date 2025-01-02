@@ -42,7 +42,8 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 border
                 border-2
                 border-b-0
-                border-cyan-700 
+                border-black
+                dark:border-cyan-700 
                 rounded-t
                 p-3  
                 w-80 
@@ -72,10 +73,11 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 border-2
                 border-t-0
                 rounded-b 
-                border-cyan-700
+                border-black
+                dark:border-cyan-700
                 w-80">
-                    <b>Link actual: {linkMp} </b>
-                    <b className="mb-3">Monto a pagar: {amount} </b>
+                    <b className="text-black dark:text-white">Link actual: {linkMp} </b>
+                    <b className="mb-3 text-black dark:text-white">Monto a pagar: {amount} </b>
                 </div>) : <></>}
             {payments && payments?.length > 0 &&
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>

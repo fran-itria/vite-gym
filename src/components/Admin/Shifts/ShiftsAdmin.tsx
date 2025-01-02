@@ -74,11 +74,11 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                     grid 
                     grid-cols-2 
                     gap-2.5
-                    bg-gray-300
                     border-2
+                    bg-gray-300 
                     border-gray-700 
-                    dark:bg-cyan-900
-                    dark:border-cyan-600 
+                    dark:bg-cyan-950
+                    dark:border-cyan-700 
                     p-4 
                     rounded 
                     border 
