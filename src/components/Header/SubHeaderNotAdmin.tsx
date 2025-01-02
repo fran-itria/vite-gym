@@ -4,7 +4,7 @@ type props = {
     id: string | null
 }
 
-export default function HeaderNotAdmin({
+export default function SubHeaderNotAdmin({
     id
 }: props) {
 

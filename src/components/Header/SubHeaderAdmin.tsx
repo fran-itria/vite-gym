@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hook/store";
 
-export default function HeaderAdmin() {
+export default function SubHeaderAdmin() {
     const { id } = useAppSelector(state => state.user)
     const styleNavButton = 'p-1 w-32 ll:h-fit ll:text-sm'
     return (
