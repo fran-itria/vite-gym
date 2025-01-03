@@ -43,7 +43,7 @@ export default function Register({ setLoader }: { setLoader: React.Dispatch<Reac
 
     return (
         <div className="h-full flex flex-col items-center mb-5">
-            <button onClick={() => createLink()} className="button w-48 mt-3">Crear link de registro</button>
+            <button onClick={() => createLink()} className="button w-48 mt-3 h-7">Crear link de registro</button>
             {
                 allIds && allIds?.length > 0 &&
                 <div className="mt-3 mb-3">
