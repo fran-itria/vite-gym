@@ -35,46 +35,49 @@ export default function CreateRoutine({
 
     return (
         <Modal open className="flex justify-center items-center">
-            <div className="bg-transparent w-3/6 ll:w-fit h-screen flex justify-center items-center">
+            <div className="bg-transparent w-full ll:p-1 h-screen flex justify-center items-center">
                 <div className="
                     p-4 
-                    w-1/4 
                     rounded
-                    ll:p-4
+                    background
+                    w-96
                     ll:w-full
-                    background"
+                    flex
+                    flex-col
+                    items-center
+                    "
                 >
-                    <p className="text-2xl text-start mb-4 font-bold dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
+                    <div className="w-full flex justify-center">
+                        <p className="text-2xl text-start mb-4 font-bold dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
+                    </div>
                     {
-                        pagDays == 0 ?
-                            <div className="flex flex-col justify-start">
-                                <input
-                                    onChange={(e) => setTotalDays(e.target.value)}
-                                    type="number"
-                                    placeholder="Días a realizar:"
-                                    className="w-52"
+                        pagDays == 0 &&
+                        <div className="flex flex-col justify-start ll:w-full ll:items-center">
+                            <input
+                                onChange={(e) => setTotalDays(e.target.value)}
+                                type="number"
+                                placeholder="Días a realizar:"
+                                className="w-52"
+                            >
+                            </input>
+                            <div className="flex justify-between mt-3 w-52">
+                                <button
+                                    onClick={() => setOpenCreateRouitine(false)}
+                                    className="buttonCancel w-24"
                                 >
-                                </input>
-                                <div className="flex justify-between mt-3 w-52">
-                                    <button
-                                        onClick={() => setOpenCreateRouitine(false)}
-                                        className="buttonCancel w-24"
-                                    >
-                                        Cancelar
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            setAddDay(!addDay)
-                                            setPagDays(pagDays + 1)
-                                        }}
-                                        className={`${(totalDays == '' || totalDays == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
-                                    >
-                                        Siguiente
-                                    </button>
-                                </div>
+                                    Cancelar
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setAddDay(!addDay)
+                                        setPagDays(pagDays + 1)
+                                    }}
+                                    className={`${(totalDays == '' || totalDays == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
+                                >
+                                    Siguiente
+                                </button>
                             </div>
-                            :
-                            <></>
+                        </div>
                     }
                     {
                         pagDays != 0 && pagDays < Number(totalDays) + 1 ?
@@ -114,83 +117,81 @@ export default function CreateRoutine({
                                 }
                             </div>
                             :
-                            pagDays > Number(totalDays) ?
-                                <>
-                                    <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
-                                        <Table aria-label="customized table" >
-                                            <TableHead>
-                                                <TableRow>
-                                                    <StyledTableCell align="center"> Ejercicios </StyledTableCell>
-                                                    <StyledTableCell align="center"> Series </StyledTableCell>
-                                                    <StyledTableCell align="center"> Repeticiones </StyledTableCell>
-                                                    <StyledTableCell align="center"> Video </StyledTableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {routine.map(day => {
-                                                    return (
-                                                        <>
-                                                            <StyledTableRow key={day.day} className="fullRow">
-                                                                <StyledTableCell align="center" colSpan={4} className="bg-cyan-600">
-                                                                    Día {day.day}
-                                                                </StyledTableCell>
-                                                            </StyledTableRow>
-                                                            {day.exercises.map(exercise => {
-                                                                return (
-                                                                    <StyledTableRow key={exercise.exercise}>
-                                                                        <StyledTableCell align="center" className='w-20'>
-                                                                            {exercise.name}
-                                                                        </StyledTableCell>
-                                                                        <StyledTableCell align="center">
-                                                                            {exercise.series}
-                                                                        </StyledTableCell>
-                                                                        <StyledTableCell align="center">
-                                                                            {exercise.reps}
-                                                                        </StyledTableCell>
-                                                                        <StyledTableCell align="center">
-                                                                            {exercise.link ? exercise.link : <></>}
-                                                                        </StyledTableCell>
-                                                                    </StyledTableRow>
-                                                                )
-                                                            })}
-                                                        </>
+                            pagDays > Number(totalDays) &&
+                            <>
+                                <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+                                    <Table aria-label="customized table" >
+                                        <TableHead>
+                                            <TableRow>
+                                                <StyledTableCell align="center"> Ejercicios </StyledTableCell>
+                                                <StyledTableCell align="center"> Series </StyledTableCell>
+                                                <StyledTableCell align="center"> Repeticiones </StyledTableCell>
+                                                <StyledTableCell align="center"> Video </StyledTableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {routine.map(day => {
+                                                return (
+                                                    <>
+                                                        <StyledTableRow key={day.day} className="fullRow">
+                                                            <StyledTableCell align="center" colSpan={4} className="bg-cyan-600">
+                                                                Día {day.day}
+                                                            </StyledTableCell>
+                                                        </StyledTableRow>
+                                                        {day.exercises.map(exercise => {
+                                                            return (
+                                                                <StyledTableRow key={exercise.exercise}>
+                                                                    <StyledTableCell align="center" className='w-20'>
+                                                                        {exercise.name}
+                                                                    </StyledTableCell>
+                                                                    <StyledTableCell align="center">
+                                                                        {exercise.series}
+                                                                    </StyledTableCell>
+                                                                    <StyledTableCell align="center">
+                                                                        {exercise.reps}
+                                                                    </StyledTableCell>
+                                                                    <StyledTableCell align="center">
+                                                                        {exercise.link ? exercise.link : <></>}
+                                                                    </StyledTableCell>
+                                                                </StyledTableRow>
+                                                            )
+                                                        })}
+                                                    </>
 
-                                                    )
-                                                })}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <div className="flex justify-around mt-3">
-                                        <button onClick={() => {
-                                            setOpenCreateRouitine(false)
-                                        }}
-                                            className="buttonCancel w-28">
-                                            Cancelar
-                                        </button>
-                                        <button onClick={() => {
-                                            confirmRoutine({
-                                                updateRoutinesUser,
-                                                updateIdGlobal,
-                                                updateWarmUpUser,
-                                                setOpenCreateRouitine,
-                                                userId,
-                                                days: routine,
-                                                createWarm,
-                                                setUsers,
-                                                gymName,
-                                                id,
-                                                setLoader,
-                                                email,
-                                                setEdit
-                                            })
-                                        }}
-                                            className="buttonConfirm w-28">
-                                            {!createWarm ? 'Crear rutina' : 'Crear calentamiento'}
-                                        </button>
-                                    </div>
-                                </>
-                                :
-                                <></>
+                                                )
+                                            })}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <div className="flex justify-around mt-3 w-full">
+                                    <button onClick={() => {
+                                        setOpenCreateRouitine(false)
+                                    }}
+                                        className="buttonCancel w-24">
+                                        Cancelar
+                                    </button>
+                                    <button onClick={() => {
+                                        confirmRoutine({
+                                            updateRoutinesUser,
+                                            updateIdGlobal,
+                                            updateWarmUpUser,
+                                            setOpenCreateRouitine,
+                                            userId,
+                                            days: routine,
+                                            createWarm,
+                                            setUsers,
+                                            gymName,
+                                            id,
+                                            setLoader,
+                                            email,
+                                            setEdit
+                                        })
+                                    }}
+                                        className="buttonConfirm w-24">
+                                        Crear
+                                    </button>
+                                </div>
+                            </>
                     }
                 </div>
             </div>

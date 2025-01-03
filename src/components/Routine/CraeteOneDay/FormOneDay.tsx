@@ -55,9 +55,10 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                 underline-offset-4 
                 decoration-2 
                 decoration-red-700
-                mb-4
+                mb-3
                 text-black
-                dark:text-gray-300">
+                dark:text-gray-300"
+            >
                 Ejercicio Número {actualExercise}
             </b>
             <div className="flex flex-col">
@@ -96,7 +97,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         value={inputsExecise.link}>
                     </input>
                 </label>
-                <b>* opcional</b>
+                <b>( * opcional )</b>
                 <div className="flex justify-between mt-4">
                     <button onClick={() => {
                         setPag(0)
@@ -104,11 +105,11 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                             setOpenCreateRouitine(false)
                         }
                     }}
-                        className="buttonCancel w-24">
+                        className="buttonCancel w-20">
                         Cancelar
                     </button>
                     <button onClick={() => back()}
-                        className="buttonBack">
+                        className="buttonBack w-20">
                         Volver
                     </button>
                     <button
@@ -116,7 +117,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         className={`${(inputsExecise.name == '' || inputsExecise.series == '' || inputsExecise.reps == '')
                             ? 'opacity-50 pointer-events-none'
                             : 'pointer-events-auto'
-                            } buttonConfirm w-24`}
+                            } buttonConfirm w-20`}
                     >
                         Siguiente
                     </button>

@@ -5,20 +5,21 @@ import { FormTotalExerciseComponentProps } from "../../types"
 export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay, pagDays, routine, setPagDays, setTotalDays, setOpenCreateRouitine }: FormTotalExerciseComponentProps) {
     const [exercise, setExercise] = useState('')
     return (
-        <div className={`flex flex-col ${!setOpenCreateRouitine && 'background p-4 rounded'}`}>
+        <div className={`flex flex-col ${!setOpenCreateRouitine && 'background p-4 rounded'} w-80 flex flex-col items-center`}>
             <b className="
                 italic 
                 underline 
                 underline-offset-4 
                 decoration-2 
                 decoration-red-700
-                mb-4
+                mb-3
                 text-black
                 dark:text-gray-300"
             >
                 Día número {pagDays ? pagDays : routine?.Days?.length ? routine?.Days?.length + 1 : <></>}
             </b>
             <input
+                className="w-44"
                 name="exercises"
                 onChange={(e) => {
                     setTotalExercise(e.target.value)
@@ -30,7 +31,7 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
             >
 
             </input>
-            <div className="flex justify-between mt-5">
+            <div className="flex justify-between mt-5 w-full">
                 {setTotalDays &&
                     <button onClick={() => {
                         setAddDay(addDay => !addDay)
@@ -39,7 +40,7 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                             setTotalDays('')
                         }
                     }}
-                        className="buttonBack">
+                        className="buttonBack w-20">
                         Volver
                     </button>
                 }
@@ -49,14 +50,14 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                         setOpenCreateRouitine(false)
                     }
                 }}
-                    className="buttonCancel w-24">
+                    className="buttonCancel w-20">
                     Cancelar
                 </button>
                 <button onClick={() => {
                     setPag(prev => prev + 1)
                     setAddDay(addDay => !addDay)
                 }}
-                    className={`${(exercise == '' || exercise == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-24`}
+                    className={`${(exercise == '' || exercise == '0') && 'opacity-50 pointer-events-none'} buttonConfirm w-20`}
                 >
                     Siguiente
                 </button>

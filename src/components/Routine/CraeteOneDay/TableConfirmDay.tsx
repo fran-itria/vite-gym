@@ -46,6 +46,7 @@ export default function TableConfirmDay({
                                 <StyledTableRow key={exercise.exercise}>
                                     <StyledTableCell align="center" className='w-20'>
                                         <button
+                                            className='button p-1.5'
                                             onClick={() => setModifiedExercise(exercise.exercise)}>
                                             {exercise.name}
                                         </button>
@@ -65,7 +66,7 @@ export default function TableConfirmDay({
                     </TableBody>
                 </Table>
             </TableContainer>
-            <div className='flex justify-between mt-3 w-full'>
+            <div className='flex mt-3 w-full justify-around'>
                 <button
                     onClick={() => {
                         setPag(0)

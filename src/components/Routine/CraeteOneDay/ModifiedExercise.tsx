@@ -68,7 +68,7 @@ export default function ModifiedExercise({
 
     return (
         <Modal open className=" w-screen h-screen flex justify-center items-center">
-            <div className="p-4 w-1/4 rounded ll:w-96 background">
+            <div className="p-3 w-1/4 rounded ll:w-96 background h-64 flex flex-col justify-around">
                 <label className="flex items-center font-bold">Nombre del ejercicio:
                     <input
                         className="w-40 ml-2"
@@ -103,7 +103,7 @@ export default function ModifiedExercise({
                         defaultValue={exercise.link}>
                     </input>
                 </label>
-                <b>* opcional</b>
+                <b>( * opcional )</b>
                 <div className="flex justify-around">
                     <button className="buttonConfirm w-24" onClick={() => modified()}>
                         Modificar
