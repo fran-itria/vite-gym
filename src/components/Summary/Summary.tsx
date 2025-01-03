@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../hook/store"
 
-export default function Resume() {
+export default function Summary() {
     const user = useAppSelector(state => state.user)
     return (
         <div className="h-4/6 justify-evenly flex flex-col">
