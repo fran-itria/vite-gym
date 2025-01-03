@@ -15,10 +15,10 @@ export default function Home() {
     <>
       {userId != 'null' ?
         !admin ?
-          <>
+          <div className="p-4 h-full flex flex-col">
             <NavHome />
             {select == selects.summary ? <Resume /> : select == selects.miSalud ? <Health /> : < Shifts />}
-          </>
+          </div>
           :
           <Shifts />
         :

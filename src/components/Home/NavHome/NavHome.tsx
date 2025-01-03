@@ -1,39 +1,46 @@
 import { NavLink } from "react-router-dom";
-import style from "./NavHome.module.css";
 import { useAppSelector } from "../../../hook/store";
 
 export default function NavHome() {
   const { id } = useAppSelector(state => state.user)
   return (
-    <nav className={style.nav}>
-      <ul className={style.ul}>
+    <nav className="flex justify-center">
+      <ul className="
+          flex 
+          justify-evenly 
+          items-center 
+          w-1/2
+          ll:w-full 
+          bg-cyan-800 
+          rounded-full
+          ">
         <li>
           <NavLink
             to={`/home/${id}/resumen`}
             className={({ isActive }) =>
-              isActive ? style.active : style.pending
+              isActive ? 'text-gray-100' : 'hover:text-gray-100'
             }
           >
             Resumen
           </NavLink>
         </li>
-        <div className={style.line}></div>
+        <div className='border-2 border-black h-full'></div>
         <li>
           <NavLink
             to={`/home/${id}/miSalud`}
             className={({ isActive }) =>
-              isActive ? style.active : style.pending
+              isActive ? 'font-bold text-gray-100' : 'hover:text-gray-100'
             }
           >
             Mi salud
           </NavLink>
         </li>
-        <div className={style.line}></div>
+        <div className='border-2 border-black h-full'></div>
         <li>
           <NavLink
             to={`/home/${id}/turnos`}
             className={({ isActive }) =>
-              isActive ? style.active : style.pending
+              isActive ? 'font-bold text-gray-100' : 'hover:text-gray-100'
             }
           >
             Turnos
