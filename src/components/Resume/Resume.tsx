@@ -3,16 +3,16 @@ import { useAppSelector } from "../../hook/store"
 export default function Resume() {
     const user = useAppSelector(state => state.user)
     return (
-        <div>
-            <p> <b>Nombre: </b> {user.name}</p>
-            <p> <b>Mail: </b> {user.email}</p>
-            <p> <b>Edad: </b> {user.age}</p>
-            <p> <b>Dni: </b> {user.dni}</p>
-            <p> <b>Numero de telefono: </b> {user.phone}</p>
-            <p> <b>Contacto de emergencia: </b> {user.contactEmergency}</p>
-            <p> <b>Calentamientos: </b> {user.WarmUps.length}</p>
-            <p> <b>Rutinas: </b> {user.Routines.length}</p>
-            <p> <b>Suscripción: </b> {user.pay ? '✅' : '❌'}</p>
+        <div className="h-4/6 justify-evenly flex flex-col">
+            <b> Nombre: {user.name}</b>
+            <b> Mail:  {user.email}</b>
+            <b> Edad: {user.age}</b>
+            <b> Dni: {user.dni}</b>
+            <b> Numero de telefono: {user.phone}</b>
+            <b> Contacto de emergencia:  {user.contactEmergency}</b>
+            <b> Calentamientos: {user.WarmUps.length}</b>
+            <b> Rutinas: {user.Routines.length}</b>
+            <b> Suscripción: {user.pay ? '✅' : '❌'}</b>
         </div>
     )
 }
