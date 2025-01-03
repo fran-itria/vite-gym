@@ -9,7 +9,7 @@ export default function SubHeaderNotAdmin({
 }: props) {
 
     const { pathname } = useLocation()
-    const styleNavButton = 'p-1 w-32 ll:h-fit ll:text-sm'
+    const styleNavButton = 'w-32 ll:h-fit ll:text-sm'
 
     return (
         <nav>
@@ -24,7 +24,7 @@ export default function SubHeaderNotAdmin({
                     to={`/home/${id}/resumen`}
                     className={pathname.includes("home")
                         ?
-                        `rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}>
                     <li>
@@ -35,7 +35,7 @@ export default function SubHeaderNotAdmin({
                     to={`/calentamiento/${id}`}
                     className={({ isActive }) => isActive
                         ?
-                        `rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
@@ -47,7 +47,7 @@ export default function SubHeaderNotAdmin({
                     to={`/rutina/${id}`}
                     className={({ isActive }) => isActive
                         ?
-                        `rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
@@ -59,7 +59,7 @@ export default function SubHeaderNotAdmin({
                     to={`/suscripcion`}
                     className={({ isActive }) => isActive
                         ?
-                        `rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
