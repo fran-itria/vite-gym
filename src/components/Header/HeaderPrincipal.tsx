@@ -49,7 +49,7 @@ export default function HeaderPrincipal({
                 {photo && photo.length > 0 ?
                     <img
                         alt="Foto de perfil"
-                        className="w-10 h-10 mr-6 rounded-full text-white bg-gray-900 dark:bg-cyan-800"
+                        className="w-10 h-10 mr-6 rounded-full text-white bg-gray-900 dark:bg-cyan-800 hover:cursor-pointer"
                         src={photo}
                         onClick={() => setMenu(prev => !prev)}
                     />
