@@ -357,7 +357,7 @@ export type FormCreateProps = {
 }
 
 export type deleteMealProps = {
-  mealId: string
+  mealId: string | undefined
   setLoader: SetLoader
   updateMealsUser: (meals: meal[]) => void
   id: string | null
