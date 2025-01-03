@@ -10,8 +10,9 @@ export default function NavHome() {
           justify-evenly 
           items-center 
           w-1/2
-          ll:w-full 
-          bg-cyan-800 
+          ll:w-full
+          bg-gray-600 
+          dark:bg-cyan-800 
           rounded-full
           ">
         <li>

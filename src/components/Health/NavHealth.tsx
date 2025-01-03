@@ -9,8 +9,9 @@ export default function NavHealth({ information, setInformation }: PropsNavHealt
             information == InformationEnum.meal
               ?
               `
-              w-24 
-              bg-cyan-900 
+              w-24
+              bg-gray-700 
+              dark:bg-cyan-900 
               font-bold 
               rounded-full 
               text-gray-200 
@@ -18,17 +19,20 @@ export default function NavHealth({ information, setInformation }: PropsNavHealt
               justify-center 
               items-center
               border-2 
-              border-cyan-900
+              border-gray-700
+              dark:border-cyan-900
               `
               :
               `
               hover:cursor-pointer 
               w-24 
               border-2 
-              border-cyan-800 
+              border-gray-800 
+              dark:border-cyan-800 
               font-bold 
               rounded-full 
-              text-gray-200 
+              text-gray-700
+              dark:text-gray-200 
               flex 
               justify-center 
               items-center
@@ -44,7 +48,8 @@ export default function NavHealth({ information, setInformation }: PropsNavHealt
               ?
               `
               w-24 
-              bg-cyan-900 
+              bg-gray-700 
+              dark:bg-cyan-900
               font-bold 
               rounded-full 
               text-gray-200 
@@ -52,17 +57,20 @@ export default function NavHealth({ information, setInformation }: PropsNavHealt
               justify-center 
               items-center
               border-2 
-              border-cyan-900
+              border-gray-700
+              dark:border-cyan-900 
               `
               :
               `
               hover:cursor-pointer 
               w-24 
-              border-2 
-              border-cyan-800 
+              border-2
+              border-gray-800 
+              dark:border-cyan-800 
               font-bold 
               rounded-full 
-              text-gray-200 
+              text-gray-700
+              dark:text-gray-200 
               flex 
               justify-center 
               items-center
