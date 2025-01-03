@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../hook/store";
 export default function NavHome() {
   const { id } = useAppSelector(state => state.user)
   return (
-    <nav className="flex justify-center">
+    <nav className="w-full flex justify-center">
       <ul className="
           flex 
           justify-evenly 

@@ -15,7 +15,7 @@ export default function Home() {
     <>
       {userId != 'null' ?
         !admin ?
-          <div className="p-4 h-full flex flex-col">
+          <div className="p-4 h-full w-full">
             <NavHome />
             {select == selects.summary ? <Summary /> : select == selects.miSalud ? <Health /> : < Shifts />}
           </div>
