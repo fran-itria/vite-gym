@@ -9,7 +9,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -143,7 +142,7 @@ input:focus {
   .button {
     background-color: #111827;
     color: white;
-    border: white;
+    border-color: #111827;
   }
 
   .button:hover {
@@ -180,12 +179,5 @@ input:focus {
 
   input::placeholder {
     color: #d1d5db
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
   }
 }

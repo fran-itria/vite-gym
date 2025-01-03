@@ -62,7 +62,7 @@ export default function Users() {
                         email={email}
                     />}
             </>
-            <div className='h-full flex flex-col items-center justify-center'>
+            <div className='p-4 ll:p-0 h-full flex flex-col items-center justify-center'>
                 {users.length > 1 &&
                     <div className='ll:w-full'>
                         <p className='border p-2 rounded mb-2 border-black border-2 font-bold dark:border-white dark:text-white w-fit ll:ml-2'>Total de usuarios:

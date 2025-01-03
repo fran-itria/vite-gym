@@ -12,10 +12,10 @@ export default function Subscription() {
         <>
             {loader && <Loader text={loader} />}
             {admin ?
-                <>
+                <div className="p-4 h-full ll:p-0">
                     <SubscriptionAdmin setLoader={setLoader} />
                     <Register setLoader={setLoader} />
-                </>
+                </div>
                 :
                 <>
                     <p>Monto a pagar: {amount}</p>

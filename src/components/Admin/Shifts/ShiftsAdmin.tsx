@@ -65,8 +65,8 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
     }, [])
 
     return (
-        <div className="h-full flex flex-col justify-start items-center">
-            <b className="mt-10 mb-2.5 ll:mb-2 ll:w-96">Si desea limitar los turnos complete los siguientes campos: </b>
+        <div className="h-full p-4 flex flex-col justify-start items-center">
+            <b className="mt-5 mb-2.5 ll:mb-2 ll:w-96">Si desea limitar los turnos complete los siguientes campos: </b>
             <div className="flex justify-center w-full items-center h-fit ll:h-52">
                 <form
                     onSubmit={(e) => onSubmit(e, inputs, GymId, setLoader, stateButton, setLimitShift)}

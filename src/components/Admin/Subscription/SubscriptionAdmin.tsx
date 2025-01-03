@@ -29,7 +29,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
     }, [GymId])
 
     return (
-        <div className="h-full w-full mt-5 flex flex-col items-center">
+        <div className="w-full h-80 ll:h-2/4 mt-5 flex flex-col items-center">
             <form
                 onSubmit={(e) => {
                     if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
@@ -62,7 +62,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                     onChange={(e) => setLink(e.target.value)}
                     placeholder="Link de pago: "
                 ></input>
-                <button className="buttonConfirm w-24 mt-3">Confrimar</button>
+                <button className="buttonConfirm w-24">Confrimar</button>
             </form>
             {linkMp && amount ? (
                 <div className="
