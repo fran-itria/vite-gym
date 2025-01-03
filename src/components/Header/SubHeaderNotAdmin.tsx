@@ -9,7 +9,7 @@ export default function SubHeaderNotAdmin({
 }: props) {
 
     const { pathname } = useLocation()
-    const styleNavButton = 'w-32 ll:h-fit ll:text-sm'
+    const styleNavButton = 'w-32 ll:text-sm p-1.5'
 
     return (
         <nav>
@@ -18,13 +18,14 @@ export default function SubHeaderNotAdmin({
                 justify-evenly
                 w-full
                 ll:flex-wrap
-                ll:gap-2"
+                ll:gap-2
+                ll:mt-4"
             >
                 <NavLink
                     to={`/home/${id}/resumen`}
                     className={pathname.includes("home")
                         ?
-                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 rounded bg-gray-300 ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}>
                     <li>
@@ -35,7 +36,7 @@ export default function SubHeaderNotAdmin({
                     to={`/calentamiento/${id}`}
                     className={({ isActive }) => isActive
                         ?
-                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
@@ -47,7 +48,7 @@ export default function SubHeaderNotAdmin({
                     to={`/rutina/${id}`}
                     className={({ isActive }) => isActive
                         ?
-                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
