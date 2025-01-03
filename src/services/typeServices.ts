@@ -262,7 +262,7 @@ export type submitTrainingProps = {
 
 export type deleteTrainingProps = {
   setLoader: SetLoader
-  id: string
+  id: string | undefined
   updateTrainingsUser: (trainings: extraTraining[]) => void
   userId: string | null
 }

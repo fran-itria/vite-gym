@@ -10,7 +10,7 @@ export type meal = {
 
 export type extraTraining = {
     id: string
-    date: Date,
+    date: string,
     hour: string,
     exercise: string,
     duration: string | null,

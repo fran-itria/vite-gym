@@ -321,7 +321,7 @@ export type Extra = {
 }
 
 export type InputsCreateTraining = {
-  date?: Date,
+  date?: string,
   hour?: string,
   exercise?: string,
   duration?: string | null,

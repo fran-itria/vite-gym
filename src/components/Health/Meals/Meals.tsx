@@ -27,12 +27,12 @@ export default function Meals() {
                         setValues={setValues}
                         setEdit={setEdit}
                     />
-                    <AddCircleIcon color="success" fontSize='large' onClick={() => setAdd(!add)} className='mt-3' />
+                    <AddCircleIcon color="success" fontSize='large' onClick={() => setAdd(!add)} className='mt-3 hover:cursor-pointer' />
                 </div>
                 :
                 <div className='flex flex-col items-center'>
                     <b>No hay comidas registradas</b>
-                    <AddCircleIcon color="success" onClick={() => setAdd(!add)} className='mt-3 hover:cursor-pointer' />
+                    <AddCircleIcon color="success" fontSize='large' onClick={() => setAdd(!add)} className='mt-3 hover:cursor-pointer' />
                 </div>
             }
             {
