@@ -20,10 +20,8 @@ export const change = async (id: string | null, valueGym: string | undefined, na
         const response = await axios.post('/mails/confirmChangeGym', { idUser: id, idNewGym: valueGym })
         if (response.status == 200) {
             const gym: any = await axios.get(`/gym/getGymId/${valueGym}`)
-            await axios.put(`/user`, { id, ban: `Debes esperar a que ${gym.data.name} acepte su solicitud`, login: false })
-            storage.removeItem('user')
-            storage.removeItem('email')
-            storage.removeItem('password')
+            await axios.put(`/user`, { id, ban: `Debes esperar a que ${gym.data.name} acepte su solicitud`, login: false, pay: false })
+            storage.removeItem('token')
             navigate('/')
         }
     } catch (error: any) {

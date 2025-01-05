@@ -24,7 +24,14 @@ function App() {
   const [loader, setLoader] = useState<string | undefined>(undefined)
   const navigate = useNavigate()
   useEffect(() => {
-    if (path.pathname != "/" && !path.pathname.includes("register") && !path.pathname.includes("suscripcion")) {
+    if (
+      path.pathname != "/"
+      &&
+      !path.pathname.includes("register")
+      &&
+      !path.pathname.includes("suscripcion")
+      &&
+      !path.pathname.includes("acceptUser")) {
       const token = storage.getItem('token')
       if (token) {
         setLoader(`${basicLoaders.init}`)
