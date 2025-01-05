@@ -42,7 +42,7 @@ export default function TablePayments({ payments }: {
     }
 
     return (
-        <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+        <TableContainer className='rounded overflow-auto w-full max-h-48 max-w-6xl ll:max-w-smd ll:max-h-48'>
             <Table size="small" aria-label="customized table">
                 <TableHead>
                     <TableRow>

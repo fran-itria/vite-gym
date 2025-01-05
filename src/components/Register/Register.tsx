@@ -42,12 +42,12 @@ export default function Register({ setLoader }: { setLoader: React.Dispatch<Reac
     }, [Gym, link])
 
     return (
-        <div className="flex flex-col items-center mb-5">
+        <div className="flex flex-col items-center ll:mb-5">
             <button onClick={() => createLink()} className="button w-48 mt-3">Crear link de registro</button>
             {
                 allIds && allIds?.length > 0 &&
                 <div className="mt-3 mb-3">
-                    <TableContainer className="ll:max-w-smd max-h-72 rounded">
+                    <TableContainer className="ll:max-w-smd max-h-52 rounded">
                         <Table aria-label="customized table">
                             <TableHead>
                                 <TableRow>

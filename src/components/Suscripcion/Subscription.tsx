@@ -13,7 +13,7 @@ export default function Subscription() {
         <>
             {loader && <Loader text={loader} />}
             {admin ?
-                <div className="p-4 h-full ll:p-0">
+                <div className="p-4 h-full flex flex-col justify-between ll:p-0">
                     <SubscriptionAdmin setLoader={setLoader} />
                     <Register setLoader={setLoader} />
                 </div>

@@ -90,7 +90,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                 >
                     <div className="ll:items-start col-span-2 flex flex-col justify-center items-center">
                         <div className="flex flex-col w-fit mb-2 text-start ll:flex-row">
-                            <label className="font-bold">
+                            <label className="font-bold text-gray-800 dark:text-white">
                                 Limite de turnos:
                             </label>
                             <input
@@ -98,12 +98,12 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="limit"
                                 defaultValue={limitShift?.limit || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded p-1 w-16 h-6 ll:ml-3"
+                                className="rounded p-1 w-16 h-6 ll:ml-3 text-gray-700 dark:text-white"
                                 required
                             ></input>
                         </div>
                         <div className="flex flex-col mb-2 w-fit text-start ll:flex-row">
-                            <label className="font-bold">
+                            <label className="font-bold text-gray-800 dark:text-white">
                                 Tiempo de turno:
                             </label>
                             <input
@@ -111,12 +111,12 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="time"
                                 defaultValue={limitShift?.time || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded p-1 w-16 h-6 ll:ml-3"
+                                className="rounded p-1 w-16 h-6 ll:ml-3 text-gray-700 dark:text-white"
                                 required
                             ></input>
                         </div>
                         <div className="flex flex-col mb-2 w-fit mr-12 ll:flex-row">
-                            <label className="font-bold">
+                            <label className="font-bold text-gray-800 dark:text-white">
                                 Apertura:
                             </label>
                             <input
@@ -124,12 +124,12 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="open"
                                 defaultValue={limitShift?.open || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded w-20 h-6 ll:ml-3"
+                                className="rounded w-20 h-6 ll:ml-3 text-gray-700 dark:text-white"
                                 required
                             ></input>
                         </div>
                         <div className="flex flex-col text-start w-fit mr-12 ll:flex-row">
-                            <label className="font-bold">
+                            <label className="font-bold text-gray-800 dark:text-white">
                                 Cierre:
                             </label>
                             <input
@@ -137,7 +137,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="close"
                                 defaultValue={limitShift?.close || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded w-20 h-6 ll:ml-3"
+                                className="rounded w-20 h-6 ll:ml-3 text-gray-700 dark:text-white"
                                 required
                             ></input>
                         </div>
@@ -205,10 +205,10 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                         dark:border-cyan-600 
                         dark:bg-gray-800
                     ">
-                        <p>Turnos para el dia de hoy: <b>{shifts.length}</b></p>
-                        <p>Mañana 🌤️:<b className="ml-1">{shiftsSplit?.morning.length}</b></p>
-                        <p>Tarde 🌇: <b className="ml-1">{shiftsSplit?.afternoon.length}</b></p>
-                        <p>Noche 🌙: <b className="ml-1">{shiftsSplit?.night.length}</b></p>
+                        <b className="text-gray-700 dark:text-white">Turnos para el dia de hoy: <b>{shifts.length}</b></b>
+                        <b className="text-gray-700 dark:text-white">Mañana 🌤️:<b className="ml-1">{shiftsSplit?.morning.length}</b></b>
+                        <b className="text-gray-700 dark:text-white">Tarde 🌇: <b className="ml-1">{shiftsSplit?.afternoon.length}</b></b>
+                        <b className="text-gray-700 dark:text-white">Noche 🌙: <b className="ml-1">{shiftsSplit?.night.length}</b></b>
                     </div>
                 </section>
                 :

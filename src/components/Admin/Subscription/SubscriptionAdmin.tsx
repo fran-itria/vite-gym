@@ -29,7 +29,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
     }, [GymId])
 
     return (
-        <div className="w-full h-80 ll:h-2/4 mt-5 flex flex-col items-center">
+        <div className="w-full h-full mt-5 flex flex-col items-center">
             <form
                 onSubmit={(e) => {
                     if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
@@ -46,8 +46,8 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 dark:border-cyan-700 
                 rounded-t
                 p-3  
-                w-80 
-                h-1/2"
+                w-80
+                h-40"
             >
                 <input
                     type="number"
@@ -64,7 +64,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 ></input>
                 <button className="buttonConfirm w-24">Confrimar</button>
             </form>
-            {linkMp && amount ? (
+            {linkMp && amount && (
                 <div className="
                 flex 
                 flex-col 
@@ -78,7 +78,8 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 w-80">
                     <b className="text-black dark:text-white">Link actual: {linkMp} </b>
                     <b className="mb-3 text-black dark:text-white">Monto a pagar: {amount} </b>
-                </div>) : <></>}
+                </div>
+            )}
             {payments && payments?.length > 0 &&
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
                     <TablePayments payments={payments} />
