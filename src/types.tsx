@@ -380,7 +380,4 @@ export type DaysProps = {
 
 export type TableSubscriptionProps = {
   Payments: [] | payments[]
-  updatePaymentsUser: (payments: payments[]) => void
-  id: string | null
-  setLoader: SetLoader
 }

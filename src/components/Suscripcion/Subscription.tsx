@@ -4,6 +4,7 @@ import useSubscription from "../../hook/Components/Subscription/useSubscription"
 import TableSubscription from "./TableSubscription";
 import Loader from "../Loader";
 import Register from "../Register/Register";
+import mercadoPagoLogo from "../../images/mercadoPago.png";
 
 export default function Subscription() {
     const { Payments, admin, amount, id, linkMp, updatePaymentsUser, loader, setLoader } = useSubscription()
@@ -17,21 +18,29 @@ export default function Subscription() {
                     <Register setLoader={setLoader} />
                 </div>
                 :
-                <>
-                    <p>Monto a pagar: {amount}</p>
-                    <button style={{ background: '#009ee3', color: 'white' }} >
-                        <a href={linkMp}>
+                <div className="p-10 h-full flex flex-col justify-start items-center">
+                    <b className="text-xl">Monto a pagar: {amount}</b>
+                    <button className="
+                            w-32 
+                            flex 
+                            justify-center 
+                            items-center 
+                            rounded 
+                            bg-blue-500
+                            mt-5
+                            mb-5
+                    ">
+                        <a href={linkMp} className="w-24 text-xl flex justify-around items-center text-white">
+                            <img src={mercadoPagoLogo} />
                             Pagar
                         </a>
                     </button>
-                    {Payments && Payments.length > 0 ?
+                    {Payments && Payments.length > 0 &&
                         <>
-                            <TableSubscription Payments={Payments} id={id} updatePaymentsUser={updatePaymentsUser} setLoader={setLoader} />
+                            <TableSubscription Payments={Payments} />
                         </>
-                        :
-                        <></>
                     }
-                </>}
+                </div>}
         </>
     )
 }

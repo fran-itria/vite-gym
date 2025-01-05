@@ -1,37 +1,27 @@
 import { TableSubscriptionProps } from "../../types"
-import { Paper, Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/material"
-import theme, { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme"
-import DeleteIcon from "@mui/icons-material/Delete";
-import { ThemeProvider } from "styled-components"
-import deleteSubscription from "../../services/subscription/deleteSubscription"
+import { Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/material"
+import { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme"
 
-export default function TableSubscription({ Payments, id, updatePaymentsUser, setLoader }: TableSubscriptionProps) {
+export default function TableSubscription({ Payments }: TableSubscriptionProps) {
     return (
-        <TableContainer component={Paper}>
+        <TableContainer className='rounded overflow-auto w-96 max-h-120 max-w-6xl ll:max-w-smd ll:max-h-120'>
             <Table>
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center">Día</StyledTableCell>
                         <StyledTableCell align="center">Hora</StyledTableCell>
                         <StyledTableCell align="center">Monto</StyledTableCell>
-                        <StyledTableCell align="center"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {Payments.map(payment => {
+                        const day = payment.date.split('-')
+                        const hour = payment.hour.split(':')
                         return (
                             <StyledTableRow key={payment.id}>
-                                <StyledTableCell align="center">{payment.date}</StyledTableCell>
-                                <StyledTableCell align="center">{payment.hour}</StyledTableCell>
+                                <StyledTableCell align="center">{`${day[2]} - ${day[1]}`}</StyledTableCell>
+                                <StyledTableCell align="center">{`${hour[0]} : ${hour[2]}`}</StyledTableCell>
                                 <StyledTableCell align="center">{payment.amount}</StyledTableCell>
-                                <StyledTableCell align="center">
-                                    <ThemeProvider theme={theme}>
-                                        <DeleteIcon
-                                            sx={{ color: theme.palette.tashIcon.main }}
-                                            onClick={() => deleteSubscription({ id: payment.id, updatePaymentsUser, userId: id, setLoader })}>
-                                        </DeleteIcon>
-                                    </ThemeProvider>
-                                </StyledTableCell>
                             </StyledTableRow>
                         )
                     })}
