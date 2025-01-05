@@ -4,10 +4,12 @@ import { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme"
 
 export default function TableSubscription({ Payments }: TableSubscriptionProps) {
     return (
+        Payments.length > 0 &&
         <TableContainer className='rounded overflow-auto w-96 max-h-120 max-w-6xl ll:max-w-smd ll:max-h-120'>
             <Table>
                 <TableHead>
                     <TableRow>
+                        <StyledTableCell align="center">Gym</StyledTableCell>
                         <StyledTableCell align="center">Día</StyledTableCell>
                         <StyledTableCell align="center">Hora</StyledTableCell>
                         <StyledTableCell align="center">Monto</StyledTableCell>
@@ -19,6 +21,7 @@ export default function TableSubscription({ Payments }: TableSubscriptionProps) 
                         const hour = payment.hour.split(':')
                         return (
                             <StyledTableRow key={payment.id}>
+                                <StyledTableCell align="center">{payment.Gym.name}</StyledTableCell>
                                 <StyledTableCell align="center">{`${day[2]} - ${day[1]}`}</StyledTableCell>
                                 <StyledTableCell align="center">{`${hour[0]} : ${hour[2]}`}</StyledTableCell>
                                 <StyledTableCell align="center">{payment.amount}</StyledTableCell>

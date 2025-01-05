@@ -20,7 +20,9 @@ export type extraTraining = {
 export type shift = {
     id: string,
     day: string,
-    hour: string
+    hour: string,
+    gymId: string,
+    Gym: { name: string }
 }
 
 export type payments = {
@@ -28,6 +30,8 @@ export type payments = {
     date: string,
     hour: string,
     amount: number,
+    gymId: string,
+    Gym: { name: string }
 }
 export interface User {
     id: string | null

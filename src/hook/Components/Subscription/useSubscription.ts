@@ -8,16 +8,20 @@ import { useUserActions } from "../../useUserActions"
 import { basicLoaders, specificLoaders, storage } from "../../../const"
 import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
+import { payments } from "../../../store/user/slice"
 
 export default function useSubscription() {
-    const { admin, GymId, id, Payments } = useAppSelector(state => state.user)
+    const { admin, GymId, id, Payments, Gym } = useAppSelector(state => state.user)
     const { updatePaymentsUser, addUser, updatePayUser } = useUserActions()
     const [linkMp, setLinkMp] = useState<string>()
     const [amount, setAmount] = useState<string>()
     const query = useLocation()
     const [loader, setLoader] = useState<string>()
+    const [arrayPayments, setArrayPayments] = useState<payments[] | []>([])
 
     useEffect(() => {
+        const array = Payments.filter(payment => payment.Gym.name == Gym?.name)
+        setArrayPayments(array)
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
@@ -49,5 +53,5 @@ export default function useSubscription() {
         })()
     }, [amount])
 
-    return { admin, Payments, linkMp, amount, loader, setLoader }
+    return { admin, Payments, linkMp, amount, loader, setLoader, arrayPayments }
 }
