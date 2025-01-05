@@ -7,7 +7,7 @@ import Register from "../Register/Register";
 import mercadoPagoLogo from "../../images/mercadoPago.png";
 
 export default function Subscription() {
-    const { Payments, admin, amount, id, linkMp, updatePaymentsUser, loader, setLoader } = useSubscription()
+    const { Payments, admin, amount, linkMp, loader, setLoader } = useSubscription()
 
     return (
         <>

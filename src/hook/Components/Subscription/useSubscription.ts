@@ -28,8 +28,6 @@ export default function useSubscription() {
     }, [GymId])
 
     useEffect(() => {
-        // const user = storage.getItem('user')
-        // const password = storage.getItem('password');
         (async () => {
             const params = new URLSearchParams(query.search)
             const approved = params.get('collection_status')
@@ -51,5 +49,5 @@ export default function useSubscription() {
         })()
     }, [amount])
 
-    return { admin, Payments, linkMp, amount, updatePaymentsUser, id, loader, setLoader }
+    return { admin, Payments, linkMp, amount, loader, setLoader }
 }
