@@ -19,7 +19,7 @@ export default function Subscription() {
                 </div>
                 :
                 <div className="p-10 h-full flex flex-col justify-start items-center">
-                    <b className="text-xl">Monto a pagar: {amount}</b>
+                    <b className="text-xl text-black dark:text-white">Monto a pagar: {amount}</b>
                     <button className="
                             w-32 
                             flex 

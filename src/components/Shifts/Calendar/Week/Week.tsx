@@ -7,7 +7,7 @@ export default function Week() {
         <>
             {week.map(day => {
                 return <div className="flex items-center justify-center ">
-                    <p className="font-bold">{day.toLocaleUpperCase()}</p>
+                    <b className="text-black dark:text-white">{day.toLocaleUpperCase()}</b>
                 </div>
             })}
         </>

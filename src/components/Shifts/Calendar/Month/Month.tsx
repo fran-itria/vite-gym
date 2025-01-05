@@ -24,7 +24,17 @@ export default function Month({ month, setMonth, setActualYear }: MonthProps) {
     }
 
     return (
-        <main className="flex w-52 px-4 items-center justify-around bg-cyan-800 rounded-full h-11">
+        <main className="
+                flex 
+                w-52 
+                px-4 
+                items-center 
+                justify-around
+                bg-gray-700 
+                dark:bg-cyan-800 
+                rounded-full 
+                h-11
+        ">
             <ArrowCircleLeftIcon sx={{ color: 'white' }} onClick={() => handleMonth(prev)} />
             <p className="font-bold text-2xl"> {month !== undefined ? year[month].month.toLocaleUpperCase() : <></>} </p>
             <ArrowCircleRightIcon sx={{ color: 'white' }} onClick={() => handleMonth(next)} />

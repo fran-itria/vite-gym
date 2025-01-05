@@ -35,20 +35,20 @@ export default function Days({ month, day, setDay, actualYear, GymId, limit }: D
                         <div
                             className={
                                 dayMonth == (day - 1) ?
-                                    `${dayMonthStyle} bg-cyan-700`
+                                    `${dayMonthStyle} bg-gray-800 dark:bg-cyan-700`
                                     :
                                     (index) % 7 === 0 ?
-                                        `${dayMonthStyle} bg-gray-500 pointer-events-none`
+                                        `${dayMonthStyle} bg-gray-400 dark:bg-gray-500 pointer-events-none`
                                         :
                                         limit && shiftsMonth.filter(shift => {
                                             return shift.day.split('-')[2] === (dayMonth + 1 < 10 ? `0${dayMonth + 1}` : `${dayMonth + 1}`)
                                         }).length >= (limit ? limit : 1) ?
-                                            `${dayMonthStyle} pointer-events-none bg-gray-500 border border-black opacity-50`
+                                            `${dayMonthStyle} pointer-events-none bg-gray-500 dark:bg-gray-500 border border-black opacity-50`
                                             :
-                                            `${dayMonthStyle} bg-cyan-950`
+                                            `${dayMonthStyle} bg-gray-600 dark:bg-cyan-950`
                             }
                             onClick={() => setDay(dayMonth + 1)}>
-                            <b className="text-xl">
+                            <b className={`${dayMonth == (day - 1) && 'text-white'} hover:cursor-pointer text-xl text-black dark:text-white`}>
                                 {(dayMonth + 1).toString().length < 2 && "0"}{dayMonth + 1}
                             </b>
                         </div>

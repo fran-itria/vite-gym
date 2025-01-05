@@ -2,14 +2,13 @@
 import { useAppSelector } from "../../hook/store"
 import DeleteIcon from "@mui/icons-material/Delete";
 import Calendar from "./Calendar/Calendar"
-import style from './Shifts.module.css'
 import Loader from "../Loader";
 import { useUserActions } from "../../hook/useUserActions";
 import deleteShift from "../../services/calendar/deleteShift";
 import ShiftsAdmin from "../Admin/Shifts/ShiftsAdmin";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/material";
 import theme, { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme";
 import { ThemeProvider } from "styled-components";
 
@@ -34,14 +33,14 @@ export default function Shifts() {
             {!admin ?
                 <div className="mt-3">
                     {shifts && shifts.limit != 0 &&
-                        <b className="text-lg">El limite de cupos por turno es de {shifts.limit} con duracion de {shifts.time} hora</b>
+                        <b className="dark:text-white text-black text-lg">El limite de cupos por turno es de {shifts.limit} con duracion de {shifts.time} hora</b>
                     }
                     <div className="flex justify-center ll:flex-col ll:justify-center ll:items-center mt-5">
                         <Calendar setLoader={setLoader} range={shifts?.range} limit={shifts ? shifts.limit : null} />
                         <div className="ll:mb-5">
                             {Shifts.length > 0 &&
                                 <>
-                                    <b>Mis turnos: </b>
+                                    <b className="text-black dark:text-white">Mis turnos: </b>
                                     <TableContainer className='rounded overflow-auto w-96 max-h-120 max-w-6xl ll:max-w-smd ll:max-h-72'>
                                         <Table aria-label="customized table">
                                             <TableHead>
