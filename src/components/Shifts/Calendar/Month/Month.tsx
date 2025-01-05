@@ -1,5 +1,4 @@
 import { year, next, prev } from "../../Const"
-import style from "./Month.module.css";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { MonthProps } from "../../../../types";
@@ -25,10 +24,10 @@ export default function Month({ month, setMonth, setActualYear }: MonthProps) {
     }
 
     return (
-        <main className={style.MonthContainer}>
-            <ArrowCircleLeftIcon sx={{color: 'black'}} onClick={() => handleMonth(prev)}/>
-            <p className={style.Month}> {month !== undefined ? year[month].month.toLocaleUpperCase() : <></>} </p>
-            <ArrowCircleRightIcon sx={{color: 'black'}} onClick={() => handleMonth(next)}/>
+        <main className="flex w-52 px-4 items-center justify-around bg-cyan-800 rounded-full h-11">
+            <ArrowCircleLeftIcon sx={{ color: 'white' }} onClick={() => handleMonth(prev)} />
+            <p className="font-bold text-2xl"> {month !== undefined ? year[month].month.toLocaleUpperCase() : <></>} </p>
+            <ArrowCircleRightIcon sx={{ color: 'white' }} onClick={() => handleMonth(next)} />
         </main>
     )
 }

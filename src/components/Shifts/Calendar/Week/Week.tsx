@@ -1,5 +1,4 @@
 import { week } from "../../Const";
-import style from './Week.module.css'
 
 
 export default function Week() {
@@ -7,8 +6,8 @@ export default function Week() {
     return (
         <>
             {week.map(day => {
-                return <div className={style.days}>
-                    <p className={style.daysText}>{day.toLocaleUpperCase()}</p>
+                return <div className="flex items-center justify-center ">
+                    <p className="font-bold">{day.toLocaleUpperCase()}</p>
                 </div>
             })}
         </>

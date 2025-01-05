@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { year } from "../../Const"
 import moment from "moment";
-import style from './Days.module.css'
 import { useEffect, useMemo, useState } from "react";
 import { DaysProps } from "../../../../types";
 import axios from "axios";
@@ -24,36 +23,38 @@ export default function Days({ month, day, setDay, actualYear, GymId, limit }: D
         }
         getShiftsMonth()
     }, [month, Shifts])
-
+    const dayMonthStyle = 'flex justify-center items-center rounded-full h-8 w-12 ll:w-10'
     return (
         <>
-            {month !== undefined ? daysInMonth.map((dayMonth, index) => {
+            {month !== undefined && daysInMonth.map((dayMonth, index) => {
                 if (dayMonth === undefined) return (
                     <div></div>
                 );
                 return (
-                    <div
-                        className={
-                            dayMonth == (day - 1) ?
-                                style.daySelected
-                                :
-                                (index) % 7 === 0 ?
-                                    style.dayOff
+                    <div className="flex justify-center">
+                        <div
+                            className={
+                                dayMonth == (day - 1) ?
+                                    `${dayMonthStyle} bg-cyan-700`
                                     :
-                                    limit && shiftsMonth.filter(shift => {
-                                        return shift.day.split('-')[2] === (dayMonth + 1 < 10 ? `0${dayMonth + 1}` : `${dayMonth + 1}`)
-                                    }).length >= (limit ? limit : 1) ?
-                                        style.dayComplete
+                                    (index) % 7 === 0 ?
+                                        `${dayMonthStyle} bg-gray-500 pointer-events-none`
                                         :
-                                        style.dayMonth
-                        }
-                        onClick={() => setDay(dayMonth + 1)}>
-                        <p className={style.dayMonthText}>
-                            {(dayMonth + 1).toString().length < 2 && "0"}{dayMonth + 1}
-                        </p>
+                                        limit && shiftsMonth.filter(shift => {
+                                            return shift.day.split('-')[2] === (dayMonth + 1 < 10 ? `0${dayMonth + 1}` : `${dayMonth + 1}`)
+                                        }).length >= (limit ? limit : 1) ?
+                                            `${dayMonthStyle} pointer-events-none bg-gray-500 border border-black opacity-50`
+                                            :
+                                            `${dayMonthStyle} bg-cyan-950`
+                            }
+                            onClick={() => setDay(dayMonth + 1)}>
+                            <b className="text-xl">
+                                {(dayMonth + 1).toString().length < 2 && "0"}{dayMonth + 1}
+                            </b>
+                        </div>
                     </div>
                 )
-            }) : <></>}
+            })}
         </>
     )
 }

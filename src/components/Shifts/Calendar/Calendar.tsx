@@ -29,15 +29,15 @@ export default function Calendar({ setLoader, range, limit }: { setLoader: SetLo
     } = useCalendar()
 
     return (
-        <div className={style.complete}>
-            <div className={style.month}>
+        <div className="ll:w-full flex items-center flex-col ">
+            <div className="w-full flex items-center justify-center">
                 <Month month={month} setMonth={setMonth} setActualYear={setActualYear} />
             </div>
             <div className={style.calendar}>
                 <Week />
                 <Days month={month} day={day} setDay={setDay} actualYear={actualYear} GymId={GymId} limit={limit && range ? (limit * range?.length) : limit} />
             </div>
-            <div className={style.confirm}>
+            <div className="w-full flex flex-col items-center justify-center">
                 <Hours
                     range={range}
                     hoursRange={hoursRange}
@@ -50,7 +50,7 @@ export default function Calendar({ setLoader, range, limit }: { setLoader: SetLo
                     day={day}
                     selectDay={selectDay}
                 />
-                <button className={style.button} onClick={() => {
+                <button className="buttonConfirm mt-5 mb-5 w-24" onClick={() => {
                     confirm({ GymId, id, selectDay, setLoader, updateShiftsUser })
                     setDefaultTime('')
                 }
