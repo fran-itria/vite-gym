@@ -3,7 +3,8 @@ import { useAppSelector } from "../../hook/store";
 
 export default function SubHeaderAdmin() {
     const { id } = useAppSelector(state => state.user)
-    const styleNavButton = 'w-32 ll:h-fit ll:text-sm'
+    const styleNavButton = 'w-32 ll:text-sm p-1.5'
+
     return (
         <nav className="
             mt-3
@@ -17,7 +18,7 @@ export default function SubHeaderAdmin() {
                 to={`/usuarios/${id}`}
                 className={({ isActive }) => isActive
                     ?
-                    `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                    `border-2 border-gray-300 rounded bg-gray-300 ${styleNavButton}`
                     :
                     `button ${styleNavButton}`
                 }
@@ -28,7 +29,7 @@ export default function SubHeaderAdmin() {
                 to={`/suscripcion/${id}`}
                 className={({ isActive }) => isActive
                     ?
-                    `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                    `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                     :
                     `
                     button ${styleNavButton}`
@@ -40,7 +41,7 @@ export default function SubHeaderAdmin() {
                 to={`/home/${id}/turnos`}
                 className={({ isActive }) => isActive
                     ?
-                    `border-2 border-gray-300 p-1.5 rounded bg-gray-300 ${styleNavButton}`
+                    `border-2 border-gray-300 rounded bg-gray-300 ${styleNavButton}`
                     :
                     `button ${styleNavButton}`
                 }
@@ -52,7 +53,7 @@ export default function SubHeaderAdmin() {
                 className={
                     ({ isActive }) => isActive
                         ?
-                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`
                 }
@@ -63,7 +64,7 @@ export default function SubHeaderAdmin() {
                 to={`/rutina/${id}`}
                 className={({ isActive }) => isActive
                     ?
-                    `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                    `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                     :
                     `button ${styleNavButton}`
                 }

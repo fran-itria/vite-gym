@@ -60,7 +60,7 @@ export default function SubHeaderNotAdmin({
                     to={`/suscripcion`}
                     className={({ isActive }) => isActive
                         ?
-                        `border-2 border-gray-300 p-1.5 rounded bg-gray-300  ${styleNavButton}`
+                        `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                         :
                         `button ${styleNavButton}`}
                 >
