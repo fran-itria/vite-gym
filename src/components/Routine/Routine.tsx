@@ -28,7 +28,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
             <div className="flex justify-center items-center">
                 <b className="mr-2 dark:text-white text-gray-900">Seleccionar rutina:</b>
                 <select
-                    className="rounded h-6 text-center bg-gray-700 dark:bg-white"
+                    className="rounded h-6 text-center bg-gray-700 dark:bg-gray-900"
                     onChange={(e) => {
                         if (viewRoutineOtherUser) {
                             setChangeOtherRoutine(true)
