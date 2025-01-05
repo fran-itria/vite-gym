@@ -124,11 +124,11 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="open"
                                 defaultValue={limitShift?.open || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded w-16 h-6 ll:ml-3"
+                                className="rounded w-20 h-6 ll:ml-3"
                                 required
                             ></input>
                         </div>
-                        <div className="flex flex-col text-start w-fit mr-16 ll:flex-row">
+                        <div className="flex flex-col text-start w-fit mr-12 ll:flex-row">
                             <label className="font-bold">
                                 Cierre:
                             </label>
@@ -137,7 +137,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
                                 name="close"
                                 defaultValue={limitShift?.close || ''}
                                 onChange={(e) => onChange(e, setInputs)}
-                                className="rounded w-16 h-6 ll:ml-3"
+                                className="rounded w-20 h-6 ll:ml-3"
                                 required
                             ></input>
                         </div>
