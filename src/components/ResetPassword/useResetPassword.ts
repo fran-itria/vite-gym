@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAppSelector } from "../../hook/store"
 
 
 export default function useResetPassword() {
+    const { email } = useAppSelector(state => state.user)
     const [reset, setReset] = useState<boolean>(false)
-    const [email, setEmail] = useState<string>("")
+    const [emailInput, setEmailInput] = useState<string>("")
     const [idUser, setIdUser] = useState<string>("")
     const [newPassword, setNewPassword] = useState<{ password: string, confirmPassword: string, code: number }>({
         password: "",
@@ -19,7 +21,8 @@ export default function useResetPassword() {
         reset,
         setReset,
         email,
-        setEmail,
+        emailInput,
+        setEmailInput,
         idUser,
         setIdUser,
         newPassword,

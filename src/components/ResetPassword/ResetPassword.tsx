@@ -10,7 +10,8 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
         reset,
         setReset,
         email,
-        setEmail,
+        emailInput,
+        setEmailInput,
         idUser,
         setIdUser,
         newPassword,
@@ -36,13 +37,13 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
                     </b>
                     <form
                         className="flex flex-col items-center mt-3"
-                        onSubmit={(e) => searchUser(e, email, setReset, setLoader, setIdUser)}
+                        onSubmit={(e) => searchUser(e, email, emailInput, setReset, setLoader, setIdUser)}
                     >
                         <input
                             autoFocus
                             className="w-50"
                             placeholder="Correo electronico"
-                            onChange={(e) => setEmail(e.target.value)}>
+                            onChange={(e) => setEmailInput(e.target.value)}>
                         </input>
                         <div className="flex justify-around mt-3 w-full">
                             <button
