@@ -40,7 +40,7 @@ export default function CreateRoutine({
                     p-4 
                     rounded
                     background
-                    w-96
+                    w-1/3
                     ll:w-full
                     flex
                     flex-col
@@ -48,7 +48,7 @@ export default function CreateRoutine({
                     "
                 >
                     <div className="w-full flex justify-center">
-                        <p className="text-2xl text-start mb-4 font-bold dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
+                        <p className="text-2xl text-start mb-4 font-bold text-gray-900 dark:text-gray-300">Creando {createWarm ? 'calentamiento' : 'rutina'}</p>
                     </div>
                     {
                         pagDays == 0 &&

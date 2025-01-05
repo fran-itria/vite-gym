@@ -73,7 +73,7 @@ export default function FormLogin() {
             required={true}
             className="mb-7"
           ></input>
-          <button className="button">Iniciar sesión</button>
+          <button className="button px-2">Iniciar sesión</button>
         </form>
         <a onClick={() => navigate("/reset")} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>
           ¿Olvidaste tu contraseña?

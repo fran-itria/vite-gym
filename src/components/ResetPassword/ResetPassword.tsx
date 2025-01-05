@@ -28,10 +28,10 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
 
         <div className="background flex flex-col rounded p-4">
             {loader ? <Loader text={loader} /> : <></>}
-            <b className="mb-3">Recuperar contraseña</b>
+            <b className="mb-3 text-gray-900 dark:text-white">Recuperar contraseña</b>
             {!reset ?
                 <div>
-                    <b>
+                    <b className="text-gray-900 dark:text-white">
                         Ingrese el correo electronico asociado a su cuenta
                     </b>
                     <form

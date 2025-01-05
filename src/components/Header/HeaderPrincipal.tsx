@@ -72,15 +72,15 @@ export default function HeaderPrincipal({
                             rounded-t-none
                             p-2
                             border-t-0
-                            bg-gray-400
-                            dark:bg-gray-800
+                            bg-gray-300
+                            dark:bg-gray-900
                             xs:h-52
                             xs:w-24
                             ll:top-15
                             "
                     >
                         <button
-                            className="rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs text-center xs:flex xs:justify-center xs:items-center"
+                            className="text-gray-900 dark:text-white rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs text-center xs:flex xs:justify-center xs:items-center"
                             onClick={() => {
                                 if (!photo) setImage(prev => !prev)
                                 else deleteImage(setLoader, updatePhotoUser, id, setMenu)
@@ -88,7 +88,7 @@ export default function HeaderPrincipal({
                             {!photo ? <>Cargar foto</> : <>Borrar foto</>}
                         </button>
                         <button
-                            className="rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
+                            className="text-gray-900 dark:text-white rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
                             onClick={() => {
                                 getGyms(setGyms)
                                 setChangeGym(prev => !prev)
@@ -96,12 +96,12 @@ export default function HeaderPrincipal({
                             Cambiar de gym
                         </button>
                         <button
-                            className="rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
+                            className="text-gray-900 dark:text-white rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
                             onClick={() => setResetPassword(prev => !prev)}>
                             Cambiar contraseña
                         </button>
                         <button
-                            className="rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
+                            className="text-gray-900 dark:text-white rounded-full px-3 font-bold border-b-2 border-black dark:border-white xs:h-9 xs:text-xs xs:text-center xs:flex xs:justify-center xs:items-center"
                             onClick={() => logout(id, navigate, setLoader)}>
                             Cerrar sesión
                         </button>

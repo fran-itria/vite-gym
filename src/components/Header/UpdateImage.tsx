@@ -30,14 +30,17 @@ export default function UpdateImage({
                 type="file"
                 onChange={(e) => { setFile(e.target.files ? e.target.files[0] : undefined) }}
                 className="
-                                                w-56
-                                                file:flex
-                                                file:mr-2 
-                                                file:p-2
-                                                file:rounded 
-                                                file:border-0
-                                                file:text-sm
-                                                file:bg-cyan-700"
+                w-56
+                file:flex
+                file:mr-2 
+                file:p-2
+                file:rounded 
+                file:border-0
+                file:text-sm
+                file:text-white
+                file:bg-gray-700
+                dark:file:bg-cyan-700
+                "
             >
             </input>
             {file &&

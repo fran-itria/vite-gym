@@ -26,9 +26,9 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
         <div className={`ll:w-full rounded ${setUsers ? 'background w-1/4 h-1/2' : 'flex flex-col items-center h-full justify-center'} p-4`}>
             {loader && <Loader text={loader} />}
             <div className="flex justify-center items-center">
-                <b className="mr-2">Seleccionar rutina:</b>
+                <b className="mr-2 dark:text-white text-gray-900">Seleccionar rutina:</b>
                 <select
-                    className="rounded h-6 text-center"
+                    className="rounded h-6 text-center bg-gray-700 dark:bg-white"
                     onChange={(e) => {
                         if (viewRoutineOtherUser) {
                             setChangeOtherRoutine(true)
@@ -39,14 +39,14 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                     <option value={routineId.id}></option>
                     {!viewRoutineOtherUser ?
                         Routines.map((routine, i: number) => (
-                            <option value={routine.id}>
+                            <option value={routine.id} className="font-bold">
                                 {i !== Routines.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
                             </option>
                         )
                         )
                         :
                         viewRoutineOtherUser.map((routine, i: number) => (
-                            <option value={routine.id}>
+                            <option value={routine.id} className="font-bold">
                                 {i !== viewRoutineOtherUser.length - 1 ? `Rutina ${i + 1}` : 'Actual'}
                             </option>
                         ))}
@@ -115,7 +115,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                 </>
                 :
                 <>
-                    <b className="text-xl mt-3">No tienes rutina actualmente</b>
+                    <b className="text-xl mt-3 dark:text-white text-gray-900">No tienes rutina</b>
                     <button
                         className="buttonConfirm w-52 ll:w-40 mt-2"
                         onClick={() => setOpenCreateRouitine(!opneCreateRoutine)}

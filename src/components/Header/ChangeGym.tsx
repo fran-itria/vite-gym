@@ -26,7 +26,7 @@ export default function ChangeGym({
 }: props) {
     return (
         <div className="background p-4 rounded flex flex-col items-center w-64 ll:w-1/2">
-            <select onChange={(e) => setValueGym(e.target.value)} className="rounded">
+            <select onChange={(e) => setValueGym(e.target.value)} className="rounded bg-gray-800 dark:bg-black">
                 <option value=''>Selecciona un gym</option>
                 {gyms.map((gym: { id: string, name: string }) => <option key={gym.id} value={gym.id}>{gym.name}</option>)}
             </select>

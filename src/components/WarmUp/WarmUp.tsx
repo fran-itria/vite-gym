@@ -34,9 +34,9 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
         <div className={`ll:w-full rounded ${setUsers ? 'background w-1/4 h-1/2' : 'flex flex-col items-center h-full justify-center'} p-4`}>
             {loader && <Loader text={loader} />}
             <div className="flex justify-center items-center">
-                <b className="mr-2">Seleccionar Calentamiento:</b>
+                <b className="mr-2 dark:text-white text-gray-900">Seleccionar Calentamiento:</b>
                 <select
-                    className="rounded h-6 text-center"
+                    className="rounded h-6 text-center bg-gray-700 dark:bg-white"
                     onChange={(e) => {
                         if (viewRoutineOtherUser) {
                             setChangeOtherRoutine(true)
@@ -122,7 +122,7 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                 </>
                 :
                 <>
-                    <b className="text-xl mt-3">No tienes calentamiento actualmente</b>
+                    <b className="text-xl mt-3 dark:text-white text-gray-900">No tienes calentamiento</b>
                     <button
                         className="buttonConfirm w-52 ll:w-40 mt-2"
                         onClick={() => setCreateWarm(!createWarm)}
