@@ -35,6 +35,7 @@ export default function ModifiedExercise({
           name="name"
           defaultValue={name}
           onChange={(e) => changeInputs(e, setInputs)}
+          className="text-black dark:text-white"
         ></input>
       </div>
       <div className="flex flex-col mb-5">
@@ -45,6 +46,7 @@ export default function ModifiedExercise({
           name="series"
           defaultValue={series}
           onChange={(e) => changeInputs(e, setInputs)}
+          className="text-black dark:text-white"
         ></input>
       </div>
       <div className="flex flex-col mb-5">
@@ -55,6 +57,7 @@ export default function ModifiedExercise({
           name="reps"
           defaultValue={reps}
           onChange={(e) => changeInputs(e, setInputs)}
+          className="text-black dark:text-white"
         ></input>
       </div>
       <div className="flex flex-col mb-5">
@@ -65,11 +68,12 @@ export default function ModifiedExercise({
           name="link"
           defaultValue={link}
           onChange={(e) => changeInputs(e, setInputs)}
+          className="text-black dark:text-white"
         ></input>
       </div>
-      <p>Si desea colocar una biserie </p>
-      <p>separe los ejercicios, series y </p>
-      <p>repeticiones con una <b>coma ( , )</b></p>
+      <p className="w-52 font-bold text-black dark:text-white text-wrap text-center">Si desea colocar una biserie
+        separe los ejercicios, series y
+        repeticiones con una coma ( , )</p>
       <div className="w-full flex justify-between mt-3">
         <button
           className="buttonCancel w-24"
