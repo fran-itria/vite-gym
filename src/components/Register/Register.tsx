@@ -51,7 +51,7 @@ export default function Register({ setLoader }: { setLoader: React.Dispatch<Reac
                         <Table aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell align="center">Link de registros</StyledTableCell>
+                                    <StyledTableCell align="center"><b>Link de registros</b></StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

@@ -63,29 +63,39 @@ export default function Users() {
                     />}
             </>
             <div className='p-4 ll:p-0 h-full flex flex-col items-center justify-center'>
-                {users.length > 1 &&
-                    <div className='ll:w-full'>
-                        <p className='border p-2 rounded mb-2 border-black border-2 font-bold dark:border-white dark:text-white w-fit ll:ml-2'>Total de usuarios:
-                            <b className='ml-2'>{users.length}</b>
-                        </p>
-                    </div>
-                }
+                <div className='ll:w-full'>
+                    <p className='border p-2 rounded mb-2 border-black border-2 font-bold dark:border-white dark:text-white w-fit ll:ml-2'>Total de usuarios:
+                        <b className='ml-2'>{users.length}</b>
+                    </p>
+                </div>
                 <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
                     <Table aria-label="customized table" >
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell align="center" className='flex flex-col'>
-                                    <p>Nombre</p>
-                                    <input onChange={(e) => filterUsers(e)} placeholder='Usuario' className='rounded w-16 placeholder:text-black dark:placeholder:text-white placeholder:text-center'></input>
+                                <StyledTableCell align="center">
+                                    <div className='flex flex-col items-center'>
+                                        <b>Nombre</b>
+                                        <input
+                                            onChange={(e) => filterUsers(e)}
+                                            placeholder='Usuario'
+                                            className='
+                                                rounded 
+                                                w-16
+                                                placeholder:text-white 
+                                                placeholder:text-center
+                                            '
+                                        >
+                                        </input>
+                                    </div>
                                 </StyledTableCell>
-                                <StyledTableCell align="center"> Apellido </StyledTableCell>
-                                <StyledTableCell align="center"> Suscripción </StyledTableCell>
-                                <StyledTableCell align="center"> Ban </StyledTableCell>
-                                <StyledTableCell align="center"> Admin </StyledTableCell>
-                                <StyledTableCell align="center"> Rutinas </StyledTableCell>
-                                <StyledTableCell align="center"> Calentamientos </StyledTableCell>
-                                <StyledTableCell align="center"> Teléfono </StyledTableCell>
-                                <StyledTableCell align="center"> Contacto emergencia </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Apellido</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Suscripción</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Ban</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Admin</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Rutinas</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Calentamientos</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Teléfono</b> </StyledTableCell>
+                                <StyledTableCell align="center"> <b>Contacto emergencia</b> </StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -108,18 +118,18 @@ export default function Users() {
                                                         <ThemeProvider theme={theme}>
                                                             <CreateIcon sx={{ color: theme.palette.pencil.main }} />
                                                         </ThemeProvider>
-                                                        <p className='ml-2 text-white'>{user.name}</p>
+                                                        <b className='ml-2 dark:text-white'>{user.name}</b>
                                                     </button>
                                                 </div>
                                             </StyledTableCell>
-                                            <StyledTableCell align="center">{user.surname}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.pay ? '✅' : '❌'}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.ban ? '✅' : '❌'}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.admin ? '✅' : '❌'}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.Routines.length}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.WarmUps.length}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.phone}</StyledTableCell>
-                                            <StyledTableCell align="center">{user.contactEmergency}</StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.surname}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.pay ? '✅' : '❌'}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.ban ? '✅' : '❌'}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.admin ? '✅' : '❌'}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.Routines.length}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.WarmUps.length}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.phone}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{user.contactEmergency}</b></StyledTableCell>
                                         </StyledTableRow>
                                     </>
                                 ))

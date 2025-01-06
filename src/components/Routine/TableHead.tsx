@@ -10,10 +10,10 @@ export default function TableHeadComponent({ weeks }: { weeks?: number | null })
         <TableHead>
             <TableRow>
                 <StyledTableCell align="center" />
-                <StyledTableCell align="center">Video</StyledTableCell>
-                <StyledTableCell align="center">Ejercicio</StyledTableCell>
-                <StyledTableCell align="center">Series</StyledTableCell>
-                <StyledTableCell align="center">Repeticiones</StyledTableCell>
+                <StyledTableCell align="center"><b>Video</b></StyledTableCell>
+                <StyledTableCell align="center"><b>Ejercicio</b></StyledTableCell>
+                <StyledTableCell align="center"><b>Series</b></StyledTableCell>
+                <StyledTableCell align="center"><b>Repeticiones</b></StyledTableCell>
                 {weeks ? totalWeeks.map((_week, i: number) => <StyledTableCell align="center">Semana {i + 1}</StyledTableCell>) : <></>}
             </TableRow>
         </TableHead>

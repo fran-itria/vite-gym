@@ -44,30 +44,36 @@ export default function TableCell({
             </StyledTableCell>
             {name?.includes(',') ?
                 <StyledTableCell align="center">
-                    {name.split(',').map(name => {
-                        return <p className='mb-3 last:mb-0'>{name}</p>
-                    })}
+                    <div className='flex flex-col'>
+                        {name.split(',').map(name => {
+                            return <b className='mb-3 last:mb-0'>{name}</b>
+                        })}
+                    </div>
                 </StyledTableCell>
                 :
-                <StyledTableCell align="center">{name}</StyledTableCell>
+                <StyledTableCell align="center"><b>{name}</b></StyledTableCell>
             }
             {String(series).includes(',') ?
                 <StyledTableCell align="center">
-                    {String(series).split(',').map(serie => {
-                        return <p className='mb-3 last:mb-0'>{serie}</p>
-                    })}
+                    <div className='flex flex-col'>
+                        {String(series).split(',').map(serie => {
+                            return <b className='mb-3 last:mb-0'>{serie}</b>
+                        })}
+                    </div>
                 </StyledTableCell>
                 :
-                <StyledTableCell align="center">{series}</StyledTableCell>
+                <StyledTableCell align="center"><b>{series}</b></StyledTableCell>
             }
             {reps?.includes(',') ?
                 <StyledTableCell align="center">
-                    {reps.split(',').map(rep => {
-                        return <p className='mb-3 last:mb-0'>{rep}</p>
-                    })}
+                    <div className='flex flex-col'>
+                        {reps.split(',').map(rep => {
+                            return <b className='mb-3 last:mb-0'>{rep}</b>
+                        })}
+                    </div>
                 </StyledTableCell>
                 :
-                <StyledTableCell align="center">{reps}</StyledTableCell>
+                <StyledTableCell align="center"><b>{reps}</b></StyledTableCell>
             }
             {
                 Loads && weeksArray && weeksArray?.map((value, index) => {
@@ -81,13 +87,13 @@ export default function TableCell({
                                         setIdLoad(value.id ? value.id : '')
                                     }}>
                                     {value.loads?.includes(',') ?
-                                        <div>
+                                        <div className='flex flex-col'>
                                             {value.loads.split(',').map(load => {
-                                                return <p className='mb-3 last:mb-0'>{load}</p>
+                                                return <b className='mb-3 last:mb-0'>{load}</b>
                                             })}
                                         </div>
                                         :
-                                        value.loads
+                                        <b>{value.loads}</b>
                                     }
                                 </button>
                             </StyledTableCell>

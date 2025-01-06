@@ -9,10 +9,10 @@ export default function TableSubscription({ Payments }: TableSubscriptionProps) 
             <Table>
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="center">Gym</StyledTableCell>
-                        <StyledTableCell align="center">Día</StyledTableCell>
-                        <StyledTableCell align="center">Hora</StyledTableCell>
-                        <StyledTableCell align="center">Monto</StyledTableCell>
+                        <StyledTableCell align="center"><b>Gym</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Día</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Hora</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Monto</b></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -21,10 +21,10 @@ export default function TableSubscription({ Payments }: TableSubscriptionProps) 
                         const hour = payment.hour.split(':')
                         return (
                             <StyledTableRow key={payment.id}>
-                                <StyledTableCell align="center">{payment.Gym.name}</StyledTableCell>
-                                <StyledTableCell align="center">{`${day[2]} - ${day[1]}`}</StyledTableCell>
-                                <StyledTableCell align="center">{`${hour[0]} : ${hour[2]}`}</StyledTableCell>
-                                <StyledTableCell align="center">{payment.amount}</StyledTableCell>
+                                <StyledTableCell align="center"><b>{payment.Gym.name}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{`${day[2]} - ${day[1]}`}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{`${hour[0]} : ${hour[2]}`}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{payment.amount}</b></StyledTableCell>
                             </StyledTableRow>
                         )
                     })}

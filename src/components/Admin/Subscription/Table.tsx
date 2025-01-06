@@ -47,16 +47,18 @@ export default function TablePayments({ payments }: {
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center">
-                            Nombre
-                            <input
-                                onChange={(e) => filterPaymentsFuntcion(e)}
-                                placeholder='Usuario'
-                                className='rounded w-16 placeholder:text-white dark:placeholder:text-white placeholder:text-center'></input>
+                            <div className='flex flex-col items-center justify-center'>
+                                <b>Nombre</b>
+                                <input
+                                    onChange={(e) => filterPaymentsFuntcion(e)}
+                                    placeholder='Usuario'
+                                    className='rounded w-16 placeholder:text-white dark:placeholder:text-white placeholder:text-center'></input>
+                            </div>
                         </StyledTableCell>
-                        <StyledTableCell align="center">Apellido</StyledTableCell>
-                        <StyledTableCell align="center">Fecha</StyledTableCell>
-                        <StyledTableCell align="center">Hora</StyledTableCell>
-                        <StyledTableCell align="center">Monto</StyledTableCell>
+                        <StyledTableCell align="center"><b>Apellido</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Fecha</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Hora</b></StyledTableCell>
+                        <StyledTableCell align="center"><b>Monto</b></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -67,11 +69,11 @@ export default function TablePayments({ payments }: {
                         const hourString = `${hour[0]} : ${hour[1]}`
                         return (
                             <StyledTableRow key={payment.id}>
-                                <StyledTableCell align="center">{payment.User.name}</StyledTableCell>
-                                <StyledTableCell align="center">{payment.User.surname}</StyledTableCell>
-                                <StyledTableCell align="center">{dateString}</StyledTableCell>
-                                <StyledTableCell align="center">{hourString}</StyledTableCell>
-                                <StyledTableCell align="center">{payment.amount}</StyledTableCell>
+                                <StyledTableCell align="center"><b>{payment.User.name}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{payment.User.surname}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{dateString}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{hourString}</b></StyledTableCell>
+                                <StyledTableCell align="center"><b>{payment.amount}</b></StyledTableCell>
                             </StyledTableRow>
                         )
                     })}
