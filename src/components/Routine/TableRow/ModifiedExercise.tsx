@@ -73,7 +73,8 @@ export default function ModifiedExercise({
       </div>
       <p className="w-52 font-bold text-black dark:text-white text-wrap text-center">Si desea colocar una biserie
         separe los ejercicios, series y
-        repeticiones con una coma ( , )</p>
+        repeticiones con una coma ( , )
+      </p>
       <div className="w-full flex justify-between mt-3">
         <button
           className="buttonCancel w-24"

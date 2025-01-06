@@ -68,8 +68,8 @@ export default function ModifiedExercise({
 
     return (
         <Modal open className=" w-screen h-screen flex justify-center items-center">
-            <div className="p-3 w-1/4 rounded ll:w-96 background h-64 flex flex-col justify-around">
-                <label className="flex items-center font-bold">Nombre del ejercicio:
+            <div className="p-3 w-1/4 rounded ll:w-96 background h-2/5 flex flex-col justify-around">
+                <label className="flex items-center font-bold text-gray-900 dark:text-white">Nombre del ejercicio:
                     <input
                         className="w-40 ml-2"
                         name="name"
@@ -78,7 +78,7 @@ export default function ModifiedExercise({
                     >
                     </input>
                 </label>
-                <label className="flex items-center font-bold">Series:
+                <label className="flex items-center font-bold text-gray-900 dark:text-white">Series:
                     <input
                         className="w-40 ml-2"
                         name="series"
@@ -86,7 +86,7 @@ export default function ModifiedExercise({
                         defaultValue={exercise.series}>
                     </input>
                 </label>
-                <label className="flex items-center font-bold">Repeticiones:
+                <label className="flex items-center font-bold text-gray-900 dark:text-white">Repeticiones:
                     <input
                         className="w-40 ml-2"
                         name="reps"
@@ -94,7 +94,7 @@ export default function ModifiedExercise({
                         defaultValue={exercise.reps}>
                     </input>
                 </label>
-                <label className="flex items-center font-bold">* Link de video:
+                <label className="flex items-center font-bold text-gray-900 dark:text-white">* Link de video:
                     <input
                         className="w-40 ml-2"
                         type='url'
@@ -103,7 +103,12 @@ export default function ModifiedExercise({
                         defaultValue={exercise.link}>
                     </input>
                 </label>
-                <b>( * opcional )</b>
+                <b className="text-gray-900 dark:text-white">( * opcional )</b>
+                <p className="w-80 font-bold text-gray-900 dark:text-white text-wrap text-center">
+                    Si desea colocar una biserie
+                    separe los ejercicios, series y
+                    repeticiones con una coma ( , )
+                </p>
                 <div className="flex justify-around">
                     <button className="buttonConfirm w-24" onClick={() => modified()}>
                         Modificar

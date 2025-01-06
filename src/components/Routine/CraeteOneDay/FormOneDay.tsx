@@ -61,8 +61,8 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
             >
                 Ejercicio Número {actualExercise}
             </b>
-            <div className="flex flex-col">
-                <label className="flex items-center font-bold">Nombre del ejercicio:
+            <div className="flex flex-col h-80 justify-around">
+                <label className="flex items-center font-bold text-black dark:text-white">Nombre del ejercicio:
                     <input
                         className="w-40 ml-2"
                         name="name"
@@ -72,7 +72,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                     >
                     </input>
                 </label>
-                <label className="flex items-center font-bold">Series:
+                <label className="flex items-center font-bold text-black dark:text-white">Series:
                     <input
                         className="w-40 ml-2"
                         name="series"
@@ -80,7 +80,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         value={inputsExecise.series}>
                     </input>
                 </label>
-                <label className="flex items-center font-bold">Repeticiones:
+                <label className="flex items-center font-bold text-black dark:text-white">Repeticiones:
                     <input
                         className="w-40 ml-2"
                         name="reps"
@@ -88,7 +88,7 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         value={inputsExecise.reps}>
                     </input>
                 </label>
-                <label className="flex items-center font-bold">* Link de video:
+                <label className="flex items-center font-bold text-black dark:text-white">* Link de video:
                     <input
                         className="w-40 ml-2"
                         type='url'
@@ -97,8 +97,13 @@ export default function FormOneDay({ actualExercise, setDayCreate, setPag, setOp
                         value={inputsExecise.link}>
                     </input>
                 </label>
-                <b>( * opcional )</b>
-                <div className="flex justify-between mt-4">
+                <b className="text-black dark:text-white">( * opcional )</b>
+                <p className="w-80 font-bold text-black dark:text-white text-wrap text-center">
+                    Si desea colocar una biserie
+                    separe los ejercicios, series y
+                    repeticiones con una coma ( , )
+                </p>
+                <div className="flex justify-between">
                     <button onClick={() => {
                         setPag(0)
                         if (setOpenCreateRouitine) {
