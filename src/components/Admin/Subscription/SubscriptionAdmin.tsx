@@ -32,7 +32,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
         <div className="w-full h-full mt-5 flex flex-col items-center">
             <form
                 onSubmit={(e) => {
-                    if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
+                    if (GymId) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount, setLoader })
                 }}
                 className={`
                 flex 
@@ -58,7 +58,6 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 </input>
                 <input
                     type="text"
-                    required
                     onChange={(e) => setLink(e.target.value)}
                     placeholder="Link de pago: "
                 ></input>

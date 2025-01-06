@@ -286,12 +286,13 @@ export type deleteShiftProps = {
 }
 
 export type subscriptionProps = {
-  link: string
+  link: string | undefined
   id: string
   e: React.FormEvent<HTMLFormElement>
   setLinkMp: React.Dispatch<React.SetStateAction<string | undefined>>
   setAmount: React.Dispatch<React.SetStateAction<number | undefined>>
   amount?: number
+  setLoader: (value: React.SetStateAction<string | undefined>) => void
 }
 
 export type deleteSubscriptionProps = {
