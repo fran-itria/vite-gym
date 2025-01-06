@@ -28,7 +28,8 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                 const sendMail = await axios.post("/mails/registro", {
                     email: response.data.email,
                     name: response.data.name,
-                    temporalCode: response.data.temporalCode
+                    temporalCode: response.data.temporalCode,
+                    admin: url?.pathname.includes("admin") ? true : false
                 })
                 if (sendMail.status == 200 && handleOpen && setMail) {
                     setLoader(undefined)
