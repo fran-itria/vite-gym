@@ -63,16 +63,16 @@ export default function FormRegister() {
                 </div >
             }
             <Modal open={open}>
-                <div className="flex justify-center items-center h-screen">
-                    <div className="border p-4 rounded bg-gray-300 text-gray-900 dark:text-white dark:bg-cyan-950 flex flex-col items-center">
-                        <p>
+                <div className="flex justify-center items-center h-screen ll:p-4">
+                    <div className="p-4 rounded bg-gray-300 text-gray-900 dark:text-white dark:bg-cyan-950 flex flex-col items-center">
+                        <b>
                             Se ha enviado un correo a <b>{mail}</b>, por favor coloque el codigo proporcionado para verificar su cuenta
-                        </p>
+                        </b>
                         <input
                             type="number"
                             onChange={(e) => setTemporalCode(e.target.value.toString())}
                             placeholder="Código"
-                            className="bg-gray-700 placeholder:text-white rounded mt-5 mb-5 p-1 text-black dark:bg-white dark:placeholder:text-black" />
+                            className="ll:w-16 focus:border-b-gray-800 placeholder:text-black rounded mt-5 mb-5 p-1 text-black dark:text-white dark:placeholder:text-white" />
                         <button
                             onClick={() => checkCode(navigate, addUser, mail, temporalCode, setLoader)}
                             className="
@@ -83,6 +83,7 @@ export default function FormRegister() {
                                     p-1.5 
                                     rounded 
                                     border-none
+                                    font-bold
                                     dark:bg-cyan-800
                                     dark:hover:bg-gray-900
                                     dark:text-white 
