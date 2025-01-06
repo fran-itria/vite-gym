@@ -20,8 +20,6 @@ export default function useSubscription() {
     const [arrayPayments, setArrayPayments] = useState<payments[] | []>([])
 
     useEffect(() => {
-        const array = Payments.filter(payment => payment.Gym.name == Gym?.name)
-        setArrayPayments(array)
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
@@ -52,6 +50,11 @@ export default function useSubscription() {
             }
         })()
     }, [amount])
+
+    useEffect(() => {
+        const array = Payments.filter(payment => payment.Gym.name == Gym?.name)
+        setArrayPayments(array)
+    }, [Payments])
 
     return { admin, Payments, linkMp, amount, loader, setLoader, arrayPayments }
 }
