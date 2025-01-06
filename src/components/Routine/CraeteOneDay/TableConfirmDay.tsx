@@ -34,10 +34,10 @@ export default function TableConfirmDay({
                 <Table aria-label="customized table" >
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell align="center"> Ejercicios </StyledTableCell>
-                            <StyledTableCell align="center"> Series </StyledTableCell>
-                            <StyledTableCell align="center"> Repeticiones </StyledTableCell>
-                            <StyledTableCell align="center"> Video </StyledTableCell>
+                            <StyledTableCell align="center"> <b>Ejercicios </b></StyledTableCell>
+                            <StyledTableCell align="center"> <b>Series </b></StyledTableCell>
+                            <StyledTableCell align="center"> <b>Repeticiones </b></StyledTableCell>
+                            <StyledTableCell align="center"> <b>Video </b></StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -46,19 +46,19 @@ export default function TableConfirmDay({
                                 <StyledTableRow key={exercise.exercise}>
                                     <StyledTableCell align="center" className='w-20'>
                                         <button
-                                            className='button p-1.5'
+                                            className='button p-1.5 w-full'
                                             onClick={() => setModifiedExercise(exercise.exercise)}>
-                                            {exercise.name}
+                                            <b>{exercise.name}</b>
                                         </button>
                                     </StyledTableCell>
                                     <StyledTableCell align="center">
-                                        {exercise.series}
+                                        <b>{exercise.series}</b>
                                     </StyledTableCell>
                                     <StyledTableCell align="center">
-                                        {exercise.reps}
+                                        <b>{exercise.reps}</b>
                                     </StyledTableCell>
                                     <StyledTableCell align="center">
-                                        {exercise.link ? exercise.link : <></>}
+                                        <b>{exercise.link && exercise.link}</b>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             </>
@@ -71,6 +71,7 @@ export default function TableConfirmDay({
                     onClick={() => {
                         setPag(0)
                         setAddDay(false)
+                        setDayCreate([])
                         if (setOpenCreateRouitine) {
                             setOpenCreateRouitine(false)
                         }
