@@ -34,20 +34,20 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 onSubmit={(e) => {
                     if (GymId && link) subscription({ e, link, id: GymId, setLinkMp, amount, setAmount })
                 }}
-                className="
+                className={`
                 flex 
                 flex-col
                 justify-between 
                 items-center 
                 border
                 border-2
-                border-b-0
+                ${linkMp || amount ? 'border-b-0' : 'border-b-2'}
                 border-black
                 dark:border-cyan-700 
                 rounded-t
                 p-3  
                 w-80
-                h-40"
+                h-40`}
             >
                 <input
                     type="number"
