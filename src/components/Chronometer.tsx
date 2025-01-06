@@ -40,7 +40,7 @@ export default function Chronometer() {
         border-2 
         border-gray-950
      ">
-      <p className="font-bold text-xl">
+      <p className="font-bold text-xl dark:text-white text-gray-800">
         {hours < 10 ? ` 0${hours}` : ` ${hours % 60}`}h :
         {minutes < 10 ? ` 0${minutes}` : ` ${minutes % 60}`}m :
         {seconds < 10 ? ` 0${seconds}` : ` ${seconds % 60}`}s
