@@ -9,7 +9,7 @@ export default function FormElement({ labelName, type, name, setInputs }: Elemen
             name={name}
             onChange={(event) => onChange({ event, setInputs })}
             required={true}
-            className="mb-7"
+            className="mb-7 ll:w-full"
         ></input>
     )
 }

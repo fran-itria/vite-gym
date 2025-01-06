@@ -20,6 +20,7 @@ export default function FormRegister() {
                     justify-center 
                     items-center
                     background
+                    ll:p-1
                 '>
                     {loader && <Loader text={loader} />}
                     <section className=" 
@@ -28,7 +29,8 @@ export default function FormRegister() {
                         justify-between 
                         h-97 
                         rounded 
-                        p-11 
+                        p-11
+                        ll:p-4 
                         shadow-xl 
                         shadow-black
                         background
@@ -53,7 +55,7 @@ export default function FormRegister() {
                             <FormElement labelName={labels.user} type={typesElement.text} name={namesElements.user} setInputs={setInputs}></FormElement>
                             <FormElement labelName={labels.password} type={typesElement.password} name={namesElements.password} setInputs={setInputs}></FormElement>
                             <FormElement labelName={labels.confirmPassword} type={typesElement.password} name={namesElements.confimrPassword} setInputs={setInputs}></FormElement>
-                            <button className="button">
+                            <button className="button h-8">
                                 Registrarme
                             </button>
                         </form>
