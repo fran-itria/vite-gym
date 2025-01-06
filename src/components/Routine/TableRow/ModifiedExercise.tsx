@@ -28,7 +28,7 @@ export default function ModifiedExercise({
   return (
     <div className="background flex flex-col p-4 rounded">
       <div className="flex flex-col mb-5">
-        <label className="font-bold italic mb-1 ">
+        <label className="font-bold italic mb-1 text-black dark:text-white">
           Ejercicio:
         </label>
         <input
@@ -39,7 +39,7 @@ export default function ModifiedExercise({
         ></input>
       </div>
       <div className="flex flex-col mb-5">
-        <label className="font-bold italic mb-1">
+        <label className="font-bold italic mb-1 text-black dark:text-white">
           Series:
         </label>
         <input
@@ -50,7 +50,7 @@ export default function ModifiedExercise({
         ></input>
       </div>
       <div className="flex flex-col mb-5">
-        <label className="font-bold italic mb-1">
+        <label className="font-bold italic mb-1 text-black dark:text-white">
           Repeticiones:
         </label>
         <input
@@ -61,7 +61,7 @@ export default function ModifiedExercise({
         ></input>
       </div>
       <div className="flex flex-col mb-5">
-        <label className="font-bold italic mb-1">
+        <label className="font-bold italic mb-1 text-black dark:text-white">
           Link de video:
         </label>
         <input
