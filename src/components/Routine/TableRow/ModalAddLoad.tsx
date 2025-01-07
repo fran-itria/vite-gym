@@ -14,9 +14,13 @@ export default function ModalAddLoad({
   return (
     <div className="background flex flex-col p-4 rounded">
       <input
+        autoFocus
         placeholder="Cargar peso"
         onChange={(e) => setInputLoad(e.target.value)}
       ></input>
+      <p className="w-52 mt-4 font-bold text-gray-900 dark:text-white text-wrap text-center">
+        Coloque una coma ( , ) para separar las cargas de las biserie
+      </p>
       <div className="flex justify-between mt-4">
         <button
           className="buttonCancel w-24"
