@@ -6,6 +6,7 @@ import axios from "axios"
 import { useAppSelector } from "../../../hook/store"
 import TablePayments from "./Table"
 import { basicLoaders, specificLoaders } from "../../../const"
+import resetValues from "../../../services/subscription/resetValuesSubscription"
 
 
 
@@ -53,15 +54,26 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                     type="number"
                     required
                     onChange={(e) => setAmount(Number(e.target.value))}
+                    value={amount}
                     placeholder="Monto:"
                 >
                 </input>
                 <input
                     type="text"
                     onChange={(e) => setLink(e.target.value)}
+                    value={linkMp}
                     placeholder="Link de pago: "
                 ></input>
-                <button className="buttonConfirm w-24">Confrimar</button>
+                <div className="flex justify-around w-full">
+                    <button
+                        className="buttonCancel w-24"
+                        type="button"
+                        onClick={(e) => resetValues({ id: GymId, e, setLinkMp, setAmount, setLoader })}
+                    >
+                        Restablecer
+                    </button>
+                    <button className="buttonConfirm w-24">Confrimar</button>
+                </div>
             </form>
             {linkMp && amount && (
                 <div className="
