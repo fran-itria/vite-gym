@@ -84,10 +84,10 @@ export default function FormLogin() {
           </a>
         </section>
       </div>
-      {true &&
+      {reset &&
         <Modal
-          open={true}
-          className="flex justify-center items-center z-0"
+          open={reset}
+          className="flex justify-center items-center"
         >
           <ResetPassword setResetPassword={setResetPassword} />
         </Modal>
