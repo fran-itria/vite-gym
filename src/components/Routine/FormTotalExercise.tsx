@@ -32,6 +32,15 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
 
             </input>
             <div className="flex justify-between mt-5 w-full">
+                <button onClick={() => {
+                    setAddDay(addDay => !addDay)
+                    if (setOpenCreateRouitine) {
+                        setOpenCreateRouitine(false)
+                    }
+                }}
+                    className="buttonCancel w-20">
+                    Cancelar
+                </button>
                 {setTotalDays &&
                     <button onClick={() => {
                         setAddDay(addDay => !addDay)
@@ -44,15 +53,6 @@ export default function FormTotalExercise({ setPag, setTotalExercise, setAddDay,
                         Volver
                     </button>
                 }
-                <button onClick={() => {
-                    setAddDay(addDay => !addDay)
-                    if (setOpenCreateRouitine) {
-                        setOpenCreateRouitine(false)
-                    }
-                }}
-                    className="buttonCancel w-20">
-                    Cancelar
-                </button>
                 <button onClick={() => {
                     setPag(prev => prev + 1)
                     setAddDay(addDay => !addDay)
