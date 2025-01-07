@@ -1,4 +1,5 @@
 import axios from "axios";
+import sweetAlert from "../swartAlert";
 
 type props = {
     id: string | null
@@ -21,6 +22,6 @@ export default async function resetValues({ id, e, setLinkMp, setAmount, setLoad
         }
     } catch (error: any) {
         setLoader(undefined)
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

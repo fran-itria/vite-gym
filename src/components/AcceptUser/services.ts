@@ -1,5 +1,6 @@
 import axios from "axios"
 import { NavigateFunction } from "react-router-dom"
+import sweetAlert from "../../services/swartAlert"
 
 type acceptProps = {
     user: string | undefined
@@ -26,7 +27,7 @@ export const accept = async ({ email, gym, user, gymId, userId, navigate, setLoa
         }
     } catch (error) {
         setLoader(undefined)
-        window.alert('Error al aceptar usuario')
+        sweetAlert('Error al aceptar usuario')
     }
 }
 

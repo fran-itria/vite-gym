@@ -3,6 +3,7 @@ import axios from "axios"
 import { NavigateFunction } from "react-router-dom"
 import { basicLoaders, storage } from "../../const"
 import { SetLoader } from "../../types"
+import sweetAlert from "../swartAlert"
 
 export const logout = async (id: string | null, navigate: NavigateFunction, setLoader: SetLoader) => {
     try {
@@ -14,6 +15,6 @@ export const logout = async (id: string | null, navigate: NavigateFunction, setL
         }
         return logoutUser
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

@@ -2,6 +2,7 @@
 import axios from "axios";
 import { createDayRoutineProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 export async function createDayRoutine({
     dayCreate,
@@ -47,6 +48,6 @@ export async function createDayRoutine({
         setTotalExercise('0')
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

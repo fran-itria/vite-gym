@@ -2,6 +2,7 @@
 import axios from "axios"
 import { deleteMealProps } from "../../types"
 import { basicLoaders, specificLoaders } from "../../const"
+import sweetAlert from "../swartAlert"
 
 
 export default async function deleteFood({ mealId, setLoader, updateMealsUser, id }: deleteMealProps) {
@@ -12,6 +13,6 @@ export default async function deleteFood({ mealId, setLoader, updateMealsUser, i
     updateMealsUser(user.data.Meals)
     setLoader(undefined)
   } catch (error: any) {
-    window.alert(error.response.data.Error)
+    sweetAlert(error.response.data.Error)
   }
 }

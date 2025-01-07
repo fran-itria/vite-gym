@@ -2,6 +2,7 @@
 import axios from "axios"
 import { confirmRoutineProps } from "../typeServices"
 import { basicLoaders, specificLoaders } from "../../const"
+import sweetAlert from "../swartAlert"
 
 export default async function confirmRoutine({
     updateRoutinesUser,
@@ -65,6 +66,6 @@ export default async function confirmRoutine({
         }
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import sweetAlert from "../../../services/swartAlert";
 
 // TYPES FUNCTIONS
 type getUserFunctionsProps = {
@@ -20,12 +21,12 @@ type changeFunctionProps = {
 export const getRoutinesUser = async ({ id, setRoutinesUser }: getUserFunctionsProps) => {
     axios.get(`/user/getOneUser/${id}`)
         .then(response => setRoutinesUser(response.data.Routines))
-        .catch(error => window.alert(error.message))
+        .catch(error => sweetAlert(error.message))
 }
 export const getWarmUpsUser = async ({ id, setRoutinesUser }: getUserFunctionsProps) => {
     axios.get(`/user/getOneUser/${id}`)
         .then(response => setRoutinesUser(response.data.WarmUps))
-        .catch(error => window.alert(error.message))
+        .catch(error => sweetAlert(error.message))
 }
 
 export const change = ({ e, setInputs }: changeFunctionProps) => {

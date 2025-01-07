@@ -2,6 +2,7 @@
 import axios from "axios";
 import { createFoodProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 export default async function createFood({ e, id, inputs, setAdd, updateMealsUser, mealId, setEdit, setLoader }: createFoodProps) {
     e.preventDefault()
@@ -20,6 +21,6 @@ export default async function createFood({ e, id, inputs, setAdd, updateMealsUse
         const user = await axios.get(`/user/getOneUser/${id}`)
         updateMealsUser(user.data.Meals)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 } 

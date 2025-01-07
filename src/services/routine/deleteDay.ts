@@ -4,6 +4,7 @@ import axios from "axios"
 import { deleteDayProps } from "../typeServices"
 import { CaseResolve } from "../../types"
 import { basicLoaders, specificLoaders } from "../../const"
+import sweetAlert from "../swartAlert"
 
 export default async function deleteDay({ id, routineId, routineActual, setRoutineAdmin, caseResolve, setLoader }: deleteDayProps) {
     try {
@@ -32,6 +33,6 @@ export default async function deleteDay({ id, routineId, routineActual, setRouti
         setLoader(undefined)
     } catch (error: any) {
         setLoader(undefined)
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

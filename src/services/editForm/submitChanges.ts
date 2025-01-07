@@ -2,6 +2,7 @@
 import axios from "axios"
 import { submitChangesProps } from "../typeServices"
 import { basicLoaders, specificLoaders } from "../../const"
+import sweetAlert from "../swartAlert"
 
 export default async function submitChanges({ e, setLoader, gymName, inputs, setUsers, userId, setEdit, email }: submitChangesProps) {
     e.preventDefault()
@@ -16,6 +17,6 @@ export default async function submitChanges({ e, setLoader, gymName, inputs, set
         setLoader(undefined)
         setUsers(users.data)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

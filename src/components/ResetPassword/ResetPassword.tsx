@@ -26,7 +26,6 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
     const [inputTypeTwo, setInputTypeTwo] = useState("password")
 
     return (
-
         <div className="background flex flex-col rounded p-4">
             {loader ? <Loader text={loader} /> : <></>}
             <b className="mb-3 text-gray-900 dark:text-white">Recuperar contraseña</b>

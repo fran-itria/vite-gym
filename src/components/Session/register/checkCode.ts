@@ -2,6 +2,7 @@ import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
 import { User } from "../../../store/user/slice";
 import { SetLoader } from "../../../types";
+import sweetAlert from "../../../services/swartAlert";
 
 export default async function checkCode(
     navigate: NavigateFunction,
@@ -23,7 +24,7 @@ export default async function checkCode(
             setLoader(undefined)
             throw new Error('Código incorrecto')
         }
-    } catch (error) {
-        window.alert(error);
+    } catch (error: any) {
+        sweetAlert(error);
     }
 }

@@ -5,6 +5,7 @@ import axios from "axios"
 import moment from "moment"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { onChange, onSubmit } from "./functions"
+import sweetAlert from "../../../services/swartAlert"
 
 export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<React.SetStateAction<string | undefined>> }) {
     const { GymId } = useAppSelector(state => state.user)
@@ -60,7 +61,7 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
             })
             .catch(error => {
                 setLoader(undefined)
-                window.alert(error.data.Error)
+                sweetAlert(error.data.Error)
             })
     }, [])
 

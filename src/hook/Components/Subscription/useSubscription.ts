@@ -9,6 +9,7 @@ import { basicLoaders, specificLoaders, storage } from "../../../const"
 import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
 import { payments } from "../../../store/user/slice"
+import sweetAlert from "../../../services/swartAlert"
 
 export default function useSubscription() {
     const { admin, GymId, id, Payments, Gym } = useAppSelector(state => state.user)
@@ -46,7 +47,7 @@ export default function useSubscription() {
                     setLoader(undefined)
                 }
             } catch (error: any) {
-                window.alert(error.data.Error)
+                sweetAlert(error.data.Error)
             }
         })()
     }, [amount])

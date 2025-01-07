@@ -5,6 +5,7 @@ import { register } from "../register/register";
 import { onSubmitProps } from "../typeServices";
 import { basicLoaders, storage } from "../../const";
 import { InputsRegister } from "../../types";
+import sweetAlert from "../swartAlert";
 
 export default async function onSubmit({ event, inputs, navigate, addUser, url, setLoader, updateIdGlobal, handleOpen, setMail }: onSubmitProps & { inputs?: InputsRegister }) {
     event.preventDefault();
@@ -42,8 +43,12 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
         }
     } catch (error: any) {
         setLoader(undefined)
-        if (error.response) window.alert(error.response.data.Error);
-        else window.alert(error.message)
+        if (error.response) {
+            sweetAlert(error.response.data.Error)
+        }
+        else {
+            sweetAlert(error.message)
+        }
         if (inputs && (error.response.data.Error.includes('Usuario') || error.response.data.Error.includes('Email'))) {
             if ('gymName' in inputs) {
                 const gym = await axios.get(`/gym/getGymName/${inputs.gymName}`)

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
+import sweetAlert from "../../../services/swartAlert";
 
 export default async function searchUser(
     e: React.FormEvent<HTMLFormElement>,
@@ -29,7 +30,7 @@ export default async function searchUser(
     } catch (error: any) {
         setLoader(undefined)
         if (!error.data) {
-            window.alert(error)
-        } else window.alert(error.data.Error)
+            sweetAlert(error)
+        } else sweetAlert(error.data.Error)
     }
 }

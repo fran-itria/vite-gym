@@ -2,6 +2,7 @@
 import axios from "axios"
 import { confirmShift } from "../typeServices"
 import { basicLoaders, specificLoaders } from "../../const"
+import sweetAlert from "../swartAlert"
 
 export const confirm = async ({ id, GymId, selectDay, setLoader, updateShiftsUser }: confirmShift) => {
     try {
@@ -11,6 +12,6 @@ export const confirm = async ({ id, GymId, selectDay, setLoader, updateShiftsUse
         updateShiftsUser(user.data.Shifts)
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.data.Error)
+        sweetAlert(error.data.Error)
     }
 }

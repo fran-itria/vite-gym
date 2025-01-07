@@ -23,7 +23,7 @@ export default async function cahngePassword(
         try {
             setError("")
             const user = await axios.get(`/user/getOneUser/${id}`)
-            if(user.status == 200 && newPassword.code == user.data.temporalCode){
+            if (user.status == 200 && newPassword.code == user.data.temporalCode) {
                 await axios.put(`/user`, { id, password: newPassword.password, temporalCode: null })
                 window.alert("Contraseña cambiada con éxito")
                 navigate("/")

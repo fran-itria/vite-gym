@@ -7,6 +7,7 @@ import { useAppSelector } from "../../../hook/store"
 import TablePayments from "./Table"
 import { basicLoaders, specificLoaders } from "../../../const"
 import resetValues from "../../../services/subscription/resetValuesSubscription"
+import sweetAlert from "../../../services/swartAlert"
 
 
 
@@ -26,7 +27,7 @@ export default function SubscriptionAdmin({ setLoader }: { setLoader: React.Disp
                 setPayments(response.data.Payments)
                 setLoader(undefined)
             })
-            .catch(error => window.alert(error.data.Error))
+            .catch(error => sweetAlert(error.data.Error))
     }, [GymId])
 
     return (

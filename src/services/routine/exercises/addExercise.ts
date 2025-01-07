@@ -3,6 +3,7 @@ import axios from "axios";
 import { addExerciseProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
 import { CaseResolve } from "../../../types";
+import sweetAlert from "../../swartAlert";
 
 export default async function addExerciseFunction({
     e,
@@ -51,6 +52,6 @@ export default async function addExerciseFunction({
         }
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 } 

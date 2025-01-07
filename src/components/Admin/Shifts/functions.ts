@@ -2,6 +2,7 @@
 import axios from "axios";
 import { basicLoaders, specificLoaders } from "../../../const";
 import { SetLoader } from "../../../types";
+import sweetAlert from "../../../services/swartAlert";
 
 export const onChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -48,6 +49,6 @@ export const onSubmit = async (
         }
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.data.Error)
+        sweetAlert(error.data.Error)
     }
 }

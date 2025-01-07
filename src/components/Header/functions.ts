@@ -2,6 +2,7 @@
 import axios from "axios"
 import { storage } from "../../const";
 import { NavigateFunction } from "react-router-dom";
+import sweetAlert from "../../services/swartAlert";
 
 export const getGyms = async (setGyms: React.Dispatch<React.SetStateAction<{
     id: string;
@@ -11,7 +12,7 @@ export const getGyms = async (setGyms: React.Dispatch<React.SetStateAction<{
         const response = await axios.get('/gym')
         setGyms(response.data)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }
 
@@ -25,6 +26,6 @@ export const change = async (id: string | null, valueGym: string | undefined, na
             navigate('/')
         }
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

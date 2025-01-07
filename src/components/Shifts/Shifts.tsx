@@ -12,6 +12,7 @@ import { Table, TableBody, TableContainer, TableHead, TableRow } from "@mui/mate
 import theme, { StyledTableCell, StyledTableRow } from "../../themeIcons/customTheme";
 import { ThemeProvider } from "styled-components";
 import { shift } from "../../store/user/slice";
+import sweetAlert from "../../services/swartAlert";
 
 export default function Shifts() {
     const { Shifts, id, admin, GymId, Gym } = useAppSelector(state => state.user)
@@ -27,7 +28,7 @@ export default function Shifts() {
                 const { limit, time, range } = response.data
                 setShifts({ limit, time, range })
             })
-            .catch(error => window.alert(error.data.Error))
+            .catch(error => sweetAlert(error.data.Error))
     }, [])
 
     useEffect(() => {

@@ -2,6 +2,7 @@
 import axios from "axios";
 import { deleteTrainingProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 
 export default async function deleteTraining({ id, setLoader, updateTrainingsUser, userId }: deleteTrainingProps) {
@@ -12,7 +13,7 @@ export default async function deleteTraining({ id, setLoader, updateTrainingsUse
         updateTrainingsUser(user.data.ExtraTrainings)
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 
 }

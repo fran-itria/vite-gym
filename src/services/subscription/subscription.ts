@@ -2,6 +2,7 @@
 import axios from "axios";
 import { subscriptionProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 export default async function subscription({ link, id, e, setLinkMp, amount, setAmount, setLoader }: subscriptionProps) {
     e.preventDefault()
@@ -18,6 +19,6 @@ export default async function subscription({ link, id, e, setLinkMp, amount, set
         setLoader(undefined)
     } catch (error: any) {
         setLoader(undefined)
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

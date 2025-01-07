@@ -2,6 +2,7 @@ import axios from "axios"
 import { CaseResolve } from "../../../types"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { Routine } from "../../../store/routine/slice"
+import sweetAlert from "../../../services/swartAlert"
 
 type otherProps = {
     otherUserId: string
@@ -56,7 +57,7 @@ export const otherUser = ({
                     })
                     .catch(error => {
                         setLoader(undefined)
-                        window.alert(error.data.Error)
+                        sweetAlert(error.data.Error)
                     })
             } else {
                 routineActual({ Days: undefined })
@@ -75,7 +76,7 @@ export const otherUser = ({
                     })
                     .catch(error => {
                         setLoader(undefined)
-                        window.alert(error.data.Error)
+                        sweetAlert(error.data.Error)
                     })
             } else {
                 routineActual({ weeks: 0, Days: undefined })
@@ -97,7 +98,7 @@ export const routineOrWarmUpFunction = ({ param, routineActual, routineId, routi
                 routineActual(response.data)
                 setLoader(undefined)
             })
-            .catch(error => window.alert(error.data.Error))
+            .catch(error => sweetAlert(error.data.Error))
     } else {
         if (param == rutina)
             routineActual({ weeks: 0, Days: undefined })

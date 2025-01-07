@@ -2,6 +2,7 @@
 import axios from "axios";
 import { basicLoaders, specificLoaders } from "../const";
 import { SetLoader } from "../types";
+import sweetAlert from "./swartAlert";
 
 export default async function deleteImage(
     setLoader: SetLoader,
@@ -16,6 +17,6 @@ export default async function deleteImage(
         updatePhotoUser('')
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

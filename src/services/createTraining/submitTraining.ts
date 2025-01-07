@@ -2,6 +2,7 @@
 import axios from "axios";
 import { submitTrainingProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 
 export default async function submitTraining({ event, inputs, id, updateTrainingsUser, setTraining, setLoader, setEdit, trainId }: submitTrainingProps) {
@@ -23,7 +24,7 @@ export default async function submitTraining({ event, inputs, id, updateTraining
             setLoader(undefined)
         }
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 
 }

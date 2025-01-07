@@ -1,6 +1,7 @@
 import axios from "axios";
 import { deleteRoutineProps, deleteWarmUpProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 export async function deletRoutine({ id, userId, updateRoutinesUser, updateIdGlobal, setLoader, setUsers }: deleteRoutineProps) {
     try {
@@ -14,9 +15,9 @@ export async function deletRoutine({ id, userId, updateRoutinesUser, updateIdGlo
         }
         updateIdGlobal(undefined)
         setLoader(undefined)
-    } catch (error) {
+    } catch (error: any) {
         setLoader(undefined)
-        window.alert(error)
+        sweetAlert(error)
     }
 }
 
@@ -33,7 +34,7 @@ export async function deleteWarmup({ id, userId, updateWarmUpUser, updateIdGloba
         }
         updateIdGlobal(undefined)
         setLoader(undefined)
-    } catch (error) {
-        window.alert(error)
+    } catch (error: any) {
+        sweetAlert(error)
     }
 }

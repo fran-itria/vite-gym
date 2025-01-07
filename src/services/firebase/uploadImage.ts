@@ -4,6 +4,7 @@ import { storage } from "../../firebase/config";
 import axios from "axios";
 import { uploadImageProps } from "../typeServices";
 import { basicLoaders, specificLoaders } from "../../const";
+import sweetAlert from "../swartAlert";
 
 
 export default async function uploadImage({ file, id, nameFile, setLoader, updatePhotoUser, setImage, setMenu }: uploadImageProps) {
@@ -20,6 +21,6 @@ export default async function uploadImage({ file, id, nameFile, setLoader, updat
             setLoader(undefined)
         }
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }

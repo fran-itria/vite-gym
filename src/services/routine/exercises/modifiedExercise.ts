@@ -3,6 +3,7 @@ import axios from "axios";
 import { modifiedExerciseProps, modifiedLoadsProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
 import { CaseResolve } from "../../../types";
+import sweetAlert from "../../swartAlert";
 
 export type InputsModified = {
     name?: string
@@ -45,7 +46,7 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
         }
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }
 
@@ -74,6 +75,6 @@ export async function modifiedLoads({ exerciseId, id, load, routineActual, routi
                 })
         setLoader(undefined)
     } catch (error: any) {
-        window.alert(error.response.data.Error)
+        sweetAlert(error.response.data.Error)
     }
 }
