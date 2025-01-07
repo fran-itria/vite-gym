@@ -110,11 +110,11 @@ export default function ModifiedExercise({
                     repeticiones con una coma ( , )
                 </p>
                 <div className="flex justify-around">
-                    <button className="buttonConfirm w-24" onClick={() => modified()}>
-                        Modificar
-                    </button>
                     <button className="buttonCancel w-24" onClick={() => setModifiedExercise(undefined)}>
                         Cancelar
+                    </button>
+                    <button className="buttonConfirm w-24" onClick={() => modified()}>
+                        Modificar
                     </button>
                 </div>
             </div>
