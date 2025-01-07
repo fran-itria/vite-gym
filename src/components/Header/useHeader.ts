@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hook/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserActions } from "../../hook/useUserActions";
+import axios from "axios";
 
 export function useHeader() {
-    const { name, surname, id, admin, Gym, photo } = useAppSelector(state => state.user)
+    const { name, surname, id, admin, Gym, photo, GymId } = useAppSelector(state => state.user)
     const [menu, setMenu] = useState<boolean>(false)
     const navigate = useNavigate()
     const [loader, setLoader] = useState<string>()
@@ -15,6 +16,15 @@ export function useHeader() {
     const [gyms, setGyms] = useState<{ id: string, name: string }[]>([])
     const [valueGym, setValueGym] = useState<string>()
     const [reset, setResetPassword] = useState(false)
+    const [linkMp, setLinkMp] = useState<string>()
+
+
+    useEffect(() => {
+        axios.get(`/gym/getGymId/${GymId}`)
+            .then(response => {
+                setLinkMp(response.data.linkMp)
+            })
+    }, [])
 
     return {
         name,
@@ -40,6 +50,7 @@ export function useHeader() {
         valueGym,
         setValueGym,
         reset,
-        setResetPassword
+        setResetPassword,
+        linkMp
     }
 }

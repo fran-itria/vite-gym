@@ -34,7 +34,8 @@ export default function Header() {
         setValueGym,
         updatePhotoUser,
         reset,
-        setResetPassword
+        setResetPassword,
+        linkMp
     } = useHeader()
 
     return (
@@ -57,7 +58,7 @@ export default function Header() {
                 surname={surname}
             />
             {!admin ?
-                <SubHeaderNotAdmin id={id} />
+                <SubHeaderNotAdmin id={id} linkMp={linkMp} />
                 :
                 <SubHeaderAdmin />
             }

@@ -2,13 +2,16 @@ import { NavLink, useLocation } from "react-router-dom";
 
 type props = {
     id: string | null
+    linkMp: string | undefined
 }
 
 export default function SubHeaderNotAdmin({
-    id
+    id,
+    linkMp
 }: props) {
 
     const { pathname } = useLocation()
+
     const styleNavButton = 'w-32 ll:text-sm p-1.5'
 
     return (
@@ -62,7 +65,7 @@ export default function SubHeaderNotAdmin({
                         ?
                         `border-2 border-gray-300 rounded bg-gray-300  ${styleNavButton}`
                         :
-                        `button ${styleNavButton}`}
+                        `button ${styleNavButton} ${!linkMp && 'pointer-events-none opacity-50'}`}
                 >
                     <li>
                         Suscripción
