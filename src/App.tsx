@@ -10,7 +10,6 @@ import Routine from "./components/Routine/Routine";
 import Users from "./components/Admin/Users/Users";
 import WarmUp from "./components/WarmUp/WarmUp";
 import Subscription from "./components/Suscripcion/Subscription";
-import ResetPassword from "./components/ResetPassword/ResetPassword";
 import AcceptUser from './components/AcceptUser/AcceptUser'
 import { useEffect, useState } from "react";
 import { login } from "./services/login/login";
@@ -71,7 +70,6 @@ function App() {
         <Route path="/calentamiento/:id" element={<WarmUp />} />
         <Route path="/suscripcion/:id" element={<Subscription />} />
         <Route path="/suscripcion" element={<Subscription />} />
-        <Route path="/reset" element={<ResetPassword />} />
         <Route path="/acceptUser" element={<AcceptUser />} />
       </Routes>
     </div>
