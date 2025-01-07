@@ -11,9 +11,6 @@ export default function sweetAlert(title: string) {
         timerProgressBar: true,
         color: theme == 'dark' ? "white" : 'black',
         background: theme === 'dark' ? '#164e63' : '#cbd5e1',
-        customClass: {
-            popup: 'z-1'
-        }
     });
 
     Toast.fire({
