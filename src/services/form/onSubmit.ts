@@ -29,7 +29,8 @@ export default async function onSubmit({ event, inputs, navigate, addUser, url, 
                     email: response.data.email,
                     name: response.data.name,
                     temporalCode: response.data.temporalCode,
-                    admin: url?.pathname.includes("admin") ? true : false
+                    admin: url?.pathname.includes("admin") ? true : false,
+                    gym: inputs?.gymName
                 })
                 if (sendMail.status == 200 && handleOpen && setMail) {
                     setLoader(undefined)
