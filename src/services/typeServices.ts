@@ -44,6 +44,7 @@ export type modifiedExerciseProps = {
 }
 
 export type modifiedLoadsProps = {
+  e: React.FormEvent<HTMLFormElement>
   exerciseId?: string | null
   id?: string | null
   load: string

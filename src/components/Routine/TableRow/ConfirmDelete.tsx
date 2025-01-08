@@ -21,7 +21,7 @@ export default function ConfirmDelete({
                     Cancelar
                 </button>
                 <button
-                    className="buttonConfirm w-24"
+                    className="button w-24"
                     onClick={() => {
                         if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
                     }}>

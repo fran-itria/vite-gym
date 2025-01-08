@@ -50,8 +50,9 @@ export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, s
     }
 }
 
-export async function modifiedLoads({ exerciseId, id, load, routineActual, routineId, setOpenLoad, setLoad, setLoader, weekLoad }: modifiedLoadsProps) {
+export async function modifiedLoads({ e, exerciseId, id, load, routineActual, routineId, setOpenLoad, setLoad, setLoader, weekLoad }: modifiedLoadsProps) {
     try {
+        e.preventDefault()
         setLoader(`${basicLoaders.save} ${specificLoaders.load}`)
         if (id && setLoad) {
             setLoad(undefined)
