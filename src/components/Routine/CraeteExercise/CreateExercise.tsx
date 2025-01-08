@@ -13,6 +13,8 @@ export default function CreateExercise({
     caseResolve
 }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
+    const exerciseNumber = day.Exercises[day.Exercises.length - 1].exercise
+    const lastExercise = exerciseNumber ? exerciseNumber + 1 : day.Exercises.length + 1
 
     return (
         <form
@@ -21,7 +23,7 @@ export default function CreateExercise({
                 addExerciseFunction({
                     e,
                     dayId: day.id,
-                    exercise: day.Exercises.length + 1,
+                    exercise: lastExercise,
                     inputs,
                     routineId,
                     setAddExercise,
