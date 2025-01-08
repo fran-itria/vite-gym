@@ -73,7 +73,7 @@ export default function Users() {
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell align="center">
-                                    <div className='flex flex-col items-center'>
+                                    <div className='flex flex-col items-center w-28'>
                                         <b>Nombre</b>
                                         <input
                                             onChange={(e) => filterUsers(e)}
@@ -103,7 +103,7 @@ export default function Users() {
                                 users.map(user => (
                                     <>
                                         <StyledTableRow key={user.id}>
-                                            <StyledTableCell align="center" className='w-20'>
+                                            <StyledTableCell align="center">
                                                 <div className='w-full flex justify-center'>
                                                     <button onClick={() => {
                                                         setUserId(user.id)
@@ -113,7 +113,7 @@ export default function Users() {
                                                         setEdit({ state: true, warmUps: user.WarmUps.length, routines: user.Routines.length })
                                                         setEmail(user.email)
                                                     }}
-                                                        className='flex button w-full justify-center items-center'
+                                                        className='flex button w-full items-between'
                                                     >
                                                         <ThemeProvider theme={theme}>
                                                             <CreateIcon sx={{ color: theme.palette.pencil.main }} />
