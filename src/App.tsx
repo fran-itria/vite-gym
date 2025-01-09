@@ -40,9 +40,13 @@ function App() {
             setLoader(undefined)
           })
           .catch((_error) => {
+            setLoader(undefined)
             navigate('/')
           })
-      } else navigate('/')
+      } else {
+        setLoader(undefined)
+        navigate('/')
+      }
     }
   }, [])
 
