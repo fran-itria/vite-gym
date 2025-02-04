@@ -47,20 +47,7 @@ export default function Users() {
     return (
         <>
             <>
-                {loader
-                    ? <Loader text={loader} />
-                    : edit.state && <Edit
-                        userId={userId}
-                        setUsers={setUsers}
-                        gymName={Gym?.name}
-                        admin={admin}
-                        ban={ban}
-                        subscription={subscription}
-                        setEdit={setEdit}
-                        edit={edit}
-                        setLoader={setLoader}
-                        email={email}
-                    />}
+                {loader && <Loader text={loader} />}
             </>
             <div className='p-4 ll:p-0 h-full flex flex-col items-center justify-center'>
                 <div className='ll:w-full'>
@@ -144,6 +131,20 @@ export default function Users() {
                     </Table>
                 </TableContainer>
             </div>
+            {edit.state &&
+                <Edit
+                    userId={userId}
+                    setUsers={setUsers}
+                    gymName={Gym?.name}
+                    admin={admin}
+                    ban={ban}
+                    subscription={subscription}
+                    setEdit={setEdit}
+                    edit={edit}
+                    setLoader={setLoader}
+                    email={email}
+                />
+            }
         </>
     )
 }

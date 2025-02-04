@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import WarmUp from '../../WarmUp/WarmUp';
 import Routine from '../../Routine/Routine';
 
-export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, edit, setLoader, email }: {
+interface Props {
     gymName?: string
     userId: string
     setUsers: React.Dispatch<React.SetStateAction<UsersComponent>>
@@ -35,7 +35,9 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     setLoader: SetLoader
     email: string
     children?: React.ReactNode
-}) {
+}
+
+export default function Edit({ userId, gymName, setUsers, admin, ban, subscription, setEdit, edit, setLoader, email }: Props) {
     const {
         createRoutine,
         setCreateRoutine,

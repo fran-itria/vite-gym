@@ -23,7 +23,7 @@ export default function SubHeaderAdmin() {
                     `button ${styleNavButton}`
                 }
             >
-                Uuarios
+                Usuarios
             </NavLink>
             <NavLink
                 to={`/suscripcion/${id}`}
