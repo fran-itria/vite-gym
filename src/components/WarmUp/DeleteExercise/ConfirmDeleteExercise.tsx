@@ -1,5 +1,5 @@
-import deleteExercise from "../../services/routine/exercises/deleteExercise"
-import { ConfirmDeleteComponentProps } from "../../types"
+import deleteExercise from "../../../services/routine/exercises/deleteExercise"
+import { ConfirmDeleteComponentProps } from "../../../types"
 
 export default function ConfirmDelete({
     name,
@@ -10,8 +10,7 @@ export default function ConfirmDelete({
     warmUpActual,
     warmUpId,
     setLoader,
-    setRoutineAdmin,
-    caseResolve
+    setRoutineAdmin
 }: ConfirmDeleteComponentProps) {
     return (
         <div className="background p-4 flex flex-col">
@@ -25,7 +24,7 @@ export default function ConfirmDelete({
                 <button
                     className="button w-24"
                     onClick={() => {
-                        if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, warmUpActual, warmUpId, setRoutineAdmin, caseResolve })
+                        if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, warmUpActual, warmUpId, setRoutineAdmin })
                     }}>
                     🗑️ Borrar
                 </button>

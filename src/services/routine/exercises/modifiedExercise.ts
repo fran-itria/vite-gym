@@ -2,7 +2,6 @@
 import axios from "axios";
 import { modifiedExerciseProps, modifiedLoadsProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
-import { CaseResolve } from "../../../types";
 import sweetAlert from "../../swartAlert";
 
 export type InputsModified = {
