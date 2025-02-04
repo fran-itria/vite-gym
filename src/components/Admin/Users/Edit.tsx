@@ -34,6 +34,7 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
     }
     setLoader: SetLoader
     email: string
+    children?: React.ReactNode
 }) {
     const {
         createRoutine,
