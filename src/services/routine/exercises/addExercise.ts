@@ -11,11 +11,12 @@ export default async function addExerciseFunction({
     exercise,
     inputs,
     routineId,
-    setAddExercise,
     routineActual,
+    warmUpId,
+    warmUpActual,
+    setAddExercise,
     setLoader,
     setRoutineAdmin,
-    caseResolve
 }: addExerciseProps) {
     e.preventDefault()
     try {
@@ -30,25 +31,24 @@ export default async function addExerciseFunction({
             series,
             link
         })
-        if (setRoutineAdmin && routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
+        if (setRoutineAdmin) {
+            if (routineActual) {
                 const routine = await axios.get(`/rutina/${routineId}`)
                 routineActual(routine.data)
             }
-            else {
-                const routine = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(routine.data)
+            else if (warmUpActual) {
+                const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
+                warmUpActual(warmUp.data)
             }
         }
-        if (routineId && routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
-                const routine = await axios.get(`/rutina/${routineId}`)
-                routineActual(routine.data)
-            }
-            else {
-                const routine = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(routine.data)
-            }
+        else if (routineActual) {
+            const routine = await axios.get(`/rutina/${routineId}`)
+            routineActual(routine.data)
+
+        }
+        else if (warmUpActual) {
+            const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
+            warmUpActual(warmUp.data)
         }
         setLoader(undefined)
     } catch (error: any) {

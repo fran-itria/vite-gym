@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 
-const initialState: { id: string } = {
-    id: ''
-}
+const initialState: string | undefined = ''
 
 export const routineIdSlice = createSlice({
     name: 'routineIdGlobal',
     initialState,
     reducers: {
         updateId: (_state, action) => {
-            return {
-                id: action.payload
-            }
+            return action.payload !== undefined ? action.payload : '';
         }
     }
 })

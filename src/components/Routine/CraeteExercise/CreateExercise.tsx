@@ -8,9 +8,10 @@ export default function CreateExercise({
     day,
     routineActual,
     routineId,
+    warmUpActual,
+    warmUpId,
     setLoader,
     setRoutineAdmin,
-    caseResolve
 }: CreateExerciseComponentProps) {
     const { inputs, setInputs } = useCreaetExercise()
     const exerciseNumber = day.Exercises[day.Exercises.length - 1].exercise
@@ -26,11 +27,12 @@ export default function CreateExercise({
                     exercise: lastExercise,
                     inputs,
                     routineId,
+                    routineActual,
+                    warmUpId,
+                    warmUpActual,
                     setAddExercise,
                     setRoutineAdmin,
-                    routineActual,
-                    setLoader,
-                    caseResolve
+                    setLoader
                 })
             }}
         >

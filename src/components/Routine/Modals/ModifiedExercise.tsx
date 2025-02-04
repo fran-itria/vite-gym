@@ -14,10 +14,10 @@ export default function ModifiedExercise({
   series,
   link,
   setOpen,
-  routineOrWarmUp,
   setLoader,
   setRoutineAdmin,
-  caseResolve,
+  routineActual,
+  routineId
 }: ModifiedExerciseProps) {
   const [inputs, setInputs] = useState<InputsModified>({
     name,
@@ -86,13 +86,13 @@ export default function ModifiedExercise({
           className="buttonConfirm w-24"
           onClick={() =>
             modifiedExercise({
-              id,
+              exerciseId: id,
               inputs,
-              routineOrWarmUp,
-              setOpen,
+              routineActual,
+              routineId,
               setLoader,
-              setRoutineAdmin,
-              caseResolve,
+              setOpen,
+              setRoutineAdmin
             })
           }
         >

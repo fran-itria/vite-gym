@@ -18,31 +18,18 @@ export const changeInputs = (e: React.ChangeEvent<HTMLInputElement>, setInputs: 
     setInputs(prev => { return { ...prev, [name]: value } })
 }
 
-export async function modifiedExercise({ id, routineOrWarmUp, setOpen, inputs, setLoader, setRoutineAdmin, caseResolve }: modifiedExerciseProps) {
+export async function modifiedExercise({ exerciseId, inputs, routineActual, routineId, setLoader, setOpen, setRoutineAdmin }: modifiedExerciseProps) {
     try {
-        const { routineActual, routineId } = routineOrWarmUp
         setOpen(false)
         setLoader(`${basicLoaders.save} ${specificLoaders.cahnges}`)
-        await axios.put('/ejercicio', { ...inputs, id })
-        if (setRoutineAdmin && routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
-                const routine = await axios.get(`/rutina/${routineId}`)
-                routineActual(routine.data)
-            }
-            else {
-                const warmUp = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(warmUp.data)
-            }
+        await axios.put('/ejercicio', { ...inputs, id: exerciseId })
+        if (setRoutineAdmin) {
+            const routine = await axios.get(`/rutina/${routineId}`)
+            routineActual(routine.data)
         }
         else if (routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
-                const routine = await axios.get(`/rutina/${routineId}`)
-                routineActual(routine.data)
-            }
-            else {
-                const warmUp = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(warmUp.data)
-            }
+            const routine = await axios.get(`/rutina/${routineId}`)
+            routineActual(routine.data)
         }
         setLoader(undefined)
     } catch (error: any) {

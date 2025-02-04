@@ -3,6 +3,7 @@ import { CaseResolve } from "../../../types"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { Routine } from "../../../store/routine/slice"
 import sweetAlert from "../../../services/swartAlert"
+import { WarmUp } from "../../../store/warmUp/slice"
 
 type otherProps = {
     otherUserId: string
@@ -14,6 +15,7 @@ type otherProps = {
     chagenOtherRoutine: boolean
     updateIdGlobal: (id: string | undefined) => void
     routineActual: (Days: Routine) => void
+    warmUpActual: (Days: WarmUp) => void
     setChangeOtherRoutine: (value: React.SetStateAction<boolean>) => void
     routineId: string
 }
@@ -21,9 +23,9 @@ type otherProps = {
 type routineOrWarmProps = {
     param: string
     routineId: string
-    routineActual: (Days: Routine) => void
+    routineActual?: (Days: Routine) => void
+    warmUpActual?: (Days: WarmUp) => void
     setLoader: (value: React.SetStateAction<string | undefined>) => void
-    updateIdGlobal: (id: string | undefined) => void
     routineOrWarmUp: [] | {
         id: string;
     }[]
@@ -38,7 +40,8 @@ export const otherUser = ({
     setLoader,
     setViewRoutineOtherUser,
     updateIdGlobal,
-    routineId
+    routineId,
+    warmUpActual
 }: otherProps) => {
     axios.get(`/user/getOneUser/${otherUserId}`).then((response) => {
         const warmUpsUser = response.data.WarmUps
@@ -52,7 +55,7 @@ export const otherUser = ({
                 }
                 axios.get(`/calentamiento/${routineId}`)
                     .then(response => {
-                        routineActual(response.data)
+                        warmUpActual(response.data)
                         setChangeOtherRoutine(false)
                     })
                     .catch(error => {
@@ -60,7 +63,7 @@ export const otherUser = ({
                         sweetAlert(error.data.Error)
                     })
             } else {
-                routineActual({ Days: undefined })
+                warmUpActual({ Days: undefined })
             }
         } else if (isWarmUpOrRoutine == CaseResolve.rutina) {
             setViewRoutineOtherUser(routinesUser)
@@ -86,22 +89,20 @@ export const otherUser = ({
     })
 }
 
-export const routineOrWarmUpFunction = ({ param, routineActual, routineId, routineOrWarmUp, setLoader, updateIdGlobal }: routineOrWarmProps) => {
-    const rutina = 'rutina'
+export const routineOrWarmUpFunction = ({ param, routineActual, warmUpActual, routineId, routineOrWarmUp, setLoader }: routineOrWarmProps) => {
     if (routineOrWarmUp.length > 0) {
-        setLoader(`${basicLoaders.loading} ${param == rutina ? specificLoaders.routine : specificLoaders.warm}`)
-        if (routineId == undefined) {
-            updateIdGlobal(routineOrWarmUp[routineOrWarmUp.length - 1].id)
+        setLoader(`${basicLoaders.loading} ${param == 'routine' ? specificLoaders.routine : specificLoaders.warm}`)
+        if (param == 'routine' && routineActual) {
+            axios.get(`/rutina/${routineId}`)
+                .then(response => {
+                    routineActual(response.data)
+                    setLoader(undefined)
+                })
+                .catch(error => sweetAlert(error.data.Error))
+        } else {
+            if (param == 'routine' && routineActual)
+                routineActual({ weeks: 0, Days: undefined })
+            else if (param == 'warmUp' && warmUpActual) warmUpActual({ Days: undefined })
         }
-        axios.get(`/${param}/${routineId}`)
-            .then(response => {
-                routineActual(response.data)
-                setLoader(undefined)
-            })
-            .catch(error => sweetAlert(error.data.Error))
-    } else {
-        if (param == rutina)
-            routineActual({ weeks: 0, Days: undefined })
-        else routineActual({ Days: undefined })
     }
 }

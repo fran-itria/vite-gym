@@ -1,23 +1,29 @@
 import FormOneDay from "./CraeteOneDay/FormOneDay";
 import TableConfirmDay from "./CraeteOneDay/TableConfirmDay";
 import useDayCreate from "../../hook/Components/Routine/useCreateDay";
-import useInformation from "../../hook/Components/Routine/useInformation";
-import Detail from "./Detail";
+import Detail from "./DetailRoutine";
 import FormTotalExercise from "./FormTotalExercise";
 import { deletRoutine } from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import CreateRoutine from "./CreateRoutine";
 import Loader from "../Loader";
 import { basicLoaders, specificLoaders } from "../../const";
-import { CaseResolve } from "../../types";
+import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
 import { useUserActions } from "../../hook/useUserActions";
-import { Props } from "../WarmUp/WarmUp";
 import QueueIcon from '@mui/icons-material/Queue';
+import useRoutine from "./customHook";
 
-export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
+interface Props {
+    otherUserId?: string
+    setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
+    setModal?: (value: React.SetStateAction<CaseResolve | undefined>) => void
+    setRoutineAdmin: boolean
+}
+
+export default function Routine({ otherUserId, setUsers, setModal, setRoutineAdmin }: Props) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
-    const { id, routine, routineId, routineActual, Routines, updateIdGlobal, loader, setLoader, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine, setChangeOtherRoutine)
+    const { Routines, id, loader, routine, routineActual, routineId, setLoader, updateIdGlobal, viewRoutineOtherUser } = useRoutine({ otherUserId, chagenOtherRoutine, setChangeOtherRoutine })
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [opneCreateRoutine, setOpenCreateRouitine] = useState<boolean>(false)
     const { updateRoutinesUser } = useUserActions()
@@ -36,7 +42,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                         updateIdGlobal(e.target.value)
                         setLoader(`${basicLoaders.loading} ${specificLoaders.routine}`)
                     }}>
-                    <option value={routineId.id}></option>
+                    <option value={routineId}></option>
                     {!viewRoutineOtherUser ?
                         Routines.map((routine, i: number) => (
                             <option value={routine.id} className="font-bold">
@@ -60,10 +66,9 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                                 <Detail
                                     day={day}
                                     i={i}
-                                    routineOrWarmUp={{ weeks: routine.weeks, routineId: routineId.id, routineActual }}
+                                    routine={{ routineActual, routineId, weeks: routine.weeks }}
                                     setLoader={setLoader}
-                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
-                                    caseResolve={CaseResolve.rutina}
+                                    setRoutineAdmin={setRoutineAdmin}
                                 />
                             )
                         })}
@@ -85,7 +90,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                             <button
                                 className="buttonCancel w-52 ll:w-40"
                                 onClick={() => deletRoutine({
-                                    id: routineId.id,
+                                    id: routineId,
                                     userId: id,
                                     updateRoutinesUser: updateRoutinesUser,
                                     updateIdGlobal,
@@ -134,7 +139,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                                 <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} setAddDay={setAddDay} pag={pag} />
                                 :
                                 <TableConfirmDay
-                                    key={routineId.id}
+                                    key={routineId}
                                     dayCreate={dayCreate}
                                     setAddDay={setAddDay}
                                     setDayCreate={setDayCreate}
@@ -142,7 +147,7 @@ export default function Routine({ otherUserId, isWarmUpOrRoutine, setUsers, setM
                                     setTotalExercise={setTotalExercise}
                                     routine={routine}
                                     routineActual={routineActual}
-                                    routineId={routineId.id}
+                                    routineId={routineId}
                                     setLoader={setLoader}
                                 />
                             :

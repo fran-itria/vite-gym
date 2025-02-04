@@ -3,7 +3,6 @@
 import axios from "axios";
 import { deleteExerciseProps } from "../../typeServices";
 import { basicLoaders, specificLoaders } from "../../../const";
-import { CaseResolve } from "../../../types";
 import sweetAlert from "../../swartAlert";
 
 export default async function deleteExercise({
@@ -11,33 +10,32 @@ export default async function deleteExercise({
     setConfirmDelete,
     routineActual,
     routineId,
+    warmUpActual,
+    warmUpId,
     setLoader,
     setRoutineAdmin,
-    caseResolve
 }: deleteExerciseProps) {
     try {
         setConfirmDelete(confirmDelete => !confirmDelete)
         setLoader(`${basicLoaders.remove} ${specificLoaders.exercise}`)
         await axios.delete(`/ejercicio/delete/${idExercise}`)
-        if (setRoutineAdmin && routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
+        if (setRoutineAdmin) {
+            if (routineActual) {
                 const routine = await axios.get(`/rutina/${routineId}`)
                 routineActual(routine.data)
             }
-            else {
-                const routine = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(routine.data)
+            else if (warmUpActual) {
+                const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
+                warmUpActual(warmUp.data)
             }
         }
         if (routineActual) {
-            if (caseResolve == CaseResolve.rutina) {
-                const routine = await axios.get(`/rutina/${routineId}`)
-                routineActual(routine.data)
-            }
-            else {
-                const routine = await axios.get(`/calentamiento/${routineId}`)
-                routineActual(routine.data)
-            }
+            const routine = await axios.get(`/rutina/${routineId}`)
+            routineActual(routine.data)
+        }
+        else if (warmUpActual) {
+            const warmUp = await axios.get(`/calentamiento/${warmUpId}`)
+            warmUpActual(warmUp.data)
         }
         setLoader(undefined)
     } catch (error: any) {

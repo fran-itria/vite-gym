@@ -1,16 +1,30 @@
 import { Modal } from "@mui/material";
-import CreateExercise from "./CraeteExercise/CreateExercise";
-import useCreaetExercise from "../../hook/Components/Routine/useCreateExercise";
-import TableComponent from "./Table";
-import { addWeek } from "../../services/routine/modifiedWeeks";
-import { DetailComponenProps } from "../../types";
+import useCreaetExercise from "../../../hook/Components/Routine/useCreateExercise";
 import { useState } from 'react';
-import ConfirmDeleteDay from "./ConfirmDeleteDay";
+import CreateExercise from "../../Routine/CraeteExercise/CreateExercise";
+import ConfirmDeleteDay from "../../Routine/ConfirmDeleteDay";
+import { Exercise, SetLoader } from "../../../types";
+import { WarmUp } from "../../../store/warmUp/slice";
+import TableWarmUp from "../Table/TableWarmUp";
 
+interface DetailComponenProps {
+    day: {
+        id: string;
+        WarmUp?: string | undefined;
+        Exercises: [] | Exercise[];
+    }
+    i: number
+    warmUp: {
+        warmUpId: string
+        warmUpActual: (Days: WarmUp) => void
+    }
+    setLoader: SetLoader
+    setWarmUpAdmin: boolean
+}
 
-export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineAdmin, isWarmUpOrRoutine, caseResolve }: DetailComponenProps) {
+export default function DetailWarmUp({ day, i, warmUp, setLoader, setWarmUpAdmin }: DetailComponenProps) {
     const { addExercise, setAddExercise } = useCreaetExercise()
-    const { weeks, routineActual, routineId } = routineOrWarmUp
+    const { warmUpActual, warmUpId } = warmUp
     const [selectDay, setSelectDay] = useState<number | undefined>(undefined)
     const [deleteDay, setDeleteDay] = useState<boolean>(false)
     return (
@@ -23,16 +37,15 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                 Día {i + 1}
             </button >
             <Modal open={Boolean(selectDay)} className='flex flex-col items-center justify-center'>
-                <TableComponent
+                <TableWarmUp
+                    warmUpId={warmUpId}
                     day={day}
-                    routineOrWarmUp={{ routineActual, routineId, weeks }}
-                    setLoader={setLoader}
-                    setRoutineAdmin={isWarmUpOrRoutine}
-                    caseResolve={caseResolve}
+                    setDeleteDay={setDeleteDay}
                     setSelectDay={setSelectDay}
                     setAddExercise={setAddExercise}
-                    addWeek={addWeek}
-                    setDeleteDay={setDeleteDay}
+                    setLoader={setLoader}
+                    warmUpActual={warmUpActual}
+                    setWarmUpAdmin={setWarmUpAdmin}
                 />
             </Modal>
             {addExercise || deleteDay &&
@@ -41,11 +54,10 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                     <CreateExercise
                         day={day}
                         setAddExercise={setAddExercise}
-                        routineId={routineId ? routineId : undefined}
-                        routineActual={routineActual ? routineActual : undefined}
                         setLoader={setLoader}
-                        setRoutineAdmin={setRoutineAdmin}
-                        caseResolve={caseResolve}
+                        setRoutineAdmin={setWarmUpAdmin}
+                        warmUpActual={warmUpActual}
+                        warmUpId={warmUpId}
                     />
                 </Modal>
                 :
@@ -56,11 +68,10 @@ export default function Detail({ day, i, routineOrWarmUp, setLoader, setRoutineA
                         setLoader={setLoader}
                         setDeleteDay={setDeleteDay}
                         selectDay={selectDay}
-                        caseResolve={caseResolve}
                         id={day.id}
-                        routineActual={routineActual}
-                        routineId={routineId}
-                        setRoutineAdmin={setRoutineAdmin}
+                        setRoutineAdmin={setWarmUpAdmin}
+                        warmUpActual={warmUpActual}
+                        warmUpId={warmUpId}
                     />
                 </Modal>
             }

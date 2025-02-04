@@ -7,7 +7,8 @@ export default function ModalAddLoad({
   setOpenLoad,
   setLoader,
   weekLoad,
-  routineOrWarmUp,
+  routineActual,
+  routineId
 }: ModalAddLoadComponentProps) {
   const [inputLoad, setInputLoad] = useState<string>("");
 
@@ -18,8 +19,8 @@ export default function ModalAddLoad({
         e,
         exerciseId: id,
         load: inputLoad,
-        routineId: routineOrWarmUp.routineId,
-        routineActual: routineOrWarmUp.routineActual,
+        routineId,
+        routineActual,
         setOpenLoad,
         setLoader,
         weekLoad,

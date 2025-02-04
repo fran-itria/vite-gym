@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface Routine {
-    weeks?: number
+    weeks: number
     Days: {
         id: string
         WarmUp?: string
         Exercises: {
-            id?: string
+            id: string
             exercise?: number
             name?: string
             series?: number
@@ -32,15 +32,9 @@ export const routineSlice = createSlice({
     initialState,
     reducers: {
         actualRoutine: (_state, action: PayloadAction<Routine>) => {
-            if (action.payload.weeks) {
-                return {
-                    weeks: action.payload.weeks,
-                    Days: action.payload.Days
-                }
-            } else {
-                return {
-                    Days: action.payload.Days
-                }
+            return {
+                weeks: action.payload.weeks,
+                Days: action.payload.Days
             }
         }
     }

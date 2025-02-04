@@ -20,7 +20,7 @@ export async function createDayRoutine({
         setAddDay(false)
         setLoader(`${basicLoaders.create} ${specificLoaders.day}`)
         if (routine) {
-            if (routine.weeks) {
+            if ('weeks' in routine) {
                 const response = await axios.post('/rutina/createOneDayRutina', {
                     routineId,
                     day: {

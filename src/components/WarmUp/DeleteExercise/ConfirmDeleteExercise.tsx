@@ -1,5 +1,5 @@
-import deleteExercise from "../../../services/routine/exercises/deleteExercise"
-import { ConfirmDeleteComponentProps } from "../../../types"
+import deleteExercise from "../../services/routine/exercises/deleteExercise"
+import { ConfirmDeleteComponentProps } from "../../types"
 
 export default function ConfirmDelete({
     name,
@@ -7,6 +7,8 @@ export default function ConfirmDelete({
     setConfirmDelete,
     routineActual,
     routineId,
+    warmUpActual,
+    warmUpId,
     setLoader,
     setRoutineAdmin,
     caseResolve
@@ -23,7 +25,7 @@ export default function ConfirmDelete({
                 <button
                     className="button w-24"
                     onClick={() => {
-                        if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, setRoutineAdmin, caseResolve })
+                        if (id) deleteExercise({ idExercise: id, setConfirmDelete, setLoader, routineActual, routineId, warmUpActual, warmUpId, setRoutineAdmin, caseResolve })
                     }}>
                     🗑️ Borrar
                 </button>

@@ -1,19 +1,21 @@
 import deleteDay from "../../services/routine/deleteDay";
 import { Routine } from "../../store/routine/slice";
-import { CaseResolve, SetLoader } from "../../types";
+import { WarmUp } from "../../store/warmUp/slice";
+import { SetLoader } from "../../types";
 
 type Props = {
     id?: string,
     routineId?: string,
     routineActual?: (Days: Routine) => void
-    setRoutineAdmin?: CaseResolve
-    caseResolve: CaseResolve
+    warmUpId?: string
+    warmUpActual?: (Days: WarmUp) => void
+    setRoutineAdmin: boolean
     selectDay: number | undefined
     setDeleteDay: React.Dispatch<React.SetStateAction<boolean>>
     setLoader: SetLoader
 }
 
-export default function ConfirmDeleteDay({ setLoader, setDeleteDay, caseResolve, id, routineActual, routineId, setRoutineAdmin, selectDay }: Props) {
+export default function ConfirmDeleteDay({ setLoader, setDeleteDay, id, routineActual, routineId, warmUpActual, warmUpId, setRoutineAdmin, selectDay }: Props) {
     return (
         <div className="background p-4 rounded w-64 flex flex-col items-center justify-center">
             <b>Desea eliminar el dia {selectDay}</b>
@@ -25,7 +27,7 @@ export default function ConfirmDeleteDay({ setLoader, setDeleteDay, caseResolve,
                     Cancelar
                 </button>
                 <button
-                    onClick={() => deleteDay({ setLoader, caseResolve, id, routineActual, routineId, setRoutineAdmin })}
+                    onClick={() => deleteDay({ setLoader, id, routineActual, routineId, warmUpActual, warmUpId, setRoutineAdmin })}
                     className="buttonConfirm w-24"
                 >
                     Confirmar
