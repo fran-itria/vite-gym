@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Routine } from "./store/routine/slice";
 import { RoutinesUser, WarmUpsUser, meal, payments } from "./store/user/slice";
+import { WarmUp } from "./store/warmUp/slice";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export enum InformationEnum {
@@ -41,7 +41,7 @@ export type Elements = {
 }
 
 export type Exercise = {
-  id?: string;
+  id: string;
   exercise?: number;
   name?: string;
   series?: number;
@@ -66,12 +66,14 @@ export type TableComponentProps = {
   }
   routineOrWarmUp: RoutineOrWarmUp
   setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
   setSelectDay: React.Dispatch<React.SetStateAction<number | undefined>>
   setAddExercise: (value: React.SetStateAction<boolean>) => void
   addWeek(id: string | undefined, weeks: number, routineActual: Function | undefined): Promise<void>
   setDeleteDay: React.Dispatch<React.SetStateAction<boolean>>
+  routineId: string
+  routineActual: (Days: Routine) => void
+  weeks: number
 }
 
 export type TableRowComponentProps = Exercise & {
@@ -86,7 +88,8 @@ export type ModalAddLoadComponentProps = {
   setOpenLoad: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: SetLoader
   weekLoad: number
-  routineOrWarmUp: RoutineOrWarmUp
+  routineId: string
+  routineActual: (Days: Routine) => void
 }
 
 
@@ -110,18 +113,18 @@ export type TableConfirmDayComponentProps = {
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
   setDayCreate: React.Dispatch<React.SetStateAction<{
-    exercise?: number | undefined;
-    name?: string | undefined;
-    series?: string | undefined;
-    reps?: string | undefined;
-    link?: string | undefined;
+    exercise?: number;
+    name?: string;
+    series?: string;
+    reps?: string;
+    link?: string;
   }[]>>
   dayCreate: {
-    exercise?: number | undefined;
-    name?: string | undefined;
-    series?: string | undefined;
-    reps?: string | undefined;
-    link?: string | undefined;
+    exercise?: number;
+    name?: string;
+    series?: string;
+    reps?: string;
+    link?: string;
   }[]
   pagDays?: number
   setRoutine?: React.Dispatch<React.SetStateAction<[] | {
@@ -136,8 +139,8 @@ export type TableConfirmDayComponentProps = {
   }[]>>
   setPagDays?: React.Dispatch<React.SetStateAction<number>>
   routineId?: string
-  routineActual?: (Days: Routine) => void
-  routine?: Routine
+  routineActual?: ((Days: Routine) => void) | ((Days: WarmUp) => void)
+  routine?: Routine | WarmUp
   setLoader: SetLoader
   setRoutineAdmin?: setRoutineAdmin
   setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
@@ -150,11 +153,12 @@ export type CreateExerciseComponentProps = {
     WarmUp?: string | null | undefined;
     Exercises: [] | Exercise[]
   }
-  routineId?: string
   routineActual?: (Days: Routine) => void
+  routineId?: string
+  warmUpActual?: (Days: WarmUp) => void
+  warmUpId?: string
   setLoader: SetLoader;
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
 }
 
 export type TableCellComponentProps = Exercise & {
@@ -171,21 +175,8 @@ export type TableCellComponentProps = Exercise & {
 export type RoutineOrWarmUp = {
   routineId?: string
   routineActual?: (Days: Routine) => void
+  warmUpActual?: (Days: WarmUp) => void
   weeks?: number
-}
-
-export type DetailComponenProps = {
-  day: {
-    id: string;
-    WarmUp?: string | undefined;
-    Exercises: [] | Exercise[];
-  }
-  i: number
-  routineOrWarmUp: RoutineOrWarmUp
-  setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  isWarmUpOrRoutine?: CaseResolve
-  caseResolve: CaseResolve
 }
 
 export enum CaseResolve {
@@ -201,7 +192,7 @@ export type FormTotalExerciseComponentProps = {
   setTotalDays?: React.Dispatch<React.SetStateAction<string>>
   setOpenCreateRouitine?: React.Dispatch<React.SetStateAction<boolean>>
   pagDays?: number
-  routine?: Routine
+  routine?: Routine | WarmUp
 }
 
 export type ModifiedExerciseProps = {
@@ -211,10 +202,10 @@ export type ModifiedExerciseProps = {
   link?: string
   id?: string
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  routineOrWarmUp: RoutineOrWarmUp
+  routineActual: (Days: Routine) => void
+  routineId: string
   setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
 }
 
 export type UsersComponent = [] | {
@@ -289,9 +280,10 @@ export type ConfirmDeleteComponentProps = {
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   routineId?: string
   routineActual?: (Days: Routine) => void
+  warmUpActual?: (Days: WarmUp) => void
+  warmUpId?: string
   setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
 }
 
 export type InputsCreateFood = {

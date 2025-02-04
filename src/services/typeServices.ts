@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routine } from "../store/routine/slice";
 import { RoutinesUser, WarmUpsUser, extraTraining, meal, payments, shift } from "../store/user/slice";
+import { WarmUp } from "../store/warmUp/slice";
 import { CaseResolve, InputsCreateTraining, InputsLogin, InputsRegister, RoutineOrWarmUp, SetLoader, UsersComponent, setRoutineAdmin } from "../types";
 import { Location, NavigateFunction } from "react-router-dom";
 
@@ -30,17 +31,17 @@ export type onSubmitProps = {
 }
 
 export type modifiedExerciseProps = {
-  id?: string
-  routineOrWarmUp: RoutineOrWarmUp
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: (value: React.SetStateAction<boolean>) => void
+  setLoader: SetLoader
   inputs: {
     name?: string | undefined;
     series?: number | undefined;
     reps?: string | undefined;
   }
-  setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  exerciseId?: string
+  setRoutineAdmin: boolean
+  routineActual: (Days: Routine) => void
+  routineId: string
 }
 
 export type modifiedLoadsProps = {
@@ -68,10 +69,11 @@ export type addExerciseProps = {
   }
   setAddExercise: React.Dispatch<React.SetStateAction<boolean>>
   routineId?: string
-  routineActual: ((Days: Routine) => void) | undefined
+  routineActual?: ((Days: Routine) => void)
+  warmUpId?: string
+  warmUpActual?: ((Days: WarmUp) => void)
   setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
 }
 
 export type onChangeInputsProps = {
@@ -86,10 +88,10 @@ export type onChangeInputsProps = {
 }
 
 export type createDayRoutineProps = {
-  routine?: Routine
+  routine?: Routine | WarmUp
   routineId?: string,
   dayCreate: { exercise?: number, name?: string, series?: string, reps?: string, link?: string }[],
-  routineActual?: (Days: Routine) => void
+  routineActual?: ((Days: Routine) => void) | ((Days: WarmUp) => void)
   setAddDay: React.Dispatch<React.SetStateAction<boolean>>
   setTotalExercise: React.Dispatch<React.SetStateAction<string>>
   setPag: React.Dispatch<React.SetStateAction<number>>
@@ -172,7 +174,7 @@ export type deleteWarmUpProps = {
   id: string | undefined
   updateWarmUpUser: (warmUps: WarmUpsUser) => void
   userId: string | null
-  updateIdGlobal: (id: string | undefined) => void
+  updateWarmUpIdGlobal: (id: string | undefined) => void
   setLoader: SetLoader
   setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
 }
@@ -199,8 +201,9 @@ export type deleteDayProps = {
   id?: string,
   routineId?: string,
   routineActual?: (Days: Routine) => void
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  warmUpId?: string
+  warmUpActual?: (Days: WarmUp) => void
+  setRoutineAdmin: boolean
   setLoader: SetLoader
 }
 
@@ -208,10 +211,11 @@ export type deleteExerciseProps = {
   idExercise: string
   routineId?: string
   routineActual?: (Days: Routine) => void
+  warmUpActual?: (Days: WarmUp) => void
+  warmUpId?: string
   setConfirmDelete: React.Dispatch<React.SetStateAction<boolean>>
   setLoader: SetLoader
-  setRoutineAdmin?: CaseResolve
-  caseResolve: CaseResolve
+  setRoutineAdmin: boolean
 }
 
 export type submitChangesProps = {

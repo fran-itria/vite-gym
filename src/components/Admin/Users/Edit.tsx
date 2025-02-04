@@ -234,16 +234,17 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                         {modal == CaseResolve.calentamiento ?
                             <WarmUp
                                 otherUserId={userId}
-                                isWarmUpOrRoutine={CaseResolve.calentamiento}
                                 setUsers={setUsers}
-                                setModal={setModal}>
+                                setModal={setModal}
+                                setWarmUpAdmin={true}
+                            >
                             </WarmUp>
                             :
                             <Routine
                                 otherUserId={userId}
-                                isWarmUpOrRoutine={CaseResolve.rutina}
                                 setUsers={setUsers}
                                 setModal={setModal}
+                                setRoutineAdmin={true}
                             ></Routine>
                         }
                     </div>

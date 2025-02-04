@@ -1,5 +1,4 @@
 import useDayCreate from "../../hook/Components/Routine/useCreateDay";
-import { deleteWarmup } from "../../services/routine/deleteRoutine";
 import { useState } from "react";
 import { useUserActions } from "../../hook/useUserActions";
 import Loader from "../Loader";
@@ -8,24 +7,24 @@ import FormOneDay from "../Routine/CraeteOneDay/FormOneDay";
 import TableConfirmDay from "../Routine/CraeteOneDay/TableConfirmDay";
 import CreateRoutine from "../Routine/CreateRoutine";
 import Chronometer from "../Chronometer";
-import Detail from "../Routine/Detail";
 import { basicLoaders, specificLoaders } from "../../const";
-import useInformation from "../../hook/Components/Routine/useInformation";
 import { CaseResolve, UsersComponent } from "../../types";
 import { Modal } from "@mui/material";
 import QueueIcon from '@mui/icons-material/Queue';
+import useWarmUp from "./customHook";
+import { deleteWarmup } from "./services";
+import DetailWarmUp from "./Detail/DetailWarmUp";
 
-export type Props = {
+interface Props {
     otherUserId?: string
-    isWarmUpOrRoutine?: CaseResolve
     setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
     setModal?: (value: React.SetStateAction<CaseResolve | undefined>) => void
-    children?: React.ReactNode
+    setWarmUpAdmin: boolean
 }
 
-export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setModal }: Props) {
+export default function WarmUp({ otherUserId, setUsers, setModal, setWarmUpAdmin }: Props) {
     const [chagenOtherRoutine, setChangeOtherRoutine] = useState<boolean>(false)
-    const { WarmUps, id, loader, routine, routineActual, setLoader, routineId, updateIdGlobal, viewRoutineOtherUser } = useInformation(otherUserId, isWarmUpOrRoutine, chagenOtherRoutine, setChangeOtherRoutine)
+    const { WarmUps, id, loader, setLoader, viewRoutineOtherUser, warmUp, warmUpActual, updateWarmUpIdGlobal, warmUpId } = useWarmUp({ chagenOtherRoutine, otherUserId, setChangeOtherRoutine })
     const { addDay, dayCreate, pag, setAddDay, setDayCreate, setPag, setTotalExercise, totalExercise } = useDayCreate()
     const [createWarm, setCreateWarm] = useState<boolean>(false)
     const { updateWarmUpUser } = useUserActions()
@@ -41,37 +40,38 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                         if (viewRoutineOtherUser) {
                             setChangeOtherRoutine(true)
                         }
-                        updateIdGlobal(e.target.value)
+                        updateWarmUpIdGlobal(e.target.value)
                         setLoader(`${basicLoaders.loading} ${specificLoaders.warm} `)
-                    }}>
-                    <option value={routineId.id}></option>
+                    }}
+                    key={warmUpId}>
+                    <option value={warmUpId}></option>
                     {!viewRoutineOtherUser ?
-                        WarmUps.map((routine, i: number) => (
-                            <option value={routine.id}>
+                        WarmUps.map((warmUp, i: number) => (
+                            <option value={warmUp.id}>
                                 {i !== WarmUps.length - 1 ? `Calentamiento ${i + 1} ` : 'Actual'}
                             </option>
                         )
                         )
                         :
-                        viewRoutineOtherUser.map((routine, i: number) => (
-                            <option value={routine.id}>
+                        viewRoutineOtherUser.map((warmUp, i: number) => (
+                            <option value={warmUp.id}>
                                 {i !== viewRoutineOtherUser.length - 1 ? `Calentamiento ${i + 1} ` : 'Actual'}
                             </option>
                         ))}
                 </select>
             </div>
-            {routine.Days?.length && routine.Days?.length > 0 ?
+            {warmUp.Days?.length && warmUp.Days?.length > 0 ?
                 <>
                     <div className={`flex flex-col justify-around ${!setUsers ? 'h-2/5' : 'mt-5 h-3/5'}`}>
-                        {routine.Days.map((day, i) => {
+                        {warmUp.Days.map((day, i) => {
                             return (
-                                <Detail
+                                <DetailWarmUp
+                                    key={day.id}
                                     day={day}
                                     i={i}
-                                    routineOrWarmUp={{ routineId: routineId.id, routineActual }}
+                                    warmUp={{ warmUpId, warmUpActual }}
                                     setLoader={setLoader}
-                                    isWarmUpOrRoutine={isWarmUpOrRoutine}
-                                    caseResolve={CaseResolve.calentamiento}
+                                    setWarmUpAdmin={setWarmUpAdmin}
                                 />
                             )
                         })}
@@ -82,9 +82,9 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                                 <button
                                     className="buttonCancel w-52 ll:w-40 h-7"
                                     onClick={() => {
+                                        updateWarmUpIdGlobal(undefined)
                                         if (setModal)
                                             setModal(undefined)
-                                        updateIdGlobal(undefined)
                                     }
                                     }>
                                     Volver
@@ -93,10 +93,10 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                             <button
                                 className="buttonCancel w-52 ll:w-40"
                                 onClick={() => deleteWarmup({
-                                    id: routineId.id,
+                                    id: warmUpId,
                                     userId: id,
                                     updateWarmUpUser,
-                                    updateIdGlobal,
+                                    updateWarmUpIdGlobal,
                                     setLoader,
                                     setUsers
                                 })}>
@@ -131,43 +131,39 @@ export default function WarmUp({ otherUserId, isWarmUpOrRoutine, setUsers, setMo
                     </button>
                 </>
             }
-            <Modal open={addDay || createWarm || Boolean(pag)}>
+            <Modal open={addDay || createWarm || Boolean(pag)} className="h-full flex justify-center items-center">
                 <>
                     {
                         addDay ?
-                            <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={routine} />
+                            <FormTotalExercise setPag={setPag} setTotalExercise={setTotalExercise} setAddDay={setAddDay} routine={warmUp} />
                             :
-                            pag != 0 ?
+                            pag != 0 &&
                                 pag < Number(totalExercise) + 1 ?
-                                    <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} setAddDay={setAddDay} pag={pag} />
-                                    :
-                                    <TableConfirmDay
-                                        key={routineId.id}
-                                        dayCreate={dayCreate}
-                                        setAddDay={setAddDay}
-                                        setDayCreate={setDayCreate}
-                                        setPag={setPag}
-                                        setTotalExercise={setTotalExercise}
-                                        routine={routine}
-                                        routineActual={routineActual}
-                                        routineId={routineId.id}
-                                        setLoader={setLoader}
-                                    />
+                                <FormOneDay actualExercise={pag} setDayCreate={setDayCreate} setPag={setPag} setAddDay={setAddDay} pag={pag} />
                                 :
-                                <></>
+                                <TableConfirmDay
+                                    key={warmUpId}
+                                    dayCreate={dayCreate}
+                                    setAddDay={setAddDay}
+                                    setDayCreate={setDayCreate}
+                                    setPag={setPag}
+                                    setTotalExercise={setTotalExercise}
+                                    routine={warmUp}
+                                    routineActual={warmUpActual}
+                                    routineId={warmUpId}
+                                    setLoader={setLoader}
+                                />
                     }
                     {
-                        createWarm ?
-                            <CreateRoutine
-                                setOpenCreateRouitine={setCreateWarm}
-                                userId={id}
-                                updateWarmUpUser={updateWarmUpUser}
-                                updateIdGlobal={updateIdGlobal}
-                                createWarm={createWarm}
-                                setLoader={setLoader}
-                            />
-                            :
-                            <></>
+                        createWarm &&
+                        <CreateRoutine
+                            setOpenCreateRouitine={setCreateWarm}
+                            userId={id}
+                            updateWarmUpUser={updateWarmUpUser}
+                            updateIdGlobal={updateWarmUpIdGlobal}
+                            createWarm={createWarm}
+                            setLoader={setLoader}
+                        />
                     }
                 </>
             </Modal>
