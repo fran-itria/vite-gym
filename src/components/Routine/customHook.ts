@@ -5,7 +5,6 @@ import { useAppSelector } from "../../hook/store"
 import { useRoutineActions } from "../../hook/useRoutineActions"
 import useRoutineIdActions from "../../hook/useRoutineIdActions"
 import { getRoutine, otherUserRoutine } from "./services"
-import { basicLoaders, specificLoaders } from "../../const"
 
 interface Props {
     otherUserId: string | undefined,
