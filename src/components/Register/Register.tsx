@@ -15,7 +15,7 @@ export default function Register({ setLoader }: { setLoader: React.Dispatch<Reac
     const [link, setLink] = useState<string>()
     const [allIds, setAllIds] = useState<{ id: string, gym: string }[]>()
     const { Gym } = useAppSelector(state => state.user)
-    const baseUrl = `https://pro-active-center.vercel.app/register/${Gym?.name}/`
+    const baseUrl = `https://proactivecenter.com.ar/register/${Gym?.name}/`
 
     const createLink = async () => {
         setLoader(`${basicLoaders.create} ${specificLoaders.link}`);
