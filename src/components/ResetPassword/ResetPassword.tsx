@@ -5,7 +5,7 @@ import Loader from "../Loader"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useState } from "react";
 
-export default function ResetPassword({ setResetPassword }: { setResetPassword?: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function ResetPassword({ setResetPassword, fromForm }: { setResetPassword?: React.Dispatch<React.SetStateAction<boolean>>, fromForm?: boolean }) {
     const {
         reset,
         setReset,
@@ -36,7 +36,7 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
                     </b>
                     <form
                         className="flex flex-col items-center mt-3"
-                        onSubmit={(e) => searchUser(e, email, emailInput, setReset, setLoader, setIdUser)}
+                        onSubmit={(e) => searchUser(e, email, emailInput, setReset, setLoader, setIdUser, fromForm)}
                     >
                         <input
                             autoFocus
@@ -59,7 +59,7 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
                 :
                 <form
                     className="flex flex-col items-center ll:items-start justify-between h-72 w-64 ll:w-auto"
-                    onSubmit={(e) => cahngePassword(e, newPassword, idUser, setError, navigate, setLoader)}>
+                    onSubmit={(e) => cahngePassword({ e, newPassword, id: idUser, setError, navigate, setLoader, setResetPassword })}>
                     <label className="font-bold flex flex-col relative">
                         Nueva contraseña:
                         <input

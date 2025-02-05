@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
 
-export default async function cahngePassword(
+interface Props {
     e: React.FormEvent<HTMLFormElement>,
     newPassword: {
         password: string;
@@ -12,7 +12,10 @@ export default async function cahngePassword(
     setError: React.Dispatch<React.SetStateAction<string>>,
     navigate: NavigateFunction,
     setLoader: React.Dispatch<React.SetStateAction<string | undefined>>
-) {
+    setResetPassword: React.Dispatch<React.SetStateAction<boolean>> | undefined
+}
+
+export default async function cahngePassword({ e, id, navigate, newPassword, setError, setLoader, setResetPassword }: Props) {
     e.preventDefault()
     setLoader("Cambiando contraseña")
     if (newPassword.password !== newPassword.confirmPassword) {
@@ -27,6 +30,7 @@ export default async function cahngePassword(
                 await axios.put(`/user`, { id, password: newPassword.password, temporalCode: null })
                 window.alert("Contraseña cambiada con éxito")
                 navigate("/")
+                setResetPassword && setResetPassword(prev => !prev)
                 setLoader(undefined)
             } else {
                 setError("Codigo incorrecto")
