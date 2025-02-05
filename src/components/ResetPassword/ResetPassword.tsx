@@ -28,7 +28,7 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
     return (
         <div className="background flex flex-col rounded p-4">
             {loader ? <Loader text={loader} /> : <></>}
-            <b className="mb-3 text-gray-900 dark:text-white">Recuperar contraseña</b>
+            <b className="mb-5 text-gray-900 dark:text-white w-full flex justify-center">Recuperar contraseña</b>
             {!reset ?
                 <div>
                     <b className="text-gray-900 dark:text-white">
@@ -58,44 +58,44 @@ export default function ResetPassword({ setResetPassword }: { setResetPassword?:
                 </div>
                 :
                 <form
-                    className="flex flex-col items-start justify-between h-40 ll:h-60"
+                    className="flex flex-col items-center ll:items-start justify-between h-72 w-64 ll:w-auto"
                     onSubmit={(e) => cahngePassword(e, newPassword, idUser, setError, navigate, setLoader)}>
-                    <label className="font-bold ll:flex ll:flex-col relative">
+                    <label className="font-bold flex flex-col relative">
                         Nueva contraseña:
                         <input
-                            className="ml-2 rounded ll:ml-0"
+                            className="ml-2 rounded ml-0"
                             type={inputTypeOne}
                             name="password"
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })}
                         />
                         <VisibilityIcon
                             onClick={() => setInputTypeOne(inputTypeOne === "password" ? "text" : "password")}
-                            className="cursor-pointer absolute right-2 ll:top-6"
+                            className="cursor-pointer absolute right-2 top-6"
                         />
                     </label>
-                    <label className="font-bold ll:flex ll:flex-col relative">
+                    <label className="font-bold flex flex-col relative">
                         Confirmar contraseña:
                         <input
-                            className="ml-2 rounded ll:ml-0"
+                            className="ml-2 rounded ml-0"
                             type={inputTypeTwo}
                             name="confirmPassword"
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })}
                         />
                         <VisibilityIcon
                             onClick={() => setInputTypeTwo(inputTypeTwo === "password" ? "text" : "password")}
-                            className="cursor-pointer absolute right-2 ll:top-6"
+                            className="cursor-pointer absolute right-2 top-6"
                         />
                     </label>
-                    <label className="font-bold ll:flex ll:flex-col w-full">
+                    <label className="font-bold flex flex-col">
                         Codigo de restaruración:
                         <input
-                            className="ml-2 rounded ll:ml-0"
+                            className="ml-2 rounded ml-0"
                             type="number"
                             name="code"
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })} />
                     </label>
                     {error && <b className="text-red-400">{error}</b>}
-                    <div className="flex w-full justify-around ll:justify-between mt-5">
+                    <div className="flex w-full justify-around ll:justify-between">
                         <button
                             className="buttonCancel w-24"
                             type="button"
