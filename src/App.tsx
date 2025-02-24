@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import FormLogin from "./components/Session/login/FormLogin";
@@ -6,23 +6,24 @@ import FormRegister from "./components/Session/register/FormRegister";
 import axios from "axios";
 import Subscription from "./components/Suscripcion/Subscription";
 import AcceptUser from './components/AcceptUser/AcceptUser'
-import { useEffect } from "react";
+// import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { baseUrlDeploy } from "./const";
 axios.defaults.baseURL = baseUrlDeploy
 
 function App() {
   const path = useLocation();
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    axios.interceptors.response.use(
-      response => response,
-      _error => {
-        navigate('/')
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   axios.interceptors.response.use(
+  //     response => response,
+  //     _error => {
+  //       navigate('/')
+  //     }
+  //   );
+  // }, []);
 
   return (
     <div className="h-full w-full flex flex-col">
