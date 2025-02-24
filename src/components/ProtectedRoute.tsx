@@ -19,21 +19,32 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
     useEffect(() => {
         const token = storage.getItem('token')
         axios.defaults.headers.common['Authorization'] = `${token}`;
-        if (token) {
-            login(undefined, token)
+        try {
+            login(undefined, token || undefined)
                 .then(response => {
                     addUser(response.data.user)
                     setLoader(undefined)
                 })
-                .catch((_error) => {
-                    setLoader(undefined)
-                    navigate('/')
-                })
-        } else {
+        } catch (error: any) {
             setLoader(undefined)
             navigate('/')
-            sweetAlert('dsajdshsdasjk')
+            sweetAlert(error.response.data.error)
         }
+        // if (token) {
+        //     login(undefined, token)
+        //         .then(response => {
+        //             addUser(response.data.user)
+        //             setLoader(undefined)
+        //         })
+        //         .catch((_error) => {
+        //             setLoader(undefined)
+        //             navigate('/')
+        //         })
+        // } else {
+        //     setLoader(undefined)
+        //     navigate('/')
+        //     sweetAlert('dsajdshsdasjk')
+        // }
     }, [])
     return (<>
         {loader ?

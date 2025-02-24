@@ -240,15 +240,14 @@ export default function Edit({ userId, gymName, setUsers, admin, ban, subscripti
                                 setUsers={setUsers}
                                 setModal={setModal}
                                 setWarmUpAdmin={true}
-                            >
-                            </WarmUp>
+                            />
                             :
                             <Routine
                                 otherUserId={userId}
                                 setUsers={setUsers}
                                 setModal={setModal}
                                 setRoutineAdmin={true}
-                            ></Routine>
+                            />
                         }
                     </div>
                 </Modal>

@@ -18,7 +18,7 @@ import DetailWarmUp from "./Detail/DetailWarmUp";
 interface Props {
     otherUserId?: string
     setUsers?: React.Dispatch<React.SetStateAction<UsersComponent>>
-    setModal?: (value: React.SetStateAction<CaseResolve | undefined>) => void
+    setModal?: React.Dispatch<React.SetStateAction<CaseResolve | undefined>>
     setWarmUpAdmin: boolean
 }
 

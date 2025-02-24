@@ -36,8 +36,6 @@ export default function Shifts() {
         setArrayShifts(array)
     }, [Shifts])
 
-    useEffect(() => console.log(shifts), [shifts])
-
     return (
         <>
             {loader && <Loader text={loader} />}

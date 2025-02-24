@@ -6,15 +6,12 @@ import moment from "moment"
 import { basicLoaders, specificLoaders } from "../../../const"
 import { onChange, onSubmit } from "./functions"
 import sweetAlert from "../../../services/swartAlert"
+import { Table, TableContainer, TableHead, TableBody, TableRow } from "@mui/material"
+import { StyledTableCell, StyledTableRow } from "../../../themeIcons/customTheme"
 
 export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<React.SetStateAction<string | undefined>> }) {
     const { GymId } = useAppSelector(state => state.user)
-    const [shifts, setShifts] = useState<{ id: string, day: string, hour: string }[]>([])
-    const [shiftsSplit, setShiftsSplit] = useState<{
-        morning: { id: string; day: string; hour: string; }[];
-        afternoon: { id: string; day: string; hour: string; }[];
-        night: { id: string; day: string; hour: string; }[]
-    }>()
+    const [shifts, setShifts] = useState<{ id: string, day: string, hour: string, User: { name: string, surname: string } }[]>([])
     const date = moment().format().split('T')[0]
     const [inputs, setInputs] = useState<{ limit: number, time: number, open: string, close: string }>({ limit: 0, time: 0, open: '', close: '' })
     const [limitShift, setLimitShift] = useState<{ limit: number, time: string, open: string, close: string }>()
@@ -23,30 +20,9 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
         setLoader(`${basicLoaders.loading} ${specificLoaders.shift}s`)
         axios.get(`/gym/getGymId/${GymId}`)
             .then(response => {
-                const shifts: { id: string, day: string, hour: string }[] = response.data.Shifts
-                const today = shifts.filter(shift => shift.day == date)
+                const shifts: { id: string, day: string, hour: string, User: { name: string, surname: string } }[] = response.data.Shifts
+                const today = shifts.filter(shift => shift.day >= date)
                 setShifts(today)
-                const shiftsSplit: {
-                    morning: { id: string, day: string, hour: string }[],
-                    afternoon: { id: string, day: string, hour: string }[]
-                    night: { id: string, day: string, hour: string }[]
-                } = {
-                    morning: [],
-                    afternoon: [],
-                    night: []
-                }
-                shifts.map(shift => {
-                    if (shift.day == date) {
-                        if (Number(shift.hour.split(':')[0]) < 12) {
-                            shiftsSplit.morning.push(shift)
-                        } else if (Number(shift.hour.split(':')[0]) < 19) {
-                            shiftsSplit.afternoon.push(shift)
-                        } else {
-                            shiftsSplit.night.push(shift)
-                        }
-                    }
-                })
-                setShiftsSplit(shiftsSplit)
                 if (response.data.range.length > 0) {
                     const open = response.data.range[0].split('-')[0].replace(' ', '')
                     const close = response.data.range[response.data.range.length - 1].split('-')[1].replace(' ', '')
@@ -191,26 +167,37 @@ export default function ShiftsAdmin({ setLoader }: { setLoader: React.Dispatch<R
             </div >
             {shifts?.length > 0 ?
                 <section className="w-full flex justify-center mt-10 l:mt-2 ll:mt-10">
-                    <div
-                        className="
-                        flex 
-                        flex-col 
-                        items-start 
-                        justify-between 
-                        border-2 
-                        p-4 
-                        h-40 
-                        rounded
-                        bg-gray-300
-                        border-gray-700
-                        dark:border-cyan-600 
-                        dark:bg-gray-800
-                    ">
+                    <TableContainer className='rounded overflow-auto w-full max-h-100 max-w-6xl ll:max-w-smd ll:max-h-120'>
+                        <Table aria-label="customized table" >
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell align="center"><b>Día</b></StyledTableCell>
+                                    <StyledTableCell align="center"><b>Hora</b></StyledTableCell>
+                                    <StyledTableCell align="center"><b>Nombre</b></StyledTableCell>
+                                    <StyledTableCell align="center"><b>Apellido</b></StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {shifts.map(shift => {
+                                    const day = shift.day.split('-')
+                                    return (
+                                        <StyledTableRow>
+                                            <StyledTableCell align="center"><b>{`${day[2]} - ${day[1]}`}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{shift.hour.split('-')[0]}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{shift.User.name}</b></StyledTableCell>
+                                            <StyledTableCell align="center"><b>{shift.User.surname}</b></StyledTableCell>
+                                        </StyledTableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    {/* 
                         <b className="text-gray-700 dark:text-white">Turnos para el dia de hoy: <b>{shifts.length}</b></b>
                         <b className="text-gray-700 dark:text-white">Mañana 🌤️:<b className="ml-1">{shiftsSplit?.morning.length}</b></b>
                         <b className="text-gray-700 dark:text-white">Tarde 🌇: <b className="ml-1">{shiftsSplit?.afternoon.length}</b></b>
-                        <b className="text-gray-700 dark:text-white">Noche 🌙: <b className="ml-1">{shiftsSplit?.night.length}</b></b>
-                    </div>
+                        <b className="text-gray-700 dark:text-white">Noche 🌙: <b className="ml-1">{shiftsSplit?.night.length}</b></b> 
+                    */}
                 </section>
                 :
                 <b className="mt-2">No tienes turnos para el día de hoy</b>
