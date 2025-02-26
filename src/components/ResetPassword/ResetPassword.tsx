@@ -42,6 +42,7 @@ export default function ResetPassword({ setResetPassword, fromForm }: { setReset
                             autoFocus
                             className="w-50"
                             placeholder="Correo electronico"
+                            required
                             onChange={(e) => setEmailInput(e.target.value)}>
                         </input>
                         <div className="flex justify-around mt-3 w-full">
@@ -66,6 +67,7 @@ export default function ResetPassword({ setResetPassword, fromForm }: { setReset
                             className="ml-2 rounded ml-0"
                             type={inputTypeOne}
                             name="password"
+                            required
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })}
                         />
                         <VisibilityIcon
@@ -79,6 +81,7 @@ export default function ResetPassword({ setResetPassword, fromForm }: { setReset
                             className="ml-2 rounded ml-0"
                             type={inputTypeTwo}
                             name="confirmPassword"
+                            required
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })}
                         />
                         <VisibilityIcon
@@ -92,6 +95,7 @@ export default function ResetPassword({ setResetPassword, fromForm }: { setReset
                             className="ml-2 rounded ml-0"
                             type="number"
                             name="code"
+                            required
                             onChange={(e) => setNewPassword(state => { return { ...state, [e.target.name]: e.target.value } })} />
                     </label>
                     {error && <b className="text-red-400">{error}</b>}

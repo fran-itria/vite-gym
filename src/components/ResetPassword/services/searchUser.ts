@@ -26,10 +26,9 @@ export default async function searchUser(
             }
         } else if (fromForm) {
             const user = await axios.get(`/user/getOneUserByEmail/${emailInput}`)
-            console.log(user)
             if (user.status == 200) {
                 const randomCode = Math.floor(Math.random() * 1000000)
-                await axios.post(`/mails/resetPassword`, { email, user: user.data.user, code: randomCode })
+                await axios.post(`/mails/resetPassword`, { email: user.data.email, user: user.data.user, code: randomCode })
                 await axios.put('/user', { id: user.data.id, temporalCode: randomCode })
                 setIdUser(user.data.id)
                 setReset(true)
