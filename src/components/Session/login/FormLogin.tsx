@@ -9,6 +9,8 @@ import { useLoginSession } from "../../../hook/Components/Session/useLoginSessio
 import useRoutineIdActions from "../../../hook/useRoutineIdActions";
 import ResetPassword from "../../ResetPassword/ResetPassword";
 import { Modal } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 
 export default function FormLogin() {
   const [inputs, setInputs] = useState<InputsLogin>();
@@ -18,6 +20,8 @@ export default function FormLogin() {
   useLoginSession();
   const { updateIdGlobal } = useRoutineIdActions();
   const [reset, setResetPassword] = useState(false)
+  const [inputType, setInputType] = useState("password")
+
 
   return (
     <>
@@ -69,14 +73,20 @@ export default function FormLogin() {
               required={true}
               className="mb-7"
             ></input>
-            <input
-              name="password"
-              type="password"
-              placeholder="Contraseña"
-              onChange={(event) => onChange({ event, setInputs })}
-              required={true}
-              className="mb-7"
-            ></input>
+            <div className="relative">
+              <input
+                name="password"
+                type={inputType}
+                placeholder="Contraseña"
+                onChange={(event) => onChange({ event, setInputs })}
+                required={true}
+                className="mb-7"
+              />
+              <VisibilityIcon
+                onClick={() => setInputType(inputType === "password" ? "text" : "password")}
+                className="cursor-pointer absolute right-2"
+              />
+            </div>
             <button className="button px-2">Iniciar sesión</button>
           </form>
           <a onClick={() => setResetPassword(true)} className='text-gray-800 hover:text-black hover:underline cursor-pointer dark:text-white dark:hover:no-underline	'>
