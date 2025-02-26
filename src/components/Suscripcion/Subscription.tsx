@@ -7,8 +7,7 @@ import Register from "../Register/Register";
 import mercadoPagoLogo from "../../images/mercadoPago.png";
 
 export default function Subscription() {
-    const { Payments, admin, amount, linkMp, loader, setLoader, arrayPayments } = useSubscription()
-
+    const { Payments, admin, amount, linkMp, loader, setLoader, arrayPayments, payTrue } = useSubscription()
     return (
         <>
             {loader && <Loader text={loader} />}
@@ -20,7 +19,7 @@ export default function Subscription() {
                 :
                 <div className="p-10 h-full flex flex-col justify-start items-center">
                     <b className="text-xl text-black dark:text-white">Monto a pagar: {amount}</b>
-                    <button className="
+                    <button className={`
                             w-32 
                             flex 
                             justify-center 
@@ -29,7 +28,8 @@ export default function Subscription() {
                             bg-blue-500
                             mt-5
                             mb-5
-                    ">
+                            ${payTrue && 'opacity-20 pointer-events-none'}
+                    `}>
                         <a href={linkMp} className="w-24 text-xl flex justify-around items-center text-white">
                             <img src={mercadoPagoLogo} />
                             Pagar

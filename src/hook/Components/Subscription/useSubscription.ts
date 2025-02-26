@@ -10,6 +10,7 @@ import { login } from "../../../services/login/login"
 import createPayment from "../../../services/subscription/createPayment"
 import { payments } from "../../../store/user/slice"
 import sweetAlert from "../../../services/swartAlert"
+import moment from "moment"
 
 export default function useSubscription() {
     const { admin, GymId, id, Payments, Gym } = useAppSelector(state => state.user)
@@ -19,6 +20,7 @@ export default function useSubscription() {
     const query = useLocation()
     const [loader, setLoader] = useState<string>()
     const [arrayPayments, setArrayPayments] = useState<payments[] | []>([])
+    const [payTrue, setPayTrue] = useState<boolean>(false)
 
     useEffect(() => {
         setLoader(`${basicLoaders.loading} ${specificLoaders.pay}`)
@@ -54,8 +56,16 @@ export default function useSubscription() {
 
     useEffect(() => {
         const array = Payments.filter(payment => payment.Gym.name == Gym?.name)
+        const month = moment().month()
+        const year = moment().year()
+        for (let i = 0; i < array.length; i++) {
+            const date = array[i].date;
+            if (date.includes(String(month + 1)) && date.includes(String(year))) {
+                setPayTrue(true)
+            }
+        }
         setArrayPayments(array)
     }, [Payments])
 
-    return { admin, Payments, linkMp, amount, loader, setLoader, arrayPayments }
+    return { admin, Payments, linkMp, amount, loader, setLoader, arrayPayments, payTrue }
 }

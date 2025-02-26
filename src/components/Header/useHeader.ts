@@ -24,7 +24,7 @@ export function useHeader() {
             .then(response => {
                 setLinkMp(response.data.linkMp)
             })
-    }, [])
+    }, [GymId])
 
     return {
         name,
