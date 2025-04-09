@@ -152,6 +152,7 @@ export default function TableComponent({
                                                             className={`${setRoutineAdmin && 'opacity-50 pointer-events-none'}`}
                                                             color="success"
                                                             onClick={() => {
+                                                                setCurrentExercise(prev => { return { ...prev, id: exercise.id } })
                                                                 setOpenLoad(openLoad => !openLoad)
                                                                 setWeekLoad(Loads.length + 1)
                                                             }} />

@@ -32,6 +32,7 @@ export async function modifiedExercise({ exerciseId, inputs, routineActual, rout
         }
         setLoader(undefined)
     } catch (error: any) {
+        setLoader(undefined)
         sweetAlert(error.response.data.Error)
     }
 }
@@ -62,6 +63,7 @@ export async function modifiedLoads({ e, exerciseId, id, load, routineActual, ro
                 })
         setLoader(undefined)
     } catch (error: any) {
+        setLoader(undefined)
         sweetAlert(error.response.data.Error)
     }
 }
