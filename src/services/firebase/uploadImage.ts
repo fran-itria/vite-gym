@@ -8,7 +8,7 @@ import sweetAlert from "../swartAlert";
 
 
 export default async function uploadImage({ file, id, nameFile, setLoader, updatePhotoUser, setImage, setMenu }: uploadImageProps) {
-    const storageRef = ref(storage, nameFile)
+    const storageRef = ref(storage, `Gym/${nameFile}`)
     try {
         setLoader(`${basicLoaders.up} ${specificLoaders.image}`)
         setImage(false)
